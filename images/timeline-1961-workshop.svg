@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg1961" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e1114" />
+      <stop offset="60%" stop-color="#181d22" />
+      <stop offset="100%" stop-color="#242b32" />
+    </linearGradient>
+    <radialGradient id="lampGlow" cx="65%" cy="35%" r="45%">
+      <stop offset="0%" stop-color="#e1c67d" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#c7a557" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#111418" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(244, 241, 234, 0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bg1961)" />
+  <rect width="800" height="500" fill="url(#gridPattern)" />
+  <rect width="800" height="500" fill="url(#lampGlow)" />
+
+  <!-- Classic Workshop Lathe & Gear Shaper Machine Graphic -->
+  <g transform="translate(180, 100)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Heavy Cast-Iron Lathe Bed Base -->
+    <rect x="40" y="240" width="380" height="45" rx="6" fill="#15191d" stroke="#c7a557" stroke-width="2"/>
+    <path d="M 70 285 L 50 330 L 90 330 Z" fill="#1c2228" stroke="#c7a557" stroke-width="1.5"/>
+    <path d="M 390 285 L 370 330 L 410 330 Z" fill="#1c2228" stroke="#c7a557" stroke-width="1.5"/>
+
+    <!-- Headstock & Gear Drives -->
+    <rect x="50" y="110" width="110" height="130" rx="4" fill="#1f262d" stroke="#e1c67d" stroke-width="2"/>
+    <circle cx="105" cy="170" r="35" fill="#111418" stroke="#c7a557" stroke-width="2"/>
+
+    <!-- Chuck & Workpiece Shaft -->
+    <rect x="160" y="145" width="30" height="50" fill="#2a323b" stroke="#e1c67d" stroke-width="1.5"/>
+    <line x1="190" y1="170" x2="330" y2="170" stroke="#e1c67d" stroke-width="8" stroke-dasharray="16 4"/>
+
+    <!-- Tailstock -->
+    <rect x="330" y="130" width="60" height="110" rx="4" fill="#1f262d" stroke="#c7a557" stroke-width="1.5"/>
+    <circle cx="360" cy="170" r="14" fill="#111418" stroke="#c7a557" stroke-width="1.5"/>
+
+    <!-- Handwheel Wheels -->
+    <circle cx="90" cy="265" r="18" fill="none" stroke="#e1c67d" stroke-width="2"/>
+    <line x1="90" y1="247" x2="90" y2="283" stroke="#e1c67d" stroke-width="1.5"/>
+    <line x1="72" y1="265" x2="108" y2="265" stroke="#e1c67d" stroke-width="1.5"/>
+
+    <circle cx="340" cy="265" r="14" fill="none" stroke="#e1c67d" stroke-width="2"/>
+
+    <!-- Early Gear Blank Teeth -->
+    <g transform="translate(240, 170)" stroke="#c7a557" stroke-width="1.5" fill="#181d22">
+      <circle r="36" fill="#181d22" stroke="#e1c67d" stroke-width="2"/>
+      <path d="M -4 -42 L 4 -42 L 3 -36 L -3 -36 Z" transform="rotate(0)"/>
+      <path d="M -4 -42 L 4 -42 L 3 -36 L -3 -36 Z" transform="rotate(45)"/>
+      <path d="M -4 -42 L 4 -42 L 3 -36 L -3 -36 Z" transform="rotate(90)"/>
+      <path d="M -4 -42 L 4 -42 L 3 -36 L -3 -36 Z" transform="rotate(135)"/>
+      <path d="M -4 -42 L 4 -42 L 3 -36 L -3 -36 Z" transform="rotate(180)"/>
+      <path d="M -4 -42 L 4 -42 L 3 -36 L -3 -36 Z" transform="rotate(225)"/>
+      <path d="M -4 -42 L 4 -42 L 3 -36 L -3 -36 Z" transform="rotate(270)"/>
+      <path d="M -4 -42 L 4 -42 L 3 -36 L -3 -36 Z" transform="rotate(315)"/>
+    </g>
+
+    <!-- Vintage Engraved Stamp Label -->
+    <g transform="translate(60, 45)" font-family="'DM Mono', monospace" font-size="11" fill="#e1c67d" letter-spacing="2">
+      <rect x="-10" y="-14" width="220" height="26" rx="4" fill="#0e1114" stroke="#c7a557" stroke-width="1"/>
+      <text x="0" y="4">FOUNDING WORKSHOP · 1961</text>
+    </g>
+  </g>
+
+  <!-- Vignette Overlay -->
+  <rect width="800" height="500" fill="none" stroke="rgba(199, 165, 87, 0.2)" stroke-width="2" />
+</svg>

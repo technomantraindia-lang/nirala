@@ -4997,3 +4997,86 @@ footer {
     font-size: 11px;
   }
 }
+
+/* 8. Mobile Page Banner & Hero Image Precision Optimization */
+@media (max-width: 900px) {
+  /* Production Process Top Banner (Fully uncropped, 100% visible on mobile) */
+  .process-top-banner {
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    background: #0b0d10;
+  }
+
+  .process-top-banner .banner-img-container {
+    height: auto !important;
+    width: 100% !important;
+  }
+
+  .process-banner-img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 480px;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block !important;
+  }
+
+  /* Products Page Top Banner (Fully uncropped, 100% visible on mobile) */
+  .products-top-banner {
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    background: #0b0d10;
+  }
+
+  .products-top-banner .banner-img-container {
+    height: auto !important;
+    width: 100% !important;
+  }
+
+  .products-banner-img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 480px;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block !important;
+  }
+
+  /* Machine Spares Hero Banner Mobile Layout */
+  .spares-hero-banner {
+    min-height: 360px !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 40px 0 !important;
+  }
+
+  .spares-banner-img {
+    object-fit: cover !important;
+    object-position: center center !important;
+    opacity: 0.35 !important;
+  }
+
+  .spares-banner-dark-overlay {
+    background: linear-gradient(180deg, rgba(9, 11, 14, 0.95) 0%, rgba(9, 11, 14, 0.88) 100%) !important;
+  }
+
+  /* Company Video Banner Aspect Ratio on Mobile */
+  .company-video-banner {
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    min-height: 220px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .process-banner-img,
+  .products-banner-img {
+    max-height: 340px;
+  }
+
+  main {
+    padding-top: 70px !important;
+  }
+}

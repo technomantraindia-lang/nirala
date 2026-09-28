@@ -2382,15 +2382,16 @@ footer {
 }
 
 .footer-logo {
-  width: 84px;
-  height: 84px;
-  flex: 0 0 84px;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
   object-fit: cover;
   object-position: center;
-  border: 1px solid var(--gold);
+  border: 1.5px solid var(--gold);
   border-radius: 50%;
   background: var(--ink-surface);
-  box-shadow: 0 0 18px rgba(199, 165, 87, 0.2);
+  box-shadow: 0 0 16px rgba(216, 179, 93, 0.25);
+  display: block;
 }
 
 .footer-content {

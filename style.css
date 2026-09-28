@@ -2382,15 +2382,15 @@ footer {
 }
 
 .footer-logo {
-  width: 58px;
-  height: 58px;
-  flex: 0 0 58px;
+  width: 105px;
+  height: 105px;
+  flex: 0 0 105px;
   object-fit: cover;
   object-position: center;
-  border: 1.5px solid var(--gold);
+  border: 2px solid var(--gold);
   border-radius: 50%;
   background: var(--ink-surface);
-  box-shadow: 0 0 16px rgba(216, 179, 93, 0.25);
+  box-shadow: 0 0 24px rgba(216, 179, 93, 0.35);
   display: block;
 }
 
@@ -2763,9 +2763,10 @@ footer {
   }
 
   .footer-logo {
-    width: 68px;
-    height: 68px;
-    flex-basis: 68px;
+    width: 84px;
+    height: 84px;
+    flex: 0 0 84px;
+    flex-basis: 84px;
   }
 
   .product-grid-4 {

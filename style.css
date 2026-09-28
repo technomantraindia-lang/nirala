@@ -4841,3 +4841,159 @@ footer {
 .product-detail-img-box:hover img {
   transform: scale(1.05);
 }
+
+/* ==========================================================================
+   COMPREHENSIVE MOBILE & LAPTOP RESPONSIVE OPTIMIZATION SYSTEM
+   ========================================================================== */
+
+/* 1. Global Viewport & Container Adjustments */
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+}
+
+/* 2. Header & Mobile Navigation Drawer */
+@media (max-width: 900px) {
+  .site-header {
+    height: 76px;
+  }
+
+  .nav-links {
+    top: 76px;
+    max-height: calc(100vh - 76px);
+  }
+}
+
+@media (max-width: 600px) {
+  .site-header {
+    height: 70px;
+  }
+
+  .brand-logo-img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .brand-name {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+
+  .nav-links {
+    top: 70px;
+    max-height: calc(100vh - 70px);
+    padding: 16px 18px 28px 18px;
+  }
+
+  .menu-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+/* 3. Horizontal Touch Scroll for Filter Bars on Mobile */
+@media (max-width: 768px) {
+  .spares-filter-tabs,
+  .products-filter-bar {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+    gap: 10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .spares-filter-tabs::-webkit-scrollbar,
+  .products-filter-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .spares-tab-btn,
+  .filter-btn {
+    flex-shrink: 0;
+  }
+}
+
+/* 4. Specification Tables / Lists Stacking on Mobile */
+@media (max-width: 540px) {
+  .spares-group-card ul li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding-bottom: 12px;
+  }
+
+  .spares-group-card ul li span:last-child {
+    color: var(--paper);
+    font-weight: 600;
+  }
+}
+
+/* 5. Floating Action Buttons Position & Touch Target */
+@media (max-width: 600px) {
+  .floating-actions {
+    bottom: 16px;
+    right: 16px;
+    gap: 10px;
+    z-index: 99;
+  }
+
+  .floating-btn {
+    width: 46px;
+    height: 46px;
+    font-size: 18px;
+  }
+}
+
+/* 6. Section Spacing & Typography Scaling on Mobile */
+@media (max-width: 600px) {
+  .section {
+    padding: 48px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 28px;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(22px, 6.5vw, 32px);
+  }
+
+  .spares-banner-title {
+    font-size: clamp(24px, 7vw, 36px);
+  }
+
+  .spares-group-card {
+    padding: 20px 16px;
+  }
+
+  .button,
+  .spares-btn-primary,
+  .spares-btn-secondary {
+    padding: 12px 20px;
+    font-size: 11px;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* 7. High-DPI Laptops & Mid-Size Screens (901px - 1280px) */
+@media (min-width: 901px) and (max-width: 1280px) {
+  .container {
+    width: calc(100% - 48px);
+  }
+
+  .nav-link {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .nav-cta {
+    padding: 10px 18px;
+    font-size: 11px;
+  }
+}

@@ -91,11 +91,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.getElementById('navLinks');
 
   if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
+    const toggleMobileMenu = (forceClose = false) => {
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', !isExpanded);
-      navLinks.classList.toggle('open');
-    });
+      const shouldOpen = forceClose ? false : !isExpanded;
+      
+      menuToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+      menuToggle.innerHTML = shouldOpen ? '✕' : '☰';
+      navLinks.classList.toggle('open', shouldOpen);
+      document.body.classList.toggle('modal-open', shouldOpen);
+    };
+
+    menuToggle.addEventListener('click', () => toggleMobileMenu());
 
     // Submenu toggles on mobile & keyboard focus
     const navItemsWithSub = document.querySelectorAll('.nav-item.has-dropdown');
@@ -104,24 +110,35 @@ document.addEventListener('DOMContentLoaded', () => {
       if (link) {
         link.addEventListener('click', (e) => {
           if (window.innerWidth <= 900) {
-            if (!item.classList.contains('open')) {
-              e.preventDefault();
-              item.classList.add('open');
-            }
+            e.preventDefault();
+            // Close other open submenus for clean UI
+            navItemsWithSub.forEach(other => {
+              if (other !== item) other.classList.remove('open');
+            });
+            item.classList.toggle('open');
           }
         });
       }
     });
 
-    // Close mobile drawer when clicking non-dropdown links or sub-links
+    // Close mobile drawer when clicking sub-links or non-dropdown links
     const allNavAnchors = navLinks.querySelectorAll('a');
     allNavAnchors.forEach(a => {
       a.addEventListener('click', () => {
         if (window.innerWidth <= 900 && !a.closest('.has-dropdown > .nav-link')) {
-          navLinks.classList.remove('open');
-          if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+          toggleMobileMenu(true);
         }
       });
+    });
+
+    // Close mobile drawer when clicking outside header
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 900 && navLinks.classList.contains('open')) {
+        const header = document.getElementById('siteHeader');
+        if (header && !header.contains(e.target)) {
+          toggleMobileMenu(true);
+        }
+      }
     });
   }
 

@@ -59,9 +59,10 @@
             <li><a href="teeth-grinding.html">Teeth Grinding</a></li>
             <li><a href="ratchet-clutch.html">Ratchet & Clutch</a></li>
             <li><a href="gear-coupling.html">Gear Coupling</a></li>
-            <li><a href="spares-machine-manufacturers.html">Machine Spares</a></li>
           </ul>
         </li>
+
+        <li class="nav-item"><a href="spares-machine-manufacturers.html" class="nav-link">Machine Spares</a></li>
 
         <li class="nav-item has-dropdown">
           <a href="gallery.html" class="nav-link">Gallery <span class="arrow">▼</span></a>
@@ -79,22 +80,19 @@
   </header>
 
   <main style="padding-top: 110px;">
-    <!-- Page Hero Banner -->
-    <section class="section section-alt" style="padding: 60px 0;">
-      <div class="container">
-        <div class="eyebrow">The Company</div>
-        <div class="section-heading" style="margin-bottom: 0;">
-          <h2>Six Decades of <em>Pioneering Precision.</em></h2>
-          <p>Established in 1961 in Vadodara, Nirala Engineers has built an enduring legacy of trust, precision gear manufacturing, and specialized machine components.</p>
-        </div>
-      </div>
+    <!-- Video Hero Banner (No Text Overlay - Pure Video Running) -->
+    <section class="company-video-banner" aria-label="Nirala Engineers About Us Video Banner">
+      <video class="company-banner-video" autoplay loop muted playsinline preload="auto">
+        <source src="images/R_T_fda_remove_that_form_th_gwr_video_mvp.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </section>
 
     <!-- About Us Section -->
     <section class="section" id="about">
       <div class="container">
         <div class="contact-grid align-center">
-          <div class="reveal">
+          <div class="reveal-left">
             <div class="eyebrow">About Nirala Engineers</div>
             <div class="section-heading">
               <h2>Engineering That Has <em>Earned Its Place.</em></h2>
@@ -103,7 +101,7 @@
             </div>
           </div>
 
-          <div class="reveal">
+          <div class="reveal-right reveal-rotate">
             <div class="spares-group-card" style="border-left: 4px solid var(--gold);">
               <h3>Key Industrial Sectors Served</h3>
               <div class="spares-tags-grid">
@@ -254,28 +252,34 @@
     <!-- Quality Policy & Certificates Area -->
     <section class="section" id="quality">
       <div class="container">
-        <div class="section-heading center reveal">
+        <div class="section-heading center reveal-scale">
           <div class="eyebrow">Quality Assurance</div>
           <h2>Engineered to the Micron, <em>Tested by Time.</em></h2>
           <p>Quality policy and formal compliance documents. Every component undergoes rigorous lead error, tooth alignment, and hardness checks.</p>
         </div>
 
-        <div class="contact-grid reveal">
-          <div class="spares-group-card">
+        <div class="contact-grid">
+          <div class="spares-group-card reveal-left">
             <h3>Quality Policy Statement</h3>
-            <p style="color: var(--muted); line-height: 1.8;">
-              Nirala Engineers is committed to manufacturing high precision gears, gearboxes, and CNC components meeting international standards (DIN/AGMA). We ensure continuous quality improvement, strict raw material verification, and zero-defect dispatch to maintain customer trust built since 1961.
+            <p style="color: var(--muted); line-height: 1.8; margin-bottom: 20px;">
+              Nirala Engineers is committed to manufacturing high precision gears, gearboxes, and CNC components meeting international standards (DIN/AGMA/ISO). We ensure continuous quality improvement, strict raw material verification, micro-structure inspection, and zero-defect dispatch to maintain customer trust built since 1961.
             </p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <span class="spare-tag" style="border-color: var(--gold); color: var(--gold-light);">✓ ISO 9001:2015 Certified</span>
+              <span class="spare-tag">DIN / AGMA Compliant</span>
+              <span class="spare-tag">100% Quality Inspection</span>
+            </div>
           </div>
 
-          <div class="spares-group-card">
-            <h3>Quality Assurance Documents</h3>
-            <div class="certificates-grid" style="grid-template-columns: 1fr;">
-              <div class="certificate-card">
-                <div class="certificate-icon">📄</div>
-                <h4>Official Quality Documents Area</h4>
-                <p>Client verified quality certificates, ISO documentation, and test reports will be displayed here upon client upload.</p>
-              </div>
+          <div class="spares-group-card reveal-right reveal-rotate" style="text-align: center;">
+            <h3 style="margin-bottom: 14px; text-align: left;">ISO 9001:2015 Certification</h3>
+            <div class="iso-certificate-container" style="border: 2px solid var(--gold); border-radius: var(--radius-md); overflow: hidden; background: #ffffff; box-shadow: var(--shadow-card); margin-bottom: 12px;">
+              <a href="images/iso-9001-certificate.jpg" target="_blank" title="Click to view high-resolution ISO Certificate">
+                <img src="images/iso-9001-certificate.jpg" alt="Nirala Engineers ISO 9001:2015 Certificate of Registration" style="width: 100%; height: auto; display: block; transition: transform var(--transition-fast);" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
+              </a>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gold-light); letter-spacing: 0.12em; text-align: center;">
+              OFFICIAL CERTIFICATE OF REGISTRATION — ISO 9001:2015
             </div>
           </div>
         </div>
@@ -285,13 +289,13 @@
     <!-- Job Opportunities Section -->
     <section class="section section-alt" id="jobs">
       <div class="container">
-        <div class="section-heading center reveal">
+        <div class="section-heading center reveal-scale">
           <div class="eyebrow">Careers at Nirala</div>
           <h2>Join Our <em>Engineering Team.</em></h2>
           <p>We are always looking for skilled CNC turners, gear hobbing operators, quality inspectors, and mechanical engineers.</p>
         </div>
 
-        <div class="spares-group-card reveal" style="max-width: 760px; margin: 0 auto; text-align: center;">
+        <div class="spares-group-card reveal-scale delay-1" style="max-width: 760px; margin: 0 auto; text-align: center;">
           <h3>Current Openings</h3>
           <p style="color: var(--muted); margin-bottom: 24px;">
             Positions for experienced CNC machinists, gear hobbers, and QA inspectors will be updated here. You can submit your resume for future opportunities.

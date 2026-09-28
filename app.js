@@ -11,7 +11,7 @@
  * Location: c:\Users\arjun\Desktop\Dhruv\Dhruv\nirala\code\app.js (Line 12)
  * =========================================================================
  */
-const PREVIEW_MODE = true;
+const PREVIEW_MODE = false;
 
 document.addEventListener('DOMContentLoaded', () => {
   // 0. Customer Preview Mode Navigation Interceptor
@@ -104,18 +104,29 @@ document.addEventListener('DOMContentLoaded', () => {
       if (link) {
         link.addEventListener('click', (e) => {
           if (window.innerWidth <= 900) {
-            if (PREVIEW_MODE) {
+            if (!item.classList.contains('open')) {
               e.preventDefault();
+              item.classList.add('open');
             }
-            item.classList.toggle('open');
           }
         });
       }
     });
+
+    // Close mobile drawer when clicking non-dropdown links or sub-links
+    const allNavAnchors = navLinks.querySelectorAll('a');
+    allNavAnchors.forEach(a => {
+      a.addEventListener('click', () => {
+        if (window.innerWidth <= 900 && !a.closest('.has-dropdown > .nav-link')) {
+          navLinks.classList.remove('open');
+          if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
   }
 
-  // 4. Scroll Reveal Animations
-  const revealElements = document.querySelectorAll('.reveal');
+  // 4. Scroll Reveal Animations & Parallax Video Effect
+  const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate');
   if (revealElements.length > 0) {
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -123,9 +134,31 @@ document.addEventListener('DOMContentLoaded', () => {
           entry.target.classList.add('active');
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12 });
 
     revealElements.forEach(el => revealObserver.observe(el));
+  }
+
+  // Video Banner Parallax Zoom on Scroll
+  const companyBannerVideo = document.querySelector('.company-banner-video');
+  const companyVideoBanner = document.querySelector('.company-video-banner');
+  if (companyBannerVideo && companyVideoBanner) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const rect = companyVideoBanner.getBoundingClientRect();
+          if (rect.bottom > 0 && rect.top < window.innerHeight) {
+            const scrollDistance = Math.max(0, -rect.top);
+            const scaleVal = 1 + (scrollDistance * 0.00035);
+            const translateYVal = scrollDistance * 0.2;
+            companyBannerVideo.style.transform = `scale(${Math.min(scaleVal, 1.15)}) translateY(${translateYVal}px)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
   }
 
   // Product card depth: pointer tilt, touch press, and keyboard-equivalent focus.
@@ -174,111 +207,115 @@ document.addEventListener('DOMContentLoaded', () => {
   const wedgeGroups = document.querySelectorAll('.pizza-wedge-group');
   const outsideCards = document.querySelectorAll('.pizza-outside-card');
   const closeButtons = document.querySelectorAll('.pizza-outside-card .popover-close-btn');
-  const pizzaDesktopBreakpoint = 1240;
+  const pizzaWheelContainer = document.getElementById('pizzaWheelContainer');
+  const pizzaWheelRotator = document.getElementById('pizzaWheelRotator');
+  let activeStageId = '3'; // Default on load: Stage 03 (Gear Cutting & Hobbing)
 
   const wedgeColors = {
     '1': '#c7a557',
     '2': '#e86b35',
     '3': '#d9413a',
-    '4': '#95d6d5',
-    '5': '#8b9ba3'
+    '4': '#4a8786',
+    '5': '#66767c'
   };
 
   const updatePizzaConnectorLine = (stageId) => {
-    const container = document.getElementById('pizzaWheelContainer');
+    const connectorSvg = document.getElementById('pizzaConnectorSvg');
     const pathEl = document.getElementById('pizzaConnectPath');
     const dotEl = document.getElementById('pizzaConnectDot');
-    if (!container || !pathEl || !dotEl) return;
+    if (!connectorSvg || !pathEl || !dotEl || !pizzaWheelContainer) return;
 
-    if (!stageId) {
+    if (window.innerWidth <= 1100 || !stageId) {
       pathEl.setAttribute('d', '');
       dotEl.setAttribute('opacity', '0');
       return;
     }
 
-    const activeCard = container.querySelector(`.pizza-outside-card[data-stage="${stageId}"].active`);
-    if (!activeCard) {
+    const activeCard = document.querySelector(`.pizza-outside-card[data-stage="${stageId}"].active`);
+    const activeDot = activeCard ? activeCard.querySelector('.card-connector-dot') : null;
+    if (!activeCard || !activeDot) {
       pathEl.setAttribute('d', '');
       dotEl.setAttribute('opacity', '0');
       return;
     }
 
-    const visual = container.querySelector('.pizza-wheel-visual') || container;
-    const visualRect = visual.getBoundingClientRect();
-    if (visualRect.width === 0) return;
+    const svgRect = connectorSvg.getBoundingClientRect();
+    if (svgRect.width === 0) return;
 
-    // ViewBox space 600x600 outer arc center coordinates for each stage:
-    const stageCoords = {
-      '1': { startX: 429, startY: 122 },
-      '2': { startX: 509, startY: 368 },
-      '3': { startX: 300, startY: 520 },
-      '4': { startX: 91,  startY: 368 },
-      '5': { startX: 171, startY: 122 }
+    // Outer edge midpoints for each stage in 600x600 SVG viewBox coordinate space:
+    const stageOuterCoords = {
+      '1': { x: 448, y: 96 },
+      '2': { x: 540, y: 378 },
+      '3': { x: 300, y: 552 },
+      '4': { x: 60,  y: 378 },
+      '5': { x: 152, y: 96 }
     };
 
-    const start = stageCoords[stageId] || { startX: 300, startY: 300 };
-    const color = wedgeColors[stageId] || '#c7a557';
+    const wheelSvg = document.getElementById('pizzaWheelSvg');
+    const wheelRect = wheelSvg ? wheelSvg.getBoundingClientRect() : pizzaWheelContainer.getBoundingClientRect();
+    const activeCoords = stageOuterCoords[stageId] || { x: 300, x: 300 };
 
-    // Map activeCard bounding box into 600x600 viewBox space:
-    const scale = 600 / visualRect.width;
-    const cardRect = activeCard.getBoundingClientRect();
+    // Convert wheel coordinates to connector SVG viewBox space (1000x700 viewBox)
+    const scaleX = 1000 / svgRect.width;
+    const scaleY = 700 / svgRect.height;
 
-    const cardLeft = (cardRect.left - visualRect.left) * scale;
-    const cardRight = (cardRect.right - visualRect.left) * scale;
-    const cardTop = (cardRect.top - visualRect.top) * scale;
-    const cardBottom = (cardRect.bottom - visualRect.top) * scale;
+    const startX = (wheelRect.left - svgRect.left + (activeCoords.x / 600) * wheelRect.width) * scaleX;
+    const startY = (wheelRect.top - svgRect.top + (activeCoords.y / 600) * wheelRect.height) * scaleY;
 
-    // Nearest point on card's rectangle to start point:
-    const endX = Math.max(cardLeft, Math.min(start.startX, cardRight));
-    const endY = Math.max(cardTop, Math.min(start.startY, cardBottom));
+    const dotRect = activeDot.getBoundingClientRect();
+    const endX = (dotRect.left + dotRect.width / 2 - svgRect.left) * scaleX;
+    const endY = (dotRect.top + dotRect.height / 2 - svgRect.top) * scaleY;
 
-    pathEl.setAttribute('d', `M ${start.startX} ${start.startY} L ${endX} ${endY}`);
-    pathEl.setAttribute('stroke', color);
-    
-    dotEl.setAttribute('cx', start.startX);
-    dotEl.setAttribute('cy', start.startY);
-    dotEl.setAttribute('fill', color);
+    // Curved Bezier path calculation:
+    const controlX = (startX + endX) / 2;
+    const controlY = Math.min(startY, endY) - 30;
+
+    const pathD = `M ${startX.toFixed(1)} ${startY.toFixed(1)} Q ${controlX.toFixed(1)} ${controlY.toFixed(1)} ${endX.toFixed(1)} ${endY.toFixed(1)}`;
+
+    pathEl.setAttribute('d', pathD);
+    pathEl.setAttribute('stroke', wedgeColors[stageId] || '#f3dc94');
+
+    dotEl.setAttribute('cx', endX.toFixed(1));
+    dotEl.setAttribute('cy', endY.toFixed(1));
+    dotEl.setAttribute('fill', wedgeColors[stageId] || '#f3dc94');
     dotEl.setAttribute('opacity', '1');
   };
 
-  const fitPizzaDetailCard = () => {
-    const activeCard = document.querySelector('.pizza-outside-card.active');
-    if (!activeCard) return;
-
-    activeCard.classList.remove('is-flipped');
-    if (window.innerWidth <= pizzaDesktopBreakpoint) return;
-
-    const viewportPadding = 24;
-    const rect = activeCard.getBoundingClientRect();
-    const shouldFlipRight = rect.right > window.innerWidth - viewportPadding;
-    const shouldFlipLeft = rect.left < viewportPadding;
-    const stage = activeCard.dataset.stage;
-
-    if ((stage === '1' || stage === '2') && shouldFlipRight) {
-      activeCard.classList.add('is-flipped');
-    } else if ((stage === '4' || stage === '5') && shouldFlipLeft) {
-      activeCard.classList.add('is-flipped');
-    }
-  };
-
   const refreshPizzaLayout = () => {
-    fitPizzaDetailCard();
     updatePizzaConnectorLine(activeStageId);
   };
 
-  let activeStageId = '1';
-
   const selectStage = (stageId) => {
     activeStageId = stageId;
+
+    // Slight wheel rotation toward selected stage for dynamic machine feel
+    if (pizzaWheelRotator) {
+      const stageRotations = { '1': -12, '2': -6, '3': 0, '4': 6, '5': 12 };
+      const rot = stageRotations[stageId] || 0;
+      pizzaWheelRotator.style.transform = `rotate(${rot}deg)`;
+    }
+
     wedgeGroups.forEach(group => {
       const isSelected = group.dataset.stage == stageId;
       group.classList.toggle('active', isSelected);
-      group.style.opacity = isSelected ? '1' : '0.55';
+      group.style.opacity = isSelected ? '1' : '0.45';
     });
 
     outsideCards.forEach(card => {
       const isSelected = card.dataset.stage == stageId;
       card.classList.toggle('active', isSelected);
+    });
+
+    // Sync hero timeline nodes if present
+    const heroNodes = document.querySelectorAll('.hero-timeline-node');
+    heroNodes.forEach(node => {
+      node.classList.toggle('active', node.dataset.stage == stageId);
+    });
+
+    // Sync pagination dots
+    const pageDots = document.querySelectorAll('.pizza-dot');
+    pageDots.forEach(dot => {
+      dot.classList.toggle('active', dot.dataset.stage == stageId);
     });
 
     window.requestAnimationFrame(refreshPizzaLayout);
@@ -291,26 +328,108 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       selectStage(group.dataset.stage);
     });
-    group.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        selectStage(group.dataset.stage);
-      }
-    });
   });
 
-  closeButtons.forEach(btn => {
+  // Card Prev/Next arrows & pagination dots
+  const stageNavBtns = document.querySelectorAll('.card-nav-arrow');
+  stageNavBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const parentCard = btn.closest('.pizza-outside-card');
-      if (parentCard) parentCard.classList.remove('active');
-      updatePizzaConnectorLine(null);
+      let currentNum = parseInt(activeStageId, 10);
+      if (btn.classList.contains('next')) {
+        currentNum = currentNum >= 5 ? 1 : currentNum + 1;
+      } else {
+        currentNum = currentNum <= 1 ? 5 : currentNum - 1;
+      }
+      selectStage(currentNum.toString());
     });
   });
 
-  // Initial connector line position & resize listener
-  setTimeout(refreshPizzaLayout, 200);
+  const pageDots = document.querySelectorAll('.pizza-dot');
+  pageDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      selectStage(dot.dataset.stage);
+    });
+  });
+
+  const heroNodes = document.querySelectorAll('.hero-timeline-node');
+  heroNodes.forEach(node => {
+    node.addEventListener('click', () => {
+      selectStage(node.dataset.stage);
+    });
+  });
+
+  // Drag & Touch Swipe Gesture Handler
+  if (pizzaWheelContainer) {
+    let startX = 0;
+    let isDragging = false;
+
+    // Desktop Mouse Drag
+    pizzaWheelContainer.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+    });
+
+    window.addEventListener('mouseup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      const deltaX = e.clientX - startX;
+      if (Math.abs(deltaX) > 35) {
+        let currentNum = parseInt(activeStageId, 10);
+        if (deltaX < 0) {
+          currentNum = currentNum >= 5 ? 1 : currentNum + 1;
+        } else {
+          currentNum = currentNum <= 1 ? 5 : currentNum - 1;
+        }
+        selectStage(currentNum.toString());
+      }
+    });
+
+    // Touch Mobile Swipe
+    pizzaWheelContainer.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        startX = e.touches[0].clientX;
+      }
+    }, { passive: true });
+
+    pizzaWheelContainer.addEventListener('touchend', (e) => {
+      if (!e.changedTouches || e.changedTouches.length === 0) return;
+      const deltaX = e.changedTouches[0].clientX - startX;
+      if (Math.abs(deltaX) > 35) {
+        let currentNum = parseInt(activeStageId, 10);
+        if (deltaX < 0) {
+          currentNum = currentNum >= 5 ? 1 : currentNum + 1;
+        } else {
+          currentNum = currentNum <= 1 ? 5 : currentNum - 1;
+        }
+        selectStage(currentNum.toString());
+      }
+    }, { passive: true });
+
+    // Keyboard Arrow Navigation
+    pizzaWheelContainer.addEventListener('keydown', (e) => {
+      if (['ArrowRight', 'ArrowDown'].includes(e.key)) {
+        e.preventDefault();
+        let currentNum = parseInt(activeStageId, 10);
+        currentNum = currentNum >= 5 ? 1 : currentNum + 1;
+        selectStage(currentNum.toString());
+      } else if (['ArrowLeft', 'ArrowUp'].includes(e.key)) {
+        e.preventDefault();
+        let currentNum = parseInt(activeStageId, 10);
+        currentNum = currentNum <= 1 ? 5 : currentNum - 1;
+        selectStage(currentNum.toString());
+      }
+    });
+  }
+
+  // Set Stage 03 selected by default on load
+  selectStage('3');
+
+  // Connector line position & resize listener
+  setTimeout(refreshPizzaLayout, 250);
   window.addEventListener('resize', () => window.requestAnimationFrame(refreshPizzaLayout), { passive: true });
+  window.addEventListener('scroll', () => window.requestAnimationFrame(refreshPizzaLayout), { passive: true });
+
 
   // 6. Circular Product Category Explorer
   const catButtons = document.querySelectorAll('.category-segment-btn');

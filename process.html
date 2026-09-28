@@ -59,9 +59,10 @@
             <li><a href="teeth-grinding.html">Teeth Grinding</a></li>
             <li><a href="ratchet-clutch.html">Ratchet & Clutch</a></li>
             <li><a href="gear-coupling.html">Gear Coupling</a></li>
-            <li><a href="spares-machine-manufacturers.html">Machine Spares</a></li>
           </ul>
         </li>
+
+        <li class="nav-item"><a href="spares-machine-manufacturers.html" class="nav-link">Machine Spares</a></li>
 
         <li class="nav-item has-dropdown">
           <a href="gallery.html" class="nav-link">Gallery <span class="arrow">▼</span></a>
@@ -78,185 +79,385 @@
     </div>
   </header>
 
-  <main style="padding-top: 110px;">
-    <!-- Page Hero Banner -->
-    <section class="section section-alt" style="padding: 60px 0;">
-      <div class="container">
-        <div class="eyebrow">Production Process</div>
-        <div class="section-heading" style="margin-bottom: 0;">
-          <h2>Interactive <em>Production Wheel.</em></h2>
-          <p>Every Nirala gear passes through five disciplined manufacturing stages to achieve zero backlash, quiet meshing, and long operating life.</p>
-        </div>
+  <main style="padding-top: 90px;">
+    <!-- Top Image Banner Section (No text overlay) -->
+    <section class="process-top-banner" aria-label="Production Process Banner">
+      <div class="banner-img-container">
+        <img src="images/image copy.png" alt="Nirala Engineers Production Process Banner" class="process-banner-img" />
       </div>
     </section>
 
-    <!-- Pizza-Shaped Interactive Process Section -->
-    <section class="section process-pizza-section">
-      <div class="container">
-        <div class="pizza-single-column-wrap reveal">
-          <!-- Pizza Radial Diagram Container -->
-          <div class="pizza-wheel-container" id="pizzaWheelContainer">
-            <svg class="pizza-wheel-svg" viewBox="0 0 600 600" aria-label="Interactive 5-Stage Circular Production Wheel">
-              <defs>
-                <radialGradient id="grad-slice-1" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#e1c67d" />
-                  <stop offset="70%" stop-color="#c7a557" />
-                  <stop offset="100%" stop-color="#8c6d27" />
-                </radialGradient>
-                <radialGradient id="grad-slice-2" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#f58c5d" />
-                  <stop offset="70%" stop-color="#e86b35" />
-                  <stop offset="100%" stop-color="#a33d13" />
-                </radialGradient>
-                <radialGradient id="grad-slice-3" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#ed645e" />
-                  <stop offset="70%" stop-color="#d9413a" />
-                  <stop offset="100%" stop-color="#8c1c17" />
-                </radialGradient>
-                <radialGradient id="grad-slice-4" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#b6e8e7" />
-                  <stop offset="70%" stop-color="#95d6d5" />
-                  <stop offset="100%" stop-color="#4a8786" />
-                </radialGradient>
-                <radialGradient id="grad-slice-5" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#8b9ba3" />
-                  <stop offset="70%" stop-color="#66767c" />
-                  <stop offset="100%" stop-color="#343f44" />
-                </radialGradient>
-              </defs>
+    <!-- Split Interactive Process Explorer Section (Clean Dark Theme) -->
+    <section class="section process-pizza-section" id="process-explorer">
+      <div class="process-particles-container" aria-hidden="true">
+        <span class="particle p1"></span>
+        <span class="particle p2"></span>
+        <span class="particle p3"></span>
+        <span class="particle p4"></span>
+        <span class="particle p5"></span>
+        <span class="particle p6"></span>
+      </div>
 
-              <!-- Wedges -->
-              <!-- Stage 1: Material & Inspection (-90° to -18°) -->
-              <g class="pizza-wedge-group active" data-stage="1" tabindex="0" role="button" aria-label="Stage 1: Material & Inspection">
-                <path class="pizza-wedge-path" fill="url(#grad-slice-1)" d="M 300,80 A 220,220 0 0,1 509.2,232.0 L 371.3,276.8 A 75,75 0 0,0 300,225 Z"></path>
-                <text x="385" y="183" class="pizza-slice-text">
-                  <tspan x="385" dy="-6">STAGE 01</tspan>
-                  <tspan x="385" dy="16" class="slice-name">MATERIAL &amp; INSPECTION</tspan>
-                </text>
-              </g>
+      <div class="container process-container-relative">
+        <div class="section-heading center reveal-scale" style="margin-bottom: 45px;">
+          <div class="eyebrow">Interactive Manufacturing Wheel</div>
+          <h2>5-Stage Production <em>Explorer.</em></h2>
+          <p>Click or drag any stage on the wheel to view detailed technical specifications and quality checks.</p>
+        </div>
 
-              <!-- Stage 2: Turning & Shaping (-18° to 54°) -->
-              <g class="pizza-wedge-group" data-stage="2" tabindex="0" role="button" aria-label="Stage 2: Turning & Shaping">
-                <path class="pizza-wedge-path" fill="url(#grad-slice-2)" d="M 509.2,232.0 A 220,220 0 0,1 429.3,478.0 L 344.1,360.7 A 75,75 0 0,0 371.3,276.8 Z"></path>
-                <text x="438" y="345" class="pizza-slice-text">
-                  <tspan x="438" dy="-6">STAGE 02</tspan>
-                  <tspan x="438" dy="16" class="slice-name">TURNING &amp; SHAPING</tspan>
-                </text>
-              </g>
-
-              <!-- Stage 3: Gear Cutting & Hobbing (54° to 126°) -->
-              <g class="pizza-wedge-group" data-stage="3" tabindex="0" role="button" aria-label="Stage 3: Gear Cutting & Hobbing">
-                <path class="pizza-wedge-path" fill="url(#grad-slice-3)" d="M 429.3,478.0 A 220,220 0 0,1 170.7,478.0 L 255.9,360.7 A 75,75 0 0,0 344.1,360.7 Z"></path>
-                <text x="300" y="445" class="pizza-slice-text">
-                  <tspan x="300" dy="-6">STAGE 03</tspan>
-                  <tspan x="300" dy="16" class="slice-name">GEAR CUTTING &amp; HOBBING</tspan>
-                </text>
-              </g>
-
-              <!-- Stage 4: Heat Treatment & Hardening (126° to 198°) -->
-              <g class="pizza-wedge-group" data-stage="4" tabindex="0" role="button" aria-label="Stage 4: Heat Treatment & Hardening">
-                <path class="pizza-wedge-path" fill="url(#grad-slice-4)" d="M 170.7,478.0 A 220,220 0 0,1 90.8,232.0 L 228.7,276.8 A 75,75 0 0,0 255.9,360.7 Z"></path>
-                <text x="162" y="345" class="pizza-slice-text">
-                  <tspan x="162" dy="-6">STAGE 04</tspan>
-                  <tspan x="162" dy="16" class="slice-name">HEAT TREATMENT</tspan>
-                </text>
-              </g>
-
-              <!-- Stage 5: Teeth Grinding & Dispatch (198° to 270°) -->
-              <g class="pizza-wedge-group" data-stage="5" tabindex="0" role="button" aria-label="Stage 5: Teeth Grinding & Dispatch">
-                <path class="pizza-wedge-path" fill="url(#grad-slice-5)" d="M 90.8,232.0 A 220,220 0 0,1 300,80 L 300,225 A 75,75 0 0,0 228.7,276.8 Z"></path>
-                <text x="215" y="183" class="pizza-slice-text">
-                  <tspan x="215" dy="-6">STAGE 05</tspan>
-                  <tspan x="215" dy="16" class="slice-name">TEETH GRINDING</tspan>
-                </text>
-              </g>
-            </svg>
-
-            <!-- Center Hub -->
-            <div class="pizza-center-hub">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        <div class="process-split-layout">
+          
+          <!-- Left Column: SVG Wheel & Animated Connector -->
+          <div class="process-wheel-box reveal-left">
+            <!-- Ambient Rotating Technical Rings -->
+            <div class="tech-rings-bg" aria-hidden="true">
+              <svg viewBox="0 0 800 800" class="tech-rings-svg">
+                <circle cx="400" cy="400" r="380" stroke="rgba(216,179,93,0.18)" stroke-width="1.5" stroke-dasharray="14 10" fill="none" class="ring-rotate-cw" />
+                <circle cx="400" cy="400" r="320" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="6 6" fill="none" class="ring-rotate-ccw" />
+                <circle cx="400" cy="400" r="260" stroke="rgba(216,179,93,0.14)" stroke-width="1" fill="none" />
               </svg>
-              <small>PROCESS HUB</small>
             </div>
 
-            <!-- 5 Calculated Compact Cards (Completely outside circle, NO image) -->
-            <div class="pizza-outside-card active" data-stage="1">
-              <button class="popover-close-btn" aria-label="Close">×</button>
-              <div class="pizza-detail-stage-num">STAGE 01 / 05</div>
-              <h3>Material &amp; Inspection</h3>
-              <p>Spectrometric chemical test, ultrasonic flaw detection, and micro-structure verification of high-alloy forged steel blanks prior to turning.</p>
+            <div class="pizza-wheel-container" id="pizzaWheelContainer" tabindex="0" role="region" aria-label="Interactive 5-Stage Production Wheel. Use arrow keys or drag to switch stages.">
+              
+              <!-- SVG Connector Line (Behind wheel & card) -->
+              <svg class="pizza-connector-svg" id="pizzaConnectorSvg" viewBox="0 0 1000 700" aria-hidden="true">
+                <defs>
+                  <linearGradient id="connectorGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#f3dc94" />
+                    <stop offset="100%" stop-color="#d8b35d" />
+                  </linearGradient>
+                </defs>
+                <path id="pizzaConnectPath" class="pizza-connect-path" d="" fill="none" stroke="url(#connectorGrad)" stroke-width="3" stroke-dasharray="7 5" />
+                <circle id="pizzaConnectDot" class="pizza-connect-dot" cx="0" cy="0" r="7" fill="#f3dc94" opacity="0" filter="drop-shadow(0 0 8px #f3dc94)" />
+              </svg>
+
+              <!-- Main Interactive 5-Stage SVG Wheel -->
+              <svg class="pizza-wheel-svg" id="pizzaWheelSvg" viewBox="0 0 600 600" aria-label="Interactive 5-Stage Circular Production Wheel">
+                <defs>
+                  <!-- Metallic Gradients for 5 Industrial Stages -->
+                  <radialGradient id="grad-slice-1" cx="40%" cy="30%" r="70%">
+                    <stop offset="0%" stop-color="#f5e1a4" />
+                    <stop offset="65%" stop-color="#c7a557" />
+                    <stop offset="100%" stop-color="#735b23" />
+                  </radialGradient>
+                  <radialGradient id="grad-slice-2" cx="40%" cy="30%" r="70%">
+                    <stop offset="0%" stop-color="#fca883" />
+                    <stop offset="65%" stop-color="#e86b35" />
+                    <stop offset="100%" stop-color="#8a300d" />
+                  </radialGradient>
+                  <radialGradient id="grad-slice-3" cx="40%" cy="30%" r="70%">
+                    <stop offset="0%" stop-color="#ff8983" />
+                    <stop offset="65%" stop-color="#d9413a" />
+                    <stop offset="100%" stop-color="#7a1813" />
+                  </radialGradient>
+                  <radialGradient id="grad-slice-4" cx="40%" cy="30%" r="70%">
+                    <stop offset="0%" stop-color="#c5f3f2" />
+                    <stop offset="65%" stop-color="#4a8786" />
+                    <stop offset="100%" stop-color="#1e4443" />
+                  </radialGradient>
+                  <radialGradient id="grad-slice-5" cx="40%" cy="30%" r="70%">
+                    <stop offset="0%" stop-color="#b6c5cc" />
+                    <stop offset="65%" stop-color="#66767c" />
+                    <stop offset="100%" stop-color="#2a3338" />
+                  </radialGradient>
+
+                  <!-- Metallic Inner Shadow & Glow Filters -->
+                  <filter id="wedgeGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.6" />
+                  </filter>
+                </defs>
+
+                <g class="pizza-wheel-rotator" id="pizzaWheelRotator">
+                  <!-- Stage 01 Wedge -->
+                  <g class="pizza-wedge-group" data-stage="1" tabindex="0" role="button" aria-label="Stage 1: Material & Inspection">
+                    <path class="pizza-wedge-path" fill="url(#grad-slice-1)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" d="M 300,75 A 225,225 0 0,1 513.9,230.5 L 371.3,276.8 A 75,75 0 0,0 300,225 Z" filter="url(#wedgeGlow)"></path>
+                    <text x="395" y="175" class="pizza-slice-text">
+                      <tspan x="395" dy="-6" class="slice-num">STAGE 01</tspan>
+                      <tspan x="395" dy="16" class="slice-name">MATERIAL &amp; INSPECTION</tspan>
+                    </text>
+                  </g>
+
+                  <!-- Stage 02 Wedge -->
+                  <g class="pizza-wedge-group" data-stage="2" tabindex="0" role="button" aria-label="Stage 2: Turning & Shaping">
+                    <path class="pizza-wedge-path" fill="url(#grad-slice-2)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" d="M 513.9,230.5 A 225,225 0 0,1 435.2,486.1 L 344.1,360.7 A 75,75 0 0,0 371.3,276.8 Z" filter="url(#wedgeGlow)"></path>
+                    <text x="445" y="340" class="pizza-slice-text">
+                      <tspan x="445" dy="-6" class="slice-num">STAGE 02</tspan>
+                      <tspan x="445" dy="16" class="slice-name">TURNING &amp; SHAPING</tspan>
+                    </text>
+                  </g>
+
+                  <!-- Stage 03 Wedge (Default Active) -->
+                  <g class="pizza-wedge-group active" data-stage="3" tabindex="0" role="button" aria-label="Stage 3: Gear Cutting & Hobbing">
+                    <path class="pizza-wedge-path" fill="url(#grad-slice-3)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" d="M 435.2,486.1 A 225,225 0 0,1 164.8,486.1 L 255.9,360.7 A 75,75 0 0,0 344.1,360.7 Z" filter="url(#wedgeGlow)"></path>
+                    <text x="300" y="450" class="pizza-slice-text">
+                      <tspan x="300" dy="-6" class="slice-num">STAGE 03</tspan>
+                      <tspan x="300" dy="16" class="slice-name">GEAR CUTTING &amp; HOBBING</tspan>
+                    </text>
+                  </g>
+
+                  <!-- Stage 04 Wedge -->
+                  <g class="pizza-wedge-group" data-stage="4" tabindex="0" role="button" aria-label="Stage 4: Heat Treatment">
+                    <path class="pizza-wedge-path" fill="url(#grad-slice-4)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" d="M 164.8,486.1 A 225,225 0 0,1 86.1,230.5 L 228.7,276.8 A 75,75 0 0,0 255.9,360.7 Z" filter="url(#wedgeGlow)"></path>
+                    <text x="155" y="340" class="pizza-slice-text">
+                      <tspan x="155" dy="-6" class="slice-num">STAGE 04</tspan>
+                      <tspan x="155" dy="16" class="slice-name">HEAT TREATMENT</tspan>
+                    </text>
+                  </g>
+
+                  <!-- Stage 05 Wedge -->
+                  <g class="pizza-wedge-group" data-stage="5" tabindex="0" role="button" aria-label="Stage 5: Teeth Grinding">
+                    <path class="pizza-wedge-path" fill="url(#grad-slice-5)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" d="M 86.1,230.5 A 225,225 0 0,1 300,75 L 300,225 A 75,75 0 0,0 228.7,276.8 Z" filter="url(#wedgeGlow)"></path>
+                    <text x="205" y="175" class="pizza-slice-text">
+                      <tspan x="205" dy="-6" class="slice-num">STAGE 05</tspan>
+                      <tspan x="205" dy="16" class="slice-name">TEETH GRINDING</tspan>
+                    </text>
+                  </g>
+                </g>
+              </svg>
+
+              <!-- Center Hub with Gold Gear Icon -->
+              <div class="pizza-center-hub" aria-label="Process Hub Center">
+                <div class="hub-gear-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="gear-svg-spin">
+                    <circle cx="12" cy="12" r="3.2"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                  </svg>
+                </div>
+                <span class="hub-label">PROCESS HUB</span>
+              </div>
             </div>
 
-            <div class="pizza-outside-card" data-stage="2">
-              <button class="popover-close-btn" aria-label="Close">×</button>
-              <div class="pizza-detail-stage-num">STAGE 02 / 05</div>
-              <h3>Turning &amp; Shaping</h3>
-              <p>High-precision CNC turning, face profiling, and boring to exact tolerances within ±0.005mm.</p>
+            <!-- Drag Instruction Pill & Pagination Dots -->
+            <div class="wheel-controls-wrapper">
+              <div class="pizza-rotate-pill">
+                <span class="pill-icon">↔</span> DRAG OR SWIPE TO ROTATE
+              </div>
+
+              <div class="pizza-dots-bar" aria-label="Stage Pagination">
+                <button class="pizza-dot" data-stage="1" aria-label="Select Stage 1"></button>
+                <button class="pizza-dot" data-stage="2" aria-label="Select Stage 2"></button>
+                <button class="pizza-dot active" data-stage="3" aria-label="Select Stage 3"></button>
+                <button class="pizza-dot" data-stage="4" aria-label="Select Stage 4"></button>
+                <button class="pizza-dot" data-stage="5" aria-label="Select Stage 5"></button>
+              </div>
             </div>
 
-            <div class="pizza-outside-card" data-stage="3">
-              <button class="popover-close-btn" aria-label="Close">×</button>
-              <div class="pizza-detail-stage-num">STAGE 03 / 05</div>
-              <h3>Gear Cutting &amp; Hobbing</h3>
-              <p>High-speed precision hobbing, shaping, and spline cutting for involute gear teeth profiles.</p>
+          </div>
+
+          <!-- Right Column: Detail Information Cards Frame -->
+          <div class="process-card-box reveal-right">
+            
+            <!-- Stage 1 Side Card -->
+            <div class="process-side-card pizza-outside-card" data-stage="1">
+              <div class="card-connector-dot" aria-hidden="true"></div>
+              <div class="stage-card-header">
+                <span class="stage-card-counter">01 / 05</span>
+                <div class="stage-card-arrows">
+                  <button class="card-nav-arrow prev" aria-label="Previous Stage">‹</button>
+                  <button class="card-nav-arrow next" aria-label="Next Stage">›</button>
+                </div>
+              </div>
+              <h3 class="stage-card-title">MATERIAL &amp; INSPECTION</h3>
+              <p class="stage-card-desc">Spectrometric chemical test, ultrasonic flaw detection, and micro-structure verification of high-alloy forged steel blanks prior to turning.</p>
+              <div class="stage-card-img-wrap">
+                <img src="images/stage-1-inspection.jpg" alt="Stage 1 Raw Material Verification & Inspection" />
+              </div>
+              <div class="stage-tags-row">
+                <span class="stage-tag-pill">RAW MATERIAL TEST</span>
+                <span class="stage-tag-pill">ULTRASONIC FLAW CHECK</span>
+              </div>
+              <a href="company.html#quality" class="stage-cta-link">EXPLORE THIS STAGE →</a>
             </div>
 
-            <div class="pizza-outside-card" data-stage="4">
-              <button class="popover-close-btn" aria-label="Close">×</button>
-              <div class="pizza-detail-stage-num">STAGE 04 / 05</div>
-              <h3>Heat Treatment &amp; Hardening</h3>
-              <p>Controlled atmosphere gas carburizing, induction hardening, and tempering for core toughness and surface wear resistance.</p>
+            <!-- Stage 2 Side Card -->
+            <div class="process-side-card pizza-outside-card" data-stage="2">
+              <div class="card-connector-dot" aria-hidden="true"></div>
+              <div class="stage-card-header">
+                <span class="stage-card-counter">02 / 05</span>
+                <div class="stage-card-arrows">
+                  <button class="card-nav-arrow prev" aria-label="Previous Stage">‹</button>
+                  <button class="card-nav-arrow next" aria-label="Next Stage">›</button>
+                </div>
+              </div>
+              <h3 class="stage-card-title">TURNING &amp; SHAPING</h3>
+              <p class="stage-card-desc">High-precision CNC turning, face profiling, and boring to exact tolerances within ±0.005mm.</p>
+              <div class="stage-card-img-wrap">
+                <img src="images/stage-2-turning.jpg" alt="Stage 2 CNC Turning & Shaping" />
+              </div>
+              <div class="stage-tags-row">
+                <span class="stage-tag-pill">CNC TURNING</span>
+                <span class="stage-tag-pill">MICRON TOLERANCE</span>
+              </div>
+              <a href="spares-machine-manufacturers.html" class="stage-cta-link">EXPLORE THIS STAGE →</a>
             </div>
 
-            <div class="pizza-outside-card" data-stage="5">
-              <button class="popover-close-btn" aria-label="Close">×</button>
-              <div class="pizza-detail-stage-num">STAGE 05 / 05</div>
-              <h3>Teeth Grinding &amp; Dispatch</h3>
-              <p>CNC gear teeth profile grinding to DIN/AGMA quality classes, followed by gear roll inspection and lead error check.</p>
+            <!-- Stage 3 Side Card (Default Active) -->
+            <div class="process-side-card pizza-outside-card active" data-stage="3">
+              <div class="card-connector-dot" aria-hidden="true"></div>
+              <div class="stage-card-header">
+                <span class="stage-card-counter">03 / 05</span>
+                <div class="stage-card-arrows">
+                  <button class="card-nav-arrow prev" aria-label="Previous Stage">‹</button>
+                  <button class="card-nav-arrow next" aria-label="Next Stage">›</button>
+                </div>
+              </div>
+              <h3 class="stage-card-title">GEAR CUTTING &amp; HOBBING</h3>
+              <p class="stage-card-desc">High-speed hobbing machines cut precise spur, helical, spline, and worm teeth geometry according to DIN/AGMA standards.</p>
+              <div class="stage-card-img-wrap">
+                <img src="images/stage-3-hobbing.jpg" alt="Stage 3 Gear Cutting & Hobbing" />
+              </div>
+              <div class="stage-tags-row">
+                <span class="stage-tag-pill">CNC HOBBING</span>
+                <span class="stage-tag-pill">AGMA STANDARDS</span>
+              </div>
+              <a href="spur-gear.html" class="stage-cta-link">EXPLORE THIS STAGE →</a>
+            </div>
+
+            <!-- Stage 4 Side Card -->
+            <div class="process-side-card pizza-outside-card" data-stage="4">
+              <div class="card-connector-dot" aria-hidden="true"></div>
+              <div class="stage-card-header">
+                <span class="stage-card-counter">04 / 05</span>
+                <div class="stage-card-arrows">
+                  <button class="card-nav-arrow prev" aria-label="Previous Stage">‹</button>
+                  <button class="card-nav-arrow next" aria-label="Next Stage">›</button>
+                </div>
+              </div>
+              <h3 class="stage-card-title">HEAT TREATMENT</h3>
+              <p class="stage-card-desc">Controlled atmosphere carburizing, induction hardening, and stress relieving to achieve optimal tooth surface hardness (58-62 HRC).</p>
+              <div class="stage-card-img-wrap">
+                <img src="images/stage-4-hardening.jpg" alt="Stage 4 Heat Treatment & Hardening" />
+              </div>
+              <div class="stage-tags-row">
+                <span class="stage-tag-pill">INDUCTION HARDENING</span>
+                <span class="stage-tag-pill">58-62 HRC HARDNESS</span>
+              </div>
+              <a href="contact.html#quote" class="stage-cta-link">EXPLORE THIS STAGE →</a>
+            </div>
+
+            <!-- Stage 5 Side Card -->
+            <div class="process-side-card pizza-outside-card" data-stage="5">
+              <div class="card-connector-dot" aria-hidden="true"></div>
+              <div class="stage-card-header">
+                <span class="stage-card-counter">05 / 05</span>
+                <div class="stage-card-arrows">
+                  <button class="card-nav-arrow prev" aria-label="Previous Stage">‹</button>
+                  <button class="card-nav-arrow next" aria-label="Next Stage">›</button>
+                </div>
+              </div>
+              <h3 class="stage-card-title">TEETH GRINDING</h3>
+              <p class="stage-card-desc">CNC profile tooth grinding achieves DIN Class 5 quality with mirror surface finish, followed by CMM inspection before final packing.</p>
+              <div class="stage-card-img-wrap">
+                <img src="images/stage-5-grinding.jpg" alt="Stage 5 Teeth Grinding & Dispatch" />
+              </div>
+              <div class="stage-tags-row">
+                <span class="stage-tag-pill">CNC TEETH GRINDING</span>
+                <span class="stage-tag-pill">DIN CLASS 5 CMM</span>
+              </div>
+              <a href="teeth-grinding.html" class="stage-cta-link">EXPLORE THIS STAGE →</a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Detailed Sequential Breakdown Grid -->
+    <section class="section matrix-section">
+      <div class="container">
+        <div class="section-heading center reveal-scale">
+          <div class="eyebrow">Sequential Quality Matrix</div>
+          <h2>Full Manufacturing <em>Sequence Details.</em></h2>
+          <p>Every step engineered for zero backlash, quiet meshing, and maximum fatigue life.</p>
+        </div>
+
+        <div class="matrix-grid">
+          <!-- Card 1 -->
+          <div class="matrix-card reveal-left">
+            <div class="matrix-card-img-wrap">
+              <span class="matrix-stage-badge">STAGE 01</span>
+              <img src="images/stage-1-inspection.jpg" alt="1. Raw Material Verification" />
+            </div>
+            <div class="matrix-card-body">
+              <h3>1. Raw Material Verification</h3>
+              <p>Incoming forged steel bars and blanks undergo chemical composition spectroscopy, hardness testing, and ultrasonic internal void detection.</p>
+              <div class="stage-tags-row">
+                <span class="stage-tag-pill">RAW MATERIAL TEST</span>
+                <span class="stage-tag-pill">ULTRASONIC CHECK</span>
+              </div>
             </div>
           </div>
 
-          <!-- Explore Custom Batch Production Button Centered Below Wheel -->
-          <div class="pizza-button-wrap">
-            <a href="contact.html#quote" class="button button-primary">Inquire About Custom Batch Production</a>
+          <!-- Card 2 -->
+          <div class="matrix-card reveal-left">
+            <div class="matrix-card-img-wrap">
+              <span class="matrix-stage-badge">STAGE 02</span>
+              <img src="images/stage-2-turning.jpg" alt="2. CNC Turning & Boring" />
+            </div>
+            <div class="matrix-card-body">
+              <h3>2. CNC Turning &amp; Boring</h3>
+              <p>Blank turning on multi-axis CNC machines to achieve precise bore alignment, hub concentricity, and face flatness within ±0.005mm.</p>
+              <div class="stage-tags-row">
+                <span class="stage-tag-pill">CNC TURNING</span>
+                <span class="stage-tag-pill">MICRON TOLERANCE</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="matrix-card reveal-scale">
+            <div class="matrix-card-img-wrap">
+              <span class="matrix-stage-badge">STAGE 03</span>
+              <img src="images/stage-3-hobbing.jpg" alt="3. Precision Gear Hobbing & Shaping" />
+            </div>
+            <div class="matrix-card-body">
+              <h3>3. Precision Gear Hobbing &amp; Shaping</h3>
+              <p>High-speed hobbing machines cut precise spur, helical, spline, and worm teeth geometry according to DIN/AGMA standards.</p>
+              <div class="stage-tags-row">
+                <span class="stage-tag-pill">CNC HOBBING</span>
+                <span class="stage-tag-pill">AGMA STANDARDS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="matrix-card reveal-left">
+            <div class="matrix-card-img-wrap">
+              <span class="matrix-stage-badge">STAGE 04</span>
+              <img src="images/stage-4-hardening.jpg" alt="4. Heat Treatment & Case Hardening" />
+            </div>
+            <div class="matrix-card-body">
+              <h3>4. Heat Treatment &amp; Case Hardening</h3>
+              <p>Controlled atmosphere gas carburizing and induction hardening give gear teeth deep wear resistance while keeping the core tough.</p>
+              <div class="stage-tags-row">
+                <span class="stage-tag-pill">INDUCTION HARDENING</span>
+                <span class="stage-tag-pill">58-62 HRC HARDNESS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="matrix-card reveal-right">
+            <div class="matrix-card-img-wrap">
+              <span class="matrix-stage-badge">STAGE 05</span>
+              <img src="images/stage-5-grinding.jpg" alt="5. CNC Teeth Grinding & QA Dispatch" />
+            </div>
+            <div class="matrix-card-body">
+              <h3>5. CNC Teeth Grinding &amp; QA Dispatch</h3>
+              <p>Teeth profile grinding eliminates distortion from heat treatment. Lead error, tooth pitch, and gear roll checks are verified on Zeiss CMM before final rust-preventive packaging and dispatch.</p>
+              <div class="stage-tags-row">
+                <span class="stage-tag-pill">CNC TEETH GRINDING</span>
+                <span class="stage-tag-pill">DIN CLASS 5 CMM</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Accessible List of Stages for Mobile & Screen Readers -->
-        <div style="margin-top: 60px;">
-          <div class="section-heading">
-            <div class="eyebrow">Sequential Breakdown</div>
-            <h2>Full Manufacturing <em>Sequence Details.</em></h2>
-          </div>
-
-          <div class="contact-grid">
-            <div class="spares-group-card">
-              <h3>1. Raw Material Verification</h3>
-              <p style="color: var(--muted); font-size: 14px;">Incoming forged steel bars and blanks undergo chemical composition spectroscopy, hardness testing, and ultrasonic internal void detection.</p>
-            </div>
-
-            <div class="spares-group-card">
-              <h3>2. CNC Turning & Boring</h3>
-              <p style="color: var(--muted); font-size: 14px;">Blank turning on multi-axis CNC machines to achieve precise bore alignment, hub concentricity, and face flatness within ±0.005mm.</p>
-            </div>
-
-            <div class="spares-group-card">
-              <h3>3. Precision Gear Hobbing & Shaping</h3>
-              <p style="color: var(--muted); font-size: 14px;">High-speed hobbing machines cut precise spur, helical, spline, and worm teeth geometry according to DIN/AGMA standards.</p>
-            </div>
-
-            <div class="spares-group-card">
-              <h3>4. Heat Treatment & Case Hardening</h3>
-              <p style="color: var(--muted); font-size: 14px;">Controlled atmosphere gas carburizing and induction hardening give gear teeth deep wear resistance while keeping the core tough.</p>
-            </div>
-
-            <div class="spares-group-card" style="grid-column: 1 / -1;">
-              <h3>5. CNC Teeth Grinding & QA Dispatch</h3>
-              <p style="color: var(--muted); font-size: 14px;">Teeth profile grinding eliminates distortion from heat treatment. Lead error, tooth pitch, and gear roll checks are verified before final rust-preventive packaging and dispatch.</p>
-            </div>
-          </div>
+        <div style="margin-top: 40px; text-align: center;" class="reveal-scale">
+          <a href="contact.html#quote" class="button button-primary">Inquire About Custom Batch Production</a>
         </div>
       </div>
     </section>

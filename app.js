@@ -770,3 +770,22 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTimelineScroll();
   }
 });
+
+// Product Details Interactive Gallery Switcher
+window.switchMainProductImage = function(thumbElement, newSrc) {
+  const mainImg = document.getElementById('mainProductImg');
+  if (mainImg) {
+    mainImg.style.transition = 'opacity 0.2s ease, transform 0.3s ease';
+    mainImg.style.opacity = '0.3';
+    setTimeout(() => {
+      mainImg.src = newSrc;
+      mainImg.style.opacity = '1';
+    }, 150);
+  }
+  const thumbs = document.querySelectorAll('.product-thumb-item');
+  thumbs.forEach(t => t.classList.remove('active'));
+  if (thumbElement) {
+    thumbElement.classList.add('active');
+  }
+};
+

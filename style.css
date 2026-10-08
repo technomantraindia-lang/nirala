@@ -2184,18 +2184,20 @@ textarea.form-control {
   resize: vertical;
 }
 
-/* Floating Actions: WhatsApp & Live Desk */
+/* Floating Actions: WhatsApp & Direct Call */
 .floating-actions {
   position: fixed;
   bottom: 28px;
   right: 28px;
-  z-index: 95;
+  z-index: 999;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
+  align-items: flex-end;
 }
 
 .float-btn {
+  position: relative;
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -2203,27 +2205,93 @@ textarea.form-control {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  transition: var(--transition-fast);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   border: none;
   text-decoration: none;
+  outline: none;
 }
 
 .float-btn:hover {
-  transform: scale(1.1) translateY(-3px);
+  transform: scale(1.12) translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 22px rgba(216, 179, 93, 0.4);
 }
 
 .float-whatsapp {
-  background-color: #25d366;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
   color: #ffffff;
-  font-size: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  animation: pulseWhatsapp 3s infinite ease-in-out;
+}
+
+.float-whatsapp:hover {
+  background: linear-gradient(135deg, #26e66f 0%, #15a191 100%);
+  color: #ffffff;
+}
+
+.float-call {
+  background: linear-gradient(135deg, #d8b35d 0%, #b8923d 100%);
+  color: #0b0d10;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.float-call:hover {
+  background: linear-gradient(135deg, #e5c373 0%, #c9a34e 100%);
+  color: #0b0d10;
 }
 
 .float-chat {
-  background-color: var(--gold);
-  color: var(--ink);
-  font-size: 22px;
-  border: 2px solid var(--paper);
+  background: linear-gradient(135deg, #1b222c 0%, #0d1117 100%);
+  color: var(--gold-light);
+  border: 2px solid var(--gold);
+}
+
+.float-btn-icon {
+  display: block;
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease;
+}
+
+.float-btn:hover .float-btn-icon {
+  transform: scale(1.1);
+}
+
+/* Tooltip on Hover */
+.float-btn-tooltip {
+  position: absolute;
+  right: 68px;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  background: rgba(11, 14, 18, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--paper);
+  border: 1px solid var(--gold);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.float-btn:hover .float-btn-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+@keyframes pulseWhatsapp {
+  0%, 100% {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 0 14px rgba(37, 211, 102, 0);
+  }
 }
 
 /* Live Chat Drawer Modal */
@@ -4686,21 +4754,25 @@ footer {
 .product-item-img-wrap {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 230px;
   overflow: hidden;
-  background: #0b0d10;
+  background: radial-gradient(circle at center, #161b24 0%, #080a0c 100%);
   border-bottom: 1px solid rgba(216, 179, 93, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-item-img-wrap img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  object-fit: contain;
+  padding: 10px;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
 }
 
 .product-item-card:hover .product-item-img-wrap img {
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 .product-item-badge {
@@ -4842,6 +4914,38 @@ footer {
 
 .product-detail-img-box:hover img {
   transform: scale(1.05);
+}
+
+/* Product Detail Gallery Thumbnails */
+.product-gallery-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.product-thumb-item {
+  height: 75px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 2px solid rgba(216, 179, 93, 0.25);
+  background: #0b0d10;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.product-thumb-item:hover,
+.product-thumb-item.active {
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(216, 179, 93, 0.5);
+  transform: translateY(-2px);
+}
+
+.product-thumb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ==========================================================================

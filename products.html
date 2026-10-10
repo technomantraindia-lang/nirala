@@ -43,9 +43,9 @@
           </ul>
         </li>
 
-        <li class="nav-item"><a href="process.html" class="nav-link">Production Process</a>
-          < <li class="nav-item has-dropdown active">
-            <a href="products.html" class="nav-link">Products <span class="arrow">▼</span></a>
+        <li class="nav-item"><a href="process.html" class="nav-link">Production Process</a></li>
+        <li class="nav-item has-dropdown active">
+          <a href="products.html" class="nav-link">Products <span class="arrow">▼</span></a>
             <ul class="dropdown-menu">
               <li><a href="spur-gear.html">Spur Gear</a></li>
               <li><a href="helical-gear.html">Helical Gear</a></li>
@@ -82,265 +82,508 @@
   </header>
 
   <main style="padding-top: 90px;">
-    <!-- Product Page Top Banner (No Text Overlay, Full Width) -->
+    <!-- Product Page Top Banner with Right Text Overlay -->
     <section class="products-top-banner" aria-label="Products Catalog Banner">
       <div class="banner-img-container">
-        <img src="images/product.png" alt="Nirala Engineers Product Universe Banner" class="products-banner-img" />
+        <img src="images/product banner .png" alt="Nirala Engineers Precision Gear Universe" class="products-banner-img" />
+        <div class="banner-overlay-gradient"></div>
+        <div class="container banner-content-container">
+          <div class="banner-right-content reveal-right">
+            <div class="banner-tag-pill">
+              <span class="pulsing-live-dot"></span>
+              <span>SINCE 1961 · PRECISION GEAR MANUFACTURE</span>
+            </div>
+            <h1 class="banner-headline">
+              Crafted for High Torque.<br />
+              <em>Engineered for Zero Backlash.</em>
+            </h1>
+            <p class="banner-subtext">
+              14 specialized industrial gear families, precision-ground worm sets, custom racks, splines, and heavy-duty transmission components manufactured to strict DIN &amp; AGMA standards at our Vadodara works.
+            </p>
+            <div class="banner-specs-strip">
+              <div class="banner-spec-item">
+                <strong>14+</strong>
+                <span>Gear Families</span>
+              </div>
+              <div class="banner-spec-divider"></div>
+              <div class="banner-spec-item">
+                <strong>0.5 – 25M</strong>
+                <span>Module Range</span>
+              </div>
+              <div class="banner-spec-divider"></div>
+              <div class="banner-spec-item">
+                <strong>DIN 5 / 6</strong>
+                <span>Ground Quality</span>
+              </div>
+            </div>
+            <div class="banner-actions-row">
+              <a href="#productCardsGrid" class="banner-btn-primary">
+                <span>Explore 14 Families</span>
+                <span class="cta-arrow">↓</span>
+              </a>
+              <a href="contact.html#quote" class="banner-btn-secondary">
+                <span>Request Drawing Quote ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Complete 14 Product Cards Grid -->
-    <section class="section">
+    <section class="section" style="padding-top: 50px;">
       <div class="container">
         <div class="section-heading center reveal-scale">
-          <div class="eyebrow">Product Universe</div>
+          <div class="eyebrow">Precision Gear Universe · Vadodara Works</div>
           <h2>Explore All 14 <em>Precision Gear Families.</em></h2>
-          <p>Precision-engineered gear sets and drive components manufactured to strict international quality standards.
-          </p>
+          <p>Over 60 years of engineering mastery in manufacturing high-precision industrial gears, worm gearboxes, custom racks, splines, and specialized transmission spares.</p>
         </div>
 
-        <div class="product-cards-grid">
-          <!-- Card 01 -->
-          <article class="product-item-card reveal-left">
+        <!-- Interactive Search & Category Filter Toolbar -->
+        <div class="products-toolbar-wrapper reveal">
+          <div class="products-search-row">
+            <div class="products-search-box">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="productSearchInput" placeholder="Search gear family, module, or keyword..." aria-label="Search gears" />
+            </div>
+            <div class="products-results-count">
+              Showing <strong id="productCountVal">14</strong> of 14 precision families
+            </div>
+          </div>
+
+          <div class="product-filter-bar" role="tablist" aria-label="Product categories">
+            <button type="button" class="product-filter-pill active" data-category="all" role="tab" aria-selected="true">
+              All Gears <span class="filter-count-badge">14</span>
+            </button>
+            <button type="button" class="product-filter-pill" data-category="cylindrical" role="tab" aria-selected="false">
+              Cylindrical Gears <span class="filter-count-badge">3</span>
+            </button>
+            <button type="button" class="product-filter-pill" data-category="right-angle" role="tab" aria-selected="false">
+              Worm &amp; Right-Angle <span class="filter-count-badge">4</span>
+            </button>
+            <button type="button" class="product-filter-pill" data-category="transmission" role="tab" aria-selected="false">
+              Power Transmission <span class="filter-count-badge">5</span>
+            </button>
+            <button type="button" class="product-filter-pill" data-category="precision" role="tab" aria-selected="false">
+              Shaping &amp; Grinding <span class="filter-count-badge">2</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="product-cards-grid" id="productCardsGrid">
+          <!-- Card 01: Spur Gear -->
+          <article class="product-item-card reveal" data-category="cylindrical" data-title="Spur Gear">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#01</span>
+              <span class="product-category-chip">Cylindrical</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/newwwproductss/Spur Gear -1.jpg.jpeg" alt="Spur Gear" />
+              <img src="images/newwwproductss/Spur Gear -1.jpg.jpeg" alt="Spur Gear" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Spur Gear</h3>
-              <p>Straight-tooth external &amp; internal spur gears manufactured to precision module, pressure angle, and
-                face width tolerances.</p>
+              <p>Straight-tooth external &amp; internal spur gears manufactured to precision module, pressure angle, and face width tolerances for industrial machinery.</p>
               <div class="stage-tags-row">
                 <span class="stage-tag-pill">STRAIGHT TEETH</span>
                 <span class="stage-tag-pill">DIN / AGMA</span>
+                <span class="stage-tag-pill">MODULE 0.5 - 20M</span>
+                <span class="stage-tag-pill">CASE HARDENED</span>
               </div>
-              <a href="spur-gear.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="spur-gear.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
 
-          <!-- Card 02 -->
-          <article class="product-item-card reveal-left">
+          <!-- Card 02: Helical Gear -->
+          <article class="product-item-card reveal" data-category="cylindrical" data-title="Helical Gear">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#02</span>
+              <span class="product-category-chip">Cylindrical</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/newwwproductss/Helical Gear.JPG.jpeg" alt="Helical Gear" />
+              <img src="images/newwwproductss/Helical Gear.JPG.jpeg" alt="Helical Gear" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Helical Gear</h3>
-              <p>Single &amp; double helical gears with angled teeth engineered for quiet, smooth, high-torque power
-                transmission.</p>
+              <p>Single &amp; double helical gears with angled teeth engineered for quiet, vibration-free, smooth, and high-torque power transmission in gearboxes.</p>
               <div class="stage-tags-row">
                 <span class="stage-tag-pill">ANGLED TEETH</span>
                 <span class="stage-tag-pill">HIGH TORQUE</span>
+                <span class="stage-tag-pill">LOW NOISE</span>
+                <span class="stage-tag-pill">HERRINGBONE OPTION</span>
               </div>
-              <a href="helical-gear.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="helical-gear.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
 
-          <!-- Card 03 -->
-          <article class="product-item-card reveal-right">
+          <!-- Card 03: Sprockets -->
+          <article class="product-item-card reveal" data-category="transmission" data-title="Sprockets">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#03</span>
+              <span class="product-category-chip">Transmission</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/newwwproductss/Sprocket-2.JPG.jpeg" alt="Sprockets" />
+              <img src="images/newwwproductss/Sprocket-2.JPG.jpeg" alt="Sprockets" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Sprockets</h3>
-              <p>Simplex, duplex &amp; triplex roller chain drive sprockets manufactured for heavy industrial conveyor
-                lines.</p>
+              <p>Simplex, duplex &amp; triplex roller chain drive sprockets manufactured from alloy steel for heavy industrial conveyor lines and machinery drives.</p>
               <div class="stage-tags-row">
                 <span class="stage-tag-pill">ROLLER CHAIN</span>
                 <span class="stage-tag-pill">DUPLEX / TRIPLEX</span>
+                <span class="stage-tag-pill">INDUCTION HARDENED</span>
+                <span class="stage-tag-pill">HEAVY DUTY</span>
               </div>
-              <a href="sprockets.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="sprockets.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
 
-          <!-- Card 04 -->
-          <article class="product-item-card reveal-left">
+          <!-- Card 04: Timing Pulleys -->
+          <article class="product-item-card reveal" data-category="transmission" data-title="Timing Pulleys">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#04</span>
+              <span class="product-category-chip">Transmission</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/Timing Pulleys.png" alt="Timing Pulleys" />
+              <img src="images/Timing Pulleys.png" alt="Timing Pulleys" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Timing Pulleys</h3>
-              <p>Precision timing belt pulleys engineered for synchronized motion, non-slip power transmission, and
-                index drives.</p>
+              <p>Precision timing belt pulleys engineered for synchronous motion, zero-slip transmission, and high-precision index drives in automated machinery.</p>
               <div class="stage-tags-row">
                 <span class="stage-tag-pill">SYNCHRONOUS</span>
                 <span class="stage-tag-pill">ZERO SLIP</span>
+                <span class="stage-tag-pill">HTD / T-PROFILE</span>
+                <span class="stage-tag-pill">ALU / STEEL</span>
               </div>
-              <a href="timing-pulleys.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="timing-pulleys.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
 
-          <!-- Card 05 -->
-          <article class="product-item-card reveal-scale">
+          <!-- Card 05: Rack & Pinion -->
+          <article class="product-item-card reveal" data-category="cylindrical" data-title="Rack & Pinion">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#05</span>
+              <span class="product-category-chip">Linear Drive</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/Rack &amp; Pinion.png" alt="Rack & Pinion" />
+              <img src="images/Rack &amp; Pinion.png" alt="Rack & Pinion" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Rack &amp; Pinion</h3>
-              <p>Ground linear gear racks and matching pinion spur gears for precision CNC gantries and automation
-                equipment.</p>
+              <p>Ground linear gear racks and matching pinion spur gears for precision CNC gantries, laser cutters, automation equipment, and linear drives.</p>
               <div class="stage-tags-row">
                 <span class="stage-tag-pill">LINEAR DRIVE</span>
                 <span class="stage-tag-pill">CNC GANTRY</span>
+                <span class="stage-tag-pill">HELICAL / STRAIGHT</span>
+                <span class="stage-tag-pill">GROUND TEETH</span>
               </div>
-              <a href="rack-pinion.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="rack-pinion.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
 
-          <!-- Card 06 -->
-          <article class="product-item-card reveal-right">
+          <!-- Card 06: Worm Shaft -->
+          <article class="product-item-card reveal" data-category="right-angle" data-title="Worm Shaft">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#06</span>
+              <span class="product-category-chip">Right-Angle</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/Worm Shaft &amp; Wheel.png" alt="Worm Shaft" />
+              <img src="images/Worm Shaft &amp; Wheel.png" alt="Worm Shaft" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Worm Shaft</h3>
-              <p>Single &amp; multi-start case-hardened precision ground worm shafts for extreme speed reduction drives.
-              </p>
+              <p>Single &amp; multi-start case-hardened precision thread-ground worm shafts engineered for extreme speed reduction drives and heavy torque gearboxes.</p>
               <div class="stage-tags-row">
                 <span class="stage-tag-pill">CASE HARDENED</span>
                 <span class="stage-tag-pill">GROUND WORM</span>
+                <span class="stage-tag-pill">HIGH RATIO</span>
+                <span class="stage-tag-pill">MULTI-START</span>
               </div>
-              <a href="worm-shaft.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="worm-shaft.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
 
-          <!-- Card 07 -->
-          <article class="product-item-card reveal-left">
+          <!-- Card 07: Worm Wheel -->
+          <article class="product-item-card reveal" data-category="right-angle" data-title="Worm Wheel">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#07</span>
+              <span class="product-category-chip">Right-Angle</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/newwwproductss/Worm &amp; WormWheel-1.JPG.jpeg" alt="Worm Wheel" />
+              <img src="images/newwwproductss/Worm &amp; WormWheel-1.JPG.jpeg" alt="Worm Wheel" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Worm Wheel</h3>
-              <p>High-grade phosphor bronze gear wheels hobbed to exact tolerances for smooth meshing with worm shafts.
-              </p>
+              <p>High-grade phosphor bronze gear wheels hobbed to exact tolerances for smooth meshing with worm shafts, offering self-locking and low wear.</p>
               <div class="stage-tags-row">
-                <span class="stage-tag-pill">BRONZE GEAR</span>
+                <span class="stage-tag-pill">PHOSPHOR BRONZE</span>
                 <span class="stage-tag-pill">SPEED REDUCER</span>
+                <span class="stage-tag-pill">SELF-LOCKING</span>
+                <span class="stage-tag-pill">CAST IRON HUB</span>
               </div>
-              <a href="worm-wheel.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="worm-wheel.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
 
-          <!-- Card 08 -->
-          <article class="product-item-card reveal-scale">
+          <!-- Card 08: Splines -->
+          <article class="product-item-card reveal" data-category="transmission" data-title="Splines">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#08</span>
+              <span class="product-category-chip">Transmission</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/newwwproductss/SPLINE1.jpg.jpeg" alt="Splines" />
+              <img src="images/newwwproductss/SPLINE1.jpg.jpeg" alt="Splines" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Splines</h3>
-              <p>Internal and external involute splines and straight-sided splined shafts for positive non-slip torque
-                transfer.</p>
+              <p>Internal and external involute splines and straight-sided splined shafts for positive, non-slip torque transfer in high-stress drive assemblies.</p>
               <div class="stage-tags-row">
                 <span class="stage-tag-pill">INVOLUTE SPLINE</span>
+                <span class="stage-tag-pill">DIN 5480 / 5482</span>
                 <span class="stage-tag-pill">TORQUE SHAFT</span>
+                <span class="stage-tag-pill">HOBBED &amp; SHAPED</span>
               </div>
-              <a href="splines.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="splines.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
 
-          <!-- Card 09 -->
-          <article class="product-item-card reveal-right">
+          <!-- Card 09: Bevel Gears -->
+          <article class="product-item-card reveal" data-category="right-angle" data-title="Bevel Gears">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#09</span>
+              <span class="product-category-chip">Right-Angle</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/Bevel Gears.png" alt="Bevel Gears" />
+              <img src="images/Bevel Gears.png" alt="Bevel Gears" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Bevel Gears</h3>
-              <p>Straight bevel gears designed for right-angle drive shaft intersections in industrial machinery and
-                gearboxes.</p>
+              <p>Straight bevel gears engineered for 90-degree drive shaft intersections in industrial machinery, agriculture equipment, and heavy gearboxes.</p>
               <div class="stage-tags-row">
-                <span class="stage-tag-pill">RIGHT ANGLE</span>
+                <span class="stage-tag-pill">90° INTERSECTION</span>
                 <span class="stage-tag-pill">CONICAL TEETH</span>
+                <span class="stage-tag-pill">MILLED PROFILE</span>
+                <span class="stage-tag-pill">RUGGED DRIVE</span>
               </div>
-              <a href="bevel-gears.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="bevel-gears.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
 
-          <!-- Card 10 -->
-          <article class="product-item-card reveal-left">
+          <!-- Card 10: Spiral Bevel Gears -->
+          <article class="product-item-card reveal" data-category="right-angle" data-title="Spiral Bevel Gears">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#10</span>
+              <span class="product-category-chip">Right-Angle</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/newwwproductss/Spiral.jpg.jpeg" alt="Spiral Bevel Gears" />
+              <img src="images/newwwproductss/Spiral.jpg.jpeg" alt="Spiral Bevel Gears" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Spiral Bevel Gears</h3>
-              <p>Curved teeth spiral bevel gears engineered for high-speed, quiet right-angle heavy duty power
-                transmission.</p>
+              <p>Curved teeth spiral bevel gears engineered for high-speed, quiet, and robust right-angle power transmission with gradual tooth engagement.</p>
               <div class="stage-tags-row">
                 <span class="stage-tag-pill">CURVED TEETH</span>
+                <span class="stage-tag-pill">GLEASON SYSTEM</span>
                 <span class="stage-tag-pill">HIGH SPEED</span>
+                <span class="stage-tag-pill">LOW VIBRATION</span>
               </div>
-              <a href="spiral-bevel-gears.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="spiral-bevel-gears.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
 
-          <!-- Card 11 -->
-          <article class="product-item-card reveal-scale">
+          <!-- Card 11: Internal Gear Cutting -->
+          <article class="product-item-card reveal" data-category="precision" data-title="Internal Gear Cutting">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#11</span>
+              <span class="product-category-chip">Precision Shaping</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/stage-3-hobbing.jpg" alt="Internal Gear Cutting" />
+              <img src="images/stage-3-hobbing.jpg" alt="Internal Gear Cutting" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Internal Gear Cutting</h3>
-              <p>Precision internal spur and spline gear shaping for planetary gearboxes, slewing rings, and specialized
-                drives.</p>
+              <p>Precision internal spur and spline gear shaping for planetary gearboxes, slewing rings, and compact high-ratio industrial transmissions.</p>
               <div class="stage-tags-row">
                 <span class="stage-tag-pill">INTERNAL SHAPING</span>
-                <span class="stage-tag-pill">PLANETARY GEAR</span>
+                <span class="stage-tag-pill">PLANETARY DRIVES</span>
+                <span class="stage-tag-pill">SLEWING RINGS</span>
+                <span class="stage-tag-pill">FELLOWS SHAPER</span>
               </div>
-              <a href="internal-gear-cutting.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="internal-gear-cutting.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
 
-          <!-- Card 12 -->
-          <article class="product-item-card reveal-right">
+          <!-- Card 12: Teeth Grinding -->
+          <article class="product-item-card reveal" data-category="precision" data-title="Teeth Grinding">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#12</span>
+              <span class="product-category-chip">Precision Grinding</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/stage-5-grinding.jpg" alt="Teeth Grinding" />
+              <img src="images/stage-5-grinding.jpg" alt="Teeth Grinding" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Teeth Grinding</h3>
-              <p>High precision CNC gear teeth profile grinding achieving DIN Class 5 quality with zero profile
-                distortion.</p>
+              <p>High-precision CNC gear teeth profile grinding achieving DIN Class 5 quality with zero profile distortion, mirror surface finish, and quiet mesh.</p>
               <div class="stage-tags-row">
                 <span class="stage-tag-pill">CNC GRINDING</span>
                 <span class="stage-tag-pill">DIN CLASS 5</span>
+                <span class="stage-tag-pill">PROFILE CORRECTION</span>
+                <span class="stage-tag-pill">MIRROR FINISH</span>
               </div>
-              <a href="teeth-grinding.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="teeth-grinding.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
 
-          <!-- Card 13 -->
-          <article class="product-item-card reveal-left">
+          <!-- Card 13: Ratchet & Clutch -->
+          <article class="product-item-card reveal" data-category="transmission" data-title="Ratchet & Clutch">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#13</span>
+              <span class="product-category-chip">Transmission</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/stage-4-hardening.jpg" alt="Ratchet & Clutch" />
+              <img src="images/stage-4-hardening.jpg" alt="Ratchet & Clutch" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Ratchet &amp; Clutch</h3>
-              <p>One-way ratchet wheels and mechanical clutch components for indexing, overrunning, and backstop
-                mechanisms.</p>
+              <p>One-way ratchet wheels and mechanical clutch components designed for indexing drives, overrunning mechanisms, and safety backstops.</p>
               <div class="stage-tags-row">
                 <span class="stage-tag-pill">INDEXING DRIVE</span>
-                <span class="stage-tag-pill">BACKSTOP</span>
+                <span class="stage-tag-pill">BACKSTOP SAFETY</span>
+                <span class="stage-tag-pill">ONE-WAY CLUTCH</span>
+                <span class="stage-tag-pill">HARDENED PAWL</span>
               </div>
-              <a href="ratchet-clutch.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="ratchet-clutch.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
 
-          <!-- Card 14 -->
-          <article class="product-item-card reveal-scale">
+          <!-- Card 14: Gear Coupling -->
+          <article class="product-item-card reveal" data-category="transmission" data-title="Gear Coupling">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">#14</span>
+              <span class="product-category-chip">Transmission</span>
+            </div>
             <div class="product-item-img-wrap">
-              <img src="images/nirala-gearbox-slide.png" alt="Gear Coupling" />
+              <img src="images/nirala-gearbox-slide.png" alt="Gear Coupling" loading="lazy" />
             </div>
             <div class="product-item-body">
               <h3>Gear Coupling</h3>
-              <p>Flexible crowned tooth gear couplings designed to accommodate angular and parallel shaft misalignments.
-              </p>
+              <p>Flexible crowned tooth gear couplings designed to accommodate angular, axial, and parallel shaft misalignments under heavy torque loads.</p>
               <div class="stage-tags-row">
                 <span class="stage-tag-pill">FLEXIBLE DRIVE</span>
                 <span class="stage-tag-pill">CROWNED TEETH</span>
+                <span class="stage-tag-pill">MISALIGNMENT DAMPING</span>
+                <span class="stage-tag-pill">HIGH TORQUE</span>
               </div>
-              <a href="gear-coupling.html" class="product-item-cta">EXPLORE PRODUCT →</a>
+              <div class="product-card-actions">
+                <a href="gear-coupling.html" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
             </div>
           </article>
+        </div>
+
+        <!-- Custom RFQ & Drawing Submission Bottom Banner -->
+        <div class="product-custom-cta-banner reveal">
+          <div class="cta-banner-text">
+            <span class="cta-banner-eyebrow">CUSTOM GEARBOXES &amp; DRAWINGS REVIEW</span>
+            <h3>Need Custom Module Gears or <em>OEM Spare Replication?</em></h3>
+            <p>Send your 2D/3D CAD drawings (STEP, DWG, PDF) or worn sample gears directly to our Vadodara engineering plant for rapid tolerance review and quotation.</p>
+          </div>
+          <div class="cta-banner-actions">
+            <a href="https://wa.me/917991991055?text=Hello%20Nirala%20Engineers,%20I%20have%20drawings/specs%20for%20a%20custom%20gear%20inquiry." target="_blank" rel="noopener noreferrer" class="cta-btn-whatsapp">
+              <span>💬 Send Drawing via WhatsApp</span>
+            </a>
+            <a href="contact.html#quote" class="cta-btn-contact">
+              <span>Direct Quote Form →</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
   </main>
+
 
   <!-- Footer -->
   <footer>

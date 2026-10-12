@@ -10357,4 +10357,250 @@ footer {
   letter-spacing: 0.04em;
 }
 
+/* ==========================================================================
+   HELICAL GEAR PRODUCT CATALOG & WORKSHOP SHOWCASE CARDS
+   ========================================================================== */
+.helical-catalog-section {
+  padding: 60px 0 80px;
+  background: #0d1015;
+  border-top: 1px solid rgba(216, 179, 93, 0.2);
+}
+
+.helical-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 26px;
+  margin-top: 36px;
+}
+
+.helical-card {
+  background: #161b24;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.helical-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold, #d8b35d), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.helical-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(216, 179, 93, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 25px rgba(216, 179, 93, 0.15);
+  background: #1c222e;
+}
+
+.helical-card:hover::before {
+  opacity: 1;
+}
+
+.helical-card-img-wrap {
+  position: relative;
+  height: 250px;
+  background: #090b0e;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.helical-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.helical-card:hover .helical-card-img {
+  transform: scale(1.06);
+}
+
+.helical-card-floating-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(13, 16, 21, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(216, 179, 93, 0.4);
+  color: var(--gold, #d8b35d);
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.08em;
+  z-index: 2;
+}
+
+.helical-card-category-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(13, 16, 21, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #aeb4ab;
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.helical-card-zoom-hint {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(17, 20, 24, 0.85);
+  border: 1px solid rgba(216, 179, 93, 0.3);
+  color: var(--gold-light, #f3dc94);
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.helical-card:hover .helical-card-zoom-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.helical-card-body {
+  padding: 24px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.helical-card-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.helical-card-desc {
+  font-size: 13.5px;
+  color: #cbd0c8;
+  line-height: 1.65;
+  margin: 0 0 18px 0;
+  flex-grow: 1;
+}
+
+.helical-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 20px;
+}
+
+.helical-card-tag {
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  color: #e2e6df;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.helical-card-tag.gold {
+  color: var(--gold, #d8b35d);
+  background: rgba(216, 179, 93, 0.1);
+  border-color: rgba(216, 179, 93, 0.25);
+}
+
+.helical-card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.helical-card-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  background: transparent;
+  border: 1px solid rgba(216, 179, 93, 0.4);
+  color: var(--gold-light, #f3dc94);
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.helical-card-btn-primary:hover {
+  background: var(--gold, #d8b35d);
+  color: #111418;
+  border-color: var(--gold, #d8b35d);
+}
+
+.helical-card-btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: rgba(76, 230, 117, 0.08);
+  border: 1px solid rgba(76, 230, 117, 0.35);
+  color: #4ce675;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.helical-card-btn-whatsapp:hover {
+  background: #4ce675;
+  color: #111418;
+  border-color: #4ce675;
+}
+
+@media (max-width: 650px) {
+  .helical-catalog-grid {
+    grid-template-columns: 1fr;
+  }
+  .helical-card-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
 

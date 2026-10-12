@@ -788,6 +788,19 @@ window.switchMainProductImage = function(thumbElement, newSrc) {
   }
 };
 
+window.viewHelicalPhoto = function(imgSrc, thumbIndex) {
+  const mainImg = document.getElementById('mainProductImg');
+  if (mainImg) {
+    mainImg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const thumbs = document.querySelectorAll('.product-thumb-item');
+    if (thumbs && typeof thumbIndex === 'number' && thumbs[thumbIndex]) {
+      window.switchMainProductImage(thumbs[thumbIndex], imgSrc);
+    } else {
+      window.switchMainProductImage(null, imgSrc);
+    }
+  }
+};
+
 // URL Query Parameter Pre-fill for Contact / RFQ Form
 document.addEventListener('DOMContentLoaded', () => {
   try {

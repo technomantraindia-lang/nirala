@@ -218,6 +218,14 @@ document.addEventListener('DOMContentLoaded', () => {
         card.classList.remove('is-touch-active');
       }, 420);
     }, { passive: true });
+
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('a')) return;
+      const link = card.querySelector('.product-card-link');
+      if (link && link.href) {
+        window.location.href = link.href;
+      }
+    });
   });
 
   // 5. Interactive Pizza-Shaped Circular Process Diagram (Outward Slice, Outside Cards & Connecting Line)

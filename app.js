@@ -546,59 +546,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 9. Scroll-Controlled Hero Image Carousel Logic
-  const heroWrapper = document.getElementById('heroScrollWrapper');
+  // 9. Interactive Hero Carousel Logic
+  const heroEl = document.getElementById('home');
   const heroSlides = document.querySelectorAll('.hero-slide');
   const indicatorDots = document.querySelectorAll('.hero-indicators .indicator-dot');
   const currentSlideNumEl = document.getElementById('currentSlideNum');
   const heroSlideCaptionEl = document.getElementById('heroSlideCaption');
+  const heroPrevBtn = document.getElementById('heroPrevBtn');
+  const heroNextBtn = document.getElementById('heroNextBtn');
 
-  if (heroWrapper && heroSlides.length > 0) {
+  if (heroSlides.length > 0) {
     let currentSlideIndex = 0;
     const totalSlides = heroSlides.length;
-
-    // Lazy load background image
-    const lazyLoadSlide = (slide) => {
-      const bgEl = slide.querySelector('.slide-bg');
-      if (bgEl && bgEl.dataset.bg && !bgEl.style.backgroundImage) {
-        bgEl.style.backgroundImage = `url('${bgEl.dataset.bg}')`;
-      }
-    };
+    let autoPlayTimer = null;
 
     // Preload Slide 0 immediately
-    lazyLoadSlide(heroSlides[0]);
     const heroVid = heroSlides[0].querySelector('video');
     if (heroVid) {
       heroVid.play().catch(() => {});
     }
 
-    let lastScrollProgress = 0;
-
-    const setHeroSlide = (index, isDownwards = true) => {
+    const setHeroSlide = (index) => {
       if (index === currentSlideIndex && heroSlides[index].classList.contains('active')) return;
-      
+
       const prevIndex = currentSlideIndex;
-      currentSlideIndex = index;
+      currentSlideIndex = (index + totalSlides) % totalSlides;
 
       heroSlides.forEach((slide, i) => {
-        slide.classList.remove('active', 'slide-up-enter', 'slide-up-exit', 'slide-down-enter', 'slide-down-exit');
+        slide.classList.remove('slide-up-enter', 'slide-up-exit', 'slide-down-enter', 'slide-down-exit', 'prev-slide');
         const vid = slide.querySelector('video');
         if (i === currentSlideIndex) {
-          lazyLoadSlide(slide);
           slide.classList.add('active');
           if (vid) {
+            vid.currentTime = 0;
             vid.play().catch(() => {});
           }
-          if (isDownwards) {
-            slide.classList.add('slide-up-enter');
-          } else {
-            slide.classList.add('slide-down-enter');
+        } else {
+          slide.classList.remove('active');
+          if (i === prevIndex) {
+            slide.classList.add('prev-slide');
           }
-        } else if (i === prevIndex) {
-          if (isDownwards) {
-            slide.classList.add('slide-up-exit');
-          } else {
-            slide.classList.add('slide-down-exit');
+          if (vid) {
+            vid.pause();
           }
         }
       });
@@ -617,45 +606,66 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    // Scroll listener: maps vertical scroll progress of heroScrollWrapper to slide index & tracks scroll direction
-    const updateSlideFromScroll = () => {
-      const rect = heroWrapper.getBoundingClientRect();
-      const scrollableDist = heroWrapper.offsetHeight - window.innerHeight;
-      if (scrollableDist <= 0) return;
+    const nextSlide = () => setHeroSlide(currentSlideIndex + 1);
+    const prevSlide = () => setHeroSlide(currentSlideIndex - 1);
 
-      const progress = Math.min(Math.max(-rect.top / scrollableDist, 0), 0.999);
-      const isDownwards = progress >= lastScrollProgress;
-      lastScrollProgress = progress;
-
-      const targetIndex = Math.floor(progress * totalSlides);
-
-      setHeroSlide(targetIndex, isDownwards);
+    // Auto Play Slides every 6 seconds
+    const startAutoPlay = () => {
+      stopAutoPlay();
+      autoPlayTimer = setInterval(nextSlide, 6000);
     };
 
-    window.addEventListener('scroll', updateSlideFromScroll, { passive: true });
-    updateSlideFromScroll();
+    const stopAutoPlay = () => {
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+    };
 
-    // Click indicator dots to scroll page to corresponding slide position
+    startAutoPlay();
+
+    // Pause auto-play on hover or focus
+    if (heroEl) {
+      heroEl.addEventListener('mouseenter', stopAutoPlay);
+      heroEl.addEventListener('mouseleave', startAutoPlay);
+      heroEl.addEventListener('focusin', stopAutoPlay);
+      heroEl.addEventListener('focusout', startAutoPlay);
+    }
+
+    // Indicator Dot Clicks
     indicatorDots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        const scrollableDist = heroWrapper.offsetHeight - window.innerHeight;
-        const targetScrollTop = heroWrapper.offsetTop + (i / totalSlides) * scrollableDist;
-        window.scrollTo({
-          top: targetScrollTop + 10,
-          behavior: 'smooth'
-        });
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        setHeroSlide(i);
+        startAutoPlay();
       });
     });
 
+    // Arrow Navigation Clicks
+    if (heroPrevBtn) {
+      heroPrevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        prevSlide();
+        startAutoPlay();
+      });
+    }
+
+    if (heroNextBtn) {
+      heroNextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        nextSlide();
+        startAutoPlay();
+      });
+    }
+
     // Touch swipe support on Hero section
-    let touchStartY = 0;
     let touchStartX = 0;
-    const heroEl = document.getElementById('home');
+    let touchStartY = 0;
     if (heroEl) {
       heroEl.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
-          touchStartY = e.touches[0].clientY;
           touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
         }
       }, { passive: true });
 
@@ -665,38 +675,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const deltaY = e.changedTouches[0].clientY - touchStartY;
 
         if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
-          const scrollableDist = heroWrapper.offsetHeight - window.innerHeight;
-          if (deltaX < 0 && currentSlideIndex < totalSlides - 1) {
-            // Swipe Left -> next slide
-            window.scrollTo({
-              top: heroWrapper.offsetTop + ((currentSlideIndex + 1) / totalSlides) * scrollableDist + 10,
-              behavior: 'smooth'
-            });
-          } else if (deltaX > 0 && currentSlideIndex > 0) {
-            // Swipe Right -> prev slide
-            window.scrollTo({
-              top: heroWrapper.offsetTop + ((currentSlideIndex - 1) / totalSlides) * scrollableDist + 10,
-              behavior: 'smooth'
-            });
+          if (deltaX < 0) {
+            nextSlide();
+          } else {
+            prevSlide();
           }
+          startAutoPlay();
         }
       }, { passive: true });
 
       // Keyboard arrow navigation on Hero focus
       heroEl.addEventListener('keydown', (e) => {
-        const scrollableDist = heroWrapper.offsetHeight - window.innerHeight;
-        if (['ArrowRight', 'ArrowDown'].includes(e.key) && currentSlideIndex < totalSlides - 1) {
+        if (['ArrowRight', 'ArrowDown'].includes(e.key)) {
           e.preventDefault();
-          window.scrollTo({
-            top: heroWrapper.offsetTop + ((currentSlideIndex + 1) / totalSlides) * scrollableDist + 10,
-            behavior: 'smooth'
-          });
-        } else if (['ArrowLeft', 'ArrowUp'].includes(e.key) && currentSlideIndex > 0) {
+          nextSlide();
+          startAutoPlay();
+        } else if (['ArrowLeft', 'ArrowUp'].includes(e.key)) {
           e.preventDefault();
-          window.scrollTo({
-            top: heroWrapper.offsetTop + ((currentSlideIndex - 1) / totalSlides) * scrollableDist + 10,
-            behavior: 'smooth'
-          });
+          prevSlide();
+          startAutoPlay();
         }
       });
     }

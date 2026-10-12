@@ -91,9 +91,11 @@
       <section class="hero" id="home" tabindex="0" aria-label="Nirala Engineers Hero Showcase Carousel">
         <!-- Background Banner Slides with Distinct Images and Content -->
         <div class="hero-slides-container">
-          <!-- Slide 1: Precision Gears -->
-          <div class="hero-slide active" data-index="0" data-caption="01 — Precision Gears &amp; Custom Manufacturing">
-            <div class="slide-bg" style="background-image: url('images/nirala-hero-banner.png');"></div>
+          <!-- Slide 1: Cinematic Factory & Gear Manufacturing Video Showcase -->
+          <div class="hero-slide active" data-index="0" data-caption="01 — Industrial Gear Craftsmanship · Vadodara Works">
+            <video class="slide-video-bg" id="heroBannerVideo" autoplay loop muted playsinline preload="auto">
+              <source src="images/final%20product%20images/Nirala_Product_Identification_Batch_01/gemini_generated_video_bbd67912_gwr_video_mvp.mp4" type="video/mp4" />
+            </video>
             <div class="slide-overlay"></div>
             <div class="hero-content">
               <div class="hero-copy">
@@ -112,8 +114,29 @@
             </div>
           </div>
 
-          <!-- Slide 2: CNC Machining -->
-          <div class="hero-slide" data-index="1" data-caption="02 — State-of-the-Art CNC Turning &amp; Machining">
+          <!-- Slide 2: Precision Gears & Custom Involute Teeth (Current 1st Image) -->
+          <div class="hero-slide" data-index="1" data-caption="02 — Precision Gears &amp; Custom Gear Tooth Manufacturing">
+            <div class="slide-bg" data-bg="images/nirala-hero-banner.png"></div>
+            <div class="slide-overlay"></div>
+            <div class="hero-content">
+              <div class="hero-copy">
+                <div class="hero-slogan-badge">
+                  <i></i> <span>PRECISION GROUND INVOLUTE TOOTH PROFILES</span>
+                </div>
+                <div class="eyebrow">Vadodara Works · Heavy Industrial Gears</div>
+                <h1>High-Torque Gears.<br><em>Built to the Micron.</em></h1>
+                <p>Engineered from forged alloy steels (20MnCr5, EN24, C45) with case hardening up to 58-62 HRC for
+                  zero backlash and maximum transmission life.</p>
+                <div class="hero-actions">
+                  <a href="products.html" class="button button-primary">View All 14 Products</a>
+                  <a href="contact.html#quote" class="button button-secondary">Download Specs</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: State-of-the-Art CNC Turning (Current 2nd Image) -->
+          <div class="hero-slide" data-index="2" data-caption="03 — State-of-the-Art CNC Turning &amp; Machining Facility">
             <div class="slide-bg" data-bg="images/nirala-cnc-slide.png"></div>
             <div class="slide-overlay"></div>
             <div class="hero-content">
@@ -132,48 +155,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Slide 3: Quality Metrology -->
-          <div class="hero-slide" data-index="2" data-caption="03 — Micron-Accuracy Gear Tooth Metrology">
-            <div class="slide-bg" data-bg="images/nirala-inspection-v2.svg"></div>
-            <div class="slide-overlay"></div>
-            <div class="hero-content">
-              <div class="hero-copy">
-                <div class="hero-slogan-badge">
-                  <i></i> <span>RIGOROUS TOOTH FLANK &amp; LEAD METROLOGY</span>
-                </div>
-                <div class="eyebrow">Quality Assurance · DIN / AGMA Standards</div>
-                <h1>Gear Metrology.<br><em>Engineered to Micron.</em></h1>
-                <p>Strict optical profile projection, gear tooth roll inspection, and surface hardness testing ensuring
-                  zero backlash and maximum transmission efficiency.</p>
-                <div class="hero-actions">
-                  <a href="company.html#quality" class="button button-primary">Our Quality Policy</a>
-                  <a href="spares-machine-manufacturers.html" class="button button-secondary">Machine Spares Catalog</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 4: Heavy Gearbox Assemblies -->
-          <div class="hero-slide" data-index="3" data-caption="04 — Heavy Duty Industrial Gearbox Assemblies">
-            <div class="slide-bg" data-bg="images/nirala-gearbox-slide.png"></div>
-            <div class="slide-overlay"></div>
-            <div class="hero-content">
-              <div class="hero-copy">
-                <div class="hero-slogan-badge">
-                  <i></i> <span>HEAVY DUTY INDUSTRIAL GEARBOX HOUSINGS</span>
-                </div>
-                <div class="eyebrow">Custom Machinery &amp; Drive Systems</div>
-                <h1>Custom Gearboxes.<br><em>Built for Max Torque.</em></h1>
-                <p>Tailor-made heavy duty gearboxes, gear couplings, and drive assemblies engineered for steel plants,
-                  power generation, and heavy industrial machinery.</p>
-                <div class="hero-actions">
-                  <a href="contact.html#quote" class="button button-primary">Request Gearbox Quote</a>
-                  <a href="tel:+917991991055" class="button button-secondary">Talk to an Engineer</a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="hero-vignette-overlay"></div>
@@ -183,21 +164,19 @@
           <div class="hero-slide-counter">
             <span class="current-slide-num" id="currentSlideNum">01</span>
             <span class="slide-divider">/</span>
-            <span class="total-slides-num">04</span>
+            <span class="total-slides-num">03</span>
           </div>
 
           <div class="hero-indicators" role="tablist" aria-label="Hero Showcase Slides">
-            <button class="indicator-dot active" role="tab" aria-selected="true" aria-label="Slide 1: Precision Gears"
+            <button class="indicator-dot active" role="tab" aria-selected="true" aria-label="Slide 1: Factory Video Showcase"
               data-slide="0"></button>
-            <button class="indicator-dot" role="tab" aria-selected="false" aria-label="Slide 2: CNC Machining"
+            <button class="indicator-dot" role="tab" aria-selected="false" aria-label="Slide 2: Precision Gears"
               data-slide="1"></button>
-            <button class="indicator-dot" role="tab" aria-selected="false" aria-label="Slide 3: Quality Metrology"
+            <button class="indicator-dot" role="tab" aria-selected="false" aria-label="Slide 3: CNC Machining"
               data-slide="2"></button>
-            <button class="indicator-dot" role="tab" aria-selected="false" aria-label="Slide 4: Heavy Gearboxes"
-              data-slide="3"></button>
           </div>
 
-          <div class="hero-slide-caption" id="heroSlideCaption">01 — Precision Gears &amp; Custom Manufacturing</div>
+          <div class="hero-slide-caption" id="heroSlideCaption">01 — Industrial Gear Craftsmanship · Vadodara Works</div>
 
           <div class="hero-scroll-hint">
             <span class="scroll-mouse-icon"><span class="wheel-dot"></span></span>
@@ -594,7 +573,7 @@
 
           <article class="product-card" data-num="04">
             <div class="product-card-img-wrap">
-              <img src="images/Timing Pulleys.png" alt="Timing Pulleys" class="product-card-img" loading="lazy" />
+              <img src="images/final product images/Nirala_Product_Identification_Batch_01/image copy 4.png" alt="Timing Pulleys" class="product-card-img" loading="lazy" />
               <div class="product-card-img-overlay"></div>
               <span class="product-card-badge">04</span>
             </div>
@@ -607,7 +586,7 @@
 
           <article class="product-card" data-num="05">
             <div class="product-card-img-wrap">
-              <img src="images/final product images/Nirala_Product_Identification_Batch_01/08_Rack_&amp;Pinion_Rack.jpg" alt="Rack &amp; Pinion" class="product-card-img" loading="lazy" />
+              <img src="images/final product images/Nirala_Product_Identification_Batch_01/08_Rack_%26_Pinion_Rack.jpg" alt="Rack &amp; Pinion" class="product-card-img" loading="lazy" />
               <div class="product-card-img-overlay"></div>
               <span class="product-card-badge">05</span>
             </div>

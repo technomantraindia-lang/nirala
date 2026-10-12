@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const link = item.querySelector('.nav-link');
       if (link) {
         link.addEventListener('click', (e) => {
-          if (window.innerWidth <= 900) {
+          if (window.innerWidth <= 992) {
             e.preventDefault();
             // Close other open submenus for clean UI
             navItemsWithSub.forEach(other => {
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const allNavAnchors = navLinks.querySelectorAll('a');
     allNavAnchors.forEach(a => {
       a.addEventListener('click', () => {
-        if (window.innerWidth <= 900 && !a.closest('.has-dropdown > .nav-link')) {
+        if (window.innerWidth <= 992 && !a.closest('.has-dropdown > .nav-link')) {
           toggleMobileMenu(true);
         }
       });
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close mobile drawer when clicking outside header
     document.addEventListener('click', (e) => {
-      if (window.innerWidth <= 900 && navLinks.classList.contains('open')) {
+      if (window.innerWidth <= 992 && navLinks.classList.contains('open')) {
         const header = document.getElementById('siteHeader');
         if (header && !header.contains(e.target)) {
           toggleMobileMenu(true);
@@ -567,6 +567,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Preload Slide 0 immediately
     lazyLoadSlide(heroSlides[0]);
+    const heroVid = heroSlides[0].querySelector('video');
+    if (heroVid) {
+      heroVid.play().catch(() => {});
+    }
 
     let lastScrollProgress = 0;
 
@@ -578,9 +582,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       heroSlides.forEach((slide, i) => {
         slide.classList.remove('active', 'slide-up-enter', 'slide-up-exit', 'slide-down-enter', 'slide-down-exit');
+        const vid = slide.querySelector('video');
         if (i === currentSlideIndex) {
           lazyLoadSlide(slide);
           slide.classList.add('active');
+          if (vid) {
+            vid.play().catch(() => {});
+          }
           if (isDownwards) {
             slide.classList.add('slide-up-enter');
           } else {

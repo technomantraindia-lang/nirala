@@ -536,7 +536,8 @@ svg {
   position: sticky;
   top: 0;
   height: 100vh;
-  min-height: 620px;
+  min-height: 520px;
+  max-height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -603,6 +604,18 @@ svg {
   background-size: cover;
   background-repeat: no-repeat;
   transition: transform 8s ease-out;
+}
+
+.slide-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  pointer-events: none;
+  background: #090b0e;
 }
 
 .hero-slide.active .slide-bg {
@@ -2611,11 +2624,12 @@ svg {
 .product-card-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 10px;
+  object-fit: cover;
+  object-position: center;
+  padding: 0;
   transform: translateZ(0) scale(1);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
-  filter: brightness(1.12) contrast(1.05) saturate(1.05);
+  filter: brightness(1.05) contrast(1.05);
   transform-style: preserve-3d;
   will-change: transform;
 }
@@ -3573,7 +3587,7 @@ footer {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 992px) {
   .site-header {
     height: 76px;
   }
@@ -5734,18 +5748,20 @@ footer {
   width: 100%;
   height: 230px;
   overflow: hidden;
-  background: radial-gradient(circle at center, #161b24 0%, #080a0c 100%);
+  background: #080a0c;
   border-bottom: 1px solid rgba(216, 179, 93, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
 }
 
 .product-item-img-wrap img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 10px;
+  object-fit: cover;
+  object-position: center;
+  padding: 0;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
 }
 
@@ -5934,186 +5950,267 @@ footer {
 }
 
 /* ==========================================================================
-   COMPREHENSIVE MOBILE & LAPTOP RESPONSIVE OPTIMIZATION SYSTEM
+   COMPREHENSIVE MULTI-DEVICE RESPONSIVE OPTIMIZATION SYSTEM
+   (Desktop 1440px+, Laptop 993-1366px, Tablet 769-992px, Mobile 320-768px)
    ========================================================================== */
 
-/* 1. Global Viewport & Container Adjustments */
-@media (max-width: 600px) {
+/* 1. Global Viewport, Overflow & Fluid Container Rules */
+html,
+body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+}
+
+.container {
+  width: min(1200px, calc(100% - 48px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 2. Large Desktop Screens (1400px+) */
+@media (min-width: 1400px) {
   .container {
-    width: calc(100% - 32px);
+    width: min(1280px, calc(100% - 64px));
   }
 }
 
-/* 2. Header & Mobile Navigation Drawer */
-@media (max-width: 900px) {
+/* 3. Laptops & High-DPI Mid Screens (993px - 1280px) */
+@media (min-width: 993px) and (max-width: 1280px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+
+  .site-header {
+    height: 80px;
+  }
+
+  .site-header.scrolled {
+    height: 72px;
+  }
+
+  .site-header .nav {
+    width: calc(100% - 24px);
+    gap: 10px;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  .brand-logo-img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .site-header.scrolled .brand-logo-img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-name {
+    font-size: 13.5px;
+    letter-spacing: 0.12em;
+  }
+
+  .brand-sub .since-tag {
+    font-size: 9px;
+  }
+
+  .brand-sub .brand-location {
+    font-size: 8.5px;
+  }
+
+  .nav-links {
+    gap: 2px;
+  }
+
+  .nav-link {
+    font-size: 10.5px;
+    padding: 6px 8px;
+    letter-spacing: 0.06em;
+  }
+
+  .nav-cta {
+    padding: 8px 14px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .product-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .product-item-img-wrap {
+    height: 200px;
+  }
+
+  .product-detail-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .product-detail-img-box {
+    height: 330px;
+  }
+
+  .sector-command-console {
+    grid-template-columns: 340px 1fr;
+    gap: 20px;
+  }
+
+  .sprocket-types-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .helical-catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .gallery-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* 4. Tablets & Small Laptops (769px - 992px) */
+@media (max-width: 992px) {
   .site-header {
     height: 76px;
   }
 
-  .nav-links {
-    top: 76px;
-    max-height: calc(100vh - 76px);
-  }
-}
-
-@media (max-width: 600px) {
-  .site-header {
-    height: 70px;
+  .site-header .nav {
+    width: calc(100% - 24px);
+    justify-content: space-between;
   }
 
   .brand-logo-img {
-    width: 44px;
-    height: 44px;
+    width: 54px;
+    height: 54px;
   }
 
   .brand-name {
-    font-size: 13px;
-    letter-spacing: 0.1em;
-  }
-
-  .nav-links {
-    top: 70px;
-    max-height: calc(100vh - 70px);
-    padding: 16px 18px 28px 18px;
-  }
-
-  .menu-toggle {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-}
-
-/* 3. Horizontal Touch Scroll for Filter Bars on Mobile */
-@media (max-width: 768px) {
-  .spares-filter-tabs,
-  .products-filter-bar {
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 8px;
-    gap: 10px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .spares-filter-tabs::-webkit-scrollbar,
-  .products-filter-bar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .spares-tab-btn,
-  .filter-btn {
-    flex-shrink: 0;
-  }
-}
-
-/* 4. Specification Tables / Lists Stacking on Mobile */
-@media (max-width: 540px) {
-  .spares-group-card ul li {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    padding-bottom: 12px;
-  }
-
-  .spares-group-card ul li span:last-child {
-    color: var(--paper);
-    font-weight: 600;
-  }
-}
-
-/* 5. Floating Action Buttons Position & Touch Target */
-@media (max-width: 600px) {
-  .floating-actions {
-    bottom: 16px;
-    right: 16px;
-    gap: 10px;
-    z-index: 99;
-  }
-
-  .floating-btn {
-    width: 46px;
-    height: 46px;
-    font-size: 18px;
-  }
-}
-
-/* 6. Section Spacing & Typography Scaling on Mobile */
-@media (max-width: 600px) {
-  .section {
-    padding: 48px 0;
-  }
-
-  .section-heading {
-    margin-bottom: 28px;
-  }
-
-  .section-heading h2 {
-    font-size: clamp(22px, 6.5vw, 32px);
-  }
-
-  .spares-banner-title {
-    font-size: clamp(24px, 7vw, 36px);
-  }
-
-  .spares-group-card {
-    padding: 20px 16px;
-  }
-
-  .button,
-  .spares-btn-primary,
-  .spares-btn-secondary {
-    padding: 12px 20px;
-    font-size: 11px;
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* 7. High-DPI Laptops & Mid-Size Screens (901px - 1280px) */
-@media (min-width: 901px) and (max-width: 1280px) {
-  .container {
-    width: calc(100% - 48px);
-  }
-
-  .nav-link {
-    font-size: 12px;
-    padding: 6px 10px;
+    font-size: 14px;
   }
 
   .nav-cta {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - 76px);
+    overflow-y: auto;
+    background-color: rgba(14, 18, 23, 0.98);
+    border-bottom: 1px solid var(--ink-border);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px 24px 36px 24px;
+    gap: 10px;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.9);
+    display: none;
+    z-index: 105;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-link {
+    font-size: 13px;
+    padding: 12px 16px;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    border-left: 2px solid var(--gold);
+    background: rgba(0, 0, 0, 0.35);
+    margin-top: 6px;
+    margin-left: 10px;
+    padding: 6px 0;
+    display: none;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  }
+
+  .nav-item.open .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu a {
+    font-size: 11.5px;
     padding: 10px 18px;
-    font-size: 11px;
-  }
-}
-
-/* 8. Mobile Page Banner & Hero Image Precision Optimization */
-@media (max-width: 900px) {
-  /* Production Process Top Banner (Fully uncropped, 100% visible on mobile) */
-  .process-top-banner {
-    min-height: 0 !important;
-    height: auto !important;
-    max-height: none !important;
-    background: #0b0d10;
   }
 
-  .process-top-banner .banner-img-container {
-    height: auto !important;
-    width: 100% !important;
+  .product-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
   }
 
-  .process-banner-img {
-    width: 100% !important;
-    height: auto !important;
-    max-height: 480px;
-    object-fit: contain !important;
-    object-position: center !important;
-    display: block !important;
+  .product-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 
-  /* Products Page Top Banner (Fully uncropped, 100% visible on mobile) */
+  .product-detail-img-box {
+    height: 320px;
+  }
+
+  .contact-duo-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .sector-command-console {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .heritage-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sprocket-spec-highlight-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sprocket-types-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .alteration-services-card {
+    padding: 26px 20px;
+  }
+
+  /* Process & Banner Uncropped View */
+  .process-top-banner,
   .products-top-banner {
     min-height: 0 !important;
     height: auto !important;
@@ -6121,11 +6218,7 @@ footer {
     background: #0b0d10;
   }
 
-  .products-top-banner .banner-img-container {
-    height: auto !important;
-    width: 100% !important;
-  }
-
+  .process-banner-img,
   .products-banner-img {
     width: 100% !important;
     height: auto !important;
@@ -6135,40 +6228,344 @@ footer {
     display: block !important;
   }
 
-  /* Machine Spares Hero Banner Mobile Layout */
   .spares-hero-banner {
-    min-height: 360px !important;
+    min-height: 380px !important;
     height: auto !important;
-    max-height: none !important;
-    padding: 40px 0 !important;
+    padding: 44px 0 !important;
   }
 
-  .spares-banner-img {
-    object-fit: cover !important;
-    object-position: center center !important;
-    opacity: 0.35 !important;
-  }
-
-  .spares-banner-dark-overlay {
-    background: linear-gradient(180deg, rgba(9, 11, 14, 0.95) 0%, rgba(9, 11, 14, 0.88) 100%) !important;
-  }
-
-  /* Company Video Banner Aspect Ratio on Mobile */
   .company-video-banner {
     height: auto !important;
     aspect-ratio: 16 / 9 !important;
-    min-height: 220px !important;
+    min-height: 240px !important;
   }
 }
 
+/* 5. Mobile Phones Standard & Tablets Portrait (max-width: 768px) */
+@media (max-width: 768px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+
+  /* Touch-Friendly Horizontal Swipe for all Category Tabs & Pill Strips */
+  .spares-category-tabs,
+  .spares-filter-tabs,
+  .products-filter-bar,
+  .product-filter-bar,
+  .company-quick-jump-nav {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 8px !important;
+    gap: 8px !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+  }
+
+  .spares-category-tabs::-webkit-scrollbar,
+  .spares-filter-tabs::-webkit-scrollbar,
+  .products-filter-bar::-webkit-scrollbar,
+  .product-filter-bar::-webkit-scrollbar,
+  .company-quick-jump-nav::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .spares-tab-btn,
+  .filter-btn,
+  .product-filter-pill,
+  .quick-jump-link {
+    flex-shrink: 0 !important;
+  }
+
+  .clean-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .product-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .banner-content-container {
+    justify-content: center;
+  }
+
+  .banner-right-content,
+  .banner-left-content {
+    padding: 30px 0;
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .banner-specs-strip {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .gallery-stats-strip {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .gallery-photo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-custom-cta-banner {
+    padding: 28px 20px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-banner-actions {
+    width: 100%;
+  }
+
+  .cta-btn-whatsapp,
+  .cta-btn-contact {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* 6. Mobile Devices Core Optimization (max-width: 600px) */
 @media (max-width: 600px) {
-  .process-banner-img,
-  .products-banner-img {
-    max-height: 340px;
+  .site-header {
+    height: 70px;
   }
 
   main {
     padding-top: 70px !important;
+  }
+
+  .brand-logo-img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .brand-name {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+
+  .brand-sub .brand-location,
+  .brand-sub .brand-sub-dot {
+    display: none;
+  }
+
+  .nav-links {
+    top: 70px;
+    max-height: calc(100vh - 70px);
+    padding: 16px 18px 30px 18px;
+  }
+
+  .menu-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 19px;
+  }
+
+  /* Section Spacing & Headings */
+  .section {
+    padding: 44px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 26px;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(22px, 6.2vw, 30px);
+    line-height: 1.15;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(24px, 7vw, 34px);
+    line-height: 1.15;
+  }
+
+  .spares-banner-title {
+    font-size: clamp(22px, 6.5vw, 32px);
+    line-height: 1.2;
+  }
+
+  .spares-group-card {
+    padding: 20px 16px;
+  }
+
+  /* Full Width Mobile Action Buttons */
+  .button,
+  .spares-btn-primary,
+  .spares-btn-secondary,
+  .banner-btn-primary,
+  .banner-btn-secondary,
+  .alteration-btn {
+    padding: 12px 20px;
+    font-size: 11px;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .banner-actions-row,
+  .spares-banner-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  /* Card Image Heights */
+  .product-item-img-wrap {
+    height: 200px;
+  }
+
+  .product-detail-img-box {
+    height: 250px;
+  }
+
+  .product-gallery-thumbs {
+    grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+    gap: 8px;
+  }
+
+  .product-thumb-item {
+    height: 65px;
+  }
+
+  /* Technical Specs Stacking */
+  .spares-group-card ul li {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .spares-group-card ul li span:last-child {
+    color: var(--paper);
+    font-weight: 600;
+  }
+
+  /* Floating Contact Buttons */
+  .floating-actions {
+    bottom: 16px;
+    right: 16px;
+    gap: 10px;
+    z-index: 99;
+  }
+
+  .float-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .float-btn-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Legacy Metrics Grid on Homepage */
+  .legacy-metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .metric-card {
+    padding: 12px 8px;
+    text-align: center;
+    border-left: none;
+    border-top: 3px solid var(--gold);
+  }
+
+  .metric-card strong {
+    font-size: 1.8rem;
+  }
+
+  .metric-card span {
+    font-size: 10px;
+    line-height: 1.25;
+  }
+
+  /* Sprockets & Helical Specials */
+  .sprocket-spec-highlight-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .alteration-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .helical-catalog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .helical-card-actions {
+    grid-template-columns: 1fr;
+  }
+
+  /* Process Banner Scaling */
+  .process-banner-img,
+  .products-banner-img {
+    max-height: 320px;
+  }
+}
+
+/* 7. Extra Small Mobile Phones (max-width: 400px) */
+@media (max-width: 400px) {
+  .container {
+    width: calc(100% - 22px);
+  }
+
+  .site-header {
+    height: 66px;
+  }
+
+  main {
+    padding-top: 66px !important;
+  }
+
+  .brand-logo-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-name {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  .product-detail-img-box {
+    height: 220px;
+  }
+
+  .product-gallery-thumbs {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+
+  .product-thumb-item {
+    height: 56px;
+  }
+
+  .legacy-metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .heritage-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .banner-specs-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .banner-spec-divider {
+    display: none;
   }
 }
 
@@ -8383,26 +8780,28 @@ footer {
   width: 100%;
   height: 230px;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 50%, rgba(32, 40, 52, 0.7) 0%, rgba(13, 16, 20, 0.95) 100%);
+  background: #0b0d10;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .product-item-img-wrap img {
+  width: 100%;
+  height: 100%;
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.65));
+  object-fit: cover;
+  object-position: center;
   transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), filter 0.55s ease;
   will-change: transform;
 }
 
 .product-item-card:hover .product-item-img-wrap img {
-  transform: scale(1.1) rotate(1.2deg);
-  filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.85)) brightness(1.08) contrast(1.05);
+  transform: scale(1.07);
+  filter: brightness(1.06) contrast(1.04);
 }
 
 /* Light sweep glare animation across product image on card hover */

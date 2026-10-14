@@ -781,7 +781,68 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updateTimelineScroll, { passive: true });
     updateTimelineScroll();
   }
+
+  // 12. About Us - Interactive Sector Category Filtering
+  const sectorFilterBtns = document.querySelectorAll('.sector-filter-btn');
+  const sectorCards = document.querySelectorAll('.sector-grid .sector-card');
+  if (sectorFilterBtns.length > 0 && sectorCards.length > 0) {
+    sectorFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sectorFilterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filterCategory = btn.getAttribute('data-filter');
+
+        sectorCards.forEach(card => {
+          const cardCat = card.getAttribute('data-category');
+          if (filterCategory === 'all' || cardCat === filterCategory || card.classList.contains('highlight-card')) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  }
+
+  // 13. About Us - Interactive 3D Card Hover Depth
+  const interactiveAboutCards = document.querySelectorAll('.sector-card, .about-motto-card, .about-cap-card, .about-team-card');
+  interactiveAboutCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      const tiltX = (y - 0.5) * -7;
+      const tiltY = (x - 0.5) * 7;
+      card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // 14. About Us Subnav Active Spy
+  const subnavLinks = document.querySelectorAll('.about-subnav-link');
+  if (subnavLinks.length > 0) {
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY + 130;
+      subnavLinks.forEach(link => {
+        const targetId = link.getAttribute('href');
+        if (targetId && targetId.startsWith('#')) {
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            const top = targetEl.offsetTop;
+            const height = targetEl.offsetHeight;
+            if (scrollPos >= top && scrollPos < top + height) {
+              subnavLinks.forEach(l => l.classList.remove('active'));
+              link.classList.add('active');
+            }
+          }
+        }
+      });
+    }, { passive: true });
+  }
 });
+
 
 // Product Details Interactive Gallery Switcher
 window.switchMainProductImage = function(thumbElement, newSrc) {
@@ -1175,205 +1236,129 @@ document.addEventListener('DOMContentLoaded', () => {
   // 14. Interactive 3D Exploding Pie Chart & Deep-Dive Stage Modal Controller
   const processPhasesData = {
     1: {
+      id: 1,
       badge: "PHASE 01 // PRODUCT DEVELOPMENT",
       themeColor: "#3b82f6",
-      title: "Product Development & Engineering Planning",
-      sub: "Storage, Identification, OEM Drawings & 55-Yr CAD Planning",
-      desc: "Our product development begins with substantial warehouse storage of finished and semi-finished stock, daily sample identification of unknown/broken gears, customer drawing reviews, and 55+ years of CAD job-card engineering to eliminate machine replacements.",
-      specs: [
-        "Substantial Plant Warehouse Space",
-        "Worn/Broken Gear Sample Identification",
-        "OEM Cross-Industry Supplier",
-        "55+ Yrs Combined CAD Engineering"
-      ],
+      name: "PRODUCT DEVELOPMENT",
+      sectionId: "product-development",
       submenus: [
         {
           id: "warehouse",
-          name: "Warehouse Storage",
-          title: "Substantial Warehouse & Fast Delivery",
-          sub: "Storage of Finished & Semi-Finished Components",
-          body: "Our plant includes substantial warehouse space dedicated to storage of finished and semi-finished goods available for immediate delivery, or customization in our machine shop.",
-          specs: ["Immediate Delivery Readiness", "Semi-Finished Gear Blanks", "Machine Shop Rapid Customization", "Vast Inventory Footprint"]
+          num: "01",
+          name: "WAREHOUSE",
+          title: "WAREHOUSE",
+          body: "Our plant includes substantial warehouse space dedicated to storage of finished and semi- finished goods available for immediate delivery, or customization in our machine shop."
         },
         {
           id: "sample_id",
-          name: "Sample Identification",
-          title: "Unknown Gear Identification & Geometry Re-Calculation",
-          sub: "Reverse-Engineering Broken or Worn Components",
-          body: "We work with customers daily to identify different types of Gears (Spur Gears, Helical Gears, Change Gears, Sprockets Gears, Miter Gears, Worm Wheel, Worm Shaft, Straight Bevel Gears, Spiral Bevel Gears, Herringbone Gears, Timing Pulleys, Rack & Pinion etc) & Gear Boxes that are worn out or broken due to some other reason which are of unknown specification. Our experts use their extensive knowledge of the technical geometry & specification to manufacture the products, along with sophisticated measuring and calculation methods. This allows customers to obtain replacement parts where they might have had to replace entire gear boxes, gears, shafts, mechanical systems, or even an entire machine.",
-          specs: ["Technical Geometry Reverse Calculation", "Sophisticated Measurement Methods", "Prevents Replacing Entire Machines", "15+ Gear Families Identified"]
+          num: "02",
+          name: "SAMPLE IDENTIFICATION",
+          title: "SAMPLE IDENTIFICATION",
+          body: "We work with customers daily to identify different types of Gears (Spur Gears, Helical Gears ,Change Gears, Sprockets Gears,Miter Gears Worm Wheel, Worm Shaft, Straight Bevel Gears, Spiral Bevel Gears,Herringbone Gears, Timing Pulleys, Rack & Pinion etc) ) & Gear Boxes that are worn out or broken due to some other reason which are of unknown specification. Our experts use their extensive knowledge of the technical geometry & specification to manufacture the products, along with sophisticated measuring and calculation methods. This allows customers to obtain replacement parts where they might have had to replace entire gear boxes,gears, shafts, mechanical systems, or even an entire machine.\n\nWE ALSO WORK WITH THE DRAWINGS PROVIDED BY THE CUSTOMER AND ARE OEM TO VARIOUS INDUSTRIES IN VARIETY OF FIELDS SUCH AS MACHINE MANUFACTURING INDUSTRIES, CHEMICAL INDUSTRIES, PACKAGING INDUSTRIES, AGRICULTURE INDUSTRIES, TEXTIE INDUSTRIES, RAILWAYS, CRANE MFG. INDUSTRIES, AUTOMOBILE INDUSTRIES ETC"
         },
         {
-          id: "customer_drawings",
-          name: "OEM & Customer Drawings",
-          title: "Manufacturing from Customer Drawings & OEM Supply",
-          sub: "Direct Supplier to Leading Industrial Manufacturers",
-          body: "WE ALSO WORK WITH THE DRAWINGS PROVIDED BY THE CUSTOMER AND ARE OEM TO VARIOUS INDUSTRIES IN VARIETY OF FIELDS SUCH AS MACHINE MANUFACTURING INDUSTRIES, CHEMICAL INDUSTRIES, PACKAGING INDUSTRIES, AGRICULTURE INDUSTRIES, TEXTILE INDUSTRIES, RAILWAYS, CRANE MFG. INDUSTRIES, AUTOMOBILE INDUSTRIES ETC.",
-          specs: ["OEM Approved Supply", "Railways & Crane Manufacturers", "Chemical, Textile & Packaging Plants", "100% Drawing Compliance"]
-        },
-        {
-          id: "development_management",
-          name: "55-Yr CAD Planning",
-          title: "Development, Job Cards & Repeatability Management",
-          sub: "55+ Years Combined Nirala Engineers Planning",
-          body: "When an order is placed with our company, firstly it is reviewed and planned by a team of individuals with combined Nirala Engineers experience of over 55 years. Work instructions, operator setting (job card) and detailed CAD drawings are produced to aid manufacturing personnel in producing high quality products with repeatability.",
-          specs: ["55+ Years Planning Experience", "Work Instructions & Job Cards", "Detailed 2D/3D CAD Drawings", "Strict Batch Repeatability"]
+          id: "dev_mgmt",
+          num: "03",
+          name: "DEVELOPMENT AND MANAGEMENT",
+          title: "DEVELOPMENT AND MANAGEMENT",
+          body: "When an order is placed with our company, firstly it is reviewed and planned by a team of individuals with combined Nirala Engineers experience of over 55 years. Work instructions, operator setting (job card) and detailed CAD drawings are produced to aid manufacturing personnel in producing high quality products with repeatability."
         }
       ]
     },
     2: {
+      id: 2,
       badge: "PHASE 02 // RAW MATERIAL PREPARATION",
-      themeColor: "#f59e0b",
-      title: "Raw Material Preparation & Fabrication",
-      sub: "3× In-House Bandsaw Machines & Gear Tooth Welding",
-      desc: "Precision billet preparation from high-alloy steel rounds using our 3 heavy bandsaw cutting machines, coupled with specialized weld repairs, boss welding, and structural gear casing fabrications.",
-      specs: [
-        "3× Heavy Bandsaw Machines",
-        "100% In-House Rod Billet Cutting",
-        "Boss Welding & Tooth Reconstruction",
-        "Custom Fabricated Steel Housings"
-      ],
+      themeColor: "#f97316",
+      name: "RAW MATERIAL PREPARATION",
+      sectionId: "raw-material",
       submenus: [
         {
           id: "hacksaw",
-          name: "3× Bandsaw Cutting",
-          title: "Bandsaw & Hacksaw Raw Material Rod Cutting",
-          sub: "100% Completely Handled In-House",
-          body: "WE ARE EQUIPPED WITH 3 BANDSAW MACHINES. RAW MATERIAL CUTTING FROM THE ROD ACCORDING TO THE REQUIREMENT IS DONE COMPLETELY INHOUSE.",
-          specs: ["3 Heavy-Duty Bandsaw Machines", "100% In-House Rod Cutting", "Round Bars, Billets & Forged Rods", "Accurate Cut Lengths with Low Kerf"]
+          num: "01",
+          name: "HACKSAW CUTTING",
+          title: "HACKSAW CUTTING",
+          body: "WE ARE EQUIPPED WITH 3 BANDSAW MACHINES. RAW MATERIAL CUTTING FROM THE ROD ACCORDING TO THE REQUIREMENT IS DONE COMPLETELY INHOUSE."
         },
         {
           id: "welding",
-          name: "Welding & Tooth Repair",
-          title: "Welding, Boss Joining & Gear Tooth Reclamation",
-          sub: "From Simple Weld Repairs to Advanced Fabrications",
-          body: "From simple weld jobs (boss welding, repairing gear tooth, etc) to advanced fabricated parts, Nirala Engineers can provide you with a welded product that will fulfill your needs.",
-          specs: ["Boss Welding & Hub Fabrication", "Gear Tooth Crack/Wear Reclamation", "Stress-Relieved Weld Joints", "Fabricated Gearbox Shells"]
+          num: "02",
+          name: "WELDING",
+          title: "WELDING",
+          body: "From simple weld jobs (boss welding, repairing gear tooth, etc) to advanced fabricated parts, Nirala Engineers can provide you with a welded product that will fulfill your needs."
         }
       ]
     },
     3: {
-      badge: "PHASE 03 // MACHINING ECOSYSTEM",
-      themeColor: "#38bdf8",
-      title: "Precision Machining Ecosystem",
-      sub: "Turning, Gear Hobbing (Since 1961), Milling, Keyways, Hardening & Grinding",
-      desc: "Our core production floor: Modern CNC turning centres, six decades of gear hobbing tradition (since 1961), DRO milling and VMC collaboration, internal keyways, certified metallurgical heat treatment (58-62 HRC), and precision tooth flank & OD/ID grinding.",
-      specs: [
-        "Modern CNC Turning Centres",
-        "Spur, Helical, Bevel, Worm & Rack",
-        "Diametral, AGMA, Fellows & Metric Pitches",
-        "Gas Carburizing 58-62 HRC & Profile Grinding"
-      ],
+      id: 3,
+      badge: "PHASE 03 // MACHINING",
+      themeColor: "#9ca3af",
+      name: "MACHINING",
+      sectionId: "machining",
       submenus: [
         {
           id: "turning",
-          name: "CNC Turning",
-          title: "Modern Multi-Axis CNC Turning Centres",
-          sub: "In-House Quality Control & Modern Tooling",
-          body: "Our CNC turning centres are modern and toolings are updated according to the market. All turning requirements are handled in-house for maximum control of production and quality. Our CNC machine tools utilize state-of-the-art programming providing efficiency, versatility and accuracy.",
-          specs: ["Modern Multi-Axis CNC Turning", "Updated Market Tooling Packages", "100% In-House Turning Operations", "State-of-the-Art CNC Programming"]
+          num: "01",
+          name: "TURNING",
+          title: "TURNING",
+          body: "Our cnc turning centres are modern and toolings are updated according to the market. All turning requirements are handled in-house for maximum control of production and quality.\n\nOur CNC machine tools utilize state-of-the-art programming providing efficiency,versatility and accuracy."
         },
         {
           id: "gear_cutting",
-          name: "Gear Hobbing (1961)",
-          title: "Gear Cutting, Hobbing, Shaping & Generating",
-          sub: "6 Decades of Gear Tradition Expanded Across Decades",
-          body: "Nirala Engineers began manufacturing gears in the mid-1960’s and started supply in 1961. That tradition expanded substantially when Nirala Engineers expanded its product range to custom-built gearboxes in 1990, further expanded to import substitute complex CNC turned components in 2006 and to CCTV surveillance, biometric & home automation systems in 2015. Today the firm is among the most experienced and capable gear manufacturers in India with a vision to expand across the globe. Virtually every employee is involved in manufacturing world-class products. We carry a large product range: Spur, Helical, Change, Sprockets, Miter, Worm Wheel, Worm Shaft, Straight Bevel, Spiral Bevel, Herringbone, Timing Pulleys, Rack & Pinion, Idler Gears. Manual as well as automatic machines for hobbing, shaping, generating, grinding in-house. Comprehensive inventory covering Diametrical (Normal & Transverse), Circular, AGMA & Fellows Stub, and Metric Pitches.",
-          specs: ["Manufacturing Gears Since 1961", "Hobbing, Shaping, Generating & Grinding", "Diametral, Circular & Metric Pitches", "AGMA & Fellows Stub Cutters"]
+          num: "02",
+          name: "GEAR CUTTING---",
+          title: "GEAR CUTTING---",
+          body: "Nirala Engineers began manufacturing gears in the mid-1960’s and started supply in 1961. That tradition expanded substantially when the Nirala Engineers expanded its product range to custom-built gearboxes in 1990, further expanded to import substitute complex cnc turned component in 2006 and to cctv surveillance systems, biometric systems & home automation system in 2015. From time to time the company has continued to expand its capabilities and knowledge base. Today the firm is among the most experienced and capable gear manufacturers in India and have vision to expand across the globe. Virtually every employee at Nirala Engineers is involved in manufacturing such world class the best products available anywhere\n\nOur gear cutting capabilities are very diverse, including all common gear types used in industry. We carry a large product range such as Spur Gears, Helical Gears ,Change Gears, Sprockets Gears,Miter Gears, Worm Wheel, Worm Shaft, Straight Bevel Gears, Spiral Bevel Gears,Herringbone Gears, Timing Pulleys, Rack & Pinion,Idler Gears etc) . We have manual as well as automatic machines for hobbing, shaping, generating, grinding and other finishing in-house itself. Our inventory of gear cutting tools, CNC cutting tools, Gear Hob cutters are extensive, covering a broad range of common and uncommon Diametrical (both Normal and Transverse), Circular, AGMA & Fellows Stub and Metric Pitches. Please inquire for additional details."
         },
         {
           id: "milling",
-          name: "Milling & Drilling",
-          title: "Milling, Drilling & VMC Machining Collaboration",
-          sub: "Quick Turn-Around & Production Orders",
-          body: "Substantial milling equipment are available for meeting special machining needs of our customers. We have collaboration with vendors having DRO milling machines, mechanical mill and VMC machines with extensive capabilities. We have our machine shop set up for both quick turn-around, short run jobs, as well as medium quantity production orders. Extensive drilling & tapping machinery with trained employees are available in-house for all your drilling and tapping needs.",
-          specs: ["DRO Milling & Mechanical Mills", "VMC Advanced Capability Vendors", "Quick Turn-Around & Batch Production", "In-House Multi-Spindle Drilling & Tapping"]
+          num: "03",
+          name: "MILLING AND DRILLING",
+          title: "MILLING AND DRILLING",
+          body: "Substantial milling equipment are available for meeting special machining needs of our customers. We have collaboration with vendors having dro milling machines,mechanical mill and VMC machines with extensive capabilities. We have our machine shop set up for both quick turn-around, short run jobs, as well as medium quantity production orders.\n\nExtensive drilling & tapping machinery with trained employees are available in-house for all your drilling and tapping needs."
         },
         {
           id: "keyway",
-          name: "Keyways & Broaching",
-          title: "Keyway Cutting, Spline Broaching & Shaft Preparation",
-          sub: "Final Preparations for Shaft Mounting",
-          body: "Final preparations of gears for shaft mounting are made here. Keyway cutting, spline broaching, and grub screw drilling capabilities are available. CNC and mechanical lathes provide straight and tapered OD and ID turning. Please inquire for specific requirements.",
-          specs: ["Internal Keyway Slotting", "Involute Spline Broaching", "Grub Screw Drilling & Tapping", "Straight & Tapered OD/ID Turning"]
+          num: "04",
+          name: "KEYWAY CUTTING AND BROACHING",
+          title: "KEYWAY CUTTING AND BROACHING",
+          body: "Final preparations of gears for shaft mounting are made here. Keyway cutting, spline broaching, and grub screw drilling capabilities are available. CNC and mechanical lathes provide straight and tapered OD and ID turning. Please inquire for specific requirements."
         },
         {
           id: "heat_treatment",
-          name: "Heat Treatment",
-          title: "Certified Metallurgical Heat Treatment Partnerships",
-          sub: "Hardening, Carburizing (58-62 HRC), Tempering & Annealing",
-          body: "We have tie up with various heat treatment agencies/companies which are well equipped with extensive heat treatment equipment and experience. They provide excellent quality by hardening our gears. Heat treatment of ferrous metals such as hardening, tempering, annealing, normalizing, case hardening & Heat treatment of non-ferrous metals such as annealing & solution heat treatment can be provided through cooperation with outside sources/vendors.",
-          specs: ["Gas Carburizing 58-62 HRC", "Induction Surface Hardening", "Tempering, Normalizing & Annealing", "Non-Ferrous Solution Heat Treatment"]
+          num: "05",
+          name: "HEAT TREATMENT",
+          title: "HEAT TREATMENT",
+          body: "We have tie up with various heat treatment agencies/ companies which are well equipped with extensive heat treatment equipment and experience. They provide excellent quality by hardening our gears. Heat treatment of ferrous metals such as hardening, tempering, annealing, normalizing, case hardening & Heat treatment of non-ferrous metals such as annealing & solution heat treatment can be provided through cooperation with outside sources/vendors."
         },
         {
           id: "grinding",
-          name: "Precision Grinding",
-          title: "Gear Tooth Grinding & Precision OD/ID Grinding",
-          sub: "Unparalleled Concentricity, Roundness & Surface Finish",
-          body: "In addition to our gear tooth grinding abilities we also have collaboration with different companies who have substantial experience and ability with grinding other surfaces such as precision OD/ID grinding, surface grinding and honing. These companies have experience which provides us unparalleled accuracy on straightness, diameter, roundness, concentricity and surface finish.",
-          specs: ["CNC Profile Tooth Flank Grinding", "Precision Cylindrical OD/ID Grinding", "Honing & Surface Finishing", "Strict Sub-Micron Concentricity"]
+          num: "06",
+          name: "GRINDING",
+          title: "GRINDING",
+          body: "In addition to our gear tooth grinding abilities we also have collaboration with different companies who have substantial experience and ability with grinding other surfaces such as precision OD/ID grinding, surface grinding and honing. These companies have experience which provides us unparalleled accuracy on straightness, diameter, roundness, concentricity and surface finish."
         }
       ]
     },
     4: {
-      badge: "PHASE 04 // FINISHING & AESTHETICS",
+      id: 4,
+      badge: "PHASE 04 // FINISHING",
       themeColor: "#eab308",
-      title: "Deburring, Finishing & Aesthetic Assurance",
-      sub: "Burr Removal, Logo Marking, Sandblasting & Rust Protection",
-      desc: "At Nirala Engineers, aesthetics directly substantiates innovation, quality, and customer trust. Our final operations include deburring, edge radiusing, laser part marking, sandblasting, blackening, and rust-preventive chemical coatings.",
-      specs: [
-        "Machining Burr & Sharp Edge Removal",
-        "Part Number & Company Logo Marking",
-        "Sandblasting & Chemical Blackening",
-        "Anti-Rust Protective Coatings"
-      ],
+      name: "FINISHING",
+      sectionId: "finishing",
       submenus: [
         {
           id: "deburring",
-          name: "Deburring & Finishing",
-          title: "Deburring, Edge Radiusing, Marking & Blackening",
-          sub: "Comprehensive Final Process Operations",
-          body: "Aesthetics plays a crucial role in the perception of the product which directly associate with the overall satisfaction of a customer & it also substantiate the innovation, quality and reliability of the product. In the final manufacturing process, Removal of machining burrs & edges, marking of part numbers & company logo (both standard and customer specified) , sandblasting, blackening, cleaning & coating of parts for rust protection and various other mid-process and final finishing operations are carried out.",
-          specs: ["Burr & Sharp Corner Radiusing", "Customer Specified Logo Marking", "Sandblasting & Chemical Blackening", "Long-Term Rust Inhibitor Coating"]
+          num: "01",
+          name: "DEBURRING & FINISHING",
+          title: "DEBURRING & FINISHING",
+          body: "Aesthetics plays a crucial role in the perception of the product which directly associate with the overall satisfaction of a customer & it also substantiate the innovation, quality and reliability of the product.\n\nIn the final manufacturing process, Removal of machining burrs & edges, marking of part numbers & company logo (both standard and customer specified) , sandblasting, blackening, cleaning & coating of parts for rust protection and various other mid-process and final finishing operations are carried out.\n\nWe at Nirala Engineers, right from the initial stage of development keep in mind the product aesthetics and work towards achieving it."
         },
         {
-          id: "aesthetics",
-          name: "Aesthetic Engineering",
-          title: "Aesthetics Integrated from Initial Stage",
-          sub: "Substantiating Innovation, Quality & Reliability",
-          body: "We at Nirala Engineers, right from the initial stage of development keep in mind the product aesthetics and work towards achieving it. Superior visual aesthetics guarantees our clients world-class gear presentation and flawless mechanical meshing.",
-          specs: ["Upfront Aesthetic Planning", "Smooth Radii Free of Stress Notches", "Flawless Surface Presentation", "Total Customer Satisfaction"]
-        }
-      ]
-    },
-    5: {
-      badge: "PHASE 05 // QUALITY & INSPECTION",
-      themeColor: "#34d399",
-      title: "Continuous In-Process & Final QC Assurance",
-      sub: "Programmers, Operators & 20+ Year Senior QC Engineers",
-      desc: "Rigorous quality inspection governing the entire manufacturing sequence: Continuous monitoring by machine programmers and operators, followed by full dimensional and lead audit by senior QC inspectors with over 20 years company tenure.",
-      specs: [
-        "Continuous In-Process Machine Checks",
-        "Programmer & Operator Tracking",
-        "Senior QC Team with 20+ Yrs Tenure",
-        "Pre-Dispatch Inventory Signoff"
-      ],
-      submenus: [
-        {
-          id: "in_process",
-          name: "In-Process Inspection",
-          title: "Continuous In-Process Machine Inspection",
-          sub: "Conducted Continuously by Programmers & Operators",
-          body: "Our various products are inspected continuously throughout the manufacturing process by our machine programmers & machine operators.",
-          specs: ["Continuous Mid-Machining Tracking", "Operator Micrometer & Caliper Verifications", "Programmer CNC Offset Calibration", "Zero Defect Deflection Protocol"]
-        },
-        {
-          id: "final_inspection",
-          name: "Final QC (20+ Yrs)",
-          title: "Final Quality Inspection by Veteran Inspectors",
-          sub: "Inspectors with Over 20 Years Experience with the Company",
-          body: "Experienced quality control engineers/inspectors make a final inspection before dispatched or put into inventory. Our final quality control engineers/inspectors have a combined experience of over 20 years with the company and a thorough knowledge of our manufacturing processes & products.",
-          specs: ["Combined 20+ Years QC Veteran Experience", "Thorough Knowledge of Processes & Products", "Full Dimensional & Flank Clearance Audit", "Strict Pre-Dispatch Certification"]
+          id: "inspection",
+          num: "02",
+          name: "INSPECTION",
+          title: "INSPECTION",
+          body: "Our various products are inspected continuously throughout the manufacturing process by our machine programmers & machine operators.\n\nExperienced quality control engineers/inspectors make a final inspection before dispatched or put into inventory. Our final quality control engineers/inspectors have a combined experience of over 20 years with the company and a thorough knowledge of our manufacturing processes & products."
         }
       ]
     }
@@ -1381,13 +1366,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const pieSlices = document.querySelectorAll('.pie-slice-sector');
   const pieCenterHub = document.getElementById('pieCenterHub');
-  const pieOrbitalDock = document.getElementById('pieOrbitalDock');
+  const pieLegendItems = document.querySelectorAll('.pie-legend-item');
   const cockpitPhaseBadge = document.getElementById('cockpitPhaseBadge');
   const cockpitTopicTitle = document.getElementById('cockpitTopicTitle');
   const cockpitTopicSub = document.getElementById('cockpitTopicSub');
   const cockpitBodyNarrative = document.getElementById('cockpitBodyNarrative');
-  const cockpitSpecGrid = document.getElementById('cockpitSpecGrid');
-  const cockpitQuoteLink = document.getElementById('cockpitQuoteLink');
+  const cockpitSubmenusList = document.getElementById('cockpitSubmenusList');
+  const cockpitSectionJump = document.getElementById('cockpitSectionJump');
   const btnLaunchPopup = document.getElementById('btnLaunchPopup');
 
   // Modal elements
@@ -1395,14 +1380,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalCloseBtn = document.getElementById('modalCloseBtn');
   const modalPhaseBadge = document.getElementById('modalPhaseBadge');
   const modalDossierTitle = document.getElementById('modalDossierTitle');
-  const modalDossierSub = document.getElementById('modalDossierSub');
   const modalDossierBody = document.getElementById('modalDossierBody');
-  const modalDossierGrid = document.getElementById('modalDossierGrid');
   const modalQuoteBtn = document.getElementById('modalQuoteBtn');
 
   if (pieSlices.length > 0 && cockpitTopicTitle) {
-    let currentPhase = 3;
+    let currentPhase = 1;
     let currentSubmenuIndex = 0;
+
+    // Global modal trigger callable from cards & buttons
+    window.triggerProcessModal = (phaseId, submenuIdx = 0) => {
+      currentPhase = phaseId;
+      currentSubmenuIndex = submenuIdx;
+
+      const phase = processPhasesData[phaseId];
+      if (!phase) return;
+      const sub = phase.submenus[submenuIdx] || phase.submenus[0];
+
+      if (modalPhaseBadge) modalPhaseBadge.textContent = `${phase.badge} // ${sub.name}`;
+      if (modalDossierTitle) modalDossierTitle.textContent = sub.title;
+      if (modalDossierBody) {
+        modalDossierBody.textContent = sub.body;
+      }
+      if (modalQuoteBtn) {
+        modalQuoteBtn.setAttribute('href', `contact.html?process=${encodeURIComponent(sub.name)}#quote`);
+      }
+
+      if (processStageModal) {
+        processStageModal.classList.add('open');
+        document.body.classList.add('modal-open');
+      }
+    };
 
     const renderCockpit = (phaseId, submenuIdx = 0) => {
       currentPhase = phaseId;
@@ -1419,46 +1426,51 @@ document.addEventListener('DOMContentLoaded', () => {
         slice.classList.toggle('active', pNum === phaseId);
       });
 
-      // Update center hub active state
-      if (pieCenterHub) {
-        pieCenterHub.classList.toggle('active', phaseId === 5);
-      }
+      // Update legend active state
+      pieLegendItems.forEach(item => {
+        const pNum = Number(item.dataset.phase);
+        item.classList.toggle('active', pNum === phaseId);
+      });
 
-      // Update Cockpit Meta & Narrative
+      // Update Cockpit Meta & Title
       if (cockpitPhaseBadge) cockpitPhaseBadge.textContent = phase.badge;
-      if (cockpitTopicTitle) cockpitTopicTitle.textContent = activeSubmenu.title;
-      if (cockpitTopicSub) cockpitTopicSub.textContent = activeSubmenu.sub;
+      if (cockpitTopicTitle) cockpitTopicTitle.textContent = `${phase.name} SUBMENUS`;
+      if (cockpitTopicSub) cockpitTopicSub.textContent = `Click any submenu below to popup animated operation dossier (${phase.submenus.length} operations)`;
       if (cockpitBodyNarrative) cockpitBodyNarrative.textContent = activeSubmenu.body;
 
-      // Update Cockpit Spec Grid
-      if (cockpitSpecGrid) {
-        cockpitSpecGrid.innerHTML = activeSubmenu.specs
-          .map(spec => `<div class="cockpit-spec-box"><span class="icon">⚙</span><span>${spec}</span></div>`)
-          .join('');
+      if (cockpitSectionJump) {
+        cockpitSectionJump.setAttribute('href', `#${phase.sectionId}`);
       }
 
-      // Update Quote Link
-      if (cockpitQuoteLink) {
-        cockpitQuoteLink.setAttribute('href', `contact.html?process=${encodeURIComponent(activeSubmenu.name)}#quote`);
-      }
-
-      // Render Orbital Dock Sub-menu Chips
-      if (pieOrbitalDock) {
-        pieOrbitalDock.innerHTML = phase.submenus
+      // Render interactive submenus list
+      if (cockpitSubmenusList) {
+        cockpitSubmenusList.innerHTML = phase.submenus
           .map((sub, idx) => `
-            <button class="orbital-submenu-chip ${idx === submenuIdx ? 'active' : ''}" data-sub-idx="${idx}" type="button">
-              <span class="chip-dot"></span>
-              <span>${sub.name}</span>
+            <button class="pie-submenu-btn ${idx === submenuIdx ? 'active' : ''}" data-sub-idx="${idx}" type="button">
+              <div class="btn-left">
+                <span class="btn-num">${sub.num}</span>
+                <span class="btn-name">${sub.name}</span>
+              </div>
+              <span class="btn-popup-tag">Open Popup ↗</span>
             </button>
           `)
           .join('');
 
-        // Attach listeners to newly created chips
-        pieOrbitalDock.querySelectorAll('.orbital-submenu-chip').forEach(chip => {
-          chip.addEventListener('click', (e) => {
+        // Attach listeners to newly created submenu buttons
+        cockpitSubmenusList.querySelectorAll('.pie-submenu-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            const sIdx = Number(chip.dataset.subIdx);
-            renderCockpit(currentPhase, sIdx);
+            const sIdx = Number(btn.dataset.subIdx);
+            currentSubmenuIndex = sIdx;
+            // Update active state in dock
+            cockpitSubmenusList.querySelectorAll('.pie-submenu-btn').forEach((b, i) => {
+              b.classList.toggle('active', i === sIdx);
+            });
+            if (cockpitBodyNarrative) {
+              cockpitBodyNarrative.textContent = phase.submenus[sIdx].body;
+            }
+            // Trigger animated popup immediately as requested
+            window.triggerProcessModal(currentPhase, sIdx);
           });
         });
       }
@@ -1478,43 +1490,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Attach click to Center Hub (Phase 5)
-    if (pieCenterHub) {
-      pieCenterHub.addEventListener('click', () => {
-        renderCockpit(5, 0);
+    // Attach click to Legend items
+    pieLegendItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const pId = Number(item.dataset.phase);
+        renderCockpit(pId, 0);
       });
-      pieCenterHub.addEventListener('mouseenter', () => {
-        if (window.innerWidth > 960) {
-          renderCockpit(5, 0);
-        }
-      });
-    }
+    });
 
     // Modal Popup Opener & Closer
     const openDeepDiveModal = () => {
-      const phase = processPhasesData[currentPhase];
-      if (!phase) return;
-      const sub = phase.submenus[currentSubmenuIndex] || phase.submenus[0];
-
-      if (modalPhaseBadge) modalPhaseBadge.textContent = phase.badge;
-      if (modalDossierTitle) modalDossierTitle.textContent = sub.title;
-      if (modalDossierSub) modalDossierSub.textContent = sub.sub;
-      if (modalDossierBody) {
-        modalDossierBody.innerHTML = `<p style="margin-bottom: 16px;">${sub.body}</p><p style="color: var(--muted); font-size: 14px;">Nirala Engineers provides end-to-end tooling, dedicated CAD planning, and ISO 9001:2015 precision standards to ensure 100% component compliance and on-time completion.</p>`;
-      }
-      if (modalDossierGrid) {
-        modalDossierGrid.innerHTML = sub.specs
-          .map(s => `<div class="cockpit-spec-box"><span class="icon">✔</span><span>${s}</span></div>`)
-          .join('');
-      }
-      if (modalQuoteBtn) {
-        modalQuoteBtn.setAttribute('href', `contact.html?process=${encodeURIComponent(sub.name)}#quote`);
-      }
-
-      if (processStageModal) {
-        processStageModal.classList.add('open');
-        document.body.classList.add('modal-open');
-      }
+      window.triggerProcessModal(currentPhase, currentSubmenuIndex);
     };
 
     const closeDeepDiveModal = () => {
@@ -1544,8 +1530,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Initialize Default Phase: Machining (Phase 3, sub-index 0)
-    renderCockpit(3, 0);
+    // Initialize Default Phase: Phase 1 (Product Development, sub-index 0)
+    renderCockpit(1, 0);
   }
 
 

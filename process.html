@@ -34,9 +34,10 @@
           <a href="company.html" class="nav-link">The Company <span class="arrow">▼</span></a>
           <ul class="dropdown-menu">
             <li><a href="company.html#about">About Us</a></li>
-            <li><a href="company.html#history">History</a></li>
-            <li><a href="company.html#quality">Quality Policy</a></li>
-            <li><a href="company.html#jobs">Job Opportunities</a></li>
+            <li><a href="company.html#sectors">Fields of Application</a></li>
+            <li><a href="company.html#team">Our Team &amp; Standards</a></li>
+            <li><a href="company.html#history">Company History</a></li>
+            <li><a href="company.html#quality">Quality Policy &amp; ISO</a></li>
           </ul>
         </li>
 
@@ -79,64 +80,52 @@
     </div>
   </header>
 
-  <main>
-    <!-- Top Hero Section (Revamped Titanium & Gold Industrial Aesthetic) -->
+  <main style="padding-top: 110px;">
+    <!-- Top Hero Section -->
     <section class="process-hero-revamped" aria-label="Production Process Overview">
       <div class="container">
         <div class="section-heading center reveal">
-          <div class="eyebrow">Manufacturing Workflow · Vadodara Engineering Plant</div>
-          <h1>The Art &amp; Science of <em>Gear Manufacturing.</em></h1>
+          <div class="eyebrow">Manufacturing Ecosystem · Established 1961</div>
+          <h1>Production <em>Process.</em></h1>
           <p>
             Combining six decades of transmission craft with modern CNC turning, VMC milling, in-house bandsaw cutting, certified heat treatment, mirror teeth grinding, and aesthetic rust protection.
           </p>
         </div>
 
-        <!-- 4 Telemetry Metric Badges -->
-        <div class="process-hero-stat-strip reveal">
-          <div class="hero-stat-tile">
-            <span class="hero-stat-val">1961 → Present</span>
-            <span class="hero-stat-lbl">Continuous Gear Craftsmanship</span>
-          </div>
-          <div class="hero-stat-tile">
-            <span class="hero-stat-val">55+ Years Combined</span>
-            <span class="hero-stat-lbl">CAD Planning &amp; Engineering Team</span>
-          </div>
-          <div class="hero-stat-tile">
-            <span class="hero-stat-val">3× Bandsaw Units</span>
-            <span class="hero-stat-lbl">100% In-House Rod Cutting</span>
-          </div>
-          <div class="hero-stat-tile">
-            <span class="hero-stat-val">20+ Yrs QC Team</span>
-            <span class="hero-stat-lbl">In-Process &amp; Final Inspection</span>
-          </div>
-        </div>
-
-        <!-- Top Plant Cinematic Video Showcase (Oval Cut Frame) -->
+        <!-- Top Plant Cinematic Video Showcase -->
         <div class="process-hero-banner-strip reveal" id="processMediaContainer">
-          <!-- 5-Stage Gear Manufacturing Video -->
           <video class="process-banner-video" id="processHeroVideo" autoplay loop muted playsinline preload="auto">
             <source src="images/gemini_generated_video_3644194d_gwr_video_mvp (1).mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
+
+        <!-- Quick Jump Navigation Ribbon -->
+        <nav class="company-quick-jump-nav reveal delay-2" aria-label="Process Navigation Links" style="margin-top: 32px;">
+          <a href="#process-wheel" class="quick-jump-link">01. Processes Pie Chart</a>
+          <a href="#product-development" class="quick-jump-link">02. Product Development</a>
+          <a href="#raw-material" class="quick-jump-link">03. Raw Material Preparation</a>
+          <a href="#machining" class="quick-jump-link">04. Machining</a>
+          <a href="#finishing" class="quick-jump-link">05. Finishing &amp; Inspection</a>
+        </nav>
       </div>
     </section>
 
-    <!-- Master Interactive 3D Exploding Pie Chart & Orbital Sub-Menu Navigator -->
+    <!-- Master Interactive 4-Phase Processes Pie Chart Section -->
     <section class="process-engine-section" id="process-wheel">
       <div class="container">
         <div class="section-heading center reveal">
-          <div class="eyebrow">Interactive Process Engine · Corporate Workflow Chart</div>
-          <h2>4-Phase Production Engine &amp; <em>3D Exploding Pie Navigator.</em></h2>
+          <div class="eyebrow">Interactive Process Engine</div>
+          <h2>PROCESSES</h2>
           <p>
-            Click or hover any slice to pop out its operations and orbital sub-menus. Click the central hub to inspect our integral Quality &amp; Inspection assurance.
+            Click or hover any process slice or its submenus to trigger the animated popup dossier.
           </p>
         </div>
 
-        <!-- Split Layout: 3D Exploding Pie on Left + Live Telemetry Cockpit on Right -->
+        <!-- Split Layout: 3D SVG Pie Chart on Left + Live Submenus Cockpit on Right -->
         <div class="process-cockpit-split reveal">
 
-          <!-- Left Column: Master 3D Exploding SVG Pie Chart -->
+          <!-- Left Column: Master 4-Phase SVG Pie Chart matching uploaded diagram -->
           <div class="pie-wheel-master-wrap">
             <div class="pie-svg-wrapper">
               <!-- Ambient Technical Rotating Rings -->
@@ -148,29 +137,28 @@
                 </svg>
               </div>
 
-              <!-- Main SVG Canvas for 4 Proportional Slices -->
-              <svg class="pie-wheel-svg-canvas" id="processPieSvg" viewBox="0 0 600 600" aria-label="Interactive 4-Phase Production Process Pie Chart">
+              <!-- Main SVG Canvas for 4 Proportional Slices matching diagram -->
+              <svg class="pie-wheel-svg-canvas" id="processPieSvg" viewBox="0 0 600 600" aria-label="Processes Pie Chart">
                 <defs>
-                  <!-- Metallic Gradients matching client's color slide -->
                   <!-- 1. Product Development: Blue -->
                   <radialGradient id="grad-prod-dev" cx="45%" cy="35%" r="70%">
                     <stop offset="0%" stop-color="#93c5fd" />
                     <stop offset="50%" stop-color="#3b82f6" />
                     <stop offset="100%" stop-color="#1d4ed8" />
                   </radialGradient>
-                  <!-- 2. Raw Material: Amber / Copper -->
+                  <!-- 2. Raw Material: Orange -->
                   <radialGradient id="grad-raw-mat" cx="45%" cy="35%" r="70%">
-                    <stop offset="0%" stop-color="#fcd34d" />
-                    <stop offset="50%" stop-color="#f59e0b" />
-                    <stop offset="100%" stop-color="#b45309" />
+                    <stop offset="0%" stop-color="#fdba74" />
+                    <stop offset="50%" stop-color="#f97316" />
+                    <stop offset="100%" stop-color="#c2410c" />
                   </radialGradient>
-                  <!-- 3. Machining: Titanium / Steel Slate -->
+                  <!-- 3. Machining: Grey / Titanium Steel -->
                   <radialGradient id="grad-machining" cx="45%" cy="35%" r="70%">
-                    <stop offset="0%" stop-color="#cbd5e1" />
-                    <stop offset="50%" stop-color="#64748b" />
-                    <stop offset="100%" stop-color="#334155" />
+                    <stop offset="0%" stop-color="#e2e8f0" />
+                    <stop offset="50%" stop-color="#94a3b8" />
+                    <stop offset="100%" stop-color="#475569" />
                   </radialGradient>
-                  <!-- 4. Finishing: Signature Gold / Yellow -->
+                  <!-- 4. Finishing: Yellow / Gold -->
                   <radialGradient id="grad-finishing" cx="45%" cy="35%" r="70%">
                     <stop offset="0%" stop-color="#fef08a" />
                     <stop offset="50%" stop-color="#eab308" />
@@ -184,110 +172,115 @@
                 </defs>
 
                 <!-- SLICE 1: PRODUCT DEVELOPMENT (Blue) -->
-                <g class="pie-slice-sector" data-phase="1" tabindex="0" role="button" aria-label="Phase 1: Product Development">
+                <g class="pie-slice-sector active" data-phase="1" tabindex="0" role="button" aria-label="Phase 1: Product Development">
                   <path class="pie-slice-path" fill="url(#grad-prod-dev)" filter="url(#sliceBevelShadow)"
-                    d="M 300.0,60.0 A 240,240 0 0,1 536.4,258.3 L 388.6,284.4 A 90,90 0 0,0 300.0,210.0 Z" />
+                    d="M 300.0 60.0 A 240 240 0 0 1 536.4 258.3 L 373.9 287.0 A 75 75 0 0 0 300.0 225.0 Z" />
                   <g class="pie-slice-label-group">
-                    <text x="406" y="165">
-                      <tspan x="406" dy="0">PRODUCT</tspan>
-                      <tspan x="406" dy="16">DEVELOPMENT</tspan>
+                    <text x="403" y="177">
+                      <tspan x="403" dy="0">PRODUCT</tspan>
+                      <tspan x="403" dy="16">DEVELOPMENT</tspan>
                     </text>
                   </g>
                 </g>
 
-                <!-- SLICE 2: RAW MATERIAL PREPARATION (Amber) -->
+                <!-- SLICE 2: RAW MATERIAL PREPARATION (Orange) -->
                 <g class="pie-slice-sector" data-phase="2" tabindex="0" role="button" aria-label="Phase 2: Raw Material Preparation">
                   <path class="pie-slice-path" fill="url(#grad-raw-mat)" filter="url(#sliceBevelShadow)"
-                    d="M 536.4,258.3 A 240,240 0 0,1 496.6,437.7 L 373.7,351.6 A 90,90 0 0,0 388.6,284.4 Z" />
+                    d="M 536.4 258.3 A 240 240 0 0 1 496.6 437.7 L 361.4 343.0 A 75 75 0 0 0 373.9 287.0 Z" />
                   <g class="pie-slice-label-group">
-                    <text x="461" y="330">
-                      <tspan x="461" dy="0">RAW MATERIAL</tspan>
-                      <tspan x="461" dy="16">PREPARATION</tspan>
+                    <text x="456" y="335">
+                      <tspan x="456" dy="0">RAW MATERIAL</tspan>
+                      <tspan x="456" dy="16">PREPARATION</tspan>
                     </text>
                   </g>
                 </g>
 
-                <!-- SLICE 3: MACHINING (Titanium Slate - Default Active) -->
-                <g class="pie-slice-sector active" data-phase="3" tabindex="0" role="button" aria-label="Phase 3: Machining">
+                <!-- SLICE 3: MACHINING (Grey) -->
+                <g class="pie-slice-sector" data-phase="3" tabindex="0" role="button" aria-label="Phase 3: Machining">
                   <path class="pie-slice-path" fill="url(#grad-machining)" filter="url(#sliceBevelShadow)"
-                    d="M 496.6,437.7 A 240,240 0 0,1 68.2,237.9 L 213.1,276.7 A 90,90 0 0,0 373.7,351.6 Z" />
+                    d="M 496.6 437.7 A 240 240 0 0 1 68.2 237.9 L 227.6 280.6 A 75 75 0 0 0 361.4 343.0 Z" />
                   <g class="pie-slice-label-group">
-                    <text x="230" y="445">
-                      <tspan x="230" dy="0">PRECISION</tspan>
-                      <tspan x="230" dy="16">MACHINING</tspan>
+                    <text x="232" y="445">
+                      <tspan x="232" dy="0">MACHINING</tspan>
                     </text>
                   </g>
                 </g>
 
-                <!-- SLICE 4: FINISHING (Gold) -->
+                <!-- SLICE 4: FINISHING (Yellow) -->
                 <g class="pie-slice-sector" data-phase="4" tabindex="0" role="button" aria-label="Phase 4: Finishing">
                   <path class="pie-slice-path" fill="url(#grad-finishing)" filter="url(#sliceBevelShadow)"
-                    d="M 68.2,237.9 A 240,240 0 0,1 300.0,60.0 L 300.0,210.0 A 90,90 0 0,0 213.1,276.7 Z" />
+                    d="M 68.2 237.9 A 240 240 0 0 1 300.0 60.0 L 300.0 225.0 A 75 75 0 0 0 227.6 280.6 Z" />
                   <g class="pie-slice-label-group">
-                    <text x="200" y="165">
-                      <tspan x="200" dy="0">DEBURRING &amp;</tspan>
-                      <tspan x="200" dy="16">FINISHING</tspan>
+                    <text x="203" y="173">
+                      <tspan x="203" dy="0">FINISHING</tspan>
                     </text>
                   </g>
                 </g>
               </svg>
 
-              <!-- Central Rotating Hub: Quality & Inspection -->
-              <div class="pie-center-hub" id="pieCenterHub" tabindex="0" role="button" aria-label="Center Hub: Quality & Inspection">
+              <!-- Central Hub: PROCESSES -->
+              <div class="pie-center-hub" id="pieCenterHub" tabindex="0" role="button" aria-label="Center Hub: Processes">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="pie-hub-gear-spin">
                   <circle cx="12" cy="12" r="3"></circle>
                   <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                 </svg>
-                <span class="pie-hub-title">QUALITY &amp;<br>INSPECTION</span>
-                <span class="pie-hub-sub">CLICK TO VIEW</span>
+                <span class="pie-hub-title">PROCESSES</span>
+                <span class="pie-hub-sub">NIRALA ENGINEERS</span>
               </div>
             </div>
 
-            <!-- Dynamic Orbital Sub-Menu Navigator Dock -->
-            <div class="pie-orbital-dock" id="pieOrbitalDock">
-              <!-- Dynamically populated based on active phase -->
+            <!-- 4-Item Legend matching user diagram -->
+            <div class="pie-legend-strip">
+              <div class="pie-legend-item active" data-phase="1">
+                <span class="pie-legend-box color-blue"></span>
+                <span>PRODUCT DEVELOPMENT</span>
+              </div>
+              <div class="pie-legend-item" data-phase="2">
+                <span class="pie-legend-box color-orange"></span>
+                <span>RAW MATERIAL PREPARATION</span>
+              </div>
+              <div class="pie-legend-item" data-phase="3">
+                <span class="pie-legend-box color-grey"></span>
+                <span>MACHINING</span>
+              </div>
+              <div class="pie-legend-item" data-phase="4">
+                <span class="pie-legend-box color-yellow"></span>
+                <span>FINISHING</span>
+              </div>
             </div>
           </div>
 
-          <!-- Right Column: Live Telemetry Cockpit Stage -->
+          <!-- Right Column: Submenus Cockpit with Popup Triggers -->
           <div class="pie-telemetry-cockpit" id="pieCockpitStage">
-            <svg class="cockpit-watermark-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="12" r="3"></circle>
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-            </svg>
-
             <div class="cockpit-header-meta">
-              <span class="cockpit-phase-badge" id="cockpitPhaseBadge">PHASE 03 // MACHINING</span>
+              <span class="cockpit-phase-badge" id="cockpitPhaseBadge">PHASE 01 // PRODUCT DEVELOPMENT</span>
               <div class="cockpit-status-live">
                 <span class="dot"></span>
-                <span>STAGE COCKPIT</span>
+                <span>SUBMENUS POPUP</span>
               </div>
             </div>
 
-            <h3 class="cockpit-topic-title" id="cockpitTopicTitle">CNC Turning &amp; Gear Cutting</h3>
-            <div class="cockpit-topic-sub" id="cockpitTopicSub">In-House Multi-Axis Lathes, Hobbing, Shaping &amp; Generating</div>
+            <h3 class="cockpit-topic-title" id="cockpitTopicTitle">Product Development Submenus</h3>
+            <div class="cockpit-topic-sub" id="cockpitTopicSub">Click Any Submenu To Open Animated Popup Dossier</div>
 
-            <div class="cockpit-body-narrative" id="cockpitBodyNarrative">
-              Nirala Engineers began manufacturing gears in the mid-1960’s and started supply in 1961. Our CNC turning centres are modern and toolings are updated according to the market. All turning requirements are handled in-house for maximum control of production and quality.
+            <!-- Interactive Submenus List -->
+            <div class="pie-submenus-interactive-dock" id="cockpitSubmenusList">
+              <!-- Dynamically populated -->
             </div>
 
-            <!-- Technical Specification / Machine Tags Grid -->
-            <div class="cockpit-spec-grid" id="cockpitSpecGrid">
-              <div class="cockpit-spec-box"><span class="icon">⚙</span><span>Multi-Axis Modern CNC Turning Centres</span></div>
-              <div class="cockpit-spec-box"><span class="icon">⚙</span><span>Automatic Gear Hobbing &amp; Shaping</span></div>
-              <div class="cockpit-spec-box"><span class="icon">⚙</span><span>Diametral, Circular &amp; Metric Pitches</span></div>
-              <div class="cockpit-spec-box"><span class="icon">⚙</span><span>±0.005mm Profile Turning Tolerances</span></div>
+            <div class="cockpit-body-narrative" id="cockpitBodyNarrative" style="margin-top: 14px; font-size: 13.5px; line-height: 1.7; color: var(--paper);">
+              Select any submenu above to inspect the complete operational details.
             </div>
 
             <!-- Cockpit Actions -->
-            <div class="cockpit-action-footer">
+            <div class="cockpit-action-footer" style="margin-top: 24px;">
               <button class="btn-launch-popup" id="btnLaunchPopup" type="button">
-                <span>View Deep-Dive Dossier</span>
+                <span>Open Animated Popup</span>
                 <span>↗</span>
               </button>
-              <a href="contact.html#quote" class="button button-primary" id="cockpitQuoteLink">
-                <span>Inquire for This Phase</span>
-                <span>→</span>
+              <a href="#product-development" class="button button-primary" id="cockpitSectionJump">
+                <span>View Full Section on Page</span>
+                <span>↓</span>
               </a>
             </div>
           </div>
@@ -296,303 +289,337 @@
       </div>
     </section>
 
-    <!-- Deep-Dive Stage Popup Modal Window (As per YouTube Reference / Client Request) -->
+    <!-- Deep-Dive Stage Popup Modal Window (Popup Animation to open detailed dossier) -->
     <div class="process-stage-modal-backdrop" id="processStageModal" role="dialog" aria-modal="true" aria-labelledby="modalDossierTitle">
       <div class="process-stage-modal-window">
         <button class="modal-close-trigger" id="modalCloseBtn" aria-label="Close Modal">×</button>
         
         <div class="cockpit-header-meta" style="margin-bottom: 12px;">
-          <span class="cockpit-phase-badge" id="modalPhaseBadge">PHASE DOSSIER</span>
-          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--gold-light);">NIRALA ENGINEERS · TECHNICAL SPECIFICATION</span>
+          <span class="cockpit-phase-badge" id="modalPhaseBadge">OPERATION DOSSIER</span>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--gold-light);">NIRALA ENGINEERS · MANUFACTURING PROCESS</span>
         </div>
 
-        <h2 id="modalDossierTitle" style="font-size: clamp(24px, 3vw, 34px); color: #ffffff; margin-bottom: 8px;">Detailed Operation Dossier</h2>
-        <div id="modalDossierSub" style="font-family: var(--font-mono); color: var(--cyan); font-size: 13px; margin-bottom: 24px;">Deep-Dive Engineering Breakdown</div>
+        <h2 id="modalDossierTitle" style="font-size: clamp(22px, 3vw, 30px); color: #ffffff; margin-bottom: 18px;">Operation Title</h2>
 
-        <div id="modalDossierBody" style="font-size: 15px; line-height: 1.8; color: var(--paper); margin-bottom: 30px;">
+        <div id="modalDossierBody" style="font-size: 15px; line-height: 1.85; color: var(--paper); margin-bottom: 30px; white-space: pre-line;">
           <!-- Detailed content injected by JS -->
-        </div>
-
-        <div class="cockpit-spec-grid" id="modalDossierGrid" style="margin-bottom: 32px;">
-          <!-- Specific tags injected by JS -->
         </div>
 
         <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; border-top: 1px solid rgba(244,241,234,0.12); padding-top: 24px;">
           <div style="font-size: 13px; color: var(--muted);">
-            📞 Need specialized geometry calculation or drawing review? Call: <strong>+91 7991991055</strong>
+            📞 Phone: <strong>+91 7991991055</strong> · Email: <strong>niralagears@gmail.com</strong>
           </div>
-          <a href="contact.html#quote" class="button button-primary" id="modalQuoteBtn">Submit Drawing / Order Inquiry →</a>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <button type="button" class="button button-secondary" onclick="document.getElementById('processStageModal').classList.remove('open'); document.body.classList.remove('modal-open');">Close</button>
+            <a href="contact.html#quote" class="button button-primary" id="modalQuoteBtn">Submit Drawing / Inquiry →</a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Dedicated Product Development Deep-Dive Section (Phase 01 Real Company Data) -->
-    <section class="section product-dev-deepdive-section" id="product-development">
+    <!-- Section 1: PRODUCT DEVELOPMENT (Strictly Exact User Content) -->
+    <section class="section" id="product-development">
       <div class="container">
         <div class="section-heading center reveal">
-          <div class="eyebrow">Phase 01 · Product Development &amp; Engineering Operations</div>
-          <h2>Product Development: <em>From Concept to CAD.</em></h2>
-          <p>
-            Explore our comprehensive product development workflow — substantial plant warehouse storage, precision reverse engineering of worn gears, custom client drawing review, and 55+ years of combined engineering management.
-          </p>
+          <div class="eyebrow">Phase 01 · In-House Operations</div>
+          <h2>PRODUCT <em>DEVELOPMENT</em></h2>
+          <p>Storage, reverse calculation, customer drawings, and 55+ years CAD planning.</p>
         </div>
 
-        <div class="product-dev-grid reveal">
-          <!-- Card 1: WAREHOUSE -->
-          <article class="product-dev-card">
-            <div class="dev-card-header">
-              <span class="dev-card-num">01</span>
-              <span class="dev-card-badge">WAREHOUSE</span>
+        <div class="process-exact-cards-grid reveal">
+          <!-- Submenu 1: WAREHOUSE -->
+          <article class="process-clean-card phase-1">
+            <div class="process-card-header">
+              <span class="process-card-badge">01. WAREHOUSE</span>
+              <span class="process-card-num">PHASE 01</span>
             </div>
-            <h3>Warehouse Storage</h3>
-            <div class="dev-card-sub">Immediate Stock Dispatch &amp; Machine Shop Customization</div>
+            <h3>WAREHOUSE</h3>
             <p>
-              Our plant includes substantial warehouse space dedicated to storage of finished and semi-finished goods available for immediate delivery, or customization in our machine shop.
+              Our plant includes substantial warehouse space dedicated to storage of finished and semi- finished goods available for immediate delivery, or customization in our machine shop.
             </p>
-            <div class="dev-card-tags">
-              <span class="dev-tag">Immediate Delivery</span>
-              <span class="dev-tag">Semi-Finished Blanks</span>
-              <span class="dev-tag">Machine Shop Customization</span>
-              <span class="dev-tag">Vadodara Plant Hub</span>
+            <div class="process-card-action-bar">
+              <button type="button" class="process-card-popup-btn" onclick="window.triggerProcessModal(1, 0)">
+                <span>View in Popup Dossier</span>
+                <span>↗</span>
+              </button>
             </div>
           </article>
 
-          <!-- Card 2: SAMPLE IDENTIFICATION -->
-          <article class="product-dev-card highlight-card">
-            <div class="dev-card-header">
-              <span class="dev-card-num">02</span>
-              <span class="dev-card-badge">SAMPLE IDENTIFICATION</span>
+          <!-- Submenu 2: SAMPLE IDENTIFICATION & OEM -->
+          <article class="process-clean-card phase-1">
+            <div class="process-card-header">
+              <span class="process-card-badge">02. SAMPLE IDENTIFICATION</span>
+              <span class="process-card-num">PHASE 01</span>
             </div>
-            <h3>Sample Identification</h3>
-            <div class="dev-card-sub">Unknown Gear Geometry Re-Calculation &amp; Precision Replication</div>
+            <h3>SAMPLE IDENTIFICATION</h3>
             <p>
-              We work with customers daily to identify different types of Gears (Spur Gears, Helical Gears, Change Gears, Sprockets Gears, Miter Gears, Worm Wheel, Worm Shaft, Straight Bevel Gears, Spiral Bevel Gears, Herringbone Gears, Timing Pulleys, Rack &amp; Pinion etc) &amp; Gear Boxes that are worn out or broken due to some other reason which are of unknown specification.
+              We work with customers daily to identify different types of Gears (Spur Gears, Helical Gears ,Change Gears, Sprockets Gears,Miter Gears Worm Wheel, Worm Shaft, Straight Bevel Gears, Spiral Bevel Gears,Herringbone Gears, Timing Pulleys, Rack &amp; Pinion etc) ) &amp; Gear Boxes that are worn out or broken due to some other reason which are of unknown specification. Our experts use their extensive knowledge of the technical geometry &amp; specification to manufacture the products, along with sophisticated measuring and calculation methods. This allows customers to obtain replacement parts where they might have had to replace entire gear boxes,gears, shafts, mechanical systems, or even an entire machine.
             </p>
-            <p style="margin-top: 10px;">
-              Our experts use their extensive knowledge of the technical geometry &amp; specification to manufacture the products, along with sophisticated measuring and calculation methods. This allows customers to obtain replacement parts where they might have had to replace entire gear boxes, gears, shafts, mechanical systems, or even an entire machine.
+            <p style="font-weight: 600; color: #ffffff;">
+              WE ALSO WORK WITH THE DRAWINGS PROVIDED BY THE CUSTOMER AND ARE OEM TO VARIOUS INDUSTRIES IN VARIETY OF FIELDS SUCH AS MACHINE MANUFACTURING INDUSTRIES, CHEMICAL INDUSTRIES, PACKAGING INDUSTRIES, AGRICULTURE INDUSTRIES, TEXTIE INDUSTRIES, RAILWAYS, CRANE MFG. INDUSTRIES, AUTOMOBILE INDUSTRIES ETC
             </p>
-            <div class="dev-card-tags">
-              <span class="dev-tag">Worn/Broken Gear Identification</span>
-              <span class="dev-tag">Geometry Reverse Calculation</span>
-              <span class="dev-tag">Avoids Machine Replacement</span>
-              <span class="dev-tag">15+ Gear Families Replicated</span>
+            <div class="process-card-action-bar">
+              <button type="button" class="process-card-popup-btn" onclick="window.triggerProcessModal(1, 1)">
+                <span>View in Popup Dossier</span>
+                <span>↗</span>
+              </button>
             </div>
           </article>
 
-          <!-- Card 3: DRAWINGS PROVIDED BY CUSTOMER & OEM -->
-          <article class="product-dev-card">
-            <div class="dev-card-header">
-              <span class="dev-card-num">03</span>
-              <span class="dev-card-badge">OEM &amp; CLIENT DRAWINGS</span>
+          <!-- Submenu 3: DEVELOPMENT AND MANAGEMENT -->
+          <article class="process-clean-card phase-1" style="grid-column: 1 / -1;">
+            <div class="process-card-header">
+              <span class="process-card-badge">03. DEVELOPMENT AND MANAGEMENT</span>
+              <span class="process-card-num">PHASE 01</span>
             </div>
-            <h3>Manufacturing from Customer Drawings</h3>
-            <div class="dev-card-sub">OEM to Diversified Machine Manufacturing &amp; Core Industries</div>
-            <p>
-              WE ALSO WORK WITH THE DRAWINGS PROVIDED BY THE CUSTOMER AND ARE OEM TO VARIOUS INDUSTRIES IN VARIETY OF FIELDS SUCH AS MACHINE MANUFACTURING INDUSTRIES, CHEMICAL INDUSTRIES, PACKAGING INDUSTRIES, AGRICULTURE INDUSTRIES, TEXTILE INDUSTRIES, RAILWAYS, CRANE MFG. INDUSTRIES, AUTOMOBILE INDUSTRIES ETC.
-            </p>
-            <div class="dev-card-tags">
-              <span class="dev-tag">Machine Manufacturing</span>
-              <span class="dev-tag">Chemical &amp; Packaging</span>
-              <span class="dev-tag">Agriculture &amp; Textiles</span>
-              <span class="dev-tag">Railways &amp; Heavy Cranes</span>
-              <span class="dev-tag">Automobile Industries</span>
-            </div>
-          </article>
-
-          <!-- Card 4: DEVELOPMENT AND MANAGEMENT -->
-          <article class="product-dev-card">
-            <div class="dev-card-header">
-              <span class="dev-card-num">04</span>
-              <span class="dev-card-badge">DEVELOPMENT &amp; MANAGEMENT</span>
-            </div>
-            <h3>Development and Management</h3>
-            <div class="dev-card-sub">55+ Years Combined Nirala Engineers Planning &amp; Job Cards</div>
+            <h3>DEVELOPMENT AND MANAGEMENT</h3>
             <p>
               When an order is placed with our company, firstly it is reviewed and planned by a team of individuals with combined Nirala Engineers experience of over 55 years. Work instructions, operator setting (job card) and detailed CAD drawings are produced to aid manufacturing personnel in producing high quality products with repeatability.
             </p>
-            <div class="dev-card-tags">
-              <span class="dev-tag">55+ Years Combined Planning</span>
-              <span class="dev-tag">Detailed CAD Drawings</span>
-              <span class="dev-tag">Operator Setting (Job Card)</span>
-              <span class="dev-tag">High Quality Repeatability</span>
+            <div class="process-card-action-bar">
+              <button type="button" class="process-card-popup-btn" onclick="window.triggerProcessModal(1, 2)">
+                <span>View in Popup Dossier</span>
+                <span>↗</span>
+              </button>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Sequential Manufacturing Operations Command Terminal (Non-Card Industrial Blueprint UI) -->
-    <section class="roster-terminal-section" id="sequential-matrix">
+    <!-- Section 2: RAW MATERIAL PREPARATION (Strictly Exact User Content) -->
+    <section class="section section-alt" id="raw-material">
       <div class="container">
         <div class="section-heading center reveal">
-          <div class="eyebrow">Manufacturing Operations Command Terminal</div>
-          <h2>Sequential Facility Roster &amp; <em>Machinery Ecosystem.</em></h2>
-          <p>
-            Explore all 16 plant capabilities across 5 sequential manufacturing stations. Select any station on the pipeline track or navigate directly through the operational terminal below.
-          </p>
+          <div class="eyebrow">Phase 02 · In-House Operations</div>
+          <h2>RAW MATERIAL <em>PREPARATION</em></h2>
+          <p>In-house bandsaw cutting and specialized welding.</p>
         </div>
 
-        <!-- 5-Station Linear Pipeline Progress Track -->
-        <div class="pipeline-track-wrapper reveal">
-          <div class="pipeline-stations-nav" id="pipelineStationsNav">
-            <button class="pipeline-station-pill active" data-station="1" type="button">
-              <div class="pill-top">
-                <span class="station-num">STATION 01</span>
-                <span class="station-count">4 OPS</span>
-              </div>
-              <span class="station-label">Product Development</span>
-            </button>
+        <div class="process-exact-cards-grid reveal">
+          <!-- Submenu 1: HACKSAW CUTTING -->
+          <article class="process-clean-card phase-2">
+            <div class="process-card-header">
+              <span class="process-card-badge">01. HACKSAW CUTTING</span>
+              <span class="process-card-num">PHASE 02</span>
+            </div>
+            <h3>HACKSAW CUTTING</h3>
+            <p>
+              WE ARE EQUIPPED WITH 3 BANDSAW MACHINES. RAW MATERIAL CUTTING FROM THE ROD ACCORDING TO THE REQUIREMENT IS DONE COMPLETELY INHOUSE.
+            </p>
+            <div class="process-card-action-bar">
+              <button type="button" class="process-card-popup-btn" onclick="window.triggerProcessModal(2, 0)">
+                <span>View in Popup Dossier</span>
+                <span>↗</span>
+              </button>
+            </div>
+          </article>
 
-            <button class="pipeline-station-pill" data-station="2" type="button">
-              <div class="pill-top">
-                <span class="station-num">STATION 02</span>
-                <span class="station-count">2 OPS</span>
-              </div>
-              <span class="station-label">Raw Material Prep</span>
-            </button>
+          <!-- Submenu 2: WELDING -->
+          <article class="process-clean-card phase-2">
+            <div class="process-card-header">
+              <span class="process-card-badge">02. WELDING</span>
+              <span class="process-card-num">PHASE 02</span>
+            </div>
+            <h3>WELDING</h3>
+            <p>
+              From simple weld jobs (boss welding, repairing gear tooth, etc) to advanced fabricated parts, Nirala Engineers can provide you with a welded product that will fulfill your needs.
+            </p>
+            <div class="process-card-action-bar">
+              <button type="button" class="process-card-popup-btn" onclick="window.triggerProcessModal(2, 1)">
+                <span>View in Popup Dossier</span>
+                <span>↗</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-            <button class="pipeline-station-pill" data-station="3" type="button">
-              <div class="pill-top">
-                <span class="station-num">STATION 03</span>
-                <span class="station-count">6 OPS</span>
-              </div>
-              <span class="station-label">Precision Machining</span>
-            </button>
-
-            <button class="pipeline-station-pill" data-station="4" type="button">
-              <div class="pill-top">
-                <span class="station-num">STATION 04</span>
-                <span class="station-count">2 OPS</span>
-              </div>
-              <span class="station-label">Deburring &amp; Finishing</span>
-            </button>
-
-            <button class="pipeline-station-pill" data-station="5" type="button">
-              <div class="pill-top">
-                <span class="station-num">STATION 05</span>
-                <span class="station-count">2 OPS</span>
-              </div>
-              <span class="station-label">Quality &amp; Inspection</span>
-            </button>
-          </div>
+    <!-- Section 3: MACHINING (Strictly Exact User Content) -->
+    <section class="section" id="machining">
+      <div class="container">
+        <div class="section-heading center reveal">
+          <div class="eyebrow">Phase 03 · Core Production Floor</div>
+          <h2><em>MACHINING</em></h2>
+          <p>Modern CNC turning, gear cutting since 1961, milling, keyways, heat treatment &amp; grinding.</p>
         </div>
 
-        <!-- Split Operations Console (Left Spectrum Rail + Right CAD Telemetry Stage) -->
-        <div class="roster-console-split reveal">
-
-          <!-- Left Column: Operations Spectrum Rail (Interactive list, NO CARDS!) -->
-          <div class="roster-index-rail">
-            <div class="roster-rail-header">
-              <span class="roster-rail-header-title" id="railHeaderTitle">STATION 01 // CAPABILITY SPECTRUM</span>
-              <span class="roster-rail-header-status">
-                <span class="dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); display: inline-block;"></span>
-                <span>ACTIVE RAIL</span>
-              </span>
+        <div class="process-exact-cards-grid reveal">
+          <!-- Submenu 1: TURNING -->
+          <article class="process-clean-card phase-3">
+            <div class="process-card-header">
+              <span class="process-card-badge">01. TURNING</span>
+              <span class="process-card-num">PHASE 03</span>
             </div>
-
-            <div class="roster-spectrum-list" id="rosterSpectrumList">
-              <!-- Dynamically rendered based on active station -->
+            <h3>TURNING</h3>
+            <p>
+              Our cnc turning centres are modern and toolings are updated according to the market. All turning requirements are handled in-house for maximum control of production and quality.
+            </p>
+            <p>
+              Our CNC machine tools utilize state-of-the-art programming providing efficiency,versatility and accuracy.
+            </p>
+            <div class="process-card-action-bar">
+              <button type="button" class="process-card-popup-btn" onclick="window.triggerProcessModal(3, 0)">
+                <span>View in Popup Dossier</span>
+                <span>↗</span>
+              </button>
             </div>
+          </article>
 
-            <!-- Station Certified Protocol & Plant Metric Anchor (Balances height across all stations) -->
-            <div class="roster-station-protocol-card" id="rosterProtocolCard">
-              <div class="protocol-card-header">
-                <span class="protocol-label">STATION AUDIT SPECIFICATION</span>
-                <span class="protocol-code" id="protocolStationCode">STN-01 // AUDIT</span>
-              </div>
-              <div class="protocol-specs-grid" id="protocolSpecsGrid">
-                <div class="protocol-spec-row">
-                  <span class="spec-k">Engineering Team</span>
-                  <span class="spec-v">55+ Yrs Combined Experience</span>
-                </div>
-                <div class="protocol-spec-row">
-                  <span class="spec-k">Dispatch Readiness</span>
-                  <span class="spec-v">Immediate Stock / Fast-Track</span>
-                </div>
-                <div class="protocol-spec-row">
-                  <span class="spec-k">OEM Blueprint Review</span>
-                  <span class="spec-v">100% CAD Compliance</span>
-                </div>
-                <div class="protocol-spec-row">
-                  <span class="spec-k">Reverse-Eng Protocol</span>
-                  <span class="spec-v">Full Pitch &amp; Tooth Re-Calc</span>
-                </div>
-              </div>
+          <!-- Submenu 2: GEAR CUTTING--- -->
+          <article class="process-clean-card phase-3">
+            <div class="process-card-header">
+              <span class="process-card-badge">02. GEAR CUTTING</span>
+              <span class="process-card-num">PHASE 03</span>
             </div>
-          </div>
-
-          <!-- Right Column: Live Plant CAD Telemetry Stage (Single Unified High-Tech Stage!) -->
-          <div class="roster-screen-console">
-            <svg class="roster-gear-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="12" r="3"></circle>
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-            </svg>
-
-            <div class="roster-meta-top-bar">
-              <span class="roster-station-chip" id="rosterStationChip">STATION 01.1 // IN-HOUSE STOCK</span>
-              <div class="roster-beacon-live">
-                <span class="dot"></span>
-                <span>PLANT OPERATION TELEMETRY</span>
-              </div>
+            <h3>GEAR CUTTING---</h3>
+            <p>
+              Nirala Engineers began manufacturing gears in the mid-1960’s and started supply in 1961. That tradition expanded substantially when the Nirala Engineers expanded its product range to custom-built gearboxes in 1990, further expanded to import substitute complex cnc turned component in 2006 and to cctv surveillance systems, biometric systems &amp; home automation system in 2015. From time to time the company has continued to expand its capabilities and knowledge base. Today the firm is among the most experienced and capable gear manufacturers in India and have vision to expand across the globe. Virtually every employee at Nirala Engineers is involved in manufacturing such world class the best products available anywhere
+            </p>
+            <p>
+              Our gear cutting capabilities are very diverse, including all common gear types used in industry. We carry a large product range such as Spur Gears, Helical Gears ,Change Gears, Sprockets Gears,Miter Gears, Worm Wheel, Worm Shaft, Straight Bevel Gears, Spiral Bevel Gears,Herringbone Gears, Timing Pulleys, Rack &amp; Pinion,Idler Gears etc) . We have manual as well as automatic machines for hobbing, shaping, generating, grinding and other finishing in-house itself. Our inventory of gear cutting tools, CNC cutting tools, Gear Hob cutters are extensive, covering a broad range of common and uncommon Diametrical (both Normal and Transverse), Circular, AGMA &amp; Fellows Stub and Metric Pitches. Please inquire for additional details.
+            </p>
+            <div class="process-card-action-bar">
+              <button type="button" class="process-card-popup-btn" onclick="window.triggerProcessModal(3, 1)">
+                <span>View in Popup Dossier</span>
+                <span>↗</span>
+              </button>
             </div>
+          </article>
 
-            <h3 class="roster-op-title" id="rosterOpTitle">Dedicated Plant Warehouse Facility</h3>
-            <div class="roster-op-subtitle" id="rosterOpSubtitle">Storage of Finished &amp; Semi-Finished Goods Ready for Immediate Delivery</div>
-
-            <div class="roster-op-body" id="rosterOpBody">
-              Our plant includes substantial warehouse space dedicated to storage of finished and semi-finished goods available for immediate delivery, or customization in our machine shop.
+          <!-- Submenu 3: MILLING AND DRILLING -->
+          <article class="process-clean-card phase-3">
+            <div class="process-card-header">
+              <span class="process-card-badge">03. MILLING AND DRILLING</span>
+              <span class="process-card-num">PHASE 03</span>
             </div>
-
-            <!-- 4-Box Telemetry Parameter Matrix -->
-            <div class="roster-param-matrix" id="rosterParamMatrix">
-              <div class="roster-param-cell">
-                <span class="p-title">Storage Scope</span>
-                <span class="p-val">Finished &amp; Semi-Finished</span>
-              </div>
-              <div class="roster-param-cell">
-                <span class="p-title">Delivery Speed</span>
-                <span class="p-val">Immediate Dispatch</span>
-              </div>
-              <div class="roster-param-cell">
-                <span class="p-title">Adaptation</span>
-                <span class="p-val">In-House Machine Shop</span>
-              </div>
-              <div class="roster-param-cell">
-                <span class="p-title">Facility Location</span>
-                <span class="p-val">Vadodara Plant Hub</span>
-              </div>
+            <h3>MILLING AND DRILLING</h3>
+            <p>
+              Substantial milling equipment are available for meeting special machining needs of our customers. We have collaboration with vendors having dro milling machines,mechanical mill and VMC machines with extensive capabilities. We have our machine shop set up for both quick turn-around, short run jobs, as well as medium quantity production orders.
+            </p>
+            <p>
+              Extensive drilling &amp; tapping machinery with trained employees are available in-house for all your drilling and tapping needs.
+            </p>
+            <div class="process-card-action-bar">
+              <button type="button" class="process-card-popup-btn" onclick="window.triggerProcessModal(3, 2)">
+                <span>View in Popup Dossier</span>
+                <span>↗</span>
+              </button>
             </div>
+          </article>
 
-            <!-- Key Feature Bullets -->
-            <div class="roster-bullets-strip" id="rosterBulletsStrip">
-              <div class="roster-bullet-item"><span class="b-icon">✔</span><span>Immediate Stock Dispatch Readiness</span></div>
-              <div class="roster-bullet-item"><span class="b-icon">✔</span><span>Semi-Finished Gear Blanks Inventory</span></div>
-              <div class="roster-bullet-item"><span class="b-icon">✔</span><span>Rapid Machine Shop Customization</span></div>
-              <div class="roster-bullet-item"><span class="b-icon">✔</span><span>Vast Warehouse Footprint in Makarpura GIDC</span></div>
+          <!-- Submenu 4: KEYWAY CUTTING AND BROACHING -->
+          <article class="process-clean-card phase-3">
+            <div class="process-card-header">
+              <span class="process-card-badge">04. KEYWAY CUTTING &amp; BROACHING</span>
+              <span class="process-card-num">PHASE 03</span>
             </div>
-
-            <!-- Step Stepper Actions & Quote CTA -->
-            <div class="roster-footer-controls">
-              <div class="roster-step-arrows">
-                <button class="roster-arrow-btn" id="rosterPrevBtn" type="button">‹ Prev Operation</button>
-                <button class="roster-arrow-btn" id="rosterNextBtn" type="button">Next Operation ›</button>
-              </div>
-              <a href="contact.html#quote" class="roster-cta-inquire" id="rosterCtaBtn">
-                <span>Inquire for This Operation</span>
-                <span>→</span>
-              </a>
+            <h3>KEYWAY CUTTING AND BROACHING</h3>
+            <p>
+              Final preparations of gears for shaft mounting are made here. Keyway cutting, spline broaching, and grub screw drilling capabilities are available. CNC and mechanical lathes provide straight and tapered OD and ID turning. Please inquire for specific requirements.
+            </p>
+            <div class="process-card-action-bar">
+              <button type="button" class="process-card-popup-btn" onclick="window.triggerProcessModal(3, 3)">
+                <span>View in Popup Dossier</span>
+                <span>↗</span>
+              </button>
             </div>
-          </div>
+          </article>
 
+          <!-- Submenu 5: HEAT TREATMENT -->
+          <article class="process-clean-card phase-3">
+            <div class="process-card-header">
+              <span class="process-card-badge">05. HEAT TREATMENT</span>
+              <span class="process-card-num">PHASE 03</span>
+            </div>
+            <h3>HEAT TREATMENT</h3>
+            <p>
+              We have tie up with various heat treatment agencies/ companies which are well equipped with extensive heat treatment equipment and experience. They provide excellent quality by hardening our gears. Heat treatment of ferrous metals such as hardening, tempering, annealing, normalizing, case hardening &amp; Heat treatment of non-ferrous metals such as annealing &amp; solution heat treatment can be provided through cooperation with outside sources/vendors.
+            </p>
+            <div class="process-card-action-bar">
+              <button type="button" class="process-card-popup-btn" onclick="window.triggerProcessModal(3, 4)">
+                <span>View in Popup Dossier</span>
+                <span>↗</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Submenu 6: GRINDING -->
+          <article class="process-clean-card phase-3">
+            <div class="process-card-header">
+              <span class="process-card-badge">06. GRINDING</span>
+              <span class="process-card-num">PHASE 03</span>
+            </div>
+            <h3>GRINDING</h3>
+            <p>
+              In addition to our gear tooth grinding abilities we also have collaboration with different companies who have substantial experience and ability with grinding other surfaces such as precision OD/ID grinding, surface grinding and honing. These companies have experience which provides us unparalleled accuracy on straightness, diameter, roundness, concentricity and surface finish.
+            </p>
+            <div class="process-card-action-bar">
+              <button type="button" class="process-card-popup-btn" onclick="window.triggerProcessModal(3, 5)">
+                <span>View in Popup Dossier</span>
+                <span>↗</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: FINISHING (Strictly Exact User Content) -->
+    <section class="section section-alt" id="finishing">
+      <div class="container">
+        <div class="section-heading center reveal">
+          <div class="eyebrow">Phase 04 · Final Assurance</div>
+          <h2><em>FINISHING</em></h2>
+          <p>Aesthetics, deburring, marking, rust protection &amp; inspection.</p>
         </div>
 
-        <!-- Universal Solution Callout Banner (Properly spaced & styled) -->
-        <div class="spares-group-card roster-solution-callout reveal center">
-          <h3 style="margin-bottom: 8px;">Have an Obsolete Machine or Broken Gear of Unknown Spec?</h3>
-          <p style="color: var(--muted); max-width: 840px; margin: 0 auto 16px;">
-            Don't replace your whole machine or gearbox. Our 55+ years experienced engineering team measures the physical geometry of your broken sample and manufactures a 100% interchangeable replacement.
-          </p>
-          <a href="contact.html#quote" class="button button-primary">Request Sample Reverse Engineering →</a>
+        <div class="process-exact-cards-grid reveal">
+          <!-- Submenu 1: DEBURRING & FINISHING -->
+          <article class="process-clean-card phase-4">
+            <div class="process-card-header">
+              <span class="process-card-badge">01. DEBURRING &amp; FINISHING</span>
+              <span class="process-card-num">PHASE 04</span>
+            </div>
+            <h3>DEBURRING &amp; FINISHING</h3>
+            <p>
+              Aesthetics plays a crucial role in the perception of the product which directly associate with the overall satisfaction of a customer &amp; it also substantiate the innovation, quality and reliability of the product.
+            </p>
+            <p>
+              In the final manufacturing process, Removal of machining burrs &amp; edges, marking of part numbers &amp; company logo (both standard and customer specified) , sandblasting, blackening, cleaning &amp; coating of parts for rust protection and various other mid-process and final finishing operations are carried out.
+            </p>
+            <p>
+              We at Nirala Engineers, right from the initial stage of development keep in mind the product aesthetics and work towards achieving it.
+            </p>
+            <div class="process-card-action-bar">
+              <button type="button" class="process-card-popup-btn" onclick="window.triggerProcessModal(4, 0)">
+                <span>View in Popup Dossier</span>
+                <span>↗</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Submenu 2: INSPECTION -->
+          <article class="process-clean-card phase-4">
+            <div class="process-card-header">
+              <span class="process-card-badge">02. INSPECTION</span>
+              <span class="process-card-num">PHASE 04</span>
+            </div>
+            <h3>INSPECTION</h3>
+            <p>
+              Our various products are inspected continuously throughout the manufacturing process by our machine programmers &amp; machine operators.
+            </p>
+            <p>
+              Experienced quality control engineers/inspectors make a final inspection before dispatched or put into inventory. Our final quality control engineers/inspectors have a combined experience of over 20 years with the company and a thorough knowledge of our manufacturing processes &amp; products.
+            </p>
+            <div class="process-card-action-bar">
+              <button type="button" class="process-card-popup-btn" onclick="window.triggerProcessModal(4, 1)">
+                <span>View in Popup Dossier</span>
+                <span>↗</span>
+              </button>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -631,11 +658,11 @@
         <div class="footer-col">
           <h5>Process Phases</h5>
           <ul>
-            <li><a href="#process-wheel">01. Product Development</a></li>
-            <li><a href="#process-wheel">02. Raw Material Preparation</a></li>
-            <li><a href="#process-wheel">03. Precision Machining</a></li>
-            <li><a href="#process-wheel">04. Deburring &amp; Finishing</a></li>
-            <li><a href="#process-wheel">05. Quality &amp; Inspection</a></li>
+            <li><a href="#process-wheel">Processes Pie Chart</a></li>
+            <li><a href="#product-development">01. Product Development</a></li>
+            <li><a href="#raw-material">02. Raw Material Preparation</a></li>
+            <li><a href="#machining">03. Machining</a></li>
+            <li><a href="#finishing">04. Finishing &amp; Inspection</a></li>
           </ul>
         </div>
 

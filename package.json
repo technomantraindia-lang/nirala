@@ -1,0 +1,18 @@
+{
+  "name": "nirala-engineers-static-backend",
+  "version": "1.0.0",
+  "description": "Zero-database static backend and admin catalog manager for Nirala Engineers",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "nirala",
+    "static-backend",
+    "json-database",
+    "admin-panel"
+  ],
+  "author": "Nirala Engineers",
+  "license": "ISC"
+}

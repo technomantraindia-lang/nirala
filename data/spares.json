@@ -1,0 +1,366 @@
+[
+  {
+    "id": "BAG & SEALING 01",
+    "title": "Side &amp; Bottom Sealing &amp; Cutting Machines",
+    "category": "sealing",
+    "badge": "BAG & SEALING 01",
+    "image": "images/stage-2-turning.jpg",
+    "description": "Precision cutter drive gears, rubber roller gears, and timing pulleys for heavy-duty bag sealing lines.",
+    "tags": [
+      "CUTTER GEARS",
+      "TIMING DRIVES"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "EXTRUSION 02",
+    "title": "Monolayer Blown Film Plant",
+    "category": "sealing",
+    "badge": "EXTRUSION 02",
+    "image": "images/stage-3-hobbing.jpg",
+    "description": "Heavy duty extruder gearbox spur &amp; helical gears, winder drive sprockets, and nip roller gears.",
+    "tags": [
+      "EXTRUDER GEARS",
+      "NIP ROLLER"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "EXTRUSION 03",
+    "title": "Blown Film Extrusion Machine",
+    "category": "sealing",
+    "badge": "EXTRUSION 03",
+    "image": "images/Worm Shaft &amp; Wheel.png",
+    "description": "High-torque worm reduction gear sets, drive couplings, and precision winder shaft components.",
+    "tags": [
+      "WORM GEARS",
+      "WINDER DRIVE"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "BAG MAKING 04",
+    "title": "Fully Automatic Side Seal Bag Making Machine",
+    "category": "sealing",
+    "badge": "BAG MAKING 04",
+    "image": "images/Timing Pulleys.png",
+    "description": "Synchronous timing belt pulleys, servo feed gear assemblies, and precision sealing bar drive shafts.",
+    "tags": [
+      "SERVO FEED",
+      "PULLEYS"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "BAG MAKING 05",
+    "title": "Seal Bag Making Machine",
+    "category": "sealing",
+    "badge": "BAG MAKING 05",
+    "image": "images/newwwproductss/Spur Gear -1.jpg.jpeg",
+    "description": "Change gears, draw roller spur gears, and eccentric drive components for plastic bag manufacturing.",
+    "tags": [
+      "CHANGE GEARS",
+      "DRAW ROLLER"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "PAPER CUP 06",
+    "title": "Paper Cup Making Machines",
+    "category": "wrapping",
+    "badge": "PAPER CUP 06",
+    "image": "images/Bevel Gears.png",
+    "description": "Right-angle bevel gear sets, indexing cams, and high-speed knurling drive gears for paper cup machinery.",
+    "tags": [
+      "BEVEL SETS",
+      "INDEXING DRIVES"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "FOOD PACK 07",
+    "title": "Biscuit Packaging Machines",
+    "category": "food",
+    "badge": "FOOD PACK 07",
+    "image": "images/newwwproductss/Helical Gear.JPG.jpeg",
+    "description": "High speed helical pusher gears, rotary jaw cutter gears, and synchronizing drive components.",
+    "tags": [
+      "PUSHER GEARS",
+      "ROTARY JAW"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "WRAPPING 08",
+    "title": "Jumbo Wrapper Machine",
+    "category": "wrapping",
+    "badge": "WRAPPING 08",
+    "image": "images/nirala-cnc-slide.png",
+    "description": "Heavy duty drive sprockets, chain couplings, and wide-format wrapper feed gearboxes.",
+    "tags": [
+      "JUMBO DRIVES",
+      "CHAIN SPROCKETS"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "WRAPPING 09",
+    "title": "Slug Wrapper Machine",
+    "category": "wrapping",
+    "badge": "WRAPPING 09",
+    "image": "images/stage-5-grinding.jpg",
+    "description": "Precision ground profile gears, slug feeder drive components, and end-sealer gear assemblies.",
+    "tags": [
+      "SLUG FEEDER",
+      "PROFILE GROUND"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "PACKAGING 10",
+    "title": "Packaging Machine",
+    "category": "wrapping",
+    "badge": "PACKAGING 10",
+    "image": "images/Machine Spares.png",
+    "description": "Universal replacement gear sets, bevel pinions, and custom turned drive shafts for packaging machinery.",
+    "tags": [
+      "UNIVERSAL SPARES",
+      "BEVEL PINIONS"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "WRAPPING 11",
+    "title": "Soap Wrap Machine",
+    "category": "wrapping",
+    "badge": "WRAPPING 11",
+    "image": "images/stage-4-hardening.jpg",
+    "description": "Case-hardened timing gears, soap bar transfer chain sprockets, and rotary wrapper cutter gears.",
+    "tags": [
+      "HARDENED GEARS",
+      "BAR TRANSFER"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "WRAPPING 12",
+    "title": "Wrapping Machines",
+    "category": "wrapping",
+    "badge": "WRAPPING 12",
+    "image": "images/nirala-gearbox-slide.png",
+    "description": "High speed wrapping drive gearboxes, film unwind roller gears, and index ratchet wheels.",
+    "tags": [
+      "FILM UNWIND",
+      "RATCHET DRIVES"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "SEALING 13",
+    "title": "Sealing Machines",
+    "category": "sealing",
+    "badge": "SEALING 13",
+    "image": "images/Rack &amp; Pinion.png",
+    "description": "Linear rack &amp; pinion sealing jaw actuators, pressure roller gears, and heat sealer drive shafts.",
+    "tags": [
+      "SEALING JAW",
+      "RACK & PINION"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "WRAPPING 14",
+    "title": "Shrink Machines",
+    "category": "wrapping",
+    "badge": "WRAPPING 14",
+    "image": "images/newwwproductss/Sprocket-2.JPG.jpeg",
+    "description": "High-temperature heat tunnel conveyor sprockets, film pusher drive gears, and winder shafts.",
+    "tags": [
+      "TUNNEL SPROCKETS",
+      "PUSHER GEARS"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "PACKAGING 15",
+    "title": "Strapping Machines",
+    "category": "pharma",
+    "badge": "PACKAGING 15",
+    "image": "images/newwwproductss/Spur Gear -1.jpg.jpeg",
+    "description": "Strap tensioner spur gears, feed wheel assemblies, and cam drive gears for semi &amp; fully automatic strappers.",
+    "tags": [
+      "STRAP TENSIONER",
+      "FEED WHEEL"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "CONVEYORS 16",
+    "title": "Industrial Conveyors",
+    "category": "pharma",
+    "badge": "CONVEYORS 16",
+    "image": "images/newwwproductss/Sprocket-2.JPG.jpeg",
+    "description": "Heavy duty conveyor drive sprockets, timing pulleys, gear couplings, and line shaft bevel gears.",
+    "tags": [
+      "CONVEYOR SPROCKETS",
+      "LINE SHAFT"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "AUTOMATION 17",
+    "title": "Batch Code Machines",
+    "category": "pharma",
+    "badge": "AUTOMATION 17",
+    "image": "images/Timing Pulleys.png",
+    "description": "Precision miniature timing belt pulleys, encoder drive gears, and synchronized printing roller shafts.",
+    "tags": [
+      "ENCODER DRIVES",
+      "PRINTING ROLLER"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "PACKAGING 18",
+    "title": "Packaging Case Erectors",
+    "category": "wrapping",
+    "badge": "PACKAGING 18",
+    "image": "images/stage-3-hobbing.jpg",
+    "description": "Flap folder drive gears, vacuum arm linkage shafts, and heavy carton transport chain sprockets.",
+    "tags": [
+      "FLAP FOLDER",
+      "CARTON TRANSPORT"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "FLOW WRAP 19",
+    "title": "Horizontal Flow Wrap Machines",
+    "category": "wrapping",
+    "badge": "FLOW WRAP 19",
+    "image": "images/newwwproductss/Helical Gear.JPG.jpeg",
+    "description": "Rotary fin seal cutter gears, infeed chain drive sprockets, and differential gearboxes for registration.",
+    "tags": [
+      "FIN SEAL",
+      "REGISTRATION GEARS"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "PHARMA 20",
+    "title": "Pharma Liquid Filling Machines",
+    "category": "pharma",
+    "badge": "PHARMA 20",
+    "image": "images/stage-1-inspection.jpg",
+    "description": "Stainless steel SS316 change gears, star wheel indexing drive gears, and piston pump cam shafts.",
+    "tags": [
+      "SS316 GEARS",
+      "STAR WHEEL"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "WRAPPING 21",
+    "title": "Soap Pillow Pack Machines",
+    "category": "food",
+    "badge": "WRAPPING 21",
+    "image": "images/Bevel Gears.png",
+    "description": "Bevel gear sets, rotary sealing jaw spur gears, and speed synchronizing drive shafts for pillow packs.",
+    "tags": [
+      "PILLOW PACK",
+      "SEALING JAW"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "FLOW WRAP 22",
+    "title": "Industrial Flow Wrap Machines",
+    "category": "wrapping",
+    "badge": "FLOW WRAP 22",
+    "image": "images/newwwproductss/Helical Gear.JPG.jpeg",
+    "description": "High-torque helical drive gears, discharge conveyor sprockets, and film tensioning pulley sets.",
+    "tags": [
+      "FLOW WRAP",
+      "FILM TENSION"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "PACKAGING 23",
+    "title": "Edge Packaging Machines",
+    "category": "wrapping",
+    "badge": "PACKAGING 23",
+    "image": "images/stage-2-turning.jpg",
+    "description": "Edge protector feed roller gears, corner sealing drive shafts, and pneumatic cutter timing gears.",
+    "tags": [
+      "EDGE PROTECTOR",
+      "FEED ROLLER"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "FOOD PACK 24",
+    "title": "Cookies Packaging Machines",
+    "category": "food",
+    "badge": "FOOD PACK 24",
+    "image": "images/newwwproductss/Spur Gear -1.jpg.jpeg",
+    "description": "Gentle handling tray feeder gears, cookie stacking chain sprockets, and wrapper sealing bar gears.",
+    "tags": [
+      "COOKIE FEEDER",
+      "TRAY PACK"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "FOOD PACK 25",
+    "title": "Noodle Wrap Machines",
+    "category": "food",
+    "badge": "FOOD PACK 25",
+    "image": "images/stage-3-hobbing.jpg",
+    "description": "Noodle cake bucket conveyor sprockets, seasoning pouch dispenser gears, and high-speed flow wrap cutter shafts.",
+    "tags": [
+      "BUCKET CONVEYOR",
+      "POUCH DISPENSER"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "FOOD PACK 26",
+    "title": "Chocolate Packaging Machines",
+    "category": "food",
+    "badge": "FOOD PACK 26",
+    "image": "images/stage-5-grinding.jpg",
+    "description": "Ultra-precision foil wrapper folding gears, chocolate bar indexing drive wheels, and twist wrapping gears.",
+    "tags": [
+      "FOIL FOLDING",
+      "TWIST WRAP"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "WRAPPING 27",
+    "title": "Jumbo Wrap Machines",
+    "category": "wrapping",
+    "badge": "WRAPPING 27",
+    "image": "images/nirala-cnc-slide.png",
+    "description": "Heavy duty roll wrapping drive gears, film tensioning brake gears, and industrial jumbo roll unwinder shafts.",
+    "tags": [
+      "JUMBO ROLL",
+      "UNWINDER SHAFT"
+    ],
+    "link": "contact.html#quote"
+  },
+  {
+    "id": "FOOD PACK 28",
+    "title": "Bakery Packaging Machines",
+    "category": "food",
+    "badge": "FOOD PACK 28",
+    "image": "images/stage-4-hardening.jpg",
+    "description": "Bread loaf wrapping feeder gears, bun packet sealing jaw gears, and bakery conveyor drive sprockets.",
+    "tags": [
+      "BREAD WRAPPING",
+      "SEALING JAW"
+    ],
+    "link": "contact.html#quote"
+  }
+]

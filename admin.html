@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111418" />
+  <title>Admin Control Panel | Nirala Engineers</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Dedicated Admin Dashboard Styles */
+    :root {
+      --admin-bg: #0b0d10;
+      --admin-card-bg: #14181d;
+      --admin-card-hover: #1a2027;
+      --admin-border: rgba(216, 179, 93, 0.2);
+      --admin-gold: #d8b35d;
+      --admin-gold-hover: #e5c374;
+      --admin-text: #e1e7ec;
+      --admin-muted: #8b949e;
+      --admin-success: #2ea043;
+      --admin-danger: #f85149;
+    }
+
+    body.admin-body {
+      background: var(--admin-bg);
+      color: var(--admin-text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      padding-top: 80px;
+    }
+
+    .admin-header {
+      background: rgba(17, 20, 24, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--admin-border);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    .admin-header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .admin-brand img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    .admin-brand-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .admin-brand-badge {
+      font-size: 0.7rem;
+      background: rgba(216, 179, 93, 0.15);
+      color: var(--admin-gold);
+      border: 1px solid var(--admin-border);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .admin-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(46, 160, 67, 0.15);
+      color: #3fb950;
+      border: 1px solid rgba(46, 160, 67, 0.3);
+    }
+
+    .status-badge.offline {
+      background: rgba(248, 81, 73, 0.15);
+      color: #f85149;
+      border-color: rgba(248, 81, 73, 0.3);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .admin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: none;
+    }
+
+    .admin-btn-primary {
+      background: var(--admin-gold);
+      color: #0b0d10;
+    }
+    .admin-btn-primary:hover {
+      background: var(--admin-gold-hover);
+      transform: translateY(-1px);
+    }
+
+    .admin-btn-outline {
+      background: transparent;
+      color: var(--admin-text);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .admin-btn-outline:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--admin-gold);
+      color: var(--admin-gold);
+    }
+
+    .admin-btn-danger {
+      background: rgba(248, 81, 73, 0.15);
+      color: var(--admin-danger);
+      border: 1px solid rgba(248, 81, 73, 0.3);
+    }
+    .admin-btn-danger:hover {
+      background: var(--admin-danger);
+      color: #fff;
+    }
+
+    /* Tabs Bar */
+    .admin-tabs-bar {
+      display: flex;
+      gap: 12px;
+      margin: 25px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 12px;
+    }
+
+    .admin-tab {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--admin-muted);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .admin-tab:hover {
+      color: var(--admin-text);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .admin-tab.active {
+      background: rgba(216, 179, 93, 0.12);
+      color: var(--admin-gold);
+      border-color: var(--admin-border);
+    }
+
+    .admin-tab-count {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--admin-text);
+      padding: 2px 7px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+    }
+
+    .admin-tab.active .admin-tab-count {
+      background: var(--admin-gold);
+      color: #0b0d10;
+    }
+
+    /* Controls Bar */
+    .admin-controls-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+      background: var(--admin-card-bg);
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .admin-search-wrap {
+      flex: 1;
+      min-width: 260px;
+      max-width: 450px;
+      position: relative;
+    }
+
+    .admin-search-input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      padding: 9px 14px 9px 36px;
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .admin-search-input:focus {
+      border-color: var(--admin-gold);
+    }
+
+    .admin-search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--admin-muted);
+      pointer-events: none;
+      font-size: 0.85rem;
+    }
+
+    .admin-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Grid of Items */
+    .admin-items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 22px;
+      margin-bottom: 40px;
+    }
+
+    .admin-item-card {
+      background: var(--admin-card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .admin-item-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(216, 179, 93, 0.4);
+      background: var(--admin-card-hover);
+    }
+
+    .admin-card-media {
+      height: 180px;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .admin-card-media img,
+    .admin-card-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .admin-card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      color: var(--admin-gold);
+      border: 1px solid rgba(216, 179, 93, 0.4);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .admin-card-content {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0 0 8px;
+      color: #fff;
+    }
+
+    .admin-card-desc {
+      font-size: 0.85rem;
+      color: var(--admin-muted);
+      line-height: 1.45;
+      margin: 0 0 12px;
+      flex: 1;
+    }
+
+    .admin-specs-summary-strip {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-bottom: 12px;
+      font-size: 0.78rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--admin-gold);
+    }
+
+    .admin-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .admin-tag-pill {
+      font-size: 0.7rem;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--admin-muted);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .admin-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .admin-card-footer-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Modal Styles */
+    .admin-modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .admin-modal-backdrop.open {
+      display: flex;
+    }
+
+    .admin-modal-window {
+      background: #14181d;
+      border: 1px solid var(--admin-border);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 820px;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .admin-modal-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .admin-modal-header h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      color: var(--admin-gold);
+    }
+
+    .admin-modal-close {
+      background: transparent;
+      border: none;
+      color: var(--admin-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .admin-modal-close:hover {
+      color: #fff;
+    }
+
+    /* Inner Modal Tabs for Products */
+    .modal-subtabs-bar {
+      display: flex;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.35);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px 24px 0;
+      overflow-x: auto;
+    }
+
+    .modal-subtab-btn {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--admin-muted);
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .modal-subtab-btn:hover {
+      color: #fff;
+    }
+
+    .modal-subtab-btn.active {
+      color: var(--admin-gold);
+      border-bottom-color: var(--admin-gold);
+    }
+
+    .admin-modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-tab-content {
+      display: none;
+    }
+
+    .modal-tab-content.active {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--admin-text);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      padding: 9px 12px;
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      box-sizing: border-box;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--admin-gold);
+    }
+
+    .form-group small {
+      display: block;
+      color: var(--admin-muted);
+      font-size: 0.75rem;
+      margin-top: 4px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* Key-Value Dynamic Parameters Builder */
+    .params-builder-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .param-row-item {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr auto;
+      gap: 10px;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .param-remove-btn {
+      background: rgba(248, 81, 73, 0.15);
+      color: var(--admin-danger);
+      border: 1px solid rgba(248, 81, 73, 0.3);
+      border-radius: 4px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .param-remove-btn:hover {
+      background: var(--admin-danger);
+      color: #fff;
+    }
+
+    /* Manufactured Sub-Types Builder */
+    .types-builder-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .type-card-item {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 14px;
+      position: relative;
+    }
+
+    .type-card-header-row {
+      display: grid;
+      grid-template-columns: 100px 140px 1fr auto;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .admin-modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    /* Toast Notification */
+    .admin-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1f262e;
+      border: 1px solid var(--admin-border);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 3000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .admin-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .admin-toast.success {
+      border-color: #3fb950;
+    }
+  </style>
+</head>
+<body class="admin-body">
+
+  <!-- Header -->
+  <header class="admin-header">
+    <div class="container admin-header-inner">
+      <a href="index.html" class="admin-brand">
+        <img src="images/ne logo 2026.jpeg" alt="Nirala Logo" />
+        <div>
+          <span class="admin-brand-title">NIRALA ENGINEERS</span>
+          <span class="admin-brand-badge">Static Backend Manager</span>
+        </div>
+      </a>
+
+      <div class="admin-nav-actions">
+        <div id="backendStatusBadge" class="status-badge">
+          <span class="status-dot"></span>
+          <span id="backendStatusText">Checking Backend...</span>
+        </div>
+        <a href="sprockets.html" target="_blank" class="admin-btn admin-btn-outline" title="Open live Sprockets product page">
+          <span>Sprockets Page ↗</span>
+        </a>
+        <a href="products.html" target="_blank" class="admin-btn admin-btn-outline" title="Open live Products page">
+          <span>Products ↗</span>
+        </a>
+        <a href="spares-machine-manufacturers.html" target="_blank" class="admin-btn admin-btn-outline" title="Open live Spares page">
+          <span>Spares ↗</span>
+        </a>
+        <a href="gallery.html" target="_blank" class="admin-btn admin-btn-outline" title="Open live Gallery page">
+          <span>Gallery ↗</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="container" style="padding-top: 30px; padding-bottom: 60px;">
+    
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 10px;">
+      <div>
+        <h1 style="font-size: 1.8rem; margin: 0 0 6px; color: #fff;">Catalog &amp; Engineering Specifications Manager</h1>
+        <p style="margin: 0; color: var(--admin-muted); font-size: 0.95rem;">
+          Directly manage product technical parameters, DIN/AGMA capability matrices, manufactured sub-types, machine spares, and gallery.
+        </p>
+      </div>
+      
+      <div style="display: flex; gap: 10px;">
+        <button type="button" id="downloadBackupBtn" class="admin-btn admin-btn-outline" title="Download current JSON as local backup">
+          <span>📥 Download Backup JSON</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="admin-tabs-bar">
+      <button type="button" class="admin-tab active" data-tab="products">
+        <span>📦 Gear Products &amp; Specs</span>
+        <span class="admin-tab-count" id="productsCountBadge">14</span>
+      </button>
+      <button type="button" class="admin-tab" data-tab="spares">
+        <span>⚙️ Machine Spares</span>
+        <span class="admin-tab-count" id="sparesCountBadge">28</span>
+      </button>
+      <button type="button" class="admin-tab" data-tab="gallery">
+        <span>🎬 Media Gallery</span>
+        <span class="admin-tab-count" id="galleryCountBadge">18</span>
+      </button>
+    </div>
+
+    <!-- Controls Row -->
+    <div class="admin-controls-row">
+      <div class="admin-search-wrap">
+        <span class="admin-search-icon">🔍</span>
+        <input type="text" id="adminSearchInput" class="admin-search-input" placeholder="Search by title, parameter, tag, or category..." />
+      </div>
+
+      <div class="admin-actions-group">
+        <button type="button" id="addNewItemBtn" class="admin-btn admin-btn-primary">
+          <span>+ Add New Product</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dynamic Items Container -->
+    <div class="admin-items-grid" id="adminItemsGrid">
+      <!-- Items dynamically populated by JS -->
+    </div>
+
+  </main>
+
+  <!-- Comprehensive Add / Edit Modal -->
+  <div class="admin-modal-backdrop" id="itemModal">
+    <div class="admin-modal-window">
+      <div class="admin-modal-header">
+        <h3 id="modalTitle">Edit Item</h3>
+        <button type="button" class="admin-modal-close" id="modalCloseBtn">&times;</button>
+      </div>
+
+      <!-- Inner Subtabs for Products -->
+      <div class="modal-subtabs-bar" id="productSubtabsBar">
+        <button type="button" class="modal-subtab-btn active" data-subtab="basic">1. Basic Info</button>
+        <button type="button" class="modal-subtab-btn" data-subtab="scope">2. Specification &amp; Technical Scope</button>
+        <button type="button" class="modal-subtab-btn" data-subtab="matrix">3. Capability Matrix (DIN / AGMA)</button>
+        <button type="button" class="modal-subtab-btn" data-subtab="types">4. Manufactured Types / Sub-Families</button>
+      </div>
+
+      <form id="itemForm" class="admin-modal-body">
+        <input type="hidden" id="editIndex" value="-1" />
+        <input type="hidden" id="editType" value="product" />
+
+        <!-- ==============================================
+             SUBTAB 1: BASIC INFORMATION
+             ============================================== -->
+        <div class="modal-tab-content active" id="subtab-basic">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="itemTitle">Title / Name *</label>
+              <input type="text" id="itemTitle" required placeholder="e.g. Sprockets" />
+            </div>
+
+            <div class="form-group" id="categoryGroup">
+              <label for="itemCategory">Category *</label>
+              <input type="text" id="itemCategory" required placeholder="e.g. transmission / cylindrical" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group" id="badgeGroup">
+              <label for="itemBadge">Badge / ID Tag</label>
+              <input type="text" id="itemBadge" placeholder="e.g. #03 or SPARE 01" />
+            </div>
+
+            <div class="form-group" id="linkGroup">
+              <label for="itemLink">Target Page Link</label>
+              <input type="text" id="itemLink" placeholder="e.g. sprockets.html or spur-gear.html" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="itemImage">Image / Video File Path or URL *</label>
+            <input type="text" id="itemImage" required placeholder="e.g. images/final product images/some other iamges/sprockets.jpeg" />
+            <small>Use existing files inside <code>images/</code> or any web image URL.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="itemDesc">Catalog Description *</label>
+            <textarea id="itemDesc" rows="3" required placeholder="Detailed engineering overview..."></textarea>
+          </div>
+
+          <div class="form-group" id="tagsGroup">
+            <label for="itemTags">Technical Tags (comma-separated)</label>
+            <input type="text" id="itemTags" placeholder="e.g. ROLLER CHAIN, DUPLEX / TRIPLEX, INDUCTION HARDENED" />
+          </div>
+        </div>
+
+        <!-- ==============================================
+             SUBTAB 2: SPECIFICATION & TECHNICAL SCOPE
+             ============================================== -->
+        <div class="modal-tab-content" id="subtab-scope">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="scopeBadge">Technical Scope Badge</label>
+              <input type="text" id="scopeBadge" placeholder="e.g. CUSTOM SPROCKETS" />
+            </div>
+            <div class="form-group">
+              <label>Parameter Rows</label>
+              <button type="button" id="addParamBtn" class="admin-btn admin-btn-outline" style="width: 100%; justify-content: center; height: 38px;">
+                <span>+ Add Parameter Row</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="scopeDesc">Scope Description Note</label>
+            <textarea id="scopeDesc" rows="2" placeholder="e.g. Client customizable technical parameters. Submit your pitch size, tooth count, shaft bore, or custom drawing for a prompt, competitive quotation."></textarea>
+          </div>
+
+          <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">
+            Technical Parameters (Chain Pitch, Diameter, Strand Options, Profiles, Hardening, Standards):
+          </label>
+          <div class="params-builder-list" id="paramsBuilderList">
+            <!-- Dynamic Key-Value Parameter Rows injected here -->
+          </div>
+        </div>
+
+        <!-- ==============================================
+             SUBTAB 3: DIN / AGMA CAPABILITY MATRIX
+             ============================================== -->
+        <div class="modal-tab-content" id="subtab-matrix">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="matrixDimensions">Matrix Dimensions (e.g. Maximum Diameter)</label>
+              <input type="text" id="matrixDimensions" placeholder="e.g. DIA MAX UPTO 1000MM" />
+            </div>
+            <div class="form-group">
+              <label for="matrixPitch">Pitch Size / Module Range</label>
+              <input type="text" id="matrixPitch" placeholder="e.g. ¼’’ TO 1-1/2’’ PITCH & 6mm PITCH" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="matrixMaterialsHeader">Materials Section Headline</label>
+            <input type="text" id="matrixMaterialsHeader" placeholder="Various different materials with or without hardened teeth:" />
+          </div>
+
+          <div class="form-group">
+            <label for="matrixMaterialsList">Available Metallurgy &amp; Material Options (one per line)</label>
+            <textarea id="matrixMaterialsList" rows="8" placeholder="Carbon Steel&#10;Carburized Steel&#10;Nitrided Steel&#10;Cast Iron&#10;Ductile Iron like S.G Iron&#10;Carbon Manganese Steel&#10;Manganese Molybdenum&#10;Chromium Molybdenum&#10;Graded Cast Iron&#10;Non-Ferrous&#10;Non-Metal&#10;Case / Through / Surface Hardened Steel"></textarea>
+            <small>Enter each material on a new line.</small>
+          </div>
+        </div>
+
+        <!-- ==============================================
+             SUBTAB 4: MANUFACTURED TYPES / SUB-FAMILIES
+             ============================================== -->
+        <div class="modal-tab-content" id="subtab-types">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <div>
+              <strong style="font-size: 0.95rem; color: #fff;">Manufactured Types Catalog (Sub-Variants)</strong>
+              <small style="display: block; color: var(--admin-muted);">Configure Type #01, #02, etc. that appear on the product detail page.</small>
+            </div>
+            <button type="button" id="addTypeBtn" class="admin-btn admin-btn-outline">
+              <span>+ Add Sub-Type</span>
+            </button>
+          </div>
+
+          <div class="types-builder-list" id="typesBuilderList">
+            <!-- Dynamic Sub-type Cards injected here -->
+          </div>
+        </div>
+
+        <div class="admin-modal-footer">
+          <button type="button" class="admin-btn admin-btn-outline" id="modalCancelBtn">Cancel</button>
+          <button type="submit" class="admin-btn admin-btn-primary">Save Changes to Backend</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="admin-toast" id="adminToast">
+    <span id="toastIcon">✅</span>
+    <span id="toastMessage">Changes saved successfully</span>
+  </div>
+
+  <script>
+    // State Store
+    let currentTab = 'products'; // 'products' | 'spares' | 'gallery'
+    let productsData = [];
+    let sparesData = [];
+    let galleryData = { videos: [], photos: [] };
+    let isServerMode = false;
+
+    // Toast Notification Helper
+    function showToast(msg, isSuccess = true) {
+      const toast = document.getElementById('adminToast');
+      const toastMsg = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+      
+      toastMsg.textContent = msg;
+      toastIcon.textContent = isSuccess ? '✅' : '⚠️';
+      toast.className = `admin-toast ${isSuccess ? 'success' : ''} show`;
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    // Check Backend Server Status
+    async function checkBackendStatus() {
+      const badge = document.getElementById('backendStatusBadge');
+      const text = document.getElementById('backendStatusText');
+      try {
+        const res = await fetch('/api/status', { cache: 'no-store' });
+        if (res.ok) {
+          isServerMode = true;
+          badge.className = 'status-badge';
+          text.textContent = 'Server Live (JSON Sync)';
+          return true;
+        }
+      } catch (e) {}
+      isServerMode = false;
+      badge.className = 'status-badge offline';
+      text.textContent = 'Standalone Mode (Local)';
+      return false;
+    }
+
+    // Load Data
+    async function loadAllData() {
+      await checkBackendStatus();
+
+      // 1. Products
+      try {
+        const res = await fetch(isServerMode ? '/api/products' : 'data/products.json', { cache: 'no-store' });
+        productsData = await res.json();
+      } catch (e) {
+        productsData = JSON.parse(localStorage.getItem('nirala_products') || '[]');
+      }
+
+      // 2. Spares
+      try {
+        const res = await fetch(isServerMode ? '/api/spares' : 'data/spares.json', { cache: 'no-store' });
+        sparesData = await res.json();
+      } catch (e) {
+        sparesData = JSON.parse(localStorage.getItem('nirala_spares') || '[]');
+      }
+
+      // 3. Gallery
+      try {
+        const res = await fetch(isServerMode ? '/api/gallery' : 'data/gallery.json', { cache: 'no-store' });
+        galleryData = await res.json();
+      } catch (e) {
+        galleryData = JSON.parse(localStorage.getItem('nirala_gallery') || '{"videos":[],"photos":[]}');
+      }
+
+      updateCountBadges();
+      renderItems();
+    }
+
+    function updateCountBadges() {
+      document.getElementById('productsCountBadge').textContent = productsData.length;
+      document.getElementById('sparesCountBadge').textContent = sparesData.length;
+      document.getElementById('galleryCountBadge').textContent = (galleryData.videos.length + galleryData.photos.length);
+    }
+
+    // Persist changes to backend JSON and localStorage
+    async function saveCurrentDataset() {
+      if (currentTab === 'products') {
+        localStorage.setItem('nirala_products', JSON.stringify(productsData));
+        if (isServerMode) {
+          await fetch('/api/products', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(productsData)
+          });
+        }
+        showToast('Products & Engineering Specs saved to JSON!');
+      } else if (currentTab === 'spares') {
+        localStorage.setItem('nirala_spares', JSON.stringify(sparesData));
+        if (isServerMode) {
+          await fetch('/api/spares', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(sparesData)
+          });
+        }
+        showToast('Machine Spares saved to JSON!');
+      } else if (currentTab === 'gallery') {
+        localStorage.setItem('nirala_gallery', JSON.stringify(galleryData));
+        if (isServerMode) {
+          await fetch('/api/gallery', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(galleryData)
+          });
+        }
+        showToast('Gallery media saved to JSON!');
+      }
+      updateCountBadges();
+      renderItems();
+    }
+
+    // Render Cards Grid
+    function renderItems() {
+      const container = document.getElementById('adminItemsGrid');
+      const q = (document.getElementById('adminSearchInput').value || '').toLowerCase().trim();
+      container.innerHTML = '';
+
+      if (currentTab === 'products') {
+        const filtered = productsData.filter(p => 
+          !q || p.title.toLowerCase().includes(q) || 
+          (p.description || '').toLowerCase().includes(q) || 
+          (p.category || '').toLowerCase().includes(q) ||
+          (p.parameters || []).some(param => param.key.toLowerCase().includes(q) || param.val.toLowerCase().includes(q))
+        );
+
+        if (filtered.length === 0) {
+          container.innerHTML = `<div style="grid-column: 1/-1; padding: 40px; text-align: center; color: var(--admin-muted);">No products match your search.</div>`;
+          return;
+        }
+
+        filtered.forEach((item, index) => {
+          const card = document.createElement('div');
+          card.className = 'admin-item-card';
+          const paramCount = (item.parameters || []).length;
+          const typeCount = (item.manufacturedTypes || []).length;
+
+          card.innerHTML = `
+            <div class="admin-card-media">
+              <span class="admin-card-badge">${item.id || '#' + (index + 1)} · ${item.categoryLabel || item.category}</span>
+              <img src="${item.image}" alt="${item.title}" onerror="this.src='images/stage-1-inspection.jpg'" />
+            </div>
+            <div class="admin-card-content">
+              <h3 class="admin-card-title">${item.title}</h3>
+              <p class="admin-card-desc">${item.description}</p>
+              
+              <div class="admin-specs-summary-strip">
+                <span>⚙️ ${paramCount} Technical Specs</span>
+                <span>🏭 ${typeCount} Sub-Types</span>
+              </div>
+
+              <div class="admin-tags-row">
+                ${(item.tags || []).map(t => `<span class="admin-tag-pill">${t}</span>`).join('')}
+              </div>
+              <div class="admin-card-footer">
+                <a href="${item.link || 'sprockets.html'}" target="_blank" style="color: var(--admin-gold); font-size: 0.8rem; text-decoration: none;">View Page ↗</a>
+                <div class="admin-card-footer-btns">
+                  <button type="button" class="admin-btn admin-btn-primary" onclick="editProduct(${index})">✏️ Edit Specs</button>
+                  <button type="button" class="admin-btn admin-btn-danger" onclick="deleteProduct(${index})">🗑️</button>
+                </div>
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+
+      } else if (currentTab === 'spares') {
+        const filtered = sparesData.filter(s => 
+          !q || s.title.toLowerCase().includes(q) || (s.description || '').toLowerCase().includes(q) || (s.badge || '').toLowerCase().includes(q)
+        );
+
+        if (filtered.length === 0) {
+          container.innerHTML = `<div style="grid-column: 1/-1; padding: 40px; text-align: center; color: var(--admin-muted);">No machine spares match your search.</div>`;
+          return;
+        }
+
+        filtered.forEach((item, index) => {
+          const card = document.createElement('div');
+          card.className = 'admin-item-card';
+          card.innerHTML = `
+            <div class="admin-card-media">
+              <span class="admin-card-badge">${item.badge || 'SPARE ' + (index + 1)}</span>
+              <img src="${item.image}" alt="${item.title}" onerror="this.src='images/stage-2-turning.jpg'" />
+            </div>
+            <div class="admin-card-content">
+              <h3 class="admin-card-title">${item.title}</h3>
+              <p class="admin-card-desc">${item.description}</p>
+              <div class="admin-tags-row">
+                ${(item.tags || []).map(t => `<span class="admin-tag-pill">${t}</span>`).join('')}
+              </div>
+              <div class="admin-card-footer">
+                <small style="color: var(--admin-muted);">Category: <code>${item.category}</code></small>
+                <div class="admin-card-footer-btns">
+                  <button type="button" class="admin-btn admin-btn-outline" onclick="editSpare(${index})">✏️ Edit</button>
+                  <button type="button" class="admin-btn admin-btn-danger" onclick="deleteSpare(${index})">🗑️</button>
+                </div>
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+
+      } else if (currentTab === 'gallery') {
+        const items = [
+          ...galleryData.videos.map((v, i) => ({ ...v, _type: 'video', _idx: i, image: v.videoSrc })),
+          ...galleryData.photos.map((p, i) => ({ ...p, _type: 'photo', _idx: i, image: p.img }))
+        ];
+
+        const filtered = items.filter(g => 
+          !q || g.title.toLowerCase().includes(q) || (g.desc || '').toLowerCase().includes(q) || (g.badge || g.tag || '').toLowerCase().includes(q)
+        );
+
+        if (filtered.length === 0) {
+          container.innerHTML = `<div style="grid-column: 1/-1; padding: 40px; text-align: center; color: var(--admin-muted);">No gallery items match your search.</div>`;
+          return;
+        }
+
+        filtered.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'admin-item-card';
+          const isVideo = item._type === 'video';
+          card.innerHTML = `
+            <div class="admin-card-media">
+              <span class="admin-card-badge">${isVideo ? '🎬 VIDEO' : '📷 PHOTO'} · ${item.badge || item.tag || 'GALLERY'}</span>
+              ${isVideo ? 
+                `<video src="${item.videoSrc}" muted preload="metadata"></video>` : 
+                `<img src="${item.img}" alt="${item.title}" onerror="this.src='images/stage-1-inspection.jpg'" />`
+              }
+            </div>
+            <div class="admin-card-content">
+              <h3 class="admin-card-title">${item.title}</h3>
+              <p class="admin-card-desc">${item.desc || ''}</p>
+              <div class="admin-card-footer">
+                <small style="color: var(--admin-muted);">${isVideo ? item.duration : (item.stage || 'Captures')}</small>
+                <div class="admin-card-footer-btns">
+                  <button type="button" class="admin-btn admin-btn-outline" onclick="editGalleryItem('${item._type}', ${item._idx})">✏️ Edit</button>
+                  <button type="button" class="admin-btn admin-btn-danger" onclick="deleteGalleryItem('${item._type}', ${item._idx})">🗑️</button>
+                </div>
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+    }
+
+    // Main Tab Switching
+    document.querySelectorAll('.admin-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentTab = tab.getAttribute('data-tab');
+        
+        const addBtn = document.getElementById('addNewItemBtn');
+        if (currentTab === 'products') addBtn.innerHTML = '<span>+ Add New Product</span>';
+        else if (currentTab === 'spares') addBtn.innerHTML = '<span>+ Add New Machine Spare</span>';
+        else if (currentTab === 'gallery') addBtn.innerHTML = '<span>+ Add New Gallery Media</span>';
+
+        document.getElementById('adminSearchInput').value = '';
+        renderItems();
+      });
+    });
+
+    // Search Input
+    document.getElementById('adminSearchInput').addEventListener('input', () => {
+      renderItems();
+    });
+
+    // Modal & Subtabs Handling
+    const modal = document.getElementById('itemModal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalCancelBtn = document.getElementById('modalCancelBtn');
+    const itemForm = document.getElementById('itemForm');
+    const productSubtabsBar = document.getElementById('productSubtabsBar');
+
+    function switchModalSubtab(subtabId) {
+      document.querySelectorAll('.modal-subtab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-subtab') === subtabId);
+      });
+      document.querySelectorAll('.modal-tab-content').forEach(content => {
+        content.classList.toggle('active', content.id === `subtab-${subtabId}`);
+      });
+    }
+
+    document.querySelectorAll('.modal-subtab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        switchModalSubtab(btn.getAttribute('data-subtab'));
+      });
+    });
+
+    function openModal(title, isProduct = false) {
+      document.getElementById('modalTitle').textContent = title;
+      productSubtabsBar.style.display = isProduct ? 'flex' : 'none';
+      switchModalSubtab('basic');
+      modal.classList.add('open');
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      itemForm.reset();
+      document.getElementById('editIndex').value = '-1';
+      document.getElementById('paramsBuilderList').innerHTML = '';
+      document.getElementById('typesBuilderList').innerHTML = '';
+    }
+
+    modalCloseBtn.addEventListener('click', closeModal);
+    modalCancelBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Dynamic Parameter Row Injection
+    function addParamRow(key = '', val = '') {
+      const container = document.getElementById('paramsBuilderList');
+      const row = document.createElement('div');
+      row.className = 'param-row-item';
+      row.innerHTML = `
+        <input type="text" class="param-key-input" placeholder="PARAMETER NAME (e.g. MAXIMUM DIAMETER)" value="${key}" required />
+        <input type="text" class="param-val-input" placeholder="SPECIFICATION VALUE (e.g. DIA MAX UPTO 1000MM)" value="${val}" required />
+        <button type="button" class="param-remove-btn" title="Remove Parameter" onclick="this.closest('.param-row-item').remove()">&times;</button>
+      `;
+      container.appendChild(row);
+    }
+    document.getElementById('addParamBtn').addEventListener('click', () => addParamRow());
+
+    // Dynamic Sub-Type Card Injection
+    function addTypeCard(t = {}) {
+      const container = document.getElementById('typesBuilderList');
+      const card = document.createElement('div');
+      card.className = 'type-card-item';
+      card.innerHTML = `
+        <div class="type-card-header-row">
+          <input type="text" class="type-num-input" placeholder="TYPE #01" value="${t.num || ''}" />
+          <input type="text" class="type-badge-input" placeholder="MINI BADGE" value="${t.badge || ''}" />
+          <input type="text" class="type-title-input" placeholder="SUB-TYPE TITLE (e.g. TYPE A SPROCKET)" value="${t.title || ''}" required />
+          <button type="button" class="param-remove-btn" title="Remove Sub-Type" onclick="this.closest('.type-card-item').remove()">&times;</button>
+        </div>
+        <div style="margin-bottom: 8px;">
+          <textarea class="type-desc-input" rows="2" placeholder="Sub-type engineering description...">${t.desc || ''}</textarea>
+        </div>
+        <div class="form-row">
+          <input type="text" class="type-tags-input" placeholder="Feature Tags: Plain Plate, C45 / EN8, Hardened Teeth Opt." value="${(t.tags || []).join(', ')}" />
+          <input type="text" class="type-link-input" placeholder="Inquiry Link (e.g. contact.html?type=Type%20A%20Sprocket#quote)" value="${t.link || ''}" />
+        </div>
+      `;
+      container.appendChild(card);
+    }
+    document.getElementById('addTypeBtn').addEventListener('click', () => addTypeCard());
+
+    // Edit Product Handler
+    window.editProduct = function(index) {
+      const p = productsData[index];
+      if (!p) return;
+      document.getElementById('editIndex').value = index;
+      document.getElementById('editType').value = 'products';
+      
+      // Basic info
+      document.getElementById('itemTitle').value = p.title || '';
+      document.getElementById('itemCategory').value = p.category || '';
+      document.getElementById('itemBadge').value = p.id || '';
+      document.getElementById('itemImage').value = p.image || '';
+      document.getElementById('itemDesc').value = p.description || '';
+      document.getElementById('itemTags').value = (p.tags || []).join(', ');
+      document.getElementById('itemLink').value = p.link || '';
+      document.getElementById('tagsGroup').style.display = 'block';
+
+      // Scope & Parameters
+      document.getElementById('scopeBadge').value = p.scopeBadge || `CUSTOM ${p.title.toUpperCase()}`;
+      document.getElementById('scopeDesc').value = p.scopeDescription || '';
+      const paramsList = document.getElementById('paramsBuilderList');
+      paramsList.innerHTML = '';
+      (p.parameters || []).forEach(param => addParamRow(param.key, param.val));
+      if ((p.parameters || []).length === 0) {
+        addParamRow('CHAIN PITCH RANGE', '¼″ to 1-½″ Pitch & 6mm Pitch');
+        addParamRow('MAXIMUM DIAMETER', 'DIA MAX UPTO 1000MM');
+        addParamRow('STRAND OPTIONS', 'DEPENDS ON REQUIREMENT');
+        addParamRow('TOOTH PROFILES', 'DEPENDS ON REQUIREMENT');
+        addParamRow('TOOTH HARDENING', 'DEPENDS ON REQUIREMENT');
+        addParamRow('MATERIAL OPTIONS', 'DEPENDS ON REQUIREMENT');
+        addParamRow('HUB DESIGNS', 'DEPENDS ON REQUIREMENT');
+        addParamRow('BORE SPECIFICATIONS', 'DEPENDS ON REQUIREMENT');
+        addParamRow('APPLICABLE STANDARDS', 'DEPENDS ON REQUIREMENT');
+      }
+
+      // Matrix
+      const matrix = p.matrix || {};
+      document.getElementById('matrixDimensions').value = matrix.dimensions || 'DIA MAX UPTO 1000MM';
+      document.getElementById('matrixPitch').value = matrix.pitchSize || '¼’’ TO 1-1/2’’ PITCH & 6mm PITCH';
+      document.getElementById('matrixMaterialsHeader').value = matrix.materialsHeader || 'Various different materials with or without hardened teeth:';
+      document.getElementById('matrixMaterialsList').value = (matrix.materials || []).join('\n');
+
+      // Manufactured Types
+      const typesList = document.getElementById('typesBuilderList');
+      typesList.innerHTML = '';
+      (p.manufacturedTypes || []).forEach(typeObj => addTypeCard(typeObj));
+
+      openModal(`Edit ${p.title} (Specifications & Types)`, true);
+    };
+
+    window.deleteProduct = function(index) {
+      if (confirm(`Are you sure you want to delete "${productsData[index].title}"?`)) {
+        productsData.splice(index, 1);
+        saveCurrentDataset();
+      }
+    };
+
+    // Edit Spare Handler
+    window.editSpare = function(index) {
+      const s = sparesData[index];
+      if (!s) return;
+      document.getElementById('editIndex').value = index;
+      document.getElementById('editType').value = 'spares';
+      document.getElementById('itemTitle').value = s.title;
+      document.getElementById('itemCategory').value = s.category;
+      document.getElementById('itemBadge').value = s.badge || s.id || '';
+      document.getElementById('itemImage').value = s.image || '';
+      document.getElementById('itemDesc').value = s.description || '';
+      document.getElementById('itemTags').value = (s.tags || []).join(', ');
+      document.getElementById('itemLink').value = s.link || '';
+      document.getElementById('tagsGroup').style.display = 'block';
+      openModal(`Edit Spare: ${s.title}`, false);
+    };
+
+    window.deleteSpare = function(index) {
+      if (confirm(`Are you sure you want to delete "${sparesData[index].title}"?`)) {
+        sparesData.splice(index, 1);
+        saveCurrentDataset();
+      }
+    };
+
+    // Edit Gallery Handler
+    window.editGalleryItem = function(type, index) {
+      const isVideo = type === 'video';
+      const item = isVideo ? galleryData.videos[index] : galleryData.photos[index];
+      if (!item) return;
+
+      document.getElementById('editIndex').value = index;
+      document.getElementById('editType').value = isVideo ? 'gallery_video' : 'gallery_photo';
+      document.getElementById('itemTitle').value = item.title;
+      document.getElementById('itemCategory').value = item.category || 'machining';
+      document.getElementById('itemBadge').value = isVideo ? item.tag : (item.badge || '');
+      document.getElementById('itemImage').value = isVideo ? item.videoSrc : item.img;
+      document.getElementById('itemDesc').value = item.desc || '';
+      document.getElementById('tagsGroup').style.display = 'none';
+      openModal(`Edit Gallery ${isVideo ? 'Video' : 'Photo'}: ${item.title}`, false);
+    };
+
+    window.deleteGalleryItem = function(type, index) {
+      const isVideo = type === 'video';
+      const item = isVideo ? galleryData.videos[index] : galleryData.photos[index];
+      if (confirm(`Delete gallery item "${item.title}"?`)) {
+        if (isVideo) galleryData.videos.splice(index, 1);
+        else galleryData.photos.splice(index, 1);
+        saveCurrentDataset();
+      }
+    };
+
+    // Add New Item Button
+    document.getElementById('addNewItemBtn').addEventListener('click', () => {
+      document.getElementById('editIndex').value = '-1';
+      document.getElementById('editType').value = currentTab;
+      
+      if (currentTab === 'products') {
+        document.getElementById('itemBadge').value = '#' + String(productsData.length + 1).padStart(2, '0');
+        document.getElementById('itemCategory').value = 'transmission';
+        document.getElementById('itemLink').value = 'sprockets.html';
+        document.getElementById('scopeBadge').value = 'CUSTOM SPECIFICATIONS';
+        document.getElementById('scopeDesc').value = 'Client customizable technical parameters. Submit your pitch size, tooth count, shaft bore, or custom drawing for a prompt, competitive quotation.';
+        
+        document.getElementById('paramsBuilderList').innerHTML = '';
+        addParamRow('CHAIN PITCH RANGE', '¼″ to 1-½″ Pitch & 6mm Pitch');
+        addParamRow('MAXIMUM DIAMETER', 'DIA MAX UPTO 1000MM');
+        addParamRow('STRAND OPTIONS', 'DEPENDS ON REQUIREMENT');
+        addParamRow('TOOTH PROFILES', 'DEPENDS ON REQUIREMENT');
+        addParamRow('TOOTH HARDENING', 'DEPENDS ON REQUIREMENT');
+        addParamRow('MATERIAL OPTIONS', 'DEPENDS ON REQUIREMENT');
+        addParamRow('HUB DESIGNS', 'DEPENDS ON REQUIREMENT');
+        addParamRow('BORE SPECIFICATIONS', 'DEPENDS ON REQUIREMENT');
+        addParamRow('APPLICABLE STANDARDS', 'DEPENDS ON REQUIREMENT');
+
+        document.getElementById('matrixDimensions').value = 'DIA MAX UPTO 1000MM';
+        document.getElementById('matrixPitch').value = '¼’’ TO 1-1/2’’ PITCH & 6mm PITCH';
+        document.getElementById('matrixMaterialsHeader').value = 'Various different materials with or without hardened teeth:';
+        document.getElementById('matrixMaterialsList').value = 'Carbon Steel\nCarburized Steel\nNitrided Steel\nCast Iron\nDuctile Iron like S.G Iron\nCarbon Manganese Steel\nManganese Molybdenum\nChromium Molybdenum\nGraded Cast Iron\nNon-Ferrous\nNon-Metal\nCase / Through / Surface Hardened Steel';
+
+        openModal('Add New Product Family & Specs', true);
+      } else if (currentTab === 'spares') {
+        document.getElementById('itemBadge').value = 'SPARE ' + String(sparesData.length + 1).padStart(2, '0');
+        document.getElementById('itemCategory').value = 'sealing';
+        document.getElementById('itemLink').value = 'contact.html#quote';
+        openModal('Add New Machine Spare', false);
+      } else if (currentTab === 'gallery') {
+        document.getElementById('itemBadge').value = 'WORKSHOP LIVE';
+        document.getElementById('itemCategory').value = 'machining';
+        document.getElementById('itemLink').value = '';
+        openModal('Add New Gallery Photo / Video', false);
+      }
+    });
+
+    // Form Submit Handler
+    itemForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const idx = parseInt(document.getElementById('editIndex').value, 10);
+      const type = document.getElementById('editType').value;
+      
+      const title = document.getElementById('itemTitle').value.trim();
+      const category = document.getElementById('itemCategory').value.trim();
+      const badge = document.getElementById('itemBadge').value.trim();
+      const image = document.getElementById('itemImage').value.trim();
+      const desc = document.getElementById('itemDesc').value.trim();
+      const rawTags = document.getElementById('itemTags').value.trim();
+      const tags = rawTags ? rawTags.split(',').map(t => t.trim()).filter(Boolean) : [];
+      const link = document.getElementById('itemLink').value.trim();
+
+      if (type === 'products') {
+        // Collect Technical Scope Parameters
+        const paramRows = document.querySelectorAll('#paramsBuilderList .param-row-item');
+        const parameters = [];
+        paramRows.forEach(row => {
+          const k = row.querySelector('.param-key-input')?.value.trim();
+          const v = row.querySelector('.param-val-input')?.value.trim();
+          if (k && v) parameters.push({ key: k, val: v });
+        });
+
+        // Collect Matrix
+        const matrixDims = document.getElementById('matrixDimensions').value.trim();
+        const matrixPitch = document.getElementById('matrixPitch').value.trim();
+        const matrixMatHeader = document.getElementById('matrixMaterialsHeader').value.trim();
+        const rawMaterials = document.getElementById('matrixMaterialsList').value.trim();
+        const materials = rawMaterials.split('\n').map(m => m.trim().replace(/^•\s*/, '')).filter(Boolean);
+
+        // Collect Manufactured Types
+        const typeCards = document.querySelectorAll('#typesBuilderList .type-card-item');
+        const manufacturedTypes = [];
+        typeCards.forEach(c => {
+          const tNum = c.querySelector('.type-num-input')?.value.trim();
+          const tBadge = c.querySelector('.type-badge-input')?.value.trim();
+          const tTitle = c.querySelector('.type-title-input')?.value.trim();
+          const tDesc = c.querySelector('.type-desc-input')?.value.trim();
+          const tTagsRaw = c.querySelector('.type-tags-input')?.value.trim();
+          const tLink = c.querySelector('.type-link-input')?.value.trim();
+          if (tTitle) {
+            manufacturedTypes.push({
+              num: tNum || 'TYPE',
+              badge: tBadge || 'SPROCKET',
+              title: tTitle,
+              desc: tDesc || '',
+              tags: tTagsRaw ? tTagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [],
+              link: tLink || 'contact.html#quote'
+            });
+          }
+        });
+
+        const existing = (idx >= 0 ? productsData[idx] : {});
+        const itemObj = {
+          ...existing,
+          id: badge || '#' + String(idx >= 0 ? idx + 1 : productsData.length + 1).padStart(2, '0'),
+          title: title,
+          category: category,
+          categoryLabel: category.charAt(0).toUpperCase() + category.slice(1),
+          image: image,
+          description: desc,
+          tags: tags,
+          link: link || 'sprockets.html',
+          scopeBadge: document.getElementById('scopeBadge').value.trim() || `CUSTOM ${title.toUpperCase()}`,
+          scopeDescription: document.getElementById('scopeDesc').value.trim(),
+          parameters: parameters,
+          matrix: {
+            dimensions: matrixDims || 'DIA MAX UPTO 1000MM',
+            pitchSize: matrixPitch || '¼’’ TO 1-1/2’’ PITCH & 6mm PITCH',
+            materialsHeader: matrixMatHeader || 'Various different materials with or without hardened teeth:',
+            materials: materials
+          },
+          manufacturedTypes: manufacturedTypes
+        };
+
+        if (idx >= 0) {
+          productsData[idx] = itemObj;
+        } else {
+          productsData.push(itemObj);
+        }
+      } else if (type === 'spares') {
+        const itemObj = {
+          id: badge || 'SPARE ' + String(idx >= 0 ? idx + 1 : sparesData.length + 1).padStart(2, '0'),
+          title: title,
+          category: category,
+          badge: badge || 'SPARE',
+          image: image,
+          description: desc,
+          tags: tags,
+          link: link || 'contact.html#quote'
+        };
+
+        if (idx >= 0) {
+          sparesData[idx] = itemObj;
+        } else {
+          sparesData.push(itemObj);
+        }
+      } else if (type === 'gallery' || type === 'gallery_photo') {
+        const itemObj = {
+          category: category || 'machining',
+          title: title,
+          desc: desc,
+          badge: badge || 'WORKSHOP LIVE',
+          img: image,
+          stage: badge || ''
+        };
+
+        if (idx >= 0 && type === 'gallery_photo') {
+          galleryData.photos[idx] = itemObj;
+        } else {
+          galleryData.photos.push(itemObj);
+        }
+      } else if (type === 'gallery_video') {
+        const itemObj = {
+          videoSrc: image,
+          tag: badge || 'PRODUCTION FOOTAGE',
+          duration: 'WORKSHOP FOOTAGE',
+          title: title,
+          desc: desc
+        };
+
+        if (idx >= 0) {
+          galleryData.videos[idx] = itemObj;
+        } else {
+          galleryData.videos.push(itemObj);
+        }
+      }
+
+      closeModal();
+      saveCurrentDataset();
+    });
+
+    // Backup JSON Download Handler
+    document.getElementById('downloadBackupBtn').addEventListener('click', () => {
+      const fullBackup = {
+        exportedAt: new Date().toISOString(),
+        products: productsData,
+        spares: sparesData,
+        gallery: galleryData
+      };
+
+      const blob = new Blob([JSON.stringify(fullBackup, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `nirala-catalog-backup-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      showToast('Full catalog backup downloaded!');
+    });
+
+    // Initialize
+    loadAllData();
+  </script>
+</body>
+</html>

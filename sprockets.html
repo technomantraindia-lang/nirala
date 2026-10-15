@@ -171,13 +171,13 @@
             <div class="spares-group-card" style="border-top: 3px solid var(--gold);">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <h3 style="margin: 0;">Specification &amp; Technical Scope</h3>
-                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--gold-light); background: rgba(216, 179, 93, 0.15); padding: 4px 10px; border-radius: 4px;">CUSTOM SPROCKETS</span>
+                <span id="scopeBadgeEl" style="font-family: var(--font-mono); font-size: 11px; color: var(--gold-light); background: rgba(216, 179, 93, 0.15); padding: 4px 10px; border-radius: 4px;">CUSTOM SPROCKETS</span>
               </div>
-              <p style="color: var(--muted); font-size: 13.5px; margin-bottom: 22px; line-height: 1.6;">
+              <p id="scopeDescEl" style="color: var(--muted); font-size: 13.5px; margin-bottom: 22px; line-height: 1.6;">
                 Client customizable technical parameters. Submit your pitch size, tooth count, shaft bore, or custom drawing for a prompt, competitive quotation.
               </p>
               
-              <ul style="list-style: none; padding: 0; margin: 0 0 24px 0; display: grid; gap: 14px; font-family: var(--font-mono); font-size: 13px;">
+              <ul id="scopeParamsList" style="list-style: none; padding: 0; margin: 0 0 24px 0; display: grid; gap: 14px; font-family: var(--font-mono); font-size: 13px;">
                 <li style="border-bottom: 1px solid var(--ink-border); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
                   <span style="color: var(--gold-light);">CHAIN PITCH RANGE:</span>
                   <span style="color: var(--paper); font-weight: 600;">¼″ to 1-½″ Pitch &amp; 6mm Pitch</span>
@@ -259,9 +259,9 @@
                     <td class="col-gear">
                       <span class="product-spec-gear-name">SPROCKET</span>
                     </td>
-                    <td class="col-dim"><strong style="color: var(--paper); font-family: var(--font-mono); font-size: 13.5px;">DIA MAX UPTO 1000MM</strong></td>
-                    <td class="col-pitch"><strong style="color: var(--gold-light); font-family: var(--font-mono); font-size: 13px;">¼’’ TO 1-1/2’’ PITCH &amp; 6mm PITCH</strong></td>
-                    <td class="col-mat">
+                    <td class="col-dim" id="matrixDimEl"><strong style="color: var(--paper); font-family: var(--font-mono); font-size: 13.5px;">DIA MAX UPTO 1000MM</strong></td>
+                    <td class="col-pitch" id="matrixPitchEl"><strong style="color: var(--gold-light); font-family: var(--font-mono); font-size: 13px;">¼’’ TO 1-1/2’’ PITCH &amp; 6mm PITCH</strong></td>
+                    <td class="col-mat" id="matrixMatEl">
                       <div style="font-weight: 600; color: #38bdf8; margin-bottom: 8px;">
                         Various different materials with or without hardened teeth:
                       </div>
@@ -384,7 +384,7 @@
           </p>
         </div>
 
-        <div class="sprocket-types-grid">
+        <div class="sprocket-types-grid" id="sprocketTypesGrid">
           <!-- 01: TYPE A SPROCKET -->
           <div class="sprocket-type-card">
             <div>
@@ -744,7 +744,11 @@
 
       <div class="footer-bottom">
         <div>© <span id="currentYearText">2026</span> Nirala Engineers. All Rights Reserved.</div>
-        <div>Established 1961 · Vadodara, Gujarat</div>
+        <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+          <span>Established 1961 · Vadodara, Gujarat</span>
+          <span style="opacity: 0.3;">•</span>
+          <a href="admin.html" style="color: var(--gold-light); text-decoration: none; font-size: 12px; font-weight: 600;">Admin Portal ⚙️</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -768,5 +772,108 @@
   </div>
 
   <script src="app.js"></script>
+
+  <!-- Dynamic Backend Product Specs Hydration -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      let product = null;
+      try {
+        const res = await fetch('/api/products', { cache: 'no-store' });
+        if (res.ok) {
+          const list = await res.json();
+          product = list.find(p => p.link === 'sprockets.html' || p.title.toLowerCase().includes('sprocket'));
+        }
+      } catch (e) {}
+
+      if (!product) {
+        try {
+          const res = await fetch('data/products.json', { cache: 'no-store' });
+          if (res.ok) {
+            const list = await res.json();
+            product = list.find(p => p.link === 'sprockets.html' || p.title.toLowerCase().includes('sprocket'));
+          }
+        } catch (e) {}
+      }
+
+      if (!product) {
+        try {
+          const local = localStorage.getItem('nirala_products');
+          if (local) {
+            const list = JSON.parse(local);
+            product = list.find(p => p.link === 'sprockets.html' || p.title.toLowerCase().includes('sprocket'));
+          }
+        } catch (e) {}
+      }
+
+      if (product) {
+        // 1. Technical Scope Badge & Desc
+        const badgeEl = document.getElementById('scopeBadgeEl');
+        const descEl = document.getElementById('scopeDescEl');
+        const paramsList = document.getElementById('scopeParamsList');
+
+        if (badgeEl && product.scopeBadge) badgeEl.textContent = product.scopeBadge;
+        if (descEl && product.scopeDescription) descEl.textContent = product.scopeDescription;
+
+        // Scope Parameters
+        if (paramsList && Array.isArray(product.parameters) && product.parameters.length > 0) {
+          paramsList.innerHTML = product.parameters.map((param, i) => {
+            const isLast = (i === product.parameters.length - 1);
+            const borderStyle = isLast ? 'padding-bottom: 8px;' : 'border-bottom: 1px solid var(--ink-border); padding-bottom: 10px;';
+            return `
+              <li style="${borderStyle} display: flex; justify-content: space-between; align-items: center;">
+                <span style="color: var(--gold-light);">${param.key}:</span>
+                <span style="color: var(--paper); font-weight: 600;">${param.val}</span>
+              </li>`;
+          }).join('');
+        }
+
+        // 2. Matrix Table
+        if (product.matrix) {
+          const dimEl = document.getElementById('matrixDimEl');
+          const pitchEl = document.getElementById('matrixPitchEl');
+          const matEl = document.getElementById('matrixMatEl');
+
+          if (dimEl && product.matrix.dimensions) {
+            dimEl.innerHTML = `<strong style="color: var(--paper); font-family: var(--font-mono); font-size: 13.5px;">${product.matrix.dimensions}</strong>`;
+          }
+          if (pitchEl && product.matrix.pitchSize) {
+            pitchEl.innerHTML = `<strong style="color: var(--gold-light); font-family: var(--font-mono); font-size: 13px;">${product.matrix.pitchSize}</strong>`;
+          }
+          if (matEl && Array.isArray(product.matrix.materials) && product.matrix.materials.length > 0) {
+            matEl.innerHTML = `
+              <div style="font-weight: 600; color: #38bdf8; margin-bottom: 8px;">
+                ${product.matrix.materialsHeader || 'Various different materials with or without hardened teeth:'}
+              </div>
+              <ul class="spec-materials-list">
+                ${product.matrix.materials.map(m => `<li><span class="spec-bullet">•</span> ${m}</li>`).join('')}
+              </ul>`;
+          }
+        }
+
+        // 3. Manufactured Types Grid
+        const typesGrid = document.getElementById('sprocketTypesGrid');
+        if (typesGrid && Array.isArray(product.manufacturedTypes) && product.manufacturedTypes.length > 0) {
+          typesGrid.innerHTML = product.manufacturedTypes.map(t => `
+            <div class="sprocket-type-card">
+              <div>
+                <div class="sprocket-type-header">
+                  <span class="sprocket-type-number">${t.num}</span>
+                  <span class="sprocket-type-badge-mini">${t.badge}</span>
+                </div>
+                <h3 class="sprocket-type-title">${t.title}</h3>
+                <p class="sprocket-type-desc">${t.desc}</p>
+                <div class="sprocket-type-tags">
+                  ${(t.tags || []).map(tag => {
+                    const isHardened = tag.toLowerCase().includes('hardened');
+                    return `<span class="sprocket-type-tag ${isHardened ? 'hardened' : ''}">${tag}</span>`;
+                  }).join('')}
+                </div>
+              </div>
+              <a href="${t.link || 'contact.html#quote'}" class="sprocket-type-cta">INQUIRE ${t.badge || 'NOW'} →</a>
+            </div>`).join('');
+        }
+      }
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,147 @@
+{
+  "videos": [
+    {
+      "videoSrc": "images/newwwproductss/watermark-removed-gemini_generated_video_ae05d9d3.mp4",
+      "tag": "GEAR HOBBING",
+      "duration": "WORKSHOP FOOTAGE",
+      "title": "Gear Tooth Hobbing",
+      "desc": "Live tooth cutting on gear hobber generating gear profiles to client specifications."
+    },
+    {
+      "videoSrc": "images/newwwproductss/gemini_generated_video_0fdd6c50_gwr_video_mvp.mp4",
+      "tag": "CNC MACHINING",
+      "duration": "WORKSHOP FOOTAGE",
+      "title": "CNC Blank Turning",
+      "desc": "Turning and facing of gear blanks and shafts in our machine shop."
+    },
+    {
+      "videoSrc": "images/tested.mp4",
+      "tag": "GEAR INSPECTION",
+      "duration": "WORKSHOP FOOTAGE",
+      "title": "Gear Meshing &amp; Inspection",
+      "desc": "Inspection of gear tooth meshing and rotation for machine drives."
+    }
+  ],
+  "photos": [
+    {
+      "category": "machining",
+      "title": "Material Preparation",
+      "desc": "Inspection and sizing of certified alloy and carbon steel blanks.",
+      "badge": "RAW MATERIAL",
+      "img": "images/stage-1-inspection.jpg",
+      "stage": "STAGE 01"
+    },
+    {
+      "category": "machining",
+      "title": "CNC Turning",
+      "desc": "Turning and facing of gear blanks to drawing specifications.",
+      "badge": "CNC TURNING",
+      "img": "images/stage-2-turning.jpg",
+      "stage": "STAGE 02"
+    },
+    {
+      "category": "machining",
+      "title": "Gear Hobbing",
+      "desc": "Tooth cutting and generation for spur and helical gears.",
+      "badge": "GEAR CUTTING",
+      "img": "images/stage-3-hobbing.jpg",
+      "stage": "STAGE 03"
+    },
+    {
+      "category": "machining",
+      "title": "Gear on Hobber",
+      "desc": "Gear blank mounted on hobbing machine for tooth generation.",
+      "badge": "WORKSHOP LIVE",
+      "img": "images/image copy 7.png",
+      "stage": ""
+    },
+    {
+      "category": "machining",
+      "title": "Teeth Hardening",
+      "desc": "Teeth hardening available with or without hardened teeth.",
+      "badge": "HEAT TREATMENT",
+      "img": "images/stage-4-hardening.jpg",
+      "stage": "STAGE 04"
+    },
+    {
+      "category": "gears",
+      "title": "Teeth Grinding",
+      "desc": "Surface and profile grinding for smooth gear operation.",
+      "badge": "GRINDING",
+      "img": "images/stage-5-grinding.jpg",
+      "stage": "STAGE 05"
+    },
+    {
+      "category": "gears",
+      "title": "Spur Gear",
+      "desc": "Precision manufactured spur gear for industrial machinery.",
+      "badge": "SPUR GEAR",
+      "img": "images/final product images/some other iamges/SPUR GEAR.jpeg",
+      "stage": ""
+    },
+    {
+      "category": "gears",
+      "title": "Helical Gear",
+      "desc": "Custom helical gear for industrial power transmission.",
+      "badge": "HELICAL GEAR",
+      "img": "images/newwwproductss/Helical Gear.JPG.jpeg",
+      "stage": ""
+    },
+    {
+      "category": "gears",
+      "title": "Bronze Worm Wheel",
+      "desc": "Phosphor bronze worm wheel with cast iron hub.",
+      "badge": "WORM WHEEL",
+      "img": "images/newwwproductss/Worm &amp; WormWheel-1.JPG.jpeg",
+      "stage": ""
+    },
+    {
+      "category": "gears",
+      "title": "Worm Shaft &amp; Wheel",
+      "desc": "Matched worm shaft and worm wheel drive assembly.",
+      "badge": "WORM PAIR",
+      "img": "images/final product images/Nirala_Product_Identification_Batch_01/12_Worm_Shaft_and_Bronze_Worm_Wheel.jpg",
+      "stage": ""
+    },
+    {
+      "category": "gears",
+      "title": "Spiral Bevel Gear",
+      "desc": "Spiral bevel gear set for 90-degree drive applications.",
+      "badge": "BEVEL GEAR",
+      "img": "images/final product images/Nirala_Product_Identification_Batch_01/image.png",
+      "stage": ""
+    },
+    {
+      "category": "gears",
+      "title": "Drive Sprocket",
+      "desc": "Drive sprocket manufactured with or without hardened teeth.",
+      "badge": "SPROCKET",
+      "img": "images/newwwproductss/Sprocket-2.JPG.jpeg",
+      "stage": ""
+    },
+    {
+      "category": "gears",
+      "title": "Spline Shaft",
+      "desc": "Precision splined shaft for machine drive connections.",
+      "badge": "SPLINES",
+      "img": "images/newwwproductss/SPLINE1.jpg.jpeg",
+      "stage": ""
+    },
+    {
+      "category": "gearboxes",
+      "title": "Gear Coupling",
+      "desc": "Flexible gear coupling for connecting drive shafts.",
+      "badge": "COUPLING",
+      "img": "images/final product images/Nirala_Product_Identification_Batch_01/image copy 3.png",
+      "stage": ""
+    },
+    {
+      "category": "gearboxes",
+      "title": "Nirala Engineers",
+      "desc": "Precision gear manufacturing since 1961 in Vadodara.",
+      "badge": "SINCE 1961",
+      "img": "images/ne 2025.jpg.jpeg",
+      "stage": ""
+    }
+  ]
+}

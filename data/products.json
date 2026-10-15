@@ -1,0 +1,1052 @@
+[
+  {
+    "id": "#01",
+    "title": "Spur Gear",
+    "category": "cylindrical",
+    "categoryLabel": "Cylindrical",
+    "image": "images/final product images/some other iamges/SPUR GEAR.jpeg",
+    "description": "Straight-tooth external &amp; internal spur gears manufactured to precision module, pressure angle, and face width tolerances for industrial machinery.",
+    "tags": [
+      "STRAIGHT TEETH",
+      "DIN / AGMA",
+      "MODULE 0.5 - 20M",
+      "CASE HARDENED"
+    ],
+    "link": "spur-gear.html",
+    "scopeBadge": "CUSTOM SPUR GEAR",
+    "scopeDescription": "Client customizable technical parameters for Spur Gear. Submit your dimensions or custom drawing for a prompt quotation.",
+    "parameters": [
+      {
+        "key": "MODULE / PITCH RANGE",
+        "val": "0.5M to 25M / As Per Requirement"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "PRESSURE ANGLE",
+        "val": "20° / 14.5° / As Required"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "Induction / Case Hardened / Ground"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DIN / AGMA / ISO"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "0.5 MOD TO 25 MOD",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous & Non-Metal",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": []
+  },
+  {
+    "id": "#02",
+    "title": "Helical Gear",
+    "category": "cylindrical",
+    "categoryLabel": "Cylindrical",
+    "image": "images/newwwproductss/Helical Gear.JPG.jpeg",
+    "description": "Single &amp; double helical gears with angled teeth engineered for quiet, vibration-free, smooth, and high-torque power transmission in gearboxes.",
+    "tags": [
+      "ANGLED TEETH",
+      "HIGH TORQUE",
+      "LOW NOISE",
+      "HERRINGBONE OPTION"
+    ],
+    "link": "helical-gear.html",
+    "scopeBadge": "CUSTOM HELICAL GEAR",
+    "scopeDescription": "Client customizable technical parameters for Helical Gear. Submit your dimensions or custom drawing for a prompt quotation.",
+    "parameters": [
+      {
+        "key": "MODULE / PITCH RANGE",
+        "val": "0.5M to 25M / As Per Requirement"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "PRESSURE ANGLE",
+        "val": "20° / 14.5° / As Required"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "Induction / Case Hardened / Ground"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DIN / AGMA / ISO"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "0.5 MOD TO 25 MOD",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous & Non-Metal",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": []
+  },
+  {
+    "id": "#03",
+    "title": "Sprockets",
+    "category": "transmission",
+    "categoryLabel": "Transmission",
+    "image": "images/final product images/some other iamges/sprockets.jpeg",
+    "description": "Simplex, duplex &amp; triplex roller chain drive sprockets manufactured from alloy steel for heavy industrial conveyor lines and machinery drives.",
+    "tags": [
+      "ROLLER CHAIN",
+      "DUPLEX / TRIPLEX",
+      "INDUCTION HARDENED",
+      "HEAVY DUTY"
+    ],
+    "link": "sprockets.html",
+    "scopeBadge": "CUSTOM SPROCKETS",
+    "scopeDescription": "Client customizable technical parameters. Submit your pitch size, tooth count, shaft bore, or custom drawing for a prompt, competitive quotation.",
+    "parameters": [
+      {
+        "key": "CHAIN PITCH RANGE",
+        "val": "¼″ to 1-½″ Pitch & 6mm Pitch"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "STRAND OPTIONS",
+        "val": "DEPENDS ON REQUIREMENT"
+      },
+      {
+        "key": "TOOTH PROFILES",
+        "val": "DEPENDS ON REQUIREMENT"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "DEPENDS ON REQUIREMENT"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "DEPENDS ON REQUIREMENT"
+      },
+      {
+        "key": "HUB DESIGNS",
+        "val": "DEPENDS ON REQUIREMENT"
+      },
+      {
+        "key": "BORE SPECIFICATIONS",
+        "val": "DEPENDS ON REQUIREMENT"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DEPENDS ON REQUIREMENT"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "¼’’ TO 1-1/2’’ PITCH & 6mm PITCH",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous (Aluminium, Gun Metal, P.H Bronze, Al Bronze etc.)",
+        "Non-Metal (Nylon-6, Nylon-66, Delrin, Hylam, Cast Nylon, Teflon etc.)",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": [
+      {
+        "num": "TYPE #01",
+        "badge": "PLATE WHEEL",
+        "title": "TYPE A SPROCKET",
+        "desc": "Flat plate wheel sprockets with zero hub extension. Engineered for welding directly onto customer hubs, bolt-on flanges, or mounting onto custom mechanical assemblies.",
+        "tags": [
+          "Plain Plate",
+          "C45 / EN8",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Type%20A%20Sprocket#quote"
+      },
+      {
+        "num": "TYPE #02",
+        "badge": "SINGLE HUB",
+        "title": "TYPE B SPROCKET",
+        "desc": "Features a single hub extension on one side. The worldwide standard for industrial drive lines, providing ample hub wall thickness for broached keyways and dual locking setscrews.",
+        "tags": [
+          "One-Side Hub",
+          "EN8 / EN24",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Type%20B%20Sprocket#quote"
+      },
+      {
+        "num": "TYPE #03",
+        "badge": "DOUBLE HUB",
+        "title": "TYPE C SPROCKET",
+        "desc": "Equipped with symmetrical hub extensions on both sides. Guarantees exceptional stability on high-load shafts and balances torsional moments across heavy rotating drives.",
+        "tags": [
+          "Double Symmetrical Hub",
+          "C45 / Forged Steel",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Type%20C%20Sprocket#quote"
+      },
+      {
+        "num": "TYPE #04",
+        "badge": "READY-TO-MOUNT",
+        "title": "FINISHED BORE SPROCKETS",
+        "desc": "Completely finish-machined to final shaft diameter (H7 tolerance), equipped with standard DIN 6885/1 keyway and tapped holes with setscrews for immediate installation out of the box.",
+        "tags": [
+          "H7 Bore + Keyway",
+          "2x Setscrews",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Finished%20Bore%20Sprocket#quote"
+      },
+      {
+        "num": "TYPE #05",
+        "badge": "DUPLEX DRIVE",
+        "title": "DOUBLE STRAND SPROCKETS",
+        "desc": "Precision dual-toothed sprockets engineered for duplex roller chains. Doubles the torque transmission capacity without increasing the pitch diameter, saving crucial machinery space.",
+        "tags": [
+          "Duplex Roller Chain",
+          "High Torque",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Double%20Strand%20Sprocket#quote"
+      },
+      {
+        "num": "TYPE #06",
+        "badge": "TRIPLEX DRIVE",
+        "title": "TRIPLE STRAND SPROCKETS",
+        "desc": "Triplex multi-strand sprockets built for ultra-heavy transmission in mining, cement mills, primary agitators, and continuous process plants operating under punishing load shocks.",
+        "tags": [
+          "Triplex Chain",
+          "Extreme Load",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Triple%20Strand%20Sprocket#quote"
+      },
+      {
+        "num": "TYPE #07",
+        "badge": "4-STRAND TRANSMISSION",
+        "title": "QUADRUPLE STRAND SPROCKETS",
+        "desc": "Heavy-duty four-strand sprockets hobbed with accurate row-to-row tooth timing. Distributes massive power evenly across four chain strands in steel mill and oilfield equipment.",
+        "tags": [
+          "Quadruple Chain",
+          "Alloy Steel EN24",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Quadruple%20Strand%20Sprocket#quote"
+      },
+      {
+        "num": "TYPE #08",
+        "badge": "TENSIONING IDLERS",
+        "title": "IDLER SPROCKETS",
+        "desc": "Integrated with sealed, pre-lubricated high-precision ball bearings. Essential for taking up chain slack, dampening vibration harmonics, and guiding chain paths in complex machines.",
+        "tags": [
+          "Integral Ball Bearing",
+          "Zero Maintenance",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Idler%20Sprocket#quote"
+      },
+      {
+        "num": "TYPE #09",
+        "badge": "TAPER BUSH MOUNT",
+        "title": "TAPER LOCK SPROCKETS",
+        "desc": "Machined with an internal taper to fit standard Taper Lock bushings (1008 through 5050). Provides concentric, interference fit on the shaft and enables lightning-fast disassembly.",
+        "tags": [
+          "Taper Bush Fit",
+          "Concentric Lock",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Taper%20Lock%20Sprocket#quote"
+      },
+      {
+        "num": "TYPE #10",
+        "badge": "DOUBLE PITCH",
+        "title": "EXTENDED PITCH SPROCKETS",
+        "desc": "Engineered for extended pitch (double pitch) roller chains used in long-center conveyors and agricultural drives. Available in single-cut and double-cut tooth geometries.",
+        "tags": [
+          "Double Pitch Chain",
+          "Conveyor & Farm Machinery",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Extended%20Pitch%20Sprocket#quote"
+      },
+      {
+        "num": "TYPE #11",
+        "badge": "DUAL INDEPENDENT DRIVES",
+        "title": "DOUBLE SINGLE SPROCKETS",
+        "desc": "Contains two separate single-strand sprockets integrated on one monolithic hub. Allows driving two independent single roller chains in opposite directions or at synchronized speeds.",
+        "tags": [
+          "Two Single Chains",
+          "Common Hub",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Double%20Single%20Sprocket#quote"
+      },
+      {
+        "num": "TYPE #12",
+        "badge": "DUAL TAPER BUSH",
+        "title": "DOUBLE TAPER LOCK SPROCKETS",
+        "desc": "Features twin taper bush pockets on opposing sides of the sprocket body. Delivers extraordinary clamping force on drive shafts under extreme reversing duty and cyclic shock loads.",
+        "tags": [
+          "Twin Bush Clamping",
+          "Zero Backlash",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Double%20Taper%20Lock%20Sprocket#quote"
+      },
+      {
+        "num": "TYPE #13",
+        "badge": "FLEXIBLE COUPLING",
+        "title": "CHAIN COUPLINGS",
+        "desc": "High-torque flexible shaft couplings consisting of two special duplex sprockets coupled with a double-strand roller chain. Accommodates angular and parallel shaft misalignments.",
+        "tags": [
+          "Duplex Roller Coupling",
+          "High Torsional Torque",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Chain%20Couplings#quote"
+      },
+      {
+        "num": "TYPE #14",
+        "badge": "MATERIAL HANDLING",
+        "title": "CONVEYER SPROCKETS",
+        "desc": "Heavy cast steel or fabricated conveyor sprockets with custom mud/debris relief pockets, segmental replaceable rims, and hardened teeth for apron conveyors, bucket elevators, and packaging lines.",
+        "tags": [
+          "Segmental Rims Opt.",
+          "Debris Relief Pockets",
+          "Hardened Teeth Opt."
+        ],
+        "link": "contact.html?type=Conveyor%20Sprockets#quote"
+      }
+    ]
+  },
+  {
+    "id": "#04",
+    "title": "Timing Pulleys",
+    "category": "transmission",
+    "categoryLabel": "Transmission",
+    "image": "images/final product images/some other iamges/timing pulley.jpeg",
+    "description": "Precision timing belt pulleys engineered for synchronous motion, zero-slip transmission, and high-precision index drives in automated machinery.",
+    "tags": [
+      "SYNCHRONOUS",
+      "ZERO SLIP",
+      "HTD / T-PROFILE",
+      "ALU / STEEL"
+    ],
+    "link": "timing-pulleys.html",
+    "scopeBadge": "CUSTOM TIMING PULLEYS",
+    "scopeDescription": "Client customizable technical parameters for Timing Pulleys. Submit your dimensions or custom drawing for a prompt quotation.",
+    "parameters": [
+      {
+        "key": "MODULE / PITCH RANGE",
+        "val": "0.5M to 25M / As Per Requirement"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "PRESSURE ANGLE",
+        "val": "20° / 14.5° / As Required"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "Induction / Case Hardened / Ground"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DIN / AGMA / ISO"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "0.5 MOD TO 25 MOD",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous & Non-Metal",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": []
+  },
+  {
+    "id": "#05",
+    "title": "Rack &amp; Pinion",
+    "category": "cylindrical",
+    "categoryLabel": "Linear Drive",
+    "image": "images/final product images/Nirala_Product_Identification_Batch_01/08_Rack_%26_Pinion_Rack.jpg",
+    "description": "Ground linear gear racks and matching pinion spur gears for precision CNC gantries, laser cutters, automation equipment, and linear drives.",
+    "tags": [
+      "LINEAR DRIVE",
+      "CNC GANTRY",
+      "HELICAL / STRAIGHT",
+      "GROUND TEETH"
+    ],
+    "link": "rack-pinion.html",
+    "scopeBadge": "CUSTOM RACK &AMP; PINION",
+    "scopeDescription": "Client customizable technical parameters for Rack &amp; Pinion. Submit your dimensions or custom drawing for a prompt quotation.",
+    "parameters": [
+      {
+        "key": "MODULE / PITCH RANGE",
+        "val": "0.5M to 25M / As Per Requirement"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "PRESSURE ANGLE",
+        "val": "20° / 14.5° / As Required"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "Induction / Case Hardened / Ground"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DIN / AGMA / ISO"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "0.5 MOD TO 25 MOD",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous & Non-Metal",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": []
+  },
+  {
+    "id": "#06",
+    "title": "Worm Shaft",
+    "category": "right-angle",
+    "categoryLabel": "Right-Angle",
+    "image": "images/final product images/some other iamges/WORM SHAFT.jpeg",
+    "description": "Single &amp; multi-start case-hardened precision thread-ground worm shafts engineered for extreme speed reduction drives and heavy torque gearboxes.",
+    "tags": [
+      "CASE HARDENED",
+      "GROUND WORM",
+      "HIGH RATIO",
+      "MULTI-START"
+    ],
+    "link": "worm-shaft.html",
+    "scopeBadge": "CUSTOM WORM SHAFT",
+    "scopeDescription": "Client customizable technical parameters for Worm Shaft. Submit your dimensions or custom drawing for a prompt quotation.",
+    "parameters": [
+      {
+        "key": "MODULE / PITCH RANGE",
+        "val": "0.5M to 25M / As Per Requirement"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "PRESSURE ANGLE",
+        "val": "20° / 14.5° / As Required"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "Induction / Case Hardened / Ground"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DIN / AGMA / ISO"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "0.5 MOD TO 25 MOD",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous & Non-Metal",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": []
+  },
+  {
+    "id": "#07",
+    "title": "Worm Wheel",
+    "category": "right-angle",
+    "categoryLabel": "Right-Angle",
+    "image": "images/final product images/Nirala_Product_Identification_Batch_01/Worm_and_Worm_Wheel_Set_03.jpeg",
+    "description": "High-grade phosphor bronze gear wheels hobbed to exact tolerances for smooth meshing with worm shafts, offering self-locking and low wear.",
+    "tags": [
+      "PHOSPHOR BRONZE",
+      "SPEED REDUCER",
+      "SELF-LOCKING",
+      "CAST IRON HUB"
+    ],
+    "link": "worm-wheel.html",
+    "scopeBadge": "CUSTOM WORM WHEEL",
+    "scopeDescription": "Client customizable technical parameters for Worm Wheel. Submit your dimensions or custom drawing for a prompt quotation.",
+    "parameters": [
+      {
+        "key": "MODULE / PITCH RANGE",
+        "val": "0.5M to 25M / As Per Requirement"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "PRESSURE ANGLE",
+        "val": "20° / 14.5° / As Required"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "Induction / Case Hardened / Ground"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DIN / AGMA / ISO"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "0.5 MOD TO 25 MOD",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous & Non-Metal",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": []
+  },
+  {
+    "id": "#08",
+    "title": "Splines",
+    "category": "transmission",
+    "categoryLabel": "Transmission",
+    "image": "images/image copy 15.png",
+    "description": "Internal and external involute splines and straight-sided splined shafts for positive, non-slip torque transfer in high-stress drive assemblies.",
+    "tags": [
+      "INVOLUTE SPLINE",
+      "DIN 5480 / 5482",
+      "TORQUE SHAFT",
+      "HOBBED &amp; SHAPED"
+    ],
+    "link": "splines.html",
+    "scopeBadge": "CUSTOM SPLINES",
+    "scopeDescription": "Client customizable technical parameters for Splines. Submit your dimensions or custom drawing for a prompt quotation.",
+    "parameters": [
+      {
+        "key": "MODULE / PITCH RANGE",
+        "val": "0.5M to 25M / As Per Requirement"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "PRESSURE ANGLE",
+        "val": "20° / 14.5° / As Required"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "Induction / Case Hardened / Ground"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DIN / AGMA / ISO"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "0.5 MOD TO 25 MOD",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous & Non-Metal",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": []
+  },
+  {
+    "id": "#09",
+    "title": "Bevel Gears",
+    "category": "right-angle",
+    "categoryLabel": "Right-Angle",
+    "image": "images/final product images/Nirala_Product_Identification_Batch_01/10_Spiral_Bevel_Gear_Set.jpg",
+    "description": "Straight bevel gears engineered for 90-degree drive shaft intersections in industrial machinery, agriculture equipment, and heavy gearboxes.",
+    "tags": [
+      "90° INTERSECTION",
+      "CONICAL TEETH",
+      "MILLED PROFILE",
+      "RUGGED DRIVE"
+    ],
+    "link": "bevel-gears.html",
+    "scopeBadge": "CUSTOM BEVEL GEARS",
+    "scopeDescription": "Client customizable technical parameters for Bevel Gears. Submit your dimensions or custom drawing for a prompt quotation.",
+    "parameters": [
+      {
+        "key": "MODULE / PITCH RANGE",
+        "val": "0.5M to 25M / As Per Requirement"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "PRESSURE ANGLE",
+        "val": "20° / 14.5° / As Required"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "Induction / Case Hardened / Ground"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DIN / AGMA / ISO"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "0.5 MOD TO 25 MOD",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous & Non-Metal",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": []
+  },
+  {
+    "id": "#10",
+    "title": "Spiral Bevel Gears",
+    "category": "right-angle",
+    "categoryLabel": "Right-Angle",
+    "image": "images/final product images/Nirala_Product_Identification_Batch_01/image.png",
+    "description": "Curved teeth spiral bevel gears engineered for high-speed, quiet, and robust right-angle power transmission with gradual tooth engagement.",
+    "tags": [
+      "CURVED TEETH",
+      "GLEASON SYSTEM",
+      "HIGH SPEED",
+      "LOW VIBRATION"
+    ],
+    "link": "spiral-bevel-gears.html",
+    "scopeBadge": "CUSTOM SPIRAL BEVEL GEARS",
+    "scopeDescription": "Client customizable technical parameters for Spiral Bevel Gears. Submit your dimensions or custom drawing for a prompt quotation.",
+    "parameters": [
+      {
+        "key": "MODULE / PITCH RANGE",
+        "val": "0.5M to 25M / As Per Requirement"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "PRESSURE ANGLE",
+        "val": "20° / 14.5° / As Required"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "Induction / Case Hardened / Ground"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DIN / AGMA / ISO"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "0.5 MOD TO 25 MOD",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous & Non-Metal",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": []
+  },
+  {
+    "id": "#11",
+    "title": "Internal Gear Cutting",
+    "category": "precision",
+    "categoryLabel": "Precision Shaping",
+    "image": "images/final product images/Nirala_Product_Identification_Batch_01/image copy.png",
+    "description": "Precision internal spur and spline gear shaping for planetary gearboxes, slewing rings, and compact high-ratio industrial transmissions.",
+    "tags": [
+      "INTERNAL SHAPING",
+      "PLANETARY DRIVES",
+      "SLEWING RINGS",
+      "FELLOWS SHAPER"
+    ],
+    "link": "internal-gear-cutting.html",
+    "scopeBadge": "CUSTOM INTERNAL GEAR CUTTING",
+    "scopeDescription": "Client customizable technical parameters for Internal Gear Cutting. Submit your dimensions or custom drawing for a prompt quotation.",
+    "parameters": [
+      {
+        "key": "MODULE / PITCH RANGE",
+        "val": "0.5M to 25M / As Per Requirement"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "PRESSURE ANGLE",
+        "val": "20° / 14.5° / As Required"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "Induction / Case Hardened / Ground"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DIN / AGMA / ISO"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "0.5 MOD TO 25 MOD",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous & Non-Metal",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": []
+  },
+  {
+    "id": "#12",
+    "title": "Teeth Grinding",
+    "category": "precision",
+    "categoryLabel": "Precision Grinding",
+    "image": "images/stage-5-grinding.jpg",
+    "description": "High-precision CNC gear teeth profile grinding achieving DIN Class 5 quality with zero profile distortion, mirror surface finish, and quiet mesh.",
+    "tags": [
+      "CNC GRINDING",
+      "DIN CLASS 5",
+      "PROFILE CORRECTION",
+      "MIRROR FINISH"
+    ],
+    "link": "teeth-grinding.html",
+    "scopeBadge": "CUSTOM TEETH GRINDING",
+    "scopeDescription": "Client customizable technical parameters for Teeth Grinding. Submit your dimensions or custom drawing for a prompt quotation.",
+    "parameters": [
+      {
+        "key": "MODULE / PITCH RANGE",
+        "val": "0.5M to 25M / As Per Requirement"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "PRESSURE ANGLE",
+        "val": "20° / 14.5° / As Required"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "Induction / Case Hardened / Ground"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DIN / AGMA / ISO"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "0.5 MOD TO 25 MOD",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous & Non-Metal",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": []
+  },
+  {
+    "id": "#13",
+    "title": "Ratchet &amp; Clutch",
+    "category": "transmission",
+    "categoryLabel": "Transmission",
+    "image": "images/final product images/Nirala_Product_Identification_Batch_01/image copy 2.png",
+    "description": "One-way ratchet wheels and mechanical clutch components designed for indexing drives, overrunning mechanisms, and safety backstops.",
+    "tags": [
+      "INDEXING DRIVE",
+      "BACKSTOP SAFETY",
+      "ONE-WAY CLUTCH",
+      "HARDENED PAWL"
+    ],
+    "link": "ratchet-clutch.html",
+    "scopeBadge": "CUSTOM RATCHET &AMP; CLUTCH",
+    "scopeDescription": "Client customizable technical parameters for Ratchet &amp; Clutch. Submit your dimensions or custom drawing for a prompt quotation.",
+    "parameters": [
+      {
+        "key": "MODULE / PITCH RANGE",
+        "val": "0.5M to 25M / As Per Requirement"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "PRESSURE ANGLE",
+        "val": "20° / 14.5° / As Required"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "Induction / Case Hardened / Ground"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DIN / AGMA / ISO"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "0.5 MOD TO 25 MOD",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous & Non-Metal",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": []
+  },
+  {
+    "id": "#14",
+    "title": "Gear Coupling",
+    "category": "transmission",
+    "categoryLabel": "Transmission",
+    "image": "images/final product images/Nirala_Product_Identification_Batch_01/image copy 3.png",
+    "description": "Flexible crowned tooth gear couplings designed to accommodate angular, axial, and parallel shaft misalignments under heavy torque loads.",
+    "tags": [
+      "FLEXIBLE DRIVE",
+      "CROWNED TEETH",
+      "MISALIGNMENT DAMPING",
+      "HIGH TORQUE"
+    ],
+    "link": "gear-coupling.html",
+    "scopeBadge": "CUSTOM GEAR COUPLING",
+    "scopeDescription": "Client customizable technical parameters for Gear Coupling. Submit your dimensions or custom drawing for a prompt quotation.",
+    "parameters": [
+      {
+        "key": "MODULE / PITCH RANGE",
+        "val": "0.5M to 25M / As Per Requirement"
+      },
+      {
+        "key": "MAXIMUM DIAMETER",
+        "val": "DIA MAX UPTO 1000MM"
+      },
+      {
+        "key": "PRESSURE ANGLE",
+        "val": "20° / 14.5° / As Required"
+      },
+      {
+        "key": "TOOTH HARDENING",
+        "val": "Induction / Case Hardened / Ground"
+      },
+      {
+        "key": "MATERIAL OPTIONS",
+        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+      },
+      {
+        "key": "APPLICABLE STANDARDS",
+        "val": "DIN / AGMA / ISO"
+      }
+    ],
+    "matrix": {
+      "dimensions": "DIA MAX UPTO 1000MM",
+      "pitchSize": "0.5 MOD TO 25 MOD",
+      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "materials": [
+        "Carbon Steel",
+        "Carburized Steel",
+        "Nitrided Steel",
+        "Cast Iron",
+        "Ductile Iron like S.G Iron",
+        "Carbon Manganese Steel",
+        "Manganese Molybdenum",
+        "Chromium Molybdenum",
+        "Graded Cast Iron",
+        "Non-Ferrous & Non-Metal",
+        "Case / Through / Surface Hardened Steel"
+      ]
+    },
+    "manufacturedTypes": []
+  }
+]

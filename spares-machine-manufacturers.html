@@ -742,7 +742,11 @@
 
       <div class="footer-bottom">
         <div>© <span id="currentYearText">2026</span> Nirala Engineers. All Rights Reserved.</div>
-        <div>Established 1961 · Vadodara, Gujarat</div>
+        <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+          <span>Established 1961 · Vadodara, Gujarat</span>
+          <span style="opacity: 0.3;">•</span>
+          <a href="admin.html" style="color: var(--gold-light); text-decoration: none; font-size: 12px; font-weight: 600;">Admin Portal ⚙️</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -796,11 +800,11 @@
   <!-- Scripts -->
   <script src="app.js"></script>
   <script>
-    // Filtering logic for 28 Machine Spares Cards
+    // Filtering & Dynamic Backend Hydration for Machine Spares Cards
     document.addEventListener('DOMContentLoaded', () => {
       const searchInput = document.getElementById('sparesSearchInput');
       const tabBtns = document.querySelectorAll('.spares-tab-btn');
-      const spareCards = document.querySelectorAll('.spare-card');
+      let spareCards = document.querySelectorAll('.spare-card');
 
       let currentTab = 'all';
       let currentQuery = '';
@@ -835,6 +839,60 @@
           filterCards();
         });
       }
+
+      // Dynamic Backend Hydration (JSON & API)
+      async function hydrateSpares() {
+        const grid = document.getElementById('sparesGrid');
+        if (!grid) return;
+
+        let list = null;
+        try {
+          const res = await fetch('/api/spares', { cache: 'no-store' });
+          if (res.ok) list = await res.json();
+        } catch (err) {}
+
+        if (!list) {
+          try {
+            const res = await fetch('data/spares.json', { cache: 'no-store' });
+            if (res.ok) list = await res.json();
+          } catch (err) {}
+        }
+
+        if (!list) {
+          try {
+            const local = localStorage.getItem('nirala_spares');
+            if (local) list = JSON.parse(local);
+          } catch (err) {}
+        }
+
+        if (Array.isArray(list) && list.length > 0) {
+          grid.innerHTML = list.map(item => {
+            const badge = item.badge || item.id || 'SPARE';
+            const tagsHtml = (item.tags || []).map(t => `<span class="stage-tag-pill">${t}</span>`).join('\n                ');
+            const link = item.link || 'contact.html#quote';
+            return `
+          <article class="product-item-card spare-card reveal-left" data-cat="${item.category}" data-name="${item.title.toLowerCase()}">
+            <div class="product-item-img-wrap">
+              <span class="product-item-badge">${badge}</span>
+              <img src="${item.image}" alt="${item.title}" />
+            </div>
+            <div class="product-item-body">
+              <h3>${item.title}</h3>
+              <p>${item.description}</p>
+              <div class="stage-tags-row">
+                ${tagsHtml}
+              </div>
+              <a href="${link}" class="product-item-cta">INQUIRE SPARE →</a>
+            </div>
+          </article>`;
+          }).join('\n');
+
+          spareCards = document.querySelectorAll('.spare-card');
+          filterCards();
+        }
+      }
+
+      hydrateSpares();
     });
   </script>
 </body>

@@ -2394,45 +2394,45 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================
-  // Product Catalog Interactive Filter & Search
+  // Product Catalog Interactive Filter & Search & Dynamic Hydration
   // ==========================================
   const productFilterPills = document.querySelectorAll('.product-filter-pill');
-  const productCards = document.querySelectorAll('.product-item-card');
+  let productCards = document.querySelectorAll('.product-item-card');
   const productSearchInput = document.getElementById('productSearchInput');
   const productCountVal = document.getElementById('productCountVal');
 
-  if (productCards.length > 0) {
-    let currentCategory = 'all';
-    let searchQuery = '';
+  let currentCategory = 'all';
+  let searchQuery = '';
 
-    function filterProductCatalog() {
-      let visibleCount = 0;
-      const q = searchQuery.toLowerCase().trim();
+  function filterProductCatalog() {
+    let visibleCount = 0;
+    const q = searchQuery.toLowerCase().trim();
 
-      productCards.forEach(card => {
-        const category = card.getAttribute('data-category') || '';
-        const title = (card.getAttribute('data-title') || card.querySelector('h3')?.textContent || '').toLowerCase();
-        const desc = (card.querySelector('p')?.textContent || '').toLowerCase();
-        const tags = Array.from(card.querySelectorAll('.stage-tag-pill')).map(t => t.textContent.toLowerCase()).join(' ');
+    productCards.forEach(card => {
+      const category = card.getAttribute('data-category') || '';
+      const title = (card.getAttribute('data-title') || card.querySelector('h3')?.textContent || '').toLowerCase();
+      const desc = (card.querySelector('p')?.textContent || '').toLowerCase();
+      const tags = Array.from(card.querySelectorAll('.stage-tag-pill')).map(t => t.textContent.toLowerCase()).join(' ');
 
-        const matchesCat = (currentCategory === 'all' || category === currentCategory);
-        const matchesQuery = !q || title.includes(q) || desc.includes(q) || tags.includes(q);
+      const matchesCat = (currentCategory === 'all' || category === currentCategory);
+      const matchesQuery = !q || title.includes(q) || desc.includes(q) || tags.includes(q);
 
-        if (matchesCat && matchesQuery) {
-          card.classList.remove('is-hidden');
-          card.classList.add('is-visible');
-          visibleCount++;
-        } else {
-          card.classList.add('is-hidden');
-          card.classList.remove('is-visible');
-        }
-      });
-
-      if (productCountVal) {
-        productCountVal.textContent = visibleCount;
+      if (matchesCat && matchesQuery) {
+        card.classList.remove('is-hidden');
+        card.classList.add('is-visible');
+        visibleCount++;
+      } else {
+        card.classList.add('is-hidden');
+        card.classList.remove('is-visible');
       }
-    }
+    });
 
+    if (productCountVal) {
+      productCountVal.textContent = visibleCount;
+    }
+  }
+
+  if (productCards.length > 0 || document.getElementById('productCardsGrid')) {
     productFilterPills.forEach(pill => {
       pill.addEventListener('click', () => {
         productFilterPills.forEach(p => {
@@ -2452,6 +2452,70 @@ document.addEventListener('DOMContentLoaded', () => {
         filterProductCatalog();
       });
     }
+
+    // Dynamic Backend Hydration (JSON & API)
+    async function hydrateProducts() {
+      const grid = document.getElementById('productCardsGrid');
+      if (!grid) return;
+
+      let list = null;
+      try {
+        const res = await fetch('/api/products', { cache: 'no-store' });
+        if (res.ok) list = await res.json();
+      } catch (err) {}
+
+      if (!list) {
+        try {
+          const res = await fetch('data/products.json', { cache: 'no-store' });
+          if (res.ok) list = await res.json();
+        } catch (err) {}
+      }
+
+      if (!list) {
+        try {
+          const local = localStorage.getItem('nirala_products');
+          if (local) list = JSON.parse(local);
+        } catch (err) {}
+      }
+
+      if (Array.isArray(list) && list.length > 0) {
+        grid.innerHTML = list.map((item, index) => {
+          const idTag = item.id || '#' + String(index + 1).padStart(2, '0');
+          const catLabel = item.categoryLabel || (item.category ? item.category.charAt(0).toUpperCase() + item.category.slice(1) : 'Precision');
+          const tagsHtml = (item.tags || []).map(t => `<span class="stage-tag-pill">${t}</span>`).join('\n                ');
+          const link = item.link || 'spur-gear.html';
+          return `
+          <article class="product-item-card reveal" data-category="${item.category || 'cylindrical'}" data-title="${item.title}">
+            <div class="product-card-top-bar">
+              <span class="product-index-tag">${idTag}</span>
+              <span class="product-category-chip">${catLabel}</span>
+            </div>
+            <div class="product-item-img-wrap">
+              <img src="${item.image}" alt="${item.title}" loading="lazy" />
+            </div>
+            <div class="product-item-body">
+              <h3>${item.title}</h3>
+              <p>${item.description}</p>
+              <div class="stage-tags-row">
+                ${tagsHtml}
+              </div>
+              <div class="product-card-actions">
+                <a href="${link}" class="product-item-cta">
+                  <span>EXPLORE PRODUCT</span>
+                  <span class="cta-arrow">→</span>
+                </a>
+                <a href="contact.html#quote" class="product-quote-cta">Quick RFQ ↗</a>
+              </div>
+            </div>
+          </article>`;
+        }).join('\n');
+
+        productCards = document.querySelectorAll('#productCardsGrid .product-item-card');
+        filterProductCatalog();
+      }
+    }
+
+    hydrateProducts();
   }
 
   // FAQ Accordion
@@ -2568,13 +2632,61 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Gallery Category Filter
+  // Gallery Dynamic Hydration & Filter
   const galleryFilterPills = document.querySelectorAll('.gallery-filter-pill');
-  const galleryCards = document.querySelectorAll('.gallery-card');
+  let galleryCards = document.querySelectorAll('.gallery-card');
   const galleryCountVal = document.getElementById('galleryCountVal');
   const videosSection = document.getElementById('videos');
 
-  if (galleryCards.length > 0) {
+  async function hydrateGallery() {
+    const photoGrid = document.getElementById('galleryPhotoGrid');
+    if (!photoGrid) return;
+
+    let gallery = null;
+    try {
+      const res = await fetch('/api/gallery', { cache: 'no-store' });
+      if (res.ok) gallery = await res.json();
+    } catch (e) {}
+
+    if (!gallery) {
+      try {
+        const res = await fetch('data/gallery.json', { cache: 'no-store' });
+        if (res.ok) gallery = await res.json();
+      } catch (e) {}
+    }
+
+    if (!gallery) {
+      try {
+        const local = localStorage.getItem('nirala_gallery');
+        if (local) gallery = JSON.parse(local);
+      } catch (e) {}
+    }
+
+    if (gallery && Array.isArray(gallery.photos) && gallery.photos.length > 0) {
+      photoGrid.innerHTML = gallery.photos.map(p => `
+          <article class="gallery-card reveal" data-category="${p.category}" data-title="${p.title}" data-desc="${p.desc}" data-badge="${p.badge}" data-img="${p.img}">
+            <div class="gallery-card-media-wrap">
+              <img src="${p.img}" alt="${p.title}" loading="lazy" />
+              <span class="gallery-card-badge">${p.badge}</span>
+              <div class="gallery-card-zoom-trigger">🔍</div>
+            </div>
+            <div class="gallery-card-body">
+              <h4>${p.title}</h4>
+              <p>${p.desc}</p>
+              <div class="gallery-card-meta-row">
+                <span>${p.stage || 'STAGE'}</span>
+                <span>${p.badge} ↗</span>
+              </div>
+            </div>
+          </article>`).join('\n');
+
+      galleryCards = document.querySelectorAll('.gallery-card');
+      if (galleryCountVal) galleryCountVal.textContent = galleryCards.length;
+    }
+  }
+  hydrateGallery();
+
+  if (galleryCards.length > 0 || document.getElementById('galleryPhotoGrid')) {
     galleryFilterPills.forEach(pill => {
       pill.addEventListener('click', () => {
         galleryFilterPills.forEach(p => {

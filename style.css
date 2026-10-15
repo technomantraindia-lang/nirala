@@ -2639,10 +2639,14 @@ svg {
 .product-card-img-wrap {
   position: relative;
   width: 100%;
-  height: 190px;
+  height: 220px;
   overflow: hidden;
-  background-color: #0b0d10;
+  background: radial-gradient(circle at center, #1c2633 0%, #07090c 100%);
   border-radius: var(--radius-md) var(--radius-md) 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
   transform: translateZ(0);
   transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   transform-style: preserve-3d;
@@ -2651,12 +2655,14 @@ svg {
 .product-card-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain !important;
+  object-position: center !important;
   padding: 0;
   transform: translateZ(0) scale(1);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
-  filter: brightness(1.05) contrast(1.05);
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.75)) brightness(1.05) contrast(1.05);
   transform-style: preserve-3d;
   will-change: transform;
 }
@@ -2683,7 +2689,7 @@ svg {
 .product-card-badge {
   position: absolute;
   top: 12px;
-  right: 14px;
+  left: 14px;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
@@ -6077,22 +6083,25 @@ footer {
 .product-item-img-wrap {
   position: relative;
   width: 100%;
-  height: 230px;
+  height: 240px;
   overflow: hidden;
-  background: #080a0c;
+  background: radial-gradient(circle at center, #1c2633 0%, #07090c 100%);
   border-bottom: 1px solid rgba(216, 179, 93, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 12px;
 }
 
 .product-item-img-wrap img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain !important;
+  object-position: center !important;
   padding: 0;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.75));
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
 }
 
@@ -6562,30 +6571,46 @@ footer {
 
 .product-detail-img-box {
   width: 100%;
-  height: 380px;
+  height: 460px;
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--gold);
-  background: #0b0d10;
+  background: radial-gradient(circle at center, #1c2633 0%, #07090c 100%);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(216, 179, 93, 0.2);
   margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  position: relative;
+}
+
+@media (max-width: 992px) {
+  .product-detail-img-box {
+    height: 380px;
+  }
 }
 
 @media (max-width: 600px) {
   .product-detail-img-box {
-    height: 250px;
+    height: 280px;
+    padding: 10px;
   }
 }
 
 .product-detail-img-box img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain !important;
+  object-position: center !important;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.85));
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .product-detail-img-box:hover img {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 /* Product Detail Gallery Thumbnails */
@@ -6601,10 +6626,13 @@ footer {
   border-radius: 6px;
   overflow: hidden;
   border: 2px solid rgba(216, 179, 93, 0.25);
-  background: #0b0d10;
+  background: #080a0c;
   cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
 }
 
 .product-thumb-item:hover,
@@ -6617,7 +6645,10 @@ footer {
 .product-thumb-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain !important;
+  object-position: center !important;
 }
 
 /* ==========================================================================
@@ -6724,7 +6755,7 @@ body {
   }
 
   .product-detail-img-box {
-    height: 330px;
+    height: 400px;
   }
 
   .sector-command-console {
@@ -6851,7 +6882,7 @@ body {
   }
 
   .product-detail-img-box {
-    height: 320px;
+    height: 380px;
   }
 
   .contact-duo-grid {
@@ -7094,7 +7125,7 @@ body {
   }
 
   .product-detail-img-box {
-    height: 250px;
+    height: 300px;
   }
 
   .product-gallery-thumbs {
@@ -7234,7 +7265,7 @@ body {
   }
 
   .product-detail-img-box {
-    height: 220px;
+    height: 260px;
   }
 
   .product-gallery-thumbs {
@@ -9852,13 +9883,13 @@ body {
 .product-item-img-wrap {
   position: relative;
   width: 100%;
-  height: 230px;
+  height: 240px;
   overflow: hidden;
-  background: #0b0d10;
+  background: radial-gradient(circle at center, #1c2633 0%, #07090c 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -9867,8 +9898,9 @@ body {
   height: 100%;
   max-width: 100%;
   max-height: 100%;
-  object-fit: cover;
-  object-position: center;
+  object-fit: contain !important;
+  object-position: center !important;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.75));
   transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), filter 0.55s ease;
   will-change: transform;
 }
@@ -10713,18 +10745,22 @@ body {
 .gallery-card-media-wrap {
   position: relative;
   width: 100%;
-  height: 250px;
+  height: 260px;
   overflow: hidden;
   background: radial-gradient(circle at 50% 50%, rgba(32, 40, 52, 0.7) 0%, rgba(13, 16, 20, 0.95) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 8px;
 }
 
 .gallery-card-media-wrap img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain !important;
+  object-position: center !important;
   display: block;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
   will-change: transform;
@@ -11895,15 +11931,22 @@ body {
 .helical-card-img-wrap {
   position: relative;
   height: 250px;
-  background: #090b0e;
+  background: radial-gradient(circle at center, #1c2633 0%, #07090c 100%);
   overflow: hidden;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
 }
 
 .helical-card-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain !important;
+  object-position: center !important;
   transition: transform 0.5s ease;
 }
 
@@ -12520,3 +12563,98 @@ body {
 }
 
 
+
+/* ==========================================================================
+   BALANCED ASYMMETRIC GRID SYSTEM FOR PROCESS SECTIONS
+   Eliminates awkward vertical whitespace caused by uneven content lengths
+   ========================================================================== */
+
+/* Phase 1: Storage / Reverse Engineering / Management */
+.process-phase1-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.28fr;
+  grid-template-rows: auto auto;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.process-phase1-grid > article:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.process-phase1-grid > article:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.process-phase1-grid > article:nth-child(3) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+@media (max-width: 900px) {
+  .process-phase1-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .process-phase1-grid > article:nth-child(1),
+  .process-phase1-grid > article:nth-child(2),
+  .process-phase1-grid > article:nth-child(3) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+/* Phase 3: Core Production Floor / Machining */
+.process-phase3-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.32fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.process-phase3-grid > article:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.process-phase3-grid > article:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.process-phase3-grid > article:nth-child(3) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.process-phase3-grid > article:nth-child(4) {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.process-phase3-grid > article:nth-child(5) {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.process-phase3-grid > article:nth-child(6) {
+  grid-column: 1 / -1;
+  grid-row: 4;
+}
+
+@media (max-width: 900px) {
+  .process-phase3-grid {
+    grid-template-columns: 1fr;
+  }
+  .process-phase3-grid > article:nth-child(1),
+  .process-phase3-grid > article:nth-child(2),
+  .process-phase3-grid > article:nth-child(3),
+  .process-phase3-grid > article:nth-child(4),
+  .process-phase3-grid > article:nth-child(5),
+  .process-phase3-grid > article:nth-child(6) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}

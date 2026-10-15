@@ -9,6 +9,42 @@
   <meta name="description"
     content="Involute and straight-sided splined shafts and bushes for heavy duty positive torque transfer. Manufactured by Nirala Engineers, Vadodara, Gujarat." />
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .product-detail-img-box {
+      height: 480px !important;
+      background: radial-gradient(circle at center, #1a222c 0%, #07090c 100%) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 16px !important;
+      border: 1px solid rgba(216, 179, 93, 0.5) !important;
+    }
+    .product-detail-img-box img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.85));
+      transition: opacity 0.25s ease, transform 0.3s ease;
+    }
+    .product-detail-img-box:hover img {
+      transform: scale(1.02) !important;
+    }
+    .product-thumb-item {
+      background: #080a0c !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 3px !important;
+    }
+    .product-thumb-item img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      object-position: center !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -102,16 +138,19 @@
         <div class="product-detail-grid">
           <div class="reveal-left">
             <div class="product-detail-img-box">
-              <img id="mainProductImg" src="images/newwwproductss/SPLINE1.jpg.jpeg" alt="Precision Spline Shaft Machining by Nirala Engineers" />
+              <img id="mainProductImg" src="images/image copy 15.png" alt="Precision Spline Shaft Machining by Nirala Engineers" />
             </div>
 
             <!-- Multi-Photo Gallery Thumbnails -->
             <div class="product-gallery-thumbs" aria-label="Product Photo Gallery">
-              <button type="button" class="product-thumb-item active" onclick="switchMainProductImage(this, 'images/newwwproductss/SPLINE1.jpg.jpeg')" onmouseover="switchMainProductImage(this, 'images/newwwproductss/SPLINE1.jpg.jpeg')">
-                <img src="images/newwwproductss/SPLINE1.jpg.jpeg" alt="Precision Spline Photo 1" />
+              <button type="button" class="product-thumb-item active" onclick="switchMainProductImage(this, 'images/image copy 15.png')" title="Horizontal Involute Splined Shaft Pair" onmouseover="switchMainProductImage(this, 'images/image copy 15.png')">
+                <img src="images/image copy 15.png" alt="Horizontal Splined Shafts Pair" />
               </button>
-              <button type="button" class="product-thumb-item" onclick="switchMainProductImage(this, 'images/newwwproductss/SPLINE2.jpg.jpeg')" onmouseover="switchMainProductImage(this, 'images/newwwproductss/SPLINE2.jpg.jpeg')">
-                <img src="images/newwwproductss/SPLINE2.jpg.jpeg" alt="Precision Spline Shaft Photo 2" />
+              <button type="button" class="product-thumb-item" onclick="switchMainProductImage(this, 'images/final product images/some other iamges/SPLINES.jpeg')" onmouseover="switchMainProductImage(this, 'images/final product images/some other iamges/SPLINES.jpeg')" title="Spline Shaft Workshop Capture">
+                <img src="images/final product images/some other iamges/SPLINES.jpeg" alt="Spline Shaft Workshop Capture" />
+              </button>
+              <button type="button" class="product-thumb-item" onclick="switchMainProductImage(this, 'images/image copy 14.png')" onmouseover="switchMainProductImage(this, 'images/image copy 14.png')">
+                <img src="images/image copy 14.png" alt="Precision Spline Shaft Photo 2" />
               </button>
             </div>
 

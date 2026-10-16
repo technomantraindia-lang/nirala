@@ -206,6 +206,11 @@ const server = http.createServer(async (req, res) => {
     filePath = path.join(filePath, 'index.html');
   }
 
+  // Support clean URLs (e.g. /admin -> /admin.html)
+  if (!fs.existsSync(filePath) && fs.existsSync(filePath + '.html')) {
+    filePath = filePath + '.html';
+  }
+
   if (!fs.existsSync(filePath)) {
     res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
     return res.end(`404 Not Found: ${pathname}`);

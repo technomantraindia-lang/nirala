@@ -2362,7 +2362,7 @@ document.addEventListener('DOMContentLoaded', () => {
           `Please confirm receipt and estimated turnaround.`;
 
         if (modalForwardWhatsappBtn) {
-          modalForwardWhatsappBtn.href = `https://wa.me/917991991055?text=${whatsappMsg}`;
+          modalForwardWhatsappBtn.href = `https://wa.me/917203029826?text=${whatsappMsg}`;
         }
 
         if (rfqSuccessModal) {

@@ -30,7 +30,7 @@
       color: var(--admin-text);
       font-family: 'Outfit', sans-serif;
       margin: 0;
-      padding: 0 0 110px 0;
+      padding: 0 0 40px 0;
       min-height: 100vh;
     }
 
@@ -578,6 +578,262 @@
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    /* Save Success Modal */
+    .save-success-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 6, 9, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .save-success-modal.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .save-success-window {
+      background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+      border: 1px solid rgba(216, 179, 93, 0.45);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 500px;
+      padding: 34px 28px 26px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 50px rgba(216, 179, 93, 0.15);
+      transform: scale(0.92) translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .save-success-modal.show .save-success-window {
+      transform: scale(1) translateY(0);
+    }
+
+    .success-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--admin-muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .success-modal-close:hover {
+      background: rgba(248, 81, 73, 0.2);
+      color: #fff;
+      border-color: var(--admin-danger);
+    }
+
+    .success-icon-wrap {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 18px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .success-pulse-ring {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: rgba(63, 185, 80, 0.15);
+      animation: successPulse 2s ease-out infinite;
+    }
+
+    @keyframes successPulse {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.3; }
+      100% { transform: scale(0.9); opacity: 0.8; }
+    }
+
+    .success-check-svg {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      display: block;
+      stroke-width: 2.5;
+      stroke: #3fb950;
+      stroke-miterlimit: 10;
+    }
+
+    .success-circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 2.5;
+      stroke-miterlimit: 10;
+      stroke: #3fb950;
+      fill: rgba(63, 185, 80, 0.1);
+      animation: strokeSuccess 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+
+    .success-check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: strokeSuccess 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.4s forwards;
+    }
+
+    @keyframes strokeSuccess {
+      100% { stroke-dashoffset: 0; }
+    }
+
+    .success-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--admin-gold);
+      background: rgba(216, 179, 93, 0.12);
+      border: 1px solid rgba(216, 179, 93, 0.3);
+      padding: 3px 10px;
+      border-radius: 14px;
+      margin-bottom: 10px;
+    }
+
+    .success-content h3 {
+      font-size: 1.45rem;
+      color: #fff;
+      margin: 0 0 8px;
+      font-weight: 750;
+    }
+
+    .success-content p {
+      font-size: 0.88rem;
+      color: var(--admin-muted);
+      line-height: 1.55;
+      margin: 0 0 18px;
+    }
+
+    .success-summary-card {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .summary-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .summary-label {
+      font-size: 0.7rem;
+      color: var(--admin-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .summary-val {
+      font-size: 0.86rem;
+      color: #fff;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .summary-badge {
+      font-size: 0.75rem;
+      color: var(--admin-gold);
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+
+    .summary-status-pill {
+      font-size: 0.75rem;
+      color: #3fb950;
+      font-weight: 600;
+    }
+
+    .success-modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-success-primary {
+      background: var(--admin-gold);
+      color: #0b0d10;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-success-primary:hover {
+      background: var(--admin-gold-hover);
+      box-shadow: 0 0 22px rgba(216, 179, 93, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-success-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 11px 20px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-success-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--admin-gold);
+      color: var(--admin-gold);
+    }
+
+    .btn-success-ghost {
+      background: transparent;
+      border: none;
+      color: var(--admin-muted);
+      font-size: 0.82rem;
+      cursor: pointer;
+      padding: 6px;
+      transition: color 0.2s;
+    }
+    .btn-success-ghost:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
     /* =========================================================
        COMPREHENSIVE RESPONSIVE DESIGN SYSTEM (LAPTOP & MOBILE)
        ========================================================= */
@@ -591,7 +847,7 @@
     @media (max-width: 768px) {
       body.admin-edit-body {
         padding-top: 60px;
-        padding-bottom: 96px;
+        padding-bottom: 40px;
       }
 
       /* Compact Fixed Navbar */
@@ -791,11 +1047,11 @@
           <span>View on Website</span>
           <span>↗</span>
         </a>
-        <button type="button" class="btn-action-secondary" onclick="window.downloadSparesJson()" title="Download updated spares.json to disk">
-          <span>📥 Export JSON</span>
-        </button>
+        <a href="admin.html#spares" class="btn-action-secondary" style="padding: 10px 16px; text-decoration: none;">
+          <span>Discard</span>
+        </a>
         <button type="button" class="btn-action-primary" id="topSaveBtn">
-          <span>Save Changes</span>
+          <span>💾 Save Changes</span>
         </button>
       </div>
     </div>
@@ -958,21 +1214,57 @@
     </form>
   </main>
 
-  <!-- Sticky Bottom Bar -->
-  <footer class="edit-bottom-bar">
-    <div class="edit-bottom-inner">
-      <div style="font-size: 0.85rem; color: var(--admin-muted); display: flex; align-items: center; gap: 8px;">
-        <span>💾</span>
-        <span>Changes sync live to IndexedDB, <code>data/spares.json</code>, and website pages.</span>
+  <!-- Save & Create Success Popup Modal -->
+  <div class="save-success-modal" id="saveSuccessModal" role="dialog" aria-modal="true" aria-labelledby="modalSuccessTitle">
+    <div class="save-success-window">
+      <button type="button" class="success-modal-close" id="closeSuccessModalBtn" title="Close" aria-label="Close modal">✕</button>
+      
+      <div class="success-icon-wrap">
+        <div class="success-pulse-ring"></div>
+        <svg class="success-check-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+          <circle class="success-circle" cx="26" cy="26" r="25" fill="none"/>
+          <path class="success-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
       </div>
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <a href="admin.html" class="btn-action-secondary">Discard &amp; Return</a>
-        <button type="button" class="btn-action-primary" id="bottomSaveBtn">
-          <span>Save Changes to Backend</span>
-        </button>
+
+      <div class="success-content">
+        <span class="success-badge" id="modalBadge">DATABASE SYNCED</span>
+        <h3 id="modalSuccessTitle">Saved Successfully!</h3>
+        <p id="modalSuccessMsg">Your changes have been saved and synced across all pages and the catalog.</p>
+
+        <div class="success-summary-card">
+          <div class="summary-item">
+            <span class="summary-label">Spare Part Name</span>
+            <span class="summary-val" id="modalSummaryName">-</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Category</span>
+            <span class="summary-badge" id="modalSummaryCategory">-</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Photos Attached</span>
+            <span class="summary-val" id="modalSummaryPhotos">0 Photos</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Sync Status</span>
+            <span class="summary-status-pill">● Live &amp; Saved</span>
+          </div>
+        </div>
+
+        <div class="success-modal-actions">
+          <a href="spares-machine-manufacturers.html" target="_blank" class="btn-success-primary" id="modalLivePageBtn">
+            <span>👁️ View on Spares Page ↗</span>
+          </a>
+          <a href="admin.html#spares" class="btn-success-secondary">
+            <span>📋 Back to Machine Spares Admin</span>
+          </a>
+          <button type="button" class="btn-success-ghost" id="modalContinueEditingBtn">
+            Continue Editing This Spare
+          </button>
+        </div>
       </div>
     </div>
-  </footer>
+  </div>
 
   <!-- Toast Notification -->
   <div class="admin-toast" id="adminToast">
@@ -1336,6 +1628,7 @@
         link: existing.link || 'contact.html#quote'
       };
 
+      const wasNew = isNewSpare;
       if (isNewSpare) {
         allSpares.push(spareObj);
         currentSpareIndex = allSpares.length - 1;
@@ -1353,13 +1646,71 @@
         } catch (e) {}
       }
 
-      showToast(`Saved "${title}" successfully! Live across Machine Spares page.`);
+      showToast(wasNew ? `Created "${title}" successfully!` : `Saved "${title}" successfully!`);
 
       // Update Header Titles
       document.getElementById('breadcrumbCurrent').textContent = title;
       document.getElementById('pageTitle').textContent = `Edit Spare: ${title}`;
       document.title = `Edit ${title} | Nirala Engineers`;
+
+      // Open Success Confirmation Modal
+      showSuccessPopup(title, category, 'spares-machine-manufacturers.html', spareImages.length, wasNew);
     }
+
+    // Modal Control Functions
+    function showSuccessPopup(title, category, liveUrl, photoCount, wasNew) {
+      const modal = document.getElementById('saveSuccessModal');
+      const badge = document.getElementById('modalBadge');
+      const titleEl = document.getElementById('modalSuccessTitle');
+      const msgEl = document.getElementById('modalSuccessMsg');
+      const nameEl = document.getElementById('modalSummaryName');
+      const catEl = document.getElementById('modalSummaryCategory');
+      const photoEl = document.getElementById('modalSummaryPhotos');
+      const liveBtn = document.getElementById('modalLivePageBtn');
+
+      if (wasNew) {
+        badge.textContent = '🎉 CREATED SUCCESSFULLY';
+        badge.style.color = '#3fb950';
+        badge.style.borderColor = 'rgba(63, 185, 80, 0.4)';
+        badge.style.background = 'rgba(63, 185, 80, 0.12)';
+        titleEl.textContent = 'Created Successfully! 🎉';
+        msgEl.textContent = `New machine spare "${title}" has been created and published live across the catalog!`;
+      } else {
+        badge.textContent = '✅ SAVED SUCCESSFULLY';
+        badge.style.color = 'var(--admin-gold)';
+        badge.style.borderColor = 'rgba(216, 179, 93, 0.3)';
+        badge.style.background = 'rgba(216, 179, 93, 0.12)';
+        titleEl.textContent = 'Saved Successfully! ✅';
+        msgEl.textContent = `All modifications to "${title}" have been saved and synced across the machine spares page.`;
+      }
+
+      nameEl.textContent = title || 'Untitled Spare';
+      catEl.textContent = category || 'General';
+      photoEl.textContent = `${photoCount} Photo${photoCount === 1 ? '' : 's'}`;
+      
+      if (liveUrl) {
+        liveBtn.href = liveUrl;
+        liveBtn.style.display = 'inline-flex';
+      } else {
+        liveBtn.style.display = 'none';
+      }
+
+      modal.classList.add('show');
+    }
+
+    function closeSuccessPopup() {
+      const modal = document.getElementById('saveSuccessModal');
+      if (modal) modal.classList.remove('show');
+    }
+
+    document.getElementById('closeSuccessModalBtn').addEventListener('click', closeSuccessPopup);
+    document.getElementById('modalContinueEditingBtn').addEventListener('click', closeSuccessPopup);
+    document.getElementById('saveSuccessModal').addEventListener('click', (e) => {
+      if (e.target.id === 'saveSuccessModal') closeSuccessPopup();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSuccessPopup();
+    });
 
     // Export spares.json directly to disk
     window.downloadSparesJson = function() {
@@ -1373,7 +1724,6 @@
     };
 
     document.getElementById('topSaveBtn').addEventListener('click', saveSpareData);
-    document.getElementById('bottomSaveBtn').addEventListener('click', saveSpareData);
 
     // Keyboard shortcut: Ctrl + S or Cmd + S to save
     window.addEventListener('keydown', (e) => {

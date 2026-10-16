@@ -5,46 +5,54 @@
     "category": "cylindrical",
     "categoryLabel": "Cylindrical",
     "image": "images/final product images/some other iamges/SPUR GEAR.jpeg",
-    "description": "Straight-tooth external &amp; internal spur gears manufactured to precision module, pressure angle, and face width tolerances for industrial machinery.",
+    "images": [
+      "images/final product images/some other iamges/SPUR GEAR.jpeg",
+      "images/newwwproductss/Spur Gear -1.jpg.jpeg",
+      "images/image copy 7.png",
+      "images/newwwproductss/Spur Gear-2.jpg.jpeg",
+      "images/final product images/some other iamges/SPUR GEAR2.jpeg",
+      "images/newwwproductss/Spur Gear-3.jpg.jpeg"
+    ],
+    "description": "High-efficiency straight teeth spur gears designed for reliable, positive power transmission across machine tools, textile equipment, and heavy industrial drives.",
     "tags": [
-      "STRAIGHT TEETH",
-      "DIN / AGMA",
-      "MODULE 0.5 - 20M",
-      "CASE HARDENED"
+      "CNC HOBBED",
+      "AGMA CLASS 10+",
+      "CASE HARDENED",
+      "STRAIGHT TEETH"
     ],
     "link": "spur-gear.html",
-    "scopeBadge": "CUSTOM SPUR GEAR",
-    "scopeDescription": "Client customizable technical parameters for Spur Gear. Submit your dimensions or custom drawing for a prompt quotation.",
+    "scopeBadge": "SPECIFICATION & CUSTOMIZATION PARAMETERS",
+    "scopeDescription": "Client customizable technical fields. Submit your drawing or required parameters for an exact quotation.",
     "parameters": [
       {
-        "key": "MODULE / PITCH RANGE",
-        "val": "0.5M to 25M / As Per Requirement"
-      },
-      {
-        "key": "MAXIMUM DIAMETER",
-        "val": "DIA MAX UPTO 1000MM"
+        "key": "MODULE / PITCH",
+        "val": "0.2 MOD TO 12 MOD; 2DP TO 164 DP"
       },
       {
         "key": "PRESSURE ANGLE",
-        "val": "20° / 14.5° / As Required"
+        "val": "DEPENDS ON REQUIREMENT"
       },
       {
-        "key": "TOOTH HARDENING",
-        "val": "Induction / Case Hardened / Ground"
+        "key": "MAX DIAMETER",
+        "val": "DIA. 2MM TO 5000MM"
       },
       {
-        "key": "MATERIAL OPTIONS",
-        "val": "En8, En24, 20MnCr5, C45, Alloy Steel"
+        "key": "MATERIAL",
+        "val": "DEPENDS ON REQUIREMENT"
       },
       {
-        "key": "APPLICABLE STANDARDS",
-        "val": "DIN / AGMA / ISO"
+        "key": "HEAT TREATMENT",
+        "val": "DEPENDS ON REQUIREMENT"
+      },
+      {
+        "key": "PRECISION CLASS",
+        "val": "DEPENDS ON REQUIREMENT"
       }
     ],
     "matrix": {
-      "dimensions": "DIA MAX UPTO 1000MM",
-      "pitchSize": "0.5 MOD TO 25 MOD",
-      "materialsHeader": "Various different materials with or without hardened teeth:",
+      "dimensions": "DIA. 2MM TO 5000MM",
+      "pitchSize": "0.2 MOD TO 12 MOD; 2DP TO 164 DP",
+      "materialsHeader": "Official metallurgy & material options:",
       "materials": [
         "Carbon Steel",
         "Carburized Steel",
@@ -55,7 +63,8 @@
         "Manganese Molybdenum",
         "Chromium Molybdenum",
         "Graded Cast Iron",
-        "Non-Ferrous & Non-Metal",
+        "Non-Ferrous (Aluminium, Gun Metal, P.H Bronze, Al Bronze etc.)",
+        "Non-Metal (Nylon-6, Nylon-66, Delrin, Hylam, Cast Nylon, Teflon etc.)",
         "Case / Through / Surface Hardened Steel"
       ]
     },

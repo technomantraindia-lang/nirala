@@ -13,6 +13,13 @@
  */
 const PREVIEW_MODE = false;
 
+// Ensure NiralaStorage (IndexedDB + localStorage) is loaded across all pages
+if (typeof window !== 'undefined' && !window.NiralaStorage && typeof document !== 'undefined') {
+  const stScript = document.createElement('script');
+  stScript.src = 'catalog-storage.js';
+  document.head.appendChild(stScript);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // 0. Customer Preview Mode Navigation Interceptor
   if (PREVIEW_MODE) {
@@ -2459,22 +2466,34 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!grid) return;
 
       let list = null;
-      try {
-        const res = await fetch('/api/products', { cache: 'no-store' });
-        if (res.ok) list = await res.json();
-      } catch (err) {}
+      if (window.NiralaStorage) {
+        try {
+          list = await window.NiralaStorage.getProducts();
+        } catch (e) {}
+      }
+
+      // Prioritize localStorage to see user's latest photo uploads and edits immediately
+      if (!list) {
+        try {
+          const local = localStorage.getItem('nirala_products');
+          if (local) {
+            const parsed = JSON.parse(local);
+            if (Array.isArray(parsed) && parsed.length > 0) list = parsed;
+          }
+        } catch (err) {}
+      }
 
       if (!list) {
         try {
-          const res = await fetch('data/products.json', { cache: 'no-store' });
+          const res = await fetch('/api/products', { cache: 'no-store' });
           if (res.ok) list = await res.json();
         } catch (err) {}
       }
 
       if (!list) {
         try {
-          const local = localStorage.getItem('nirala_products');
-          if (local) list = JSON.parse(local);
+          const res = await fetch('data/products.json', { cache: 'no-store' });
+          if (res.ok) list = await res.json();
         } catch (err) {}
       }
 
@@ -2491,7 +2510,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="product-category-chip">${catLabel}</span>
             </div>
             <div class="product-item-img-wrap">
-              <img src="${item.image}" alt="${item.title}" loading="lazy" />
+              <img src="${item.image}" alt="${item.title}" loading="lazy" onerror="this.onerror=null; this.src='images/stage-1-inspection.jpg'" />
             </div>
             <div class="product-item-body">
               <h3>${item.title}</h3>
@@ -2517,6 +2536,139 @@ document.addEventListener('DOMContentLoaded', () => {
 
     hydrateProducts();
   }
+
+  // Global Product Gallery Image Switcher
+  window.__activeProductGallery = [];
+
+  window.switchMainProductImageByIndex = function(idx) {
+    const list = window.__activeProductGallery || [];
+    if (list[idx]) {
+      const mainImg = document.getElementById('mainProductImg');
+      if (mainImg) mainImg.src = list[idx];
+      document.querySelectorAll('.product-gallery-thumbs .product-thumb-item').forEach((b, i) => {
+        b.classList.toggle('active', i === idx);
+      });
+    }
+  };
+
+  window.switchMainProductImage = function(btn, src) {
+    const mainImg = document.getElementById('mainProductImg');
+    if (mainImg && src) {
+      mainImg.src = src;
+    }
+    if (btn) {
+      const parent = btn.closest('.product-gallery-thumbs');
+      if (parent) {
+        parent.querySelectorAll('.product-thumb-item').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+    }
+  };
+
+  // Dynamic Product Detail Page Hydration (Spur Gear, Helical Gear, etc.)
+  async function hydrateProductDetailPage() {
+    const detailGrid = document.querySelector('.product-detail-grid');
+    if (!detailGrid) return;
+
+    const currentPath = window.location.pathname.split('/').pop() || 'spur-gear.html';
+    
+    let list = null;
+    if (window.NiralaStorage) {
+      try {
+        list = await window.NiralaStorage.getProducts();
+      } catch (e) {}
+    }
+
+    // Prioritize localStorage for instant updates and uploaded photos
+    if (!list) {
+      try {
+        const local = localStorage.getItem('nirala_products');
+        if (local) {
+          const parsed = JSON.parse(local);
+          if (Array.isArray(parsed) && parsed.length > 0) list = parsed;
+        }
+      } catch (err) {}
+    }
+
+    if (!list) {
+      try {
+        const res = await fetch('/api/products', { cache: 'no-store' });
+        if (res.ok) list = await res.json();
+      } catch (err) {}
+    }
+
+    if (!list) {
+      try {
+        const res = await fetch('data/products.json', { cache: 'no-store' });
+        if (res.ok) list = await res.json();
+      } catch (err) {}
+    }
+
+    if (!Array.isArray(list) || list.length === 0) return;
+
+    // Find matching product by link or filename
+    const product = list.find(p => p.link === currentPath || (p.link && currentPath.includes(p.link)));
+    if (!product) return;
+
+    // 1. Update Main Product Image
+    const mainImg = document.getElementById('mainProductImg');
+    if (mainImg && product.image) {
+      mainImg.src = product.image;
+    }
+
+    // 2. Update Multi-Photo Gallery Thumbnails
+    const thumbsContainer = document.querySelector('.product-gallery-thumbs');
+    const imagesToUse = (Array.isArray(product.images) && product.images.length > 0) ? product.images : (product.image ? [product.image] : []);
+    window.__activeProductGallery = imagesToUse;
+
+    if (thumbsContainer && imagesToUse.length > 0) {
+      thumbsContainer.innerHTML = imagesToUse.map((imgSrc, idx) => `
+        <button type="button" class="product-thumb-item ${idx === 0 ? 'active' : ''}" onclick="switchMainProductImageByIndex(${idx})" onmouseover="switchMainProductImageByIndex(${idx})" title="${product.title} View #${idx + 1}">
+          <img src="${imgSrc}" alt="${product.title} Photo #${idx + 1}" onerror="this.onerror=null; this.src='images/stage-1-inspection.jpg'" />
+        </button>
+      `).join('');
+    }
+
+    // 3. Update Specification & Customization Parameters
+    const paramsUl = detailGrid.querySelector('.spares-group-card ul');
+    if (paramsUl && Array.isArray(product.parameters) && product.parameters.length > 0) {
+      paramsUl.innerHTML = product.parameters.map((param, i) => {
+        const isLast = (i === product.parameters.length - 1);
+        const borderStyle = isLast ? 'padding-bottom: 8px;' : 'border-bottom: 1px solid var(--ink-border); padding-bottom: 10px;';
+        return `
+          <li style="${borderStyle} display: flex; justify-content: space-between; align-items: center;">
+            <span style="color: var(--gold-light);">${param.key}:</span>
+            <span style="color: var(--paper); font-weight: 600;">${param.val}</span>
+          </li>`;
+      }).join('');
+    }
+
+    // 4. Update Official Capability Matrix Table
+    const specTable = document.querySelector('.product-spec-table');
+    if (specTable && product.matrix) {
+      const tbody = specTable.querySelector('tbody');
+      if (tbody) {
+        const materialsList = (product.matrix.materials || []).map(m => `<li><span class="spec-bullet">•</span> ${m}</li>`).join('');
+        tbody.innerHTML = `
+          <tr>
+            <td class="col-gear">
+              <span class="product-spec-gear-name">${product.title.toUpperCase()}</span>
+            </td>
+            <td class="col-dim"><span class="product-spec-val-text">${product.matrix.dimensions || ''}</span></td>
+            <td class="col-pitch"><span class="product-spec-val-text">${(product.matrix.pitchSize || '').replace(/;\s*/g, ';<br>')}</span></td>
+            <td class="col-mat">
+              ${product.matrix.materialsHeader ? `<div style="font-weight: 600; color: #38bdf8; margin-bottom: 6px;">${product.matrix.materialsHeader}</div>` : ''}
+              <ul class="spec-materials-list">
+                ${materialsList}
+              </ul>
+            </td>
+          </tr>
+        `;
+      }
+    }
+  }
+
+  hydrateProductDetailPage();
 
   // FAQ Accordion
   const faqAccordion = document.getElementById('faqAccordion');
@@ -2634,24 +2786,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Gallery Dynamic Hydration & Filter
   const galleryFilterPills = document.querySelectorAll('.gallery-filter-pill');
-  let galleryCards = document.querySelectorAll('.gallery-card');
   const galleryCountVal = document.getElementById('galleryCountVal');
   const videosSection = document.getElementById('videos');
+  const photoGrid = document.getElementById('galleryPhotoGrid');
 
   async function hydrateGallery() {
-    const photoGrid = document.getElementById('galleryPhotoGrid');
     if (!photoGrid) return;
 
     let gallery = null;
-    try {
-      const res = await fetch('/api/gallery', { cache: 'no-store' });
-      if (res.ok) gallery = await res.json();
-    } catch (e) {}
-
-    if (!gallery) {
+    if (window.NiralaStorage && typeof window.NiralaStorage.getGallery === 'function') {
       try {
-        const res = await fetch('data/gallery.json', { cache: 'no-store' });
-        if (res.ok) gallery = await res.json();
+        gallery = await window.NiralaStorage.getGallery();
       } catch (e) {}
     }
 
@@ -2662,31 +2807,38 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (e) {}
     }
 
+    if (!gallery) {
+      try {
+        const res = await fetch('data/gallery.json', { cache: 'no-store' });
+        if (res.ok) gallery = await res.json();
+      } catch (e) {}
+    }
+
     if (gallery && Array.isArray(gallery.photos) && gallery.photos.length > 0) {
       photoGrid.innerHTML = gallery.photos.map(p => `
-          <article class="gallery-card reveal" data-category="${p.category}" data-title="${p.title}" data-desc="${p.desc}" data-badge="${p.badge}" data-img="${p.img}">
+          <article class="gallery-card is-visible" data-category="${p.category || 'gears'}" data-title="${p.title || ''}" data-desc="${p.desc || ''}" data-badge="${p.badge || 'WORKSHOP'}" data-img="${p.img}">
             <div class="gallery-card-media-wrap">
-              <img src="${p.img}" alt="${p.title}" loading="lazy" />
-              <span class="gallery-card-badge">${p.badge}</span>
-              <div class="gallery-card-zoom-trigger">🔍</div>
+              <img src="${p.img}" alt="${p.title || 'Precision Component'}" loading="lazy" onerror="this.onerror=null; this.src='images/stage-2-turning.jpg'" />
+              <span class="gallery-card-badge">${p.badge || 'WORKSHOP'}</span>
+              <div class="gallery-card-zoom-trigger" title="Enlarge Photography">🔍</div>
             </div>
             <div class="gallery-card-body">
-              <h4>${p.title}</h4>
-              <p>${p.desc}</p>
+              <h4>${p.title || 'Precision Component'}</h4>
+              <p>${p.desc || ''}</p>
               <div class="gallery-card-meta-row">
                 <span>${p.stage || 'STAGE'}</span>
-                <span>${p.badge} ↗</span>
+                <span>${p.badge || 'COMPONENT'} ↗</span>
               </div>
             </div>
           </article>`).join('\n');
 
-      galleryCards = document.querySelectorAll('.gallery-card');
-      if (galleryCountVal) galleryCountVal.textContent = galleryCards.length;
+      const allCards = photoGrid.querySelectorAll('.gallery-card');
+      if (galleryCountVal) galleryCountVal.textContent = allCards.length;
     }
   }
-  hydrateGallery();
 
-  if (galleryCards.length > 0 || document.getElementById('galleryPhotoGrid')) {
+  // Filter Tabs Setup
+  if (galleryFilterPills.length > 0 && photoGrid) {
     galleryFilterPills.forEach(pill => {
       pill.addEventListener('click', () => {
         galleryFilterPills.forEach(p => {
@@ -2697,21 +2849,22 @@ document.addEventListener('DOMContentLoaded', () => {
         pill.setAttribute('aria-selected', 'true');
 
         const targetCat = pill.getAttribute('data-gallery-filter') || 'all';
+        const allCards = photoGrid.querySelectorAll('.gallery-card');
 
         if (targetCat === 'video') {
           if (videosSection) {
             videosSection.scrollIntoView({ behavior: 'smooth' });
           }
-          galleryCards.forEach(c => {
+          allCards.forEach(c => {
             c.classList.remove('is-hidden');
             c.classList.add('is-visible');
           });
-          if (galleryCountVal) galleryCountVal.textContent = galleryCards.length;
+          if (galleryCountVal) galleryCountVal.textContent = allCards.length;
           return;
         }
 
         let visibleCount = 0;
-        galleryCards.forEach(card => {
+        allCards.forEach(card => {
           const cat = card.getAttribute('data-category') || '';
           if (targetCat === 'all' || cat === targetCat) {
             card.classList.remove('is-hidden');
@@ -2730,7 +2883,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Gallery Interactive Lightbox
+  // Gallery Interactive Lightbox (with Event Delegation)
   const galleryLightbox = document.getElementById('galleryLightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxBadge = document.getElementById('lightboxBadge');
@@ -2741,17 +2894,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
   const lightboxNextBtn = document.getElementById('lightboxNextBtn');
 
-  if (galleryLightbox && galleryCards.length > 0) {
+  if (galleryLightbox && photoGrid) {
     let currentLightboxIndex = 0;
     let visibleCardsList = [];
 
     function updateVisibleCards() {
-      visibleCardsList = Array.from(galleryCards).filter(c => !c.classList.contains('is-hidden'));
-      if (visibleCardsList.length === 0) visibleCardsList = Array.from(galleryCards);
+      const allCards = Array.from(photoGrid.querySelectorAll('.gallery-card'));
+      visibleCardsList = allCards.filter(c => !c.classList.contains('is-hidden'));
+      if (visibleCardsList.length === 0) visibleCardsList = allCards;
     }
 
     function renderLightboxItem(index) {
       updateVisibleCards();
+      if (visibleCardsList.length === 0) return;
       if (index < 0) index = visibleCardsList.length - 1;
       if (index >= visibleCardsList.length) index = 0;
       currentLightboxIndex = index;
@@ -2774,15 +2929,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (lightboxCounter) lightboxCounter.textContent = `Item ${index + 1} of ${visibleCardsList.length}`;
     }
 
-    galleryCards.forEach(card => {
-      card.addEventListener('click', () => {
-        updateVisibleCards();
-        const cardIndex = visibleCardsList.indexOf(card);
-        renderLightboxItem(cardIndex >= 0 ? cardIndex : 0);
-        galleryLightbox.classList.add('show');
-        galleryLightbox.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('modal-open');
-      });
+    // Delegated click on photoGrid - works for both static and hydrated cards
+    photoGrid.addEventListener('click', (e) => {
+      const card = e.target.closest('.gallery-card');
+      if (!card) return;
+
+      updateVisibleCards();
+      const cardIndex = visibleCardsList.indexOf(card);
+      renderLightboxItem(cardIndex >= 0 ? cardIndex : 0);
+      galleryLightbox.classList.add('show');
+      galleryLightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
     });
 
     const closeLightbox = () => {
@@ -2810,7 +2967,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Keyboard support
+    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (!galleryLightbox.classList.contains('show')) return;
       if (e.key === 'Escape') closeLightbox();
@@ -2818,6 +2975,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'ArrowRight') renderLightboxItem(currentLightboxIndex + 1);
     });
   }
+
+  // Trigger dynamic hydration
+  hydrateGallery();
 
 });
 

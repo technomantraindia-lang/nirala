@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0d10" />
+  <title>Edit Product | Nirala Engineers Admin</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --admin-bg: #090c10;
+      --admin-surface: #12161d;
+      --admin-surface-card: #161b22;
+      --admin-border: rgba(216, 179, 93, 0.25);
+      --admin-border-light: rgba(255, 255, 255, 0.08);
+      --admin-gold: #d8b35d;
+      --admin-gold-hover: #e5c374;
+      --admin-text: #e6edf3;
+      --admin-muted: #8b949e;
+      --admin-success: #3fb950;
+      --admin-danger: #f85149;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Custom Sleek Dark/Gold Scrollbars */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090c10;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(216, 179, 93, 0.35);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(216, 179, 93, 0.65);
+    }
+
+    body.edit-page-body {
+      background: var(--admin-bg);
+      color: var(--admin-text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      padding-top: 74px;
+      padding-bottom: 90px;
+      min-height: 100vh;
+    }
+
+    /* Top Sticky Navigation Bar */
+    .edit-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 74px;
+      background: rgba(18, 22, 29, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--admin-border);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .edit-navbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .edit-nav-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--admin-border-light);
+      color: var(--admin-text);
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      background: rgba(216, 179, 93, 0.15);
+      border-color: var(--admin-gold);
+      color: var(--admin-gold);
+    }
+
+    .edit-breadcrumbs {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .breadcrumb-trail {
+      font-size: 0.75rem;
+      color: var(--admin-muted);
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .breadcrumb-trail a {
+      color: var(--admin-muted);
+      text-decoration: none;
+    }
+
+    .breadcrumb-trail a:hover {
+      color: var(--admin-gold);
+    }
+
+    .edit-page-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .edit-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(63, 185, 80, 0.15);
+      border: 1px solid rgba(63, 185, 80, 0.3);
+      color: #3fb950;
+      font-weight: 600;
+    }
+
+    .status-pill.offline {
+      background: rgba(216, 179, 93, 0.15);
+      border-color: rgba(216, 179, 93, 0.3);
+      color: var(--admin-gold);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .preview-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1px solid var(--admin-border);
+      color: var(--admin-gold);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .preview-btn:hover {
+      background: rgba(216, 179, 93, 0.15);
+    }
+
+    /* Main Container */
+    .edit-container {
+      max-width: 1240px;
+      margin: 28px auto 0;
+      padding: 0 24px;
+    }
+
+    /* Sections */
+    .edit-section-card {
+      background: var(--admin-surface);
+      border: 1px solid var(--admin-border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--admin-border-light);
+    }
+
+    .section-head-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-icon {
+      font-size: 1.25rem;
+    }
+
+    .section-head h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .section-head p {
+      margin: 4px 0 0;
+      font-size: 0.82rem;
+      color: var(--admin-muted);
+    }
+
+    /* Multiple Photo Upload Zone */
+    .photo-upload-dropzone {
+      border: 2px dashed rgba(216, 179, 93, 0.4);
+      background: rgba(216, 179, 93, 0.03);
+      border-radius: 10px;
+      padding: 32px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .photo-upload-dropzone:hover,
+    .photo-upload-dropzone.dragover {
+      border-color: var(--admin-gold);
+      background: rgba(216, 179, 93, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .upload-cloud-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(216, 179, 93, 0.12);
+      border: 1px solid rgba(216, 179, 93, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+
+    .upload-prompt-text {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: #fff;
+      margin: 0;
+    }
+
+    .upload-sub-text {
+      font-size: 0.82rem;
+      color: var(--admin-muted);
+      margin: 0;
+    }
+
+    .btn-select-photos {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--admin-gold);
+      color: #0b0d10;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: all 0.2s;
+    }
+
+    .btn-select-photos:hover {
+      background: var(--admin-gold-hover);
+      transform: scale(1.02);
+    }
+
+    /* Live Photos Gallery Grid */
+    .photos-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .photo-card {
+      background: #0d1117;
+      border: 1px solid var(--admin-border-light);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .photo-card.is-cover {
+      border: 2px solid var(--admin-gold);
+      box-shadow: 0 0 15px rgba(216, 179, 93, 0.2);
+    }
+
+    .photo-thumb-wrap {
+      width: 100%;
+      height: 140px;
+      background: #000;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .photo-thumb-wrap img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s;
+    }
+
+    .photo-card:hover .photo-thumb-wrap img {
+      transform: scale(1.05);
+    }
+
+    .cover-badge-pill {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid var(--admin-gold);
+      color: var(--admin-gold);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .photo-idx-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .photo-actions-bar {
+      padding: 8px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.4);
+      border-top: 1px solid var(--admin-border-light);
+    }
+
+    .btn-make-cover {
+      background: transparent;
+      border: 1px solid var(--admin-border-light);
+      color: var(--admin-muted);
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-make-cover:hover {
+      border-color: var(--admin-gold);
+      color: var(--admin-gold);
+    }
+
+    .btn-delete-photo {
+      background: rgba(248, 81, 73, 0.12);
+      border: 1px solid rgba(248, 81, 73, 0.25);
+      color: var(--admin-danger);
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-delete-photo:hover {
+      background: var(--admin-danger);
+      color: #fff;
+    }
+
+    /* Forms */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--admin-text);
+      margin-bottom: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: #0a0d12;
+      border: 1px solid var(--admin-border-light);
+      border-radius: 6px;
+      padding: 11px 14px;
+      color: #fff;
+      font-size: 0.92rem;
+      outline: none;
+      box-sizing: border-box;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--admin-gold);
+      box-shadow: 0 0 0 3px rgba(216, 179, 93, 0.15);
+      background: #0f141c;
+    }
+
+    .form-group small {
+      display: block;
+      color: var(--admin-muted);
+      font-size: 0.76rem;
+      margin-top: 5px;
+    }
+
+    /* Parameters Table */
+    .params-table-header {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr 40px;
+      gap: 12px;
+      padding: 8px 14px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--admin-gold);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .params-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .param-row {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr 40px;
+      gap: 12px;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--admin-border-light);
+    }
+
+    .param-row input {
+      background: #0a0d12;
+      border: 1px solid var(--admin-border-light);
+      border-radius: 5px;
+      padding: 9px 12px;
+      color: #fff;
+      font-size: 0.88rem;
+      width: 100%;
+      outline: none;
+    }
+
+    .param-row input:focus {
+      border-color: var(--admin-gold);
+    }
+
+    .btn-row-del {
+      background: rgba(248, 81, 73, 0.12);
+      border: 1px solid rgba(248, 81, 73, 0.25);
+      color: var(--admin-danger);
+      width: 36px;
+      height: 36px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-row-del:hover {
+      background: var(--admin-danger);
+      color: #fff;
+    }
+
+    /* Sub-Types Cards */
+    .types-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .type-card {
+      background: #0d1117;
+      border: 1px solid rgba(216, 179, 93, 0.25);
+      border-left: 4px solid var(--admin-gold);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+
+    .type-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--admin-border-light);
+    }
+
+    .type-pill {
+      font-size: 0.72rem;
+      background: rgba(216, 179, 93, 0.18);
+      color: var(--admin-gold);
+      border: 1px solid rgba(216, 179, 93, 0.35);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    .type-grid-3 {
+      display: grid;
+      grid-template-columns: 140px 180px 1fr;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .field-tag-mini {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--admin-muted);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .empty-types-state {
+      background: rgba(0, 0, 0, 0.2);
+      border: 2px dashed var(--admin-border-light);
+      border-radius: 10px;
+      padding: 36px 20px;
+      text-align: center;
+      color: var(--admin-muted);
+    }
+
+    /* Sticky Bottom Actions Bar */
+    .edit-bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      background: rgba(18, 22, 29, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--admin-border);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .edit-bottom-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .btn-action-primary {
+      background: var(--admin-gold);
+      color: #0b0d10;
+      border: none;
+      padding: 11px 26px;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-action-primary:hover {
+      background: var(--admin-gold-hover);
+      box-shadow: 0 0 20px rgba(216, 179, 93, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-action-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--admin-border-light);
+      color: var(--admin-text);
+      padding: 11px 22px;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-action-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    /* Toast */
+    .admin-toast {
+      position: fixed;
+      bottom: 86px;
+      right: 24px;
+      background: #1f262e;
+      border: 1px solid var(--admin-border);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 3000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* =========================================================
+       COMPREHENSIVE RESPONSIVE DESIGN SYSTEM (LAPTOP & MOBILE)
+       ========================================================= */
+
+    @media (max-width: 1024px) {
+      .preview-btn {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body.edit-page-body {
+        padding-top: 60px;
+        padding-bottom: 96px;
+      }
+
+      /* Compact Fixed Navbar */
+      .edit-navbar {
+        height: 60px;
+        padding: 0 12px;
+      }
+
+      .edit-navbar-inner {
+        gap: 8px;
+      }
+
+      .back-btn {
+        padding: 6px 10px;
+        font-size: 0.78rem;
+      }
+
+      .breadcrumb-trail {
+        display: none;
+      }
+
+      .edit-page-title {
+        font-size: 0.95rem !important;
+        margin: 0;
+      }
+
+      .status-pill {
+        display: none !important;
+      }
+
+      .preview-btn {
+        display: none !important;
+      }
+
+      #topSaveBtn {
+        padding: 7px 14px;
+        font-size: 0.82rem;
+      }
+
+      /* Container & Section Cards */
+      .edit-container {
+        padding: 0 12px;
+        margin: 14px auto;
+      }
+
+      .editor-section-card {
+        padding: 16px 14px;
+        border-radius: 10px;
+        margin-bottom: 18px;
+      }
+
+      .section-head {
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+      }
+
+      .section-head h3 {
+        font-size: 1.02rem;
+      }
+
+      .section-head p {
+        font-size: 0.76rem;
+      }
+
+      /* Horizontal Scrollable Subtabs */
+      .editor-tabs-strip {
+        top: 60px;
+        padding: 8px 12px;
+        gap: 6px;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .editor-tabs-strip::-webkit-scrollbar {
+        display: none;
+      }
+
+      .editor-tab-pill {
+        padding: 7px 12px;
+        font-size: 0.78rem;
+        flex-shrink: 0;
+      }
+
+      /* Responsive Form Rows */
+      .form-row,
+      .form-row-3 {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        margin-bottom: 12px !important;
+      }
+
+      .form-group {
+        margin-bottom: 12px;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        padding: 10px 12px;
+        font-size: 0.88rem;
+      }
+
+      /* Responsive Photo Dropzone & Grid */
+      .photo-upload-dropzone {
+        padding: 24px 14px;
+      }
+
+      .upload-cloud-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+      }
+
+      .upload-prompt-text {
+        font-size: 0.92rem;
+      }
+
+      .photos-preview-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+      }
+
+      .photo-card-media {
+        height: 125px;
+      }
+
+      /* Responsive Parameter Builder */
+      .param-grid-row {
+        grid-template-columns: 1fr 34px !important;
+        gap: 8px !important;
+        padding: 8px 10px;
+      }
+
+      .param-grid-row input:nth-child(2) {
+        grid-column: 1 / 2;
+      }
+
+      .param-grid-row .btn-remove-row {
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+        height: 100%;
+      }
+
+      .param-grid-header {
+        display: none;
+      }
+
+      /* Responsive Sub-Types */
+      .type-grid-3 {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      /* Sticky Bottom Bar on Mobile */
+      .edit-bottom-bar {
+        height: auto;
+        padding: 10px 14px;
+      }
+
+      .edit-bottom-inner {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .edit-bottom-left {
+        display: none; /* Hide secondary links in bottom bar on phone */
+      }
+
+      .edit-bottom-right {
+        display: flex;
+        width: 100%;
+        gap: 8px;
+      }
+
+      .edit-bottom-right .btn-action-primary,
+      .edit-bottom-right .btn-action-secondary {
+        flex: 1;
+        justify-content: center;
+        padding: 11px 14px;
+        font-size: 0.88rem;
+      }
+
+      /* Toast Notification on Mobile */
+      .admin-toast {
+        left: 14px;
+        right: 14px;
+        bottom: 80px;
+        font-size: 0.84rem;
+        padding: 10px 14px;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body class="edit-page-body">
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="edit-navbar">
+    <div class="edit-navbar-inner">
+      <div class="edit-nav-left">
+        <a href="admin.html" class="back-btn">
+          <span>← Back to Products Dashboard</span>
+        </a>
+        <div class="edit-breadcrumbs">
+          <span class="breadcrumb-trail">
+            <a href="admin.html">Dashboard</a> / <a href="admin.html">Products</a> / <span id="breadcrumbCurrent">Product</span>
+          </span>
+          <h2 class="edit-page-title" id="pageTitle">Edit Product</h2>
+        </div>
+      </div>
+
+      <div class="edit-nav-right">
+        <div id="statusBadge" class="status-pill">
+          <span class="status-dot"></span>
+          <span id="statusText">Checking Backend...</span>
+        </div>
+        <a href="spur-gear.html" id="viewLivePageBtn" target="_blank" class="preview-btn">
+          <span>👁️ View Live Product Page ↗</span>
+        </a>
+        <button type="button" class="btn-action-primary" id="topSaveBtn">
+          <span>💾 Save Changes</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Edit Form Container -->
+  <main class="edit-container">
+    <form id="productEditForm">
+      
+      <!-- ==============================================
+           SECTION 1: PRODUCT PHOTOS & MULTI-IMAGE UPLOAD
+           ============================================== -->
+      <section class="edit-section-card">
+        <div class="section-head">
+          <div class="section-head-title">
+            <span class="section-icon">📸</span>
+            <div>
+              <h3>Product Photos &amp; Multi-Image Gallery</h3>
+              <p>Upload high-resolution workshop photos or component captures directly from your computer.</p>
+            </div>
+          </div>
+          <span id="photoCountBadge" style="font-size: 0.8rem; background: rgba(216, 179, 93, 0.15); color: var(--admin-gold); padding: 4px 10px; border-radius: 12px; font-weight: 700;">
+            0 Photos
+          </span>
+        </div>
+
+        <!-- Hidden Native File Input (Multiple Selection) -->
+        <input type="file" id="imageFileInput" multiple accept="image/*" style="display: none;" />
+
+        <!-- Interactive Drag-and-Drop Area -->
+        <div class="photo-upload-dropzone" id="photoDropzone">
+          <div class="upload-cloud-icon">📷</div>
+          <p class="upload-prompt-text">Click to Select Photos from Computer or Drag &amp; Drop Here</p>
+          <p class="upload-sub-text">Upload single or multiple images (JPEG, PNG, WebP) directly without typing URLs.</p>
+          <button type="button" class="btn-select-photos" id="choosePhotosBtn">
+            <span>+ Choose Photos</span>
+          </button>
+        </div>
+
+        <!-- Optional Manual Image Path / URL Input -->
+        <div style="display: flex; gap: 10px; margin-bottom: 20px; align-items: center; background: rgba(0,0,0,0.25); padding: 10px 14px; border-radius: 8px; border: 1px solid var(--admin-border-light);">
+          <input type="text" id="manualImageUrlInput" placeholder="Or enter image path / URL (e.g. images/final product images/...)..." style="flex: 1;" />
+          <button type="button" class="btn-action-secondary" id="addManualImageBtn" style="white-space: nowrap; padding: 10px 16px;">
+            <span>+ Add Path</span>
+          </button>
+        </div>
+
+        <!-- Live Photo Gallery Grid -->
+        <div class="photos-gallery-grid" id="photosGalleryGrid">
+          <!-- Injected dynamically -->
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 2: BASIC PRODUCT INFORMATION
+           ============================================== -->
+      <section class="edit-section-card">
+        <div class="section-head">
+          <div class="section-head-title">
+            <span class="section-icon">📋</span>
+            <div>
+              <h3>Product Identification &amp; Catalog Overview</h3>
+              <p>Core name, category, and catalog description shown on the website.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="productTitle">Product Title / Name *</label>
+            <input type="text" id="productTitle" required placeholder="e.g. Spur Gear" />
+          </div>
+
+          <div class="form-group">
+            <label for="productCategory">Category *</label>
+            <input type="text" id="productCategory" required placeholder="e.g. cylindrical / transmission / industrial" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="productDesc">Catalog Description *</label>
+          <textarea id="productDesc" rows="3" required placeholder="Detailed engineering overview, application range, and operational profile..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="productTags">Technical Highlights &amp; Tags (comma-separated)</label>
+          <input type="text" id="productTags" placeholder="e.g. CNC HOBBED, AGMA CLASS 10+, CASE HARDENED, STRAIGHT TEETH" />
+          <small>Tags appear as pills on the catalog card and product overview.</small>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 3: TECHNICAL SPECIFICATIONS & SCOPE
+           ============================================== -->
+      <section class="edit-section-card">
+        <div class="section-head">
+          <div class="section-head-title">
+            <span class="section-icon">⚙️</span>
+            <div>
+              <h3>Technical Scope &amp; Customization Parameters</h3>
+              <p>Key customizable parameters that customers can configure (e.g. Module, Pitch, Diameter, Hardening).</p>
+            </div>
+          </div>
+          <button type="button" id="addParamBtn" class="btn-select-photos" style="font-size: 0.8rem; padding: 7px 14px;">
+            <span>+ Add Parameter Row</span>
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label for="scopeBadge">Scope Section Headline Badge</label>
+          <input type="text" id="scopeBadge" placeholder="e.g. SPECIFICATION &amp; CUSTOMIZATION PARAMETERS" />
+        </div>
+
+        <div class="form-group">
+          <label for="scopeDesc">Scope Description Note</label>
+          <textarea id="scopeDesc" rows="2" placeholder="e.g. Client customizable technical fields. Submit your drawing or required parameters for an exact quotation."></textarea>
+        </div>
+
+        <div class="params-table-header">
+          <span>Technical Parameter</span>
+          <span>Engineering Specification / Tolerance</span>
+          <span></span>
+        </div>
+        <div class="params-list-container" id="paramsListContainer">
+          <!-- Parameter rows injected dynamically -->
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 4: DIN / AGMA CAPABILITY MATRIX
+           ============================================== -->
+      <section class="edit-section-card">
+        <div class="section-head">
+          <div class="section-head-title">
+            <span class="section-icon">📊</span>
+            <div>
+              <h3>Official Capability Matrix (DIN / AGMA Standards)</h3>
+              <p>Maximum dimensions, pitch range, and full metallurgy options manufactured at the factory.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="matrixDimensions">Matrix Dimensions (e.g. Maximum Diameter)</label>
+            <input type="text" id="matrixDimensions" placeholder="e.g. DIA. 2MM TO 5000MM" />
+          </div>
+          <div class="form-group">
+            <label for="matrixPitch">Pitch Size / Module Range</label>
+            <input type="text" id="matrixPitch" placeholder="e.g. 0.2 MOD TO 12 MOD; 2DP TO 164 DP" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="matrixMaterialsHeader">Metallurgy Section Headline</label>
+          <input type="text" id="matrixMaterialsHeader" placeholder="Official metallurgy &amp; material options:" />
+        </div>
+
+        <div class="form-group">
+          <label for="matrixMaterialsList">Available Metallurgy &amp; Material Options (one per line)</label>
+          <textarea id="matrixMaterialsList" rows="8" placeholder="Carbon Steel&#10;Carburized Steel&#10;Nitrided Steel&#10;Cast Iron&#10;Ductile Iron like S.G Iron&#10;Carbon Manganese Steel&#10;Manganese Molybdenum&#10;Chromium Molybdenum&#10;Graded Cast Iron&#10;Non-Ferrous (Aluminium, Gun Metal, P.H Bronze, Al Bronze etc.)&#10;Non-Metal (Nylon-6, Nylon-66, Delrin, Hylam, Cast Nylon, Teflon etc.)&#10;Case / Through / Surface Hardened Steel"></textarea>
+          <small>Enter each material on a new line.</small>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 5: MANUFACTURED SUB-TYPES / VARIANTS
+           ============================================== -->
+      <section class="edit-section-card">
+        <div class="section-head">
+          <div class="section-head-title">
+            <span class="section-icon">🏭</span>
+            <div>
+              <h3>Manufactured Sub-Types &amp; Variants (Sub-Families)</h3>
+              <p>Optional specific variants (like Type A, Type B, Hub Types, etc.) that appear on the product page.</p>
+            </div>
+          </div>
+          <button type="button" id="addTypeBtn" class="btn-select-photos" style="font-size: 0.8rem; padding: 7px 14px;">
+            <span>+ Add Sub-Type</span>
+          </button>
+        </div>
+
+        <div class="types-list-container" id="typesListContainer">
+          <!-- Injected dynamically -->
+        </div>
+      </section>
+
+    </form>
+  </main>
+
+  <!-- Sticky Bottom Bar -->
+  <footer class="edit-bottom-bar">
+    <div class="edit-bottom-inner">
+      <div style="font-size: 0.85rem; color: var(--admin-muted); display: flex; align-items: center; gap: 8px;">
+        <span>💾</span>
+        <span>Changes sync live to <code>data/products.json</code> and website pages.</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="admin.html" class="btn-action-secondary">Discard &amp; Return</a>
+        <button type="button" class="btn-action-primary" id="bottomSaveBtn">
+          <span>Save Changes to Backend</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="admin-toast" id="adminToast">
+    <span id="toastIcon">✅</span>
+    <span id="toastMessage">Product saved successfully!</span>
+  </div>
+
+  <script src="catalog-storage.js"></script>
+  <script>
+    // State Store
+    let allProducts = [];
+    let currentProductIndex = -1;
+    let isNewProduct = false;
+    let isServerMode = false;
+    let productImages = []; // Array of photo paths / Data URLs
+
+    // URL Query Params
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramIndex = urlParams.get('index');
+    const paramNew = urlParams.get('new');
+
+    // Toast Notification
+    function showToast(msg, isSuccess = true) {
+      const toast = document.getElementById('adminToast');
+      const toastMsg = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+      toastMsg.textContent = msg;
+      toastIcon.textContent = isSuccess ? '✅' : '⚠️';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // Check Backend Server Status
+    async function checkBackendStatus() {
+      const badge = document.getElementById('statusBadge');
+      const text = document.getElementById('statusText');
+      try {
+        const res = await fetch('/api/status', { cache: 'no-store' });
+        if (res.ok) {
+          isServerMode = true;
+          badge.className = 'status-pill';
+          text.textContent = 'Server Live (JSON Sync)';
+          return true;
+        }
+      } catch (e) {}
+      isServerMode = false;
+      badge.className = 'status-pill offline';
+      text.textContent = 'Standalone Mode (Local)';
+      return false;
+    }
+
+    // Load All Products Data
+    async function loadData() {
+      await checkBackendStatus();
+
+      // Retrieve catalog via NiralaStorage (IndexedDB + localStorage + JSON)
+      try {
+        if (window.NiralaStorage) {
+          allProducts = await window.NiralaStorage.getProducts();
+        } else {
+          allProducts = JSON.parse(localStorage.getItem('nirala_products') || '[]');
+          if (allProducts.length === 0) {
+            const res = await fetch('data/products.json', { cache: 'no-store' });
+            allProducts = await res.json();
+          }
+        }
+      } catch (e) {
+        allProducts = JSON.parse(localStorage.getItem('nirala_products') || '[]');
+      }
+
+      if (paramNew === 'true') {
+        isNewProduct = true;
+        currentProductIndex = allProducts.length;
+        initNewProduct();
+      } else {
+        currentProductIndex = paramIndex ? parseInt(paramIndex, 10) : 0;
+        if (isNaN(currentProductIndex) || currentProductIndex < 0 || currentProductIndex >= allProducts.length) {
+          currentProductIndex = 0;
+        }
+        initExistingProduct(allProducts[currentProductIndex]);
+      }
+    }
+
+    // Populate Existing Product
+    function initExistingProduct(p) {
+      if (!p) return;
+      document.getElementById('breadcrumbCurrent').textContent = p.title;
+      document.getElementById('pageTitle').textContent = `Edit: ${p.title}`;
+      document.title = `Edit ${p.title} | Nirala Engineers`;
+
+      // Live Page Link
+      const liveBtn = document.getElementById('viewLivePageBtn');
+      if (p.link) {
+        liveBtn.href = p.link;
+        liveBtn.style.display = 'inline-flex';
+      } else {
+        liveBtn.style.display = 'none';
+      }
+
+      // Basic Information
+      document.getElementById('productTitle').value = p.title || '';
+      document.getElementById('productCategory').value = p.category || '';
+      document.getElementById('productDesc').value = p.description || '';
+      document.getElementById('productTags').value = (p.tags || []).join(', ');
+
+      // Photos
+      if (Array.isArray(p.images) && p.images.length > 0) {
+        productImages = [...p.images];
+      } else if (p.image) {
+        productImages = [p.image];
+      } else {
+        productImages = [];
+      }
+      renderPhotoGallery();
+
+      // Technical Scope & Parameters
+      document.getElementById('scopeBadge').value = p.scopeBadge || `SPECIFICATION & CUSTOMIZATION PARAMETERS`;
+      document.getElementById('scopeDesc').value = p.scopeDescription || `Client customizable technical fields. Submit your drawing or required parameters for an exact quotation.`;
+      
+      const paramsContainer = document.getElementById('paramsListContainer');
+      paramsContainer.innerHTML = '';
+      (p.parameters || []).forEach(param => addParamRow(param.key, param.val));
+      if ((p.parameters || []).length === 0) {
+        addParamRow('MODULE / PITCH', '0.2 MOD TO 12 MOD; 2DP TO 164 DP');
+        addParamRow('MAX DIAMETER', 'DIA. 2MM TO 5000MM');
+        addParamRow('PRESSURE ANGLE', 'DEPENDS ON REQUIREMENT');
+        addParamRow('MATERIAL', 'DEPENDS ON REQUIREMENT');
+        addParamRow('HEAT TREATMENT', 'DEPENDS ON REQUIREMENT');
+        addParamRow('PRECISION CLASS', 'DEPENDS ON REQUIREMENT');
+      }
+
+      // Capability Matrix
+      const matrix = p.matrix || {};
+      document.getElementById('matrixDimensions').value = matrix.dimensions || 'DIA. 2MM TO 5000MM';
+      document.getElementById('matrixPitch').value = matrix.pitchSize || '0.2 MOD TO 12 MOD; 2DP TO 164 DP';
+      document.getElementById('matrixMaterialsHeader').value = matrix.materialsHeader || 'Official metallurgy & material options:';
+      document.getElementById('matrixMaterialsList').value = (matrix.materials || []).join('\n');
+
+      // Manufactured Types
+      const typesContainer = document.getElementById('typesListContainer');
+      typesContainer.innerHTML = '';
+      (p.manufacturedTypes || []).forEach(t => addTypeCard(t));
+      checkTypesEmptyState();
+    }
+
+    // Populate New Product Template
+    function initNewProduct() {
+      document.getElementById('breadcrumbCurrent').textContent = 'New Product';
+      document.getElementById('pageTitle').textContent = 'Create New Product';
+      document.getElementById('viewLivePageBtn').style.display = 'none';
+
+      document.getElementById('productTitle').value = '';
+      document.getElementById('productCategory').value = 'cylindrical';
+      document.getElementById('productDesc').value = '';
+      document.getElementById('productTags').value = 'PRECISION MACHINED, CUSTOM SPECIFICATIONS, INDUSTRIAL QUALITY';
+
+      productImages = [];
+      renderPhotoGallery();
+
+      document.getElementById('scopeBadge').value = 'SPECIFICATION & CUSTOMIZATION PARAMETERS';
+      document.getElementById('scopeDesc').value = 'Client customizable technical fields. Submit your drawing or required parameters for an exact quotation.';
+
+      addParamRow('MODULE / PITCH', '0.2 MOD TO 12 MOD; 2DP TO 164 DP');
+      addParamRow('MAX DIAMETER', 'DIA. 2MM TO 5000MM');
+      addParamRow('PRESSURE ANGLE', 'DEPENDS ON REQUIREMENT');
+      addParamRow('MATERIAL', 'DEPENDS ON REQUIREMENT');
+
+      document.getElementById('matrixDimensions').value = 'DIA. 2MM TO 5000MM';
+      document.getElementById('matrixPitch').value = '0.2 MOD TO 12 MOD; 2DP TO 164 DP';
+      document.getElementById('matrixMaterialsHeader').value = 'Official metallurgy & material options:';
+      document.getElementById('matrixMaterialsList').value = 'Carbon Steel\nCarburized Steel\nNitrided Steel\nCast Iron\nDuctile Iron like S.G Iron\nCarbon Manganese Steel\nManganese Molybdenum\nChromium Molybdenum\nGraded Cast Iron\nNon-Ferrous\nNon-Metal\nCase / Through / Surface Hardened Steel';
+
+      checkTypesEmptyState();
+    }
+
+    // ==========================================
+    // MULTIPLE PHOTO UPLOAD & GALLERY HANDLER
+    // ==========================================
+    const photoFileInput = document.getElementById('imageFileInput');
+    const photoDropzone = document.getElementById('photoDropzone');
+    const choosePhotosBtn = document.getElementById('choosePhotosBtn');
+    const manualImageUrlInput = document.getElementById('manualImageUrlInput');
+    const addManualImageBtn = document.getElementById('addManualImageBtn');
+
+    if (addManualImageBtn) {
+      addManualImageBtn.addEventListener('click', () => {
+        const val = manualImageUrlInput.value.trim();
+        if (val) {
+          productImages.push(val);
+          manualImageUrlInput.value = '';
+          renderPhotoGallery();
+          showToast('Added photo path to gallery!');
+        }
+      });
+    }
+
+    choosePhotosBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      photoFileInput.value = '';
+      photoFileInput.click();
+    });
+
+    photoDropzone.addEventListener('click', (e) => {
+      if (e.target !== choosePhotosBtn && !choosePhotosBtn.contains(e.target)) {
+        photoFileInput.value = '';
+        photoFileInput.click();
+      }
+    });
+
+    photoFileInput.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    photoDropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      photoDropzone.classList.add('dragover');
+    });
+
+    photoDropzone.addEventListener('dragleave', () => {
+      photoDropzone.classList.remove('dragover');
+    });
+
+    photoDropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      photoDropzone.classList.remove('dragover');
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleSelectedFiles(e.dataTransfer.files);
+      }
+    });
+
+    photoFileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        handleSelectedFiles(e.target.files);
+      }
+    });
+
+    async function handleSelectedFiles(files) {
+      const fileList = Array.from(files);
+      if (fileList.length === 0) return;
+
+      const validFiles = fileList.filter(file => {
+        return (file.type && file.type.startsWith('image/')) || /\.(jpe?g|png|webp|gif|svg|bmp|avif)$/i.test(file.name || '');
+      });
+
+      if (validFiles.length === 0) {
+        showToast('Please select valid image files (JPG, PNG, WebP).', false);
+        return;
+      }
+
+      showToast(`Optimizing & adding ${validFiles.length} photo(s)...`);
+
+      let added = 0;
+      for (const file of validFiles) {
+        try {
+          const compressedDataUrl = await (window.NiralaStorage ? window.NiralaStorage.compressImage(file, 1080, 1080, 0.80) : compressImage(file, 1080, 1080, 0.80));
+          if (compressedDataUrl) {
+            productImages.push(compressedDataUrl);
+            added++;
+            renderPhotoGallery(); // Update gallery immediately as each photo processes
+          }
+        } catch (err) {
+          console.error('Error processing image:', err);
+        }
+      }
+
+      photoFileInput.value = '';
+      if (added > 0) {
+        showToast(`Successfully added ${added} photo(s)! Click "Save Changes" to apply.`);
+      }
+    }
+
+    function renderPhotoGallery() {
+      const grid = document.getElementById('photosGalleryGrid');
+      const badge = document.getElementById('photoCountBadge');
+      badge.textContent = `${productImages.length} Photo${productImages.length === 1 ? '' : 's'}`;
+      grid.innerHTML = '';
+
+      if (productImages.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; padding: 24px; text-align: center; color: var(--admin-muted); font-size: 0.9rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+            <div style="font-size: 1.8rem; margin-bottom: 6px;">📷</div>
+            No photos added yet. Click "+ Choose Photos" above to select images from your computer.
+          </div>
+        `;
+        return;
+      }
+
+      productImages.forEach((imgSrc, idx) => {
+        const isCover = (idx === 0);
+        const card = document.createElement('div');
+        card.className = `photo-card ${isCover ? 'is-cover' : ''}`;
+        card.innerHTML = `
+          <div class="photo-thumb-wrap" title="Photo View #${idx + 1}">
+            <img src="${imgSrc}" alt="Product Photo #${idx + 1}" onerror="this.onerror=null; this.src='images/stage-1-inspection.jpg'" />
+            ${isCover ? '<span class="cover-badge-pill">★ COVER PHOTO</span>' : ''}
+            <span class="photo-idx-badge">#${idx + 1}</span>
+          </div>
+          <div class="photo-actions-bar">
+            ${isCover ? 
+              '<span style="font-size: 0.72rem; color: var(--admin-gold); font-weight: 700; display: flex; align-items: center; gap: 4px;">✓ Main Cover</span>' : 
+              `<button type="button" class="btn-make-cover" onclick="setAsCoverPhoto(${idx})" title="Set this as the primary cover photo for catalog & search">Set as Cover</button>`
+            }
+            <button type="button" class="btn-delete-photo" title="Remove Photo" onclick="deletePhoto(${idx})">✕</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    window.setAsCoverPhoto = function(index) {
+      if (index > 0 && index < productImages.length) {
+        const selected = productImages.splice(index, 1)[0];
+        productImages.unshift(selected);
+        renderPhotoGallery();
+        showToast('Updated main cover photo!');
+      }
+    };
+
+    window.deletePhoto = function(index) {
+      if (confirm('Remove this photo from the gallery?')) {
+        productImages.splice(index, 1);
+        renderPhotoGallery();
+      }
+    };
+
+    // ==========================================
+    // PARAMETERS BUILDER
+    // ==========================================
+    function addParamRow(key = '', val = '') {
+      const container = document.getElementById('paramsListContainer');
+      const row = document.createElement('div');
+      row.className = 'param-row';
+      row.innerHTML = `
+        <input type="text" class="param-key-input" placeholder="PARAMETER NAME (e.g. MAXIMUM DIAMETER)" value="${key}" required />
+        <input type="text" class="param-val-input" placeholder="SPECIFICATION VALUE (e.g. DIA. 2MM TO 5000MM)" value="${val}" required />
+        <button type="button" class="btn-row-del" title="Remove Parameter" onclick="this.closest('.param-row').remove()">&times;</button>
+      `;
+      container.appendChild(row);
+    }
+    document.getElementById('addParamBtn').addEventListener('click', () => addParamRow());
+
+    // ==========================================
+    // SUB-TYPES BUILDER
+    // ==========================================
+    function checkTypesEmptyState() {
+      const container = document.getElementById('typesListContainer');
+      const cards = container.querySelectorAll('.type-card');
+      let emptyMsg = container.querySelector('.empty-types-state');
+      if (cards.length === 0) {
+        if (!emptyMsg) {
+          emptyMsg = document.createElement('div');
+          emptyMsg.className = 'empty-types-state';
+          emptyMsg.innerHTML = `
+            <div style="font-size: 2rem; margin-bottom: 6px;">🏭</div>
+            <strong style="color: #fff; font-size: 0.95rem; display: block; margin-bottom: 4px;">No Manufactured Sub-Types Added Yet</strong>
+            <p style="margin: 0 0 14px; font-size: 0.82rem;">Click "+ Add Sub-Type" to configure specific variants (e.g. Type A Plate Wheel, Type B Hub Wheel).</p>
+            <button type="button" class="btn-select-photos" onclick="addTypeCard()">+ Add Sub-Type</button>
+          `;
+          container.appendChild(emptyMsg);
+        }
+      } else if (emptyMsg) {
+        emptyMsg.remove();
+      }
+    }
+
+    function addTypeCard(t = {}) {
+      const container = document.getElementById('typesListContainer');
+      const emptyMsg = container.querySelector('.empty-types-state');
+      if (emptyMsg) emptyMsg.remove();
+
+      const existing = container.querySelectorAll('.type-card').length;
+      const defaultNum = t.num || `TYPE #${String(existing + 1).padStart(2, '0')}`;
+      const defaultBadge = t.badge || '';
+      const defaultTitle = t.title || '';
+
+      const card = document.createElement('div');
+      card.className = 'type-card';
+      card.innerHTML = `
+        <div class="type-card-top">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="type-pill">${defaultNum}</span>
+            <strong style="color: #fff; font-size: 0.92rem;">${defaultTitle || 'New Sub-Type / Variant'}</strong>
+          </div>
+          <button type="button" class="btn-delete-photo" onclick="this.closest('.type-card').remove(); checkTypesEmptyState();">
+            <span>&times; Remove</span>
+          </button>
+        </div>
+        <div class="type-grid-3">
+          <div>
+            <label class="field-tag-mini">Variant Code</label>
+            <input type="text" class="type-num-input" placeholder="e.g. TYPE #01" value="${defaultNum}" oninput="this.closest('.type-card').querySelector('.type-pill').textContent = this.value || 'TYPE'" />
+          </div>
+          <div>
+            <label class="field-tag-mini">Mini Badge / Tag</label>
+            <input type="text" class="type-badge-input" placeholder="e.g. SIMPLEX / PLATE" value="${defaultBadge}" />
+          </div>
+          <div>
+            <label class="field-tag-mini">Sub-Type Title *</label>
+            <input type="text" class="type-title-input" placeholder="e.g. TYPE A SPROCKET (PLATE WHEEL)" value="${defaultTitle}" required oninput="this.closest('.type-card').querySelector('strong').textContent = this.value || 'New Sub-Type / Variant'" />
+          </div>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <label class="field-tag-mini">Engineering Description & Scope</label>
+          <textarea class="type-desc-input" rows="2" placeholder="Sub-type engineering description, teeth profile, and construction standard...">${t.desc || ''}</textarea>
+        </div>
+        <div class="form-row" style="margin-bottom: 0;">
+          <div>
+            <label class="field-tag-mini">Feature Tags (comma-separated)</label>
+            <input type="text" class="type-tags-input" placeholder="Plain Plate, C45 / EN8, Hardened Teeth Opt." value="${(t.tags || []).join(', ')}" />
+          </div>
+          <div>
+            <label class="field-tag-mini">Action / Inquiry Link</label>
+            <input type="text" class="type-link-input" placeholder="contact.html?type=Type%20A#quote" value="${t.link || ''}" />
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    }
+    document.getElementById('addTypeBtn').addEventListener('click', () => addTypeCard());
+
+    // ==========================================
+    // SAVE PRODUCT HANDLER
+    // ==========================================
+    async function saveProductData() {
+      const title = document.getElementById('productTitle').value.trim();
+      if (!title) {
+        alert('Please enter a Product Title.');
+        document.getElementById('productTitle').focus();
+        return;
+      }
+
+      const category = document.getElementById('productCategory').value.trim() || 'cylindrical';
+      const desc = document.getElementById('productDesc').value.trim();
+      const tagsRaw = document.getElementById('productTags').value.trim();
+      const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+
+      // Collect Parameters
+      const paramRows = document.querySelectorAll('#paramsListContainer .param-row');
+      const parameters = [];
+      paramRows.forEach(row => {
+        const k = row.querySelector('.param-key-input')?.value.trim();
+        const v = row.querySelector('.param-val-input')?.value.trim();
+        if (k && v) parameters.push({ key: k, val: v });
+      });
+
+      // Collect Matrix
+      const matrixDims = document.getElementById('matrixDimensions').value.trim();
+      const matrixPitch = document.getElementById('matrixPitch').value.trim();
+      const matrixMatHeader = document.getElementById('matrixMaterialsHeader').value.trim();
+      const rawMaterials = document.getElementById('matrixMaterialsList').value.trim();
+      const materials = rawMaterials.split('\n').map(m => m.trim().replace(/^•\s*/, '')).filter(Boolean);
+
+      // Collect Manufactured Types
+      const typeCards = document.querySelectorAll('#typesListContainer .type-card');
+      const manufacturedTypes = [];
+      typeCards.forEach(c => {
+        const tNum = c.querySelector('.type-num-input')?.value.trim();
+        const tBadge = c.querySelector('.type-badge-input')?.value.trim();
+        const tTitle = c.querySelector('.type-title-input')?.value.trim();
+        const tDesc = c.querySelector('.type-desc-input')?.value.trim();
+        const tTagsRaw = c.querySelector('.type-tags-input')?.value.trim();
+        const tLink = c.querySelector('.type-link-input')?.value.trim();
+        if (tTitle) {
+          manufacturedTypes.push({
+            num: tNum || 'TYPE',
+            badge: tBadge || '',
+            title: tTitle,
+            desc: tDesc || '',
+            tags: tTagsRaw ? tTagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [],
+            link: tLink || 'contact.html#quote'
+          });
+        }
+      });
+
+      // Existing item preservation (badge/ID and link are preserved automatically without user needing to enter them)
+      const existing = (currentProductIndex >= 0 && currentProductIndex < allProducts.length ? allProducts[currentProductIndex] : {});
+      const autoId = existing.id || '#' + String(currentProductIndex + 1).padStart(2, '0');
+      const autoLink = existing.link || (title.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.html');
+      const primaryImage = (productImages.length > 0 ? productImages[0] : (existing.image || 'images/stage-1-inspection.jpg'));
+
+      const productObj = {
+        ...existing,
+        id: autoId,
+        title: title,
+        category: category,
+        categoryLabel: category.charAt(0).toUpperCase() + category.slice(1),
+        image: primaryImage,
+        images: productImages.length > 0 ? productImages : [primaryImage],
+        description: desc,
+        tags: tags,
+        link: autoLink,
+        scopeBadge: document.getElementById('scopeBadge').value.trim() || 'SPECIFICATION & CUSTOMIZATION PARAMETERS',
+        scopeDescription: document.getElementById('scopeDesc').value.trim(),
+        parameters: parameters,
+        matrix: {
+          dimensions: matrixDims || 'DIA. 2MM TO 5000MM',
+          pitchSize: matrixPitch || '0.2 MOD TO 12 MOD; 2DP TO 164 DP',
+          materialsHeader: matrixMatHeader || 'Official metallurgy & material options:',
+          materials: materials
+        },
+        manufacturedTypes: manufacturedTypes
+      };
+
+      if (isNewProduct) {
+        allProducts.push(productObj);
+        currentProductIndex = allProducts.length - 1;
+        isNewProduct = false;
+      } else {
+        allProducts[currentProductIndex] = productObj;
+      }
+
+      // Persist via NiralaStorage (IndexedDB + localStorage + backend REST API)
+      if (window.NiralaStorage) {
+        await window.NiralaStorage.saveProducts(allProducts, true);
+      } else {
+        try {
+          localStorage.setItem('nirala_products', JSON.stringify(allProducts));
+        } catch (e) {}
+      }
+
+      showToast(`Saved "${title}" successfully! Photos and specs are live across the site.`);
+
+      // Update Header Titles
+      document.getElementById('breadcrumbCurrent').textContent = title;
+      document.getElementById('pageTitle').textContent = `Edit: ${title}`;
+      document.title = `Edit ${title} | Nirala Engineers`;
+      
+      const liveBtn = document.getElementById('viewLivePageBtn');
+      liveBtn.href = autoLink;
+      liveBtn.style.display = 'inline-flex';
+    }
+
+    // Export products.json directly to disk
+    window.downloadProductsJson = function() {
+      const blob = new Blob([JSON.stringify(allProducts, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'products.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      showToast('Downloaded updated products.json!');
+    };
+
+    document.getElementById('topSaveBtn').addEventListener('click', saveProductData);
+    document.getElementById('bottomSaveBtn').addEventListener('click', saveProductData);
+
+    // Keyboard shortcut: Ctrl + S or Cmd + S to save
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        saveProductData();
+      }
+    });
+
+    // Start
+    loadData();
+  </script>
+</body>
+</html>

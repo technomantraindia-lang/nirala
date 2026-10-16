@@ -777,17 +777,26 @@
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
       let product = null;
-      try {
-        const res = await fetch('/api/products', { cache: 'no-store' });
-        if (res.ok) {
-          const list = await res.json();
+      if (window.NiralaStorage) {
+        try {
+          const list = await window.NiralaStorage.getProducts();
           product = list.find(p => p.link === 'sprockets.html' || p.title.toLowerCase().includes('sprocket'));
-        }
-      } catch (e) {}
+        } catch (e) {}
+      }
 
       if (!product) {
         try {
-          const res = await fetch('data/products.json', { cache: 'no-store' });
+          const local = localStorage.getItem('nirala_products');
+          if (local) {
+            const list = JSON.parse(local);
+            product = list.find(p => p.link === 'sprockets.html' || p.title.toLowerCase().includes('sprocket'));
+          }
+        } catch (e) {}
+      }
+
+      if (!product) {
+        try {
+          const res = await fetch('/api/products', { cache: 'no-store' });
           if (res.ok) {
             const list = await res.json();
             product = list.find(p => p.link === 'sprockets.html' || p.title.toLowerCase().includes('sprocket'));
@@ -797,9 +806,9 @@
 
       if (!product) {
         try {
-          const local = localStorage.getItem('nirala_products');
-          if (local) {
-            const list = JSON.parse(local);
+          const res = await fetch('data/products.json', { cache: 'no-store' });
+          if (res.ok) {
+            const list = await res.json();
             product = list.find(p => p.link === 'sprockets.html' || p.title.toLowerCase().includes('sprocket'));
           }
         } catch (e) {}

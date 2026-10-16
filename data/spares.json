@@ -1,7 +1,7 @@
 [
   {
     "id": "BAG & SEALING 01",
-    "title": "Side &amp; Bottom Sealing &amp; Cutting Machines",
+    "title": "Side & Bottom Sealing & Cutting Machines",
     "category": "sealing",
     "badge": "BAG & SEALING 01",
     "image": "images/stage-2-turning.jpg",
@@ -18,7 +18,7 @@
     "category": "sealing",
     "badge": "EXTRUSION 02",
     "image": "images/stage-3-hobbing.jpg",
-    "description": "Heavy duty extruder gearbox spur &amp; helical gears, winder drive sprockets, and nip roller gears.",
+    "description": "Heavy duty extruder gearbox spur & helical gears, winder drive sprockets, and nip roller gears.",
     "tags": [
       "EXTRUDER GEARS",
       "NIP ROLLER"
@@ -30,7 +30,7 @@
     "title": "Blown Film Extrusion Machine",
     "category": "sealing",
     "badge": "EXTRUSION 03",
-    "image": "images/Worm Shaft &amp; Wheel.png",
+    "image": "images/Worm Shaft & Wheel.png",
     "description": "High-torque worm reduction gear sets, drive couplings, and precision winder shaft components.",
     "tags": [
       "WORM GEARS",
@@ -160,8 +160,8 @@
     "title": "Sealing Machines",
     "category": "sealing",
     "badge": "SEALING 13",
-    "image": "images/Rack &amp; Pinion.png",
-    "description": "Linear rack &amp; pinion sealing jaw actuators, pressure roller gears, and heat sealer drive shafts.",
+    "image": "images/Rack & Pinion.png",
+    "description": "Linear rack & pinion sealing jaw actuators, pressure roller gears, and heat sealer drive shafts.",
     "tags": [
       "SEALING JAW",
       "RACK & PINION"
@@ -187,7 +187,7 @@
     "category": "pharma",
     "badge": "PACKAGING 15",
     "image": "images/newwwproductss/Spur Gear -1.jpg.jpeg",
-    "description": "Strap tensioner spur gears, feed wheel assemblies, and cam drive gears for semi &amp; fully automatic strappers.",
+    "description": "Strap tensioner spur gears, feed wheel assemblies, and cam drive gears for semi & fully automatic strappers.",
     "tags": [
       "STRAP TENSIONER",
       "FEED WHEEL"

@@ -283,17 +283,27 @@
     }
 
     .admin-card-media {
-      height: 180px;
-      background: #000;
+      height: 195px;
+      background: radial-gradient(circle at 50% 50%, rgba(32, 40, 52, 0.7) 0%, rgba(11, 14, 18, 0.98) 100%);
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
     }
 
     .admin-card-media img,
     .admin-card-media video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .admin-item-card:hover .admin-card-media img,
+    .admin-item-card:hover .admin-card-media video {
+      transform: scale(1.05);
     }
 
     .admin-card-badge {
@@ -373,7 +383,23 @@
       gap: 8px;
     }
 
-    /* Modal Styles */
+    /* Custom Sleek Dark/Gold Scrollbars */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0d1117;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(216, 179, 93, 0.35);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(216, 179, 93, 0.65);
+    }
+
+    /* Modal Styles - Spacious & Full-Page Workspace */
     .admin-modal-backdrop {
       display: none;
       position: fixed;
@@ -381,104 +407,214 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(8px);
+      background: rgba(4, 6, 8, 0.88);
+      backdrop-filter: blur(10px);
       z-index: 2000;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      transition: padding 0.25s ease;
     }
 
     .admin-modal-backdrop.open {
       display: flex;
     }
 
+    .admin-modal-backdrop.fullscreen-active {
+      padding: 0;
+    }
+
     .admin-modal-window {
-      background: #14181d;
-      border: 1px solid var(--admin-border);
-      border-radius: 12px;
-      width: 100%;
-      max-width: 820px;
-      max-height: 92vh;
+      background: #12161c;
+      border: 1px solid rgba(216, 179, 93, 0.35);
+      border-radius: 14px;
+      width: 96vw;
+      max-width: 1200px;
+      height: 92vh;
+      max-height: 94vh;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(216, 179, 93, 0.08);
       overflow: hidden;
-      animation: modalFadeIn 0.2s ease-out;
+      animation: modalFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.25s ease;
+    }
+
+    /* Full-Page Workspace Mode */
+    .admin-modal-window.fullscreen-mode {
+      width: 100vw;
+      max-width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      border-radius: 0;
+      border: none;
     }
 
     @keyframes modalFadeIn {
-      from { opacity: 0; transform: scale(0.96); }
-      to { opacity: 1; transform: scale(1); }
+      from { opacity: 0; transform: scale(0.97) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     .admin-modal-header {
-      padding: 16px 24px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(0, 0, 0, 0.2);
+      background: linear-gradient(180deg, rgba(25, 30, 38, 0.8) 0%, rgba(18, 22, 28, 0.9) 100%);
+    }
+
+    .modal-header-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .modal-header-badge {
+      font-size: 0.68rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--admin-gold);
+      background: rgba(216, 179, 93, 0.12);
+      border: 1px solid rgba(216, 179, 93, 0.3);
+      padding: 2px 7px;
+      border-radius: 4px;
+      align-self: flex-start;
     }
 
     .admin-modal-header h3 {
       margin: 0;
       font-size: 1.25rem;
+      color: #fff;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-header-tools {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-tool-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: var(--admin-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .modal-tool-btn:hover {
+      background: rgba(216, 179, 93, 0.15);
+      border-color: var(--admin-gold);
       color: var(--admin-gold);
     }
 
     .admin-modal-close {
-      background: transparent;
-      border: none;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: var(--admin-muted);
-      font-size: 1.5rem;
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
       cursor: pointer;
       line-height: 1;
+      transition: all 0.2s;
     }
+
     .admin-modal-close:hover {
+      background: rgba(248, 81, 73, 0.2);
+      border-color: var(--admin-danger);
       color: #fff;
     }
 
-    /* Inner Modal Tabs for Products */
+    /* Inner Modal Tabs for Products - Sleek & No Ugly Windows Scrollbar */
     .modal-subtabs-bar {
       display: flex;
       gap: 8px;
-      background: rgba(0, 0, 0, 0.35);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 8px 24px 0;
+      background: #0d1015;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 24px 0;
       overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .modal-subtabs-bar::-webkit-scrollbar {
+      display: none;
     }
 
     .modal-subtab-btn {
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid transparent;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
       color: var(--admin-muted);
-      padding: 8px 14px;
+      padding: 9px 16px;
       font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
       white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
     }
 
     .modal-subtab-btn:hover {
       color: #fff;
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .modal-subtab-btn.active {
-      color: var(--admin-gold);
-      border-bottom-color: var(--admin-gold);
+      color: #0b0d10;
+      background: var(--admin-gold);
+      border-color: var(--admin-gold);
+      font-weight: 700;
+      box-shadow: 0 -2px 10px rgba(216, 179, 93, 0.25);
     }
 
     .admin-modal-body {
-      padding: 24px;
+      padding: 24px 28px;
       overflow-y: auto;
       flex: 1;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(216, 179, 93, 0.35) #0d1117;
+    }
+
+    .admin-modal-body::-webkit-scrollbar {
+      width: 7px;
+    }
+    .admin-modal-body::-webkit-scrollbar-track {
+      background: #0d1117;
+    }
+    .admin-modal-body::-webkit-scrollbar-thumb {
+      background: rgba(216, 179, 93, 0.35);
+      border-radius: 4px;
     }
 
     .modal-tab-content {
       display: none;
+      animation: tabFadeIn 0.18s ease-out;
+    }
+
+    @keyframes tabFadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .modal-tab-content.active {
@@ -491,78 +627,118 @@
 
     .form-group label {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 600;
       color: var(--admin-text);
       margin-bottom: 6px;
+      letter-spacing: 0.3px;
     }
 
     .form-group input,
     .form-group textarea,
     .form-group select {
       width: 100%;
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #090c10;
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 6px;
-      padding: 9px 12px;
+      padding: 10px 14px;
       color: #fff;
       font-size: 0.9rem;
       outline: none;
       box-sizing: border-box;
       font-family: inherit;
-      transition: border-color 0.2s;
+      transition: all 0.2s;
     }
 
     .form-group input:focus,
     .form-group textarea:focus,
     .form-group select:focus {
       border-color: var(--admin-gold);
+      box-shadow: 0 0 0 3px rgba(216, 179, 93, 0.15);
+      background: #0d1117;
     }
 
     .form-group small {
       display: block;
       color: var(--admin-muted);
       font-size: 0.75rem;
-      margin-top: 4px;
+      margin-top: 5px;
     }
 
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 16px;
     }
 
     /* Key-Value Dynamic Parameters Builder */
     .params-builder-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       margin-bottom: 16px;
+    }
+
+    .params-header-row {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr 36px;
+      gap: 10px;
+      padding: 6px 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--admin-gold);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      margin-bottom: 4px;
     }
 
     .param-row-item {
       display: grid;
-      grid-template-columns: 1fr 1.3fr auto;
+      grid-template-columns: 1fr 1.3fr 36px;
       gap: 10px;
       align-items: center;
-      background: rgba(0, 0, 0, 0.2);
-      padding: 8px 10px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 8px 12px;
       border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: border-color 0.2s;
+    }
+
+    .param-row-item:hover {
+      border-color: rgba(216, 179, 93, 0.3);
+    }
+
+    .param-row-item input {
+      background: #090c10;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 5px;
+      padding: 8px 10px;
+      color: #fff;
+      font-size: 0.85rem;
+      width: 100%;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .param-row-item input:focus {
+      border-color: var(--admin-gold);
     }
 
     .param-remove-btn {
-      background: rgba(248, 81, 73, 0.15);
+      background: rgba(248, 81, 73, 0.12);
       color: var(--admin-danger);
-      border: 1px solid rgba(248, 81, 73, 0.3);
-      border-radius: 4px;
-      width: 32px;
-      height: 32px;
+      border: 1px solid rgba(248, 81, 73, 0.25);
+      border-radius: 5px;
+      width: 34px;
+      height: 34px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.2s;
     }
     .param-remove-btn:hover {
       background: var(--admin-danger);
@@ -573,32 +749,132 @@
     .types-builder-list {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
       margin-bottom: 16px;
     }
 
     .type-card-item {
-      background: rgba(0, 0, 0, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #0f1318;
+      border: 1px solid rgba(216, 179, 93, 0.25);
+      border-left: 4px solid var(--admin-gold);
       border-radius: 8px;
-      padding: 14px;
+      padding: 16px 18px;
       position: relative;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
     }
 
-    .type-card-header-row {
+    .type-card-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .type-card-badge-preview {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .type-pill {
+      font-size: 0.72rem;
+      background: rgba(216, 179, 93, 0.18);
+      color: var(--admin-gold);
+      border: 1px solid rgba(216, 179, 93, 0.35);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .type-delete-action-btn {
+      background: rgba(248, 81, 73, 0.12);
+      border: 1px solid rgba(248, 81, 73, 0.25);
+      color: var(--admin-danger);
+      padding: 5px 12px;
+      border-radius: 5px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+
+    .type-delete-action-btn:hover {
+      background: var(--admin-danger);
+      color: #fff;
+    }
+
+    .type-fields-grid-3 {
       display: grid;
-      grid-template-columns: 100px 140px 1fr auto;
-      gap: 10px;
-      margin-bottom: 10px;
+      grid-template-columns: 130px 180px 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .field-label-mini {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--admin-muted);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .empty-builder-state {
+      background: rgba(0, 0, 0, 0.2);
+      border: 2px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 36px 20px;
+      text-align: center;
+    }
+
+    .empty-builder-state .empty-icon {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .empty-builder-state h4 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+      color: #fff;
+    }
+
+    .empty-builder-state p {
+      margin: 0 0 16px;
+      color: var(--admin-muted);
+      font-size: 0.85rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .admin-modal-footer {
-      padding: 16px 24px;
+      padding: 14px 24px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: center;
+      background: #0d1015;
+    }
+
+    .modal-footer-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--admin-muted);
+    }
+
+    .modal-footer-btns {
+      display: flex;
+      align-items: center;
       gap: 12px;
-      background: rgba(0, 0, 0, 0.2);
     }
 
     /* Toast Notification */
@@ -626,8 +902,354 @@
       opacity: 1;
     }
 
-    .admin-toast.success {
-      border-color: #3fb950;
+    /* =========================================================
+       COMPREHENSIVE RESPONSIVE DESIGN SYSTEM (LAPTOP & MOBILE)
+       ========================================================= */
+
+    /* Global Container Optimization for Admin */
+    body.admin-body .container {
+      width: min(1440px, calc(100% - 48px));
+      max-width: 1440px;
+    }
+
+    /* Large Laptops & Desktops (>= 1280px) */
+    @media (min-width: 1280px) {
+      .admin-items-grid {
+        grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+        gap: 26px;
+      }
+      .admin-modal-window {
+        max-width: 1180px;
+        height: 90vh;
+      }
+    }
+
+    /* Standard Laptops & Tablets (769px to 1279px) */
+    @media (max-width: 1279px) and (min-width: 769px) {
+      .admin-items-grid {
+        grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+        gap: 20px;
+      }
+      .admin-nav-actions a.admin-btn {
+        padding: 7px 12px;
+        font-size: 0.82rem;
+      }
+      .admin-search-wrap {
+        max-width: 380px;
+      }
+    }
+
+    /* Tablet & Small Screens (<= 1024px) */
+    @media (max-width: 1024px) {
+      .admin-header-inner {
+        gap: 12px;
+      }
+      .nav-extra-link {
+        display: none !important; /* Keep primary live website button */
+      }
+    }
+
+    /* Mobile Devices (<= 768px) */
+    @media (max-width: 768px) {
+      body.admin-body {
+        padding-top: 66px;
+      }
+
+      body.admin-body .container {
+        width: calc(100% - 24px) !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      /* Compact Fixed Header */
+      .admin-header {
+        height: 60px;
+      }
+
+      .admin-brand {
+        gap: 8px;
+      }
+
+      .admin-brand img {
+        width: 32px;
+        height: 32px;
+      }
+
+      .admin-brand-title {
+        font-size: 0.92rem;
+      }
+
+      .admin-brand-badge {
+        display: none;
+      }
+
+      .admin-nav-actions {
+        gap: 8px;
+      }
+
+      .status-badge {
+        padding: 3px 8px;
+        font-size: 0.72rem;
+      }
+
+      .admin-nav-actions a.admin-btn {
+        padding: 6px 10px;
+        font-size: 0.78rem;
+      }
+
+      .nav-extra-link {
+        display: none !important;
+      }
+
+      /* Main Workspace Padding */
+      main.container {
+        padding-top: 18px !important;
+        padding-bottom: 40px !important;
+      }
+
+      .admin-title-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+      }
+
+      .admin-title-heading {
+        font-size: 1.35rem !important;
+        line-height: 1.3 !important;
+      }
+
+      .admin-title-sub {
+        font-size: 0.84rem !important;
+        line-height: 1.5 !important;
+      }
+
+      #downloadBackupBtn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 14px;
+        font-size: 0.85rem;
+      }
+
+      /* Swipeable Tabs Bar */
+      .admin-tabs-bar {
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        display: flex;
+        gap: 8px;
+        margin: 16px 0;
+        padding-bottom: 6px;
+      }
+
+      .admin-tabs-bar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .admin-tab {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+      }
+
+      .admin-tab-count {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+      }
+
+      /* Controls Row: Stacked on Mobile */
+      .admin-controls-row {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .admin-search-wrap {
+        min-width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      .admin-search-input {
+        padding: 10px 14px 10px 36px;
+        font-size: 0.88rem;
+      }
+
+      .admin-actions-group {
+        width: 100%;
+      }
+
+      #addNewItemBtn {
+        width: 100%;
+        justify-content: center;
+        padding: 11px 16px;
+        font-size: 0.92rem;
+      }
+
+      /* Single-Column Card Grid */
+      .admin-items-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+      }
+
+      .admin-item-card {
+        border-radius: 12px;
+      }
+
+      .admin-card-media {
+        height: 175px;
+      }
+
+      .admin-card-content {
+        padding: 14px;
+      }
+
+      .admin-card-title {
+        font-size: 1.05rem;
+      }
+
+      .admin-card-desc {
+        font-size: 0.82rem;
+      }
+
+      .admin-specs-summary-strip {
+        font-size: 0.74rem;
+        padding: 6px 8px;
+      }
+
+      .admin-card-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+
+      .admin-card-footer-btns {
+        display: flex;
+        width: 100%;
+        gap: 8px;
+      }
+
+      .admin-card-footer-btns .admin-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 10px 12px;
+        font-size: 0.88rem;
+      }
+
+      .admin-card-footer-btns .admin-btn-danger {
+        flex: 0 0 46px;
+        padding: 10px 0;
+      }
+
+      /* Fullscreen Mobile Modal Workspace */
+      .admin-modal-backdrop {
+        padding: 0 !important;
+      }
+
+      .admin-modal-window {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        border-radius: 0 !important;
+        border: none !important;
+      }
+
+      .admin-modal-header {
+        padding: 12px 16px;
+      }
+
+      .admin-modal-header h3 {
+        font-size: 1.05rem;
+      }
+
+      #modalFullscreenBtn {
+        display: none !important;
+      }
+
+      .admin-modal-close {
+        width: 38px;
+        height: 38px;
+        font-size: 1.5rem;
+      }
+
+      .modal-subtabs-bar {
+        padding: 8px 14px 0;
+        gap: 6px;
+      }
+
+      .modal-subtab-btn {
+        padding: 8px 12px;
+        font-size: 0.78rem;
+      }
+
+      .admin-modal-body {
+        padding: 16px 14px 24px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+
+      .param-row-item {
+        grid-template-columns: 1fr 36px;
+        gap: 8px;
+      }
+
+      .param-row-item input:nth-child(2) {
+        grid-column: 1 / 2;
+      }
+
+      .param-row-item .param-remove-btn {
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+        height: 100%;
+      }
+
+      .params-header-row {
+        display: none;
+      }
+
+      .type-fields-grid-3 {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+
+      .admin-modal-footer {
+        padding: 12px 16px;
+        flex-direction: column-reverse;
+        gap: 10px;
+      }
+
+      .modal-footer-btns {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+      }
+
+      .modal-footer-btns .admin-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 11px 14px;
+      }
+
+      .modal-footer-status {
+        width: 100%;
+        justify-content: center;
+        font-size: 0.75rem;
+      }
+
+      /* Mobile Centered Toast */
+      .admin-toast {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        justify-content: center;
+        font-size: 0.85rem;
+        padding: 10px 16px;
+      }
     }
   </style>
 </head>
@@ -649,16 +1271,16 @@
           <span class="status-dot"></span>
           <span id="backendStatusText">Checking Backend...</span>
         </div>
-        <a href="sprockets.html" target="_blank" class="admin-btn admin-btn-outline" title="Open live Sprockets product page">
-          <span>Sprockets Page ↗</span>
+        <a href="index.html" target="_blank" class="admin-btn admin-btn-outline" title="Open live public website">
+          <span>🌐 Live Site ↗</span>
         </a>
-        <a href="products.html" target="_blank" class="admin-btn admin-btn-outline" title="Open live Products page">
+        <a href="products.html" target="_blank" class="admin-btn admin-btn-outline nav-extra-link" title="Open live Products page">
           <span>Products ↗</span>
         </a>
-        <a href="spares-machine-manufacturers.html" target="_blank" class="admin-btn admin-btn-outline" title="Open live Spares page">
+        <a href="spares-machine-manufacturers.html" target="_blank" class="admin-btn admin-btn-outline nav-extra-link" title="Open live Spares page">
           <span>Spares ↗</span>
         </a>
-        <a href="gallery.html" target="_blank" class="admin-btn admin-btn-outline" title="Open live Gallery page">
+        <a href="gallery.html" target="_blank" class="admin-btn admin-btn-outline nav-extra-link" title="Open live Gallery page">
           <span>Gallery ↗</span>
         </a>
       </div>
@@ -668,15 +1290,15 @@
   <!-- Main Workspace -->
   <main class="container" style="padding-top: 30px; padding-bottom: 60px;">
     
-    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 10px;">
+    <div class="admin-title-row" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: 12px;">
       <div>
-        <h1 style="font-size: 1.8rem; margin: 0 0 6px; color: #fff;">Catalog &amp; Engineering Specifications Manager</h1>
-        <p style="margin: 0; color: var(--admin-muted); font-size: 0.95rem;">
+        <h1 class="admin-title-heading" style="font-size: 1.8rem; margin: 0 0 6px; color: #fff;">Catalog &amp; Engineering Specifications Manager</h1>
+        <p class="admin-title-sub" style="margin: 0; color: var(--admin-muted); font-size: 0.95rem;">
           Directly manage product technical parameters, DIN/AGMA capability matrices, manufactured sub-types, machine spares, and gallery.
         </p>
       </div>
       
-      <div style="display: flex; gap: 10px;">
+      <div class="admin-title-actions" style="display: flex; gap: 10px;">
         <button type="button" id="downloadBackupBtn" class="admin-btn admin-btn-outline" title="Download current JSON as local backup">
           <span>📥 Download Backup JSON</span>
         </button>
@@ -722,18 +1344,26 @@
 
   <!-- Comprehensive Add / Edit Modal -->
   <div class="admin-modal-backdrop" id="itemModal">
-    <div class="admin-modal-window">
+    <div class="admin-modal-window" id="itemModalWindow">
       <div class="admin-modal-header">
-        <h3 id="modalTitle">Edit Item</h3>
-        <button type="button" class="admin-modal-close" id="modalCloseBtn">&times;</button>
+        <div class="modal-header-info">
+          <span class="modal-header-badge" id="modalBadge">CATALOG SPECIFICATIONS</span>
+          <h3 id="modalTitle">Edit Item</h3>
+        </div>
+        <div class="modal-header-tools">
+          <button type="button" class="modal-tool-btn" id="modalFullscreenBtn" title="Toggle Full Page Workspace Mode">
+            <span id="fullscreenBtnIcon">⛶</span> <span id="fullscreenBtnText">Full Page</span>
+          </button>
+          <button type="button" class="admin-modal-close" id="modalCloseBtn" title="Close (Esc)">&times;</button>
+        </div>
       </div>
 
       <!-- Inner Subtabs for Products -->
       <div class="modal-subtabs-bar" id="productSubtabsBar">
-        <button type="button" class="modal-subtab-btn active" data-subtab="basic">1. Basic Info</button>
-        <button type="button" class="modal-subtab-btn" data-subtab="scope">2. Specification &amp; Technical Scope</button>
-        <button type="button" class="modal-subtab-btn" data-subtab="matrix">3. Capability Matrix (DIN / AGMA)</button>
-        <button type="button" class="modal-subtab-btn" data-subtab="types">4. Manufactured Types / Sub-Families</button>
+        <button type="button" class="modal-subtab-btn active" data-subtab="basic"><span>📋</span> 1. Basic Info</button>
+        <button type="button" class="modal-subtab-btn" data-subtab="scope"><span>⚙️</span> 2. Specification &amp; Technical Scope</button>
+        <button type="button" class="modal-subtab-btn" data-subtab="matrix"><span>📊</span> 3. Capability Matrix (DIN / AGMA)</button>
+        <button type="button" class="modal-subtab-btn" data-subtab="types"><span>🏭</span> 4. Manufactured Types / Sub-Families</button>
       </div>
 
       <form id="itemForm" class="admin-modal-body">
@@ -769,9 +1399,20 @@
           </div>
 
           <div class="form-group">
-            <label for="itemImage">Image / Video File Path or URL *</label>
-            <input type="text" id="itemImage" required placeholder="e.g. images/final product images/some other iamges/sprockets.jpeg" />
-            <small>Use existing files inside <code>images/</code> or any web image URL.</small>
+            <label for="itemImage">Image / Video File Path or Photo Upload *</label>
+            <div style="display: flex; gap: 10px; margin-bottom: 8px;">
+              <input type="text" id="itemImage" required placeholder="e.g. images/stage-1-inspection.jpg or select file" style="flex: 1;" />
+              <label class="admin-btn admin-btn-outline" style="cursor: pointer; margin: 0; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; padding: 0 16px;">
+                <span>📁 Select Image File</span>
+                <input type="file" id="itemImageFileInput" accept="image/*" style="display: none;" />
+              </label>
+            </div>
+            <div id="itemImagePreviewBox" style="display: none; align-items: center; gap: 12px; padding: 10px 14px; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 8px;">
+              <img id="itemImagePreviewThumb" src="" alt="Preview" style="width: 50px; height: 50px; object-fit: contain; border-radius: 6px; background: #000;" />
+              <div style="flex: 1; font-size: 12px; color: var(--admin-muted);" id="itemImagePreviewInfo">Image loaded</div>
+              <button type="button" class="admin-btn admin-btn-danger" style="padding: 4px 8px; font-size: 11px;" id="itemImageClearBtn">Clear</button>
+            </div>
+            <small>Select any photo from your computer (auto-compressed) or use an existing file path.</small>
           </div>
 
           <div class="form-group">
@@ -810,6 +1451,11 @@
           <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">
             Technical Parameters (Chain Pitch, Diameter, Strand Options, Profiles, Hardening, Standards):
           </label>
+          <div class="params-header-row">
+            <span>Parameter Name</span>
+            <span>Engineering Specification / Value</span>
+            <span></span>
+          </div>
           <div class="params-builder-list" id="paramsBuilderList">
             <!-- Dynamic Key-Value Parameter Rows injected here -->
           </div>
@@ -846,12 +1492,12 @@
              SUBTAB 4: MANUFACTURED TYPES / SUB-FAMILIES
              ============================================== -->
         <div class="modal-tab-content" id="subtab-types">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; background: rgba(216, 179, 93, 0.06); border: 1px solid rgba(216, 179, 93, 0.2); border-radius: 8px; padding: 12px 18px;">
             <div>
-              <strong style="font-size: 0.95rem; color: #fff;">Manufactured Types Catalog (Sub-Variants)</strong>
-              <small style="display: block; color: var(--admin-muted);">Configure Type #01, #02, etc. that appear on the product detail page.</small>
+              <strong style="font-size: 0.98rem; color: #fff; display: block; margin-bottom: 2px;">Manufactured Types Catalog (Sub-Variants)</strong>
+              <small style="color: var(--admin-muted);">Configure Type #01, #02, etc. with engineering descriptions and features that appear on the product detail page.</small>
             </div>
-            <button type="button" id="addTypeBtn" class="admin-btn admin-btn-outline">
+            <button type="button" id="addTypeBtn" class="admin-btn admin-btn-primary" style="padding: 8px 16px;">
               <span>+ Add Sub-Type</span>
             </button>
           </div>
@@ -862,8 +1508,14 @@
         </div>
 
         <div class="admin-modal-footer">
-          <button type="button" class="admin-btn admin-btn-outline" id="modalCancelBtn">Cancel</button>
-          <button type="submit" class="admin-btn admin-btn-primary">Save Changes to Backend</button>
+          <div class="modal-footer-status">
+            <span>💾</span>
+            <span>All catalog changes sync live to backend storage</span>
+          </div>
+          <div class="modal-footer-btns">
+            <button type="button" class="admin-btn admin-btn-outline" id="modalCancelBtn">Cancel</button>
+            <button type="submit" class="admin-btn admin-btn-primary">Save Changes to Backend</button>
+          </div>
         </div>
       </form>
     </div>
@@ -875,6 +1527,7 @@
     <span id="toastMessage">Changes saved successfully</span>
   </div>
 
+  <script src="catalog-storage.js"></script>
   <script>
     // State Store
     let currentTab = 'products'; // 'products' | 'spares' | 'gallery'
@@ -921,26 +1574,47 @@
     async function loadAllData() {
       await checkBackendStatus();
 
-      // 1. Products
+      // 1. Products via NiralaStorage (IndexedDB + localStorage + JSON)
       try {
-        const res = await fetch(isServerMode ? '/api/products' : 'data/products.json', { cache: 'no-store' });
-        productsData = await res.json();
+        if (window.NiralaStorage) {
+          productsData = await window.NiralaStorage.getProducts();
+        } else {
+          productsData = JSON.parse(localStorage.getItem('nirala_products') || '[]');
+          if (productsData.length === 0) {
+            const res = await fetch('data/products.json', { cache: 'no-store' });
+            productsData = await res.json();
+          }
+        }
       } catch (e) {
         productsData = JSON.parse(localStorage.getItem('nirala_products') || '[]');
       }
 
-      // 2. Spares
+      // 2. Spares via NiralaStorage (IndexedDB + localStorage + JSON)
       try {
-        const res = await fetch(isServerMode ? '/api/spares' : 'data/spares.json', { cache: 'no-store' });
-        sparesData = await res.json();
+        if (window.NiralaStorage) {
+          sparesData = await window.NiralaStorage.getSpares();
+        } else {
+          sparesData = JSON.parse(localStorage.getItem('nirala_spares') || '[]');
+          if (sparesData.length === 0) {
+            const res = await fetch('data/spares.json', { cache: 'no-store' });
+            sparesData = await res.json();
+          }
+        }
       } catch (e) {
         sparesData = JSON.parse(localStorage.getItem('nirala_spares') || '[]');
       }
 
-      // 3. Gallery
+      // 3. Gallery via NiralaStorage (IndexedDB + localStorage + JSON)
       try {
-        const res = await fetch(isServerMode ? '/api/gallery' : 'data/gallery.json', { cache: 'no-store' });
-        galleryData = await res.json();
+        if (window.NiralaStorage) {
+          galleryData = await window.NiralaStorage.getGallery();
+        } else {
+          galleryData = JSON.parse(localStorage.getItem('nirala_gallery') || 'null');
+          if (!galleryData || !Array.isArray(galleryData.photos)) {
+            const res = await fetch(isServerMode ? '/api/gallery' : 'data/gallery.json', { cache: 'no-store' });
+            galleryData = await res.json();
+          }
+        }
       } catch (e) {
         galleryData = JSON.parse(localStorage.getItem('nirala_gallery') || '{"videos":[],"photos":[]}');
       }
@@ -958,35 +1632,33 @@
     // Persist changes to backend JSON and localStorage
     async function saveCurrentDataset() {
       if (currentTab === 'products') {
-        localStorage.setItem('nirala_products', JSON.stringify(productsData));
-        if (isServerMode) {
-          await fetch('/api/products', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(productsData)
-          });
+        if (window.NiralaStorage) {
+          await window.NiralaStorage.saveProducts(productsData, true);
+        } else {
+          localStorage.setItem('nirala_products', JSON.stringify(productsData));
         }
-        showToast('Products & Engineering Specs saved to JSON!');
+        showToast('Products & Engineering Specs saved!');
       } else if (currentTab === 'spares') {
-        localStorage.setItem('nirala_spares', JSON.stringify(sparesData));
-        if (isServerMode) {
-          await fetch('/api/spares', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(sparesData)
-          });
+        if (window.NiralaStorage) {
+          await window.NiralaStorage.saveSpares(sparesData, true);
+        } else {
+          localStorage.setItem('nirala_spares', JSON.stringify(sparesData));
         }
-        showToast('Machine Spares saved to JSON!');
+        showToast('Machine Spares saved!');
       } else if (currentTab === 'gallery') {
-        localStorage.setItem('nirala_gallery', JSON.stringify(galleryData));
-        if (isServerMode) {
-          await fetch('/api/gallery', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(galleryData)
-          });
+        if (window.NiralaStorage) {
+          await window.NiralaStorage.saveGallery(galleryData, true);
+        } else {
+          localStorage.setItem('nirala_gallery', JSON.stringify(galleryData));
+          if (isServerMode) {
+            await fetch('/api/gallery', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(galleryData)
+            });
+          }
         }
-        showToast('Gallery media saved to JSON!');
+        showToast('Gallery media saved!');
       }
       updateCountBadges();
       renderItems();
@@ -1037,7 +1709,7 @@
               <div class="admin-card-footer">
                 <a href="${item.link || 'sprockets.html'}" target="_blank" style="color: var(--admin-gold); font-size: 0.8rem; text-decoration: none;">View Page ↗</a>
                 <div class="admin-card-footer-btns">
-                  <button type="button" class="admin-btn admin-btn-primary" onclick="editProduct(${index})">✏️ Edit Specs</button>
+                  <a href="edit-product.html?index=${index}" class="admin-btn admin-btn-primary" style="text-decoration: none;">✏️ Edit Product</a>
                   <button type="button" class="admin-btn admin-btn-danger" onclick="deleteProduct(${index})">🗑️</button>
                 </div>
               </div>
@@ -1073,7 +1745,7 @@
               <div class="admin-card-footer">
                 <small style="color: var(--admin-muted);">Category: <code>${item.category}</code></small>
                 <div class="admin-card-footer-btns">
-                  <button type="button" class="admin-btn admin-btn-outline" onclick="editSpare(${index})">✏️ Edit</button>
+                  <a href="edit-spare.html?index=${index}" class="admin-btn admin-btn-primary" style="text-decoration: none;">✏️ Edit Spare</a>
                   <button type="button" class="admin-btn admin-btn-danger" onclick="deleteSpare(${index})">🗑️</button>
                 </div>
               </div>
@@ -1150,10 +1822,40 @@
 
     // Modal & Subtabs Handling
     const modal = document.getElementById('itemModal');
+    const modalWindow = document.getElementById('itemModalWindow');
     const modalCloseBtn = document.getElementById('modalCloseBtn');
     const modalCancelBtn = document.getElementById('modalCancelBtn');
+    const modalFullscreenBtn = document.getElementById('modalFullscreenBtn');
+    const fullscreenBtnIcon = document.getElementById('fullscreenBtnIcon');
+    const fullscreenBtnText = document.getElementById('fullscreenBtnText');
     const itemForm = document.getElementById('itemForm');
     const productSubtabsBar = document.getElementById('productSubtabsBar');
+    let isFullscreenMode = false;
+
+    function toggleFullscreenModal() {
+      isFullscreenMode = !isFullscreenMode;
+      modalWindow.classList.toggle('fullscreen-mode', isFullscreenMode);
+      modal.classList.toggle('fullscreen-active', isFullscreenMode);
+      if (isFullscreenMode) {
+        fullscreenBtnIcon.textContent = '🗗';
+        fullscreenBtnText.textContent = 'Windowed View';
+        modalFullscreenBtn.setAttribute('title', 'Switch to Windowed Popup');
+      } else {
+        fullscreenBtnIcon.textContent = '⛶';
+        fullscreenBtnText.textContent = 'Full Page';
+        modalFullscreenBtn.setAttribute('title', 'Switch to Full Page Workspace');
+      }
+    }
+    if (modalFullscreenBtn) {
+      modalFullscreenBtn.addEventListener('click', toggleFullscreenModal);
+    }
+
+    // Keyboard navigation: Escape key closes modal
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        closeModal();
+      }
+    });
 
     function switchModalSubtab(subtabId) {
       document.querySelectorAll('.modal-subtab-btn').forEach(btn => {
@@ -1162,6 +1864,9 @@
       document.querySelectorAll('.modal-tab-content').forEach(content => {
         content.classList.toggle('active', content.id === `subtab-${subtabId}`);
       });
+      if (subtabId === 'types') {
+        checkTypesEmptyState();
+      }
     }
 
     document.querySelectorAll('.modal-subtab-btn').forEach(btn => {
@@ -1172,17 +1877,80 @@
 
     function openModal(title, isProduct = false) {
       document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalBadge').textContent = isProduct ? 'PRODUCT SPECIFICATIONS & SUB-FAMILIES' : 'CATALOG ITEM';
       productSubtabsBar.style.display = isProduct ? 'flex' : 'none';
       switchModalSubtab('basic');
       modal.classList.add('open');
+      if (isProduct) {
+        checkTypesEmptyState();
+      }
     }
 
     function closeModal() {
       modal.classList.remove('open');
+      if (isFullscreenMode) {
+        toggleFullscreenModal();
+      }
       itemForm.reset();
       document.getElementById('editIndex').value = '-1';
       document.getElementById('paramsBuilderList').innerHTML = '';
       document.getElementById('typesBuilderList').innerHTML = '';
+      const fInput = document.getElementById('itemImageFileInput');
+      if (fInput) fInput.value = '';
+      updateModalImagePreview('');
+    }
+
+    function updateModalImagePreview(src) {
+      const box = document.getElementById('itemImagePreviewBox');
+      const thumb = document.getElementById('itemImagePreviewThumb');
+      const info = document.getElementById('itemImagePreviewInfo');
+      if (!box || !thumb || !info) return;
+      if (src && (src.startsWith('data:image') || src.startsWith('images/') || src.startsWith('http'))) {
+        thumb.src = src;
+        info.textContent = src.startsWith('data:image') ? 'Uploaded & Compressed Image Ready' : src;
+        box.style.display = 'flex';
+      } else {
+        box.style.display = 'none';
+      }
+    }
+
+    const itemImageInput = document.getElementById('itemImage');
+    const itemImageFileInput = document.getElementById('itemImageFileInput');
+    const itemImageClearBtn = document.getElementById('itemImageClearBtn');
+
+    if (itemImageInput) {
+      itemImageInput.addEventListener('input', () => {
+        updateModalImagePreview(itemImageInput.value.trim());
+      });
+    }
+
+    if (itemImageFileInput) {
+      itemImageFileInput.addEventListener('change', async (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        showToast('Compressing image...');
+        let compressed = '';
+        if (window.NiralaStorage && typeof window.NiralaStorage.compressImage === 'function') {
+          compressed = await window.NiralaStorage.compressImage(file);
+        } else {
+          compressed = await new Promise(res => {
+            const reader = new FileReader();
+            reader.onload = ev => res(ev.target.result);
+            reader.readAsDataURL(file);
+          });
+        }
+        itemImageInput.value = compressed;
+        updateModalImagePreview(compressed);
+        showToast('Photo uploaded & compressed successfully!');
+      });
+    }
+
+    if (itemImageClearBtn) {
+      itemImageClearBtn.addEventListener('click', () => {
+        itemImageInput.value = '';
+        if (itemImageFileInput) itemImageFileInput.value = '';
+        updateModalImagePreview('');
+      });
     }
 
     modalCloseBtn.addEventListener('click', closeModal);
@@ -1197,86 +1965,95 @@
       const row = document.createElement('div');
       row.className = 'param-row-item';
       row.innerHTML = `
-        <input type="text" class="param-key-input" placeholder="PARAMETER NAME (e.g. MAXIMUM DIAMETER)" value="${key}" required />
-        <input type="text" class="param-val-input" placeholder="SPECIFICATION VALUE (e.g. DIA MAX UPTO 1000MM)" value="${val}" required />
+        <input type="text" class="param-key-input" placeholder="PARAMETER (e.g. MAXIMUM DIAMETER)" value="${key}" required />
+        <input type="text" class="param-val-input" placeholder="SPECIFICATION (e.g. DIA MAX UPTO 1000MM)" value="${val}" required />
         <button type="button" class="param-remove-btn" title="Remove Parameter" onclick="this.closest('.param-row-item').remove()">&times;</button>
       `;
       container.appendChild(row);
     }
     document.getElementById('addParamBtn').addEventListener('click', () => addParamRow());
 
+    // Check Manufactured Types Empty State
+    function checkTypesEmptyState() {
+      const container = document.getElementById('typesBuilderList');
+      const cards = container.querySelectorAll('.type-card-item');
+      let emptyMsg = container.querySelector('.empty-builder-state');
+      if (cards.length === 0) {
+        if (!emptyMsg) {
+          emptyMsg = document.createElement('div');
+          emptyMsg.className = 'empty-builder-state';
+          emptyMsg.innerHTML = `
+            <div class="empty-icon">🏭</div>
+            <h4>No Manufactured Sub-Types Added Yet</h4>
+            <p>Configure sub-variants (like Type A Plate, Type B Hub, Type C Double Hub) that appear on the product specification page.</p>
+            <button type="button" class="admin-btn admin-btn-primary" onclick="addTypeCard()">+ Add First Sub-Type</button>
+          `;
+          container.appendChild(emptyMsg);
+        }
+      } else if (emptyMsg) {
+        emptyMsg.remove();
+      }
+    }
+
     // Dynamic Sub-Type Card Injection
     function addTypeCard(t = {}) {
       const container = document.getElementById('typesBuilderList');
+      const emptyMsg = container.querySelector('.empty-builder-state');
+      if (emptyMsg) emptyMsg.remove();
+
       const card = document.createElement('div');
       card.className = 'type-card-item';
+      const existingCards = container.querySelectorAll('.type-card-item').length;
+      const defaultNum = t.num || `TYPE #${String(existingCards + 1).padStart(2, '0')}`;
+      const defaultBadge = t.badge || '';
+      const defaultTitle = t.title || '';
+
       card.innerHTML = `
-        <div class="type-card-header-row">
-          <input type="text" class="type-num-input" placeholder="TYPE #01" value="${t.num || ''}" />
-          <input type="text" class="type-badge-input" placeholder="MINI BADGE" value="${t.badge || ''}" />
-          <input type="text" class="type-title-input" placeholder="SUB-TYPE TITLE (e.g. TYPE A SPROCKET)" value="${t.title || ''}" required />
-          <button type="button" class="param-remove-btn" title="Remove Sub-Type" onclick="this.closest('.type-card-item').remove()">&times;</button>
+        <div class="type-card-top-bar">
+          <div class="type-card-badge-preview">
+            <span class="type-pill">${defaultNum}</span>
+            <strong style="color: #fff; font-size: 0.95rem;">${defaultTitle || 'New Manufactured Sub-Type'}</strong>
+          </div>
+          <button type="button" class="type-delete-action-btn" title="Remove Sub-Type" onclick="this.closest('.type-card-item').remove(); checkTypesEmptyState();">
+            <span>&times; Remove Sub-Type</span>
+          </button>
         </div>
-        <div style="margin-bottom: 8px;">
-          <textarea class="type-desc-input" rows="2" placeholder="Sub-type engineering description...">${t.desc || ''}</textarea>
+        <div class="type-fields-grid-3">
+          <div>
+            <label class="field-label-mini">Variant Code</label>
+            <input type="text" class="type-num-input" placeholder="e.g. TYPE #01" value="${defaultNum}" oninput="this.closest('.type-card-item').querySelector('.type-pill').textContent = this.value || 'TYPE'" />
+          </div>
+          <div>
+            <label class="field-label-mini">Mini Tag / Badge</label>
+            <input type="text" class="type-badge-input" placeholder="e.g. SIMPLEX / PLATE" value="${defaultBadge}" />
+          </div>
+          <div>
+            <label class="field-label-mini">Sub-Type Title *</label>
+            <input type="text" class="type-title-input" placeholder="e.g. TYPE A SPROCKET (PLATE WHEEL)" value="${defaultTitle}" required oninput="this.closest('.type-card-item').querySelector('strong').textContent = this.value || 'New Manufactured Sub-Type'" />
+          </div>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <label class="field-label-mini">Engineering Description & Scope</label>
+          <textarea class="type-desc-input" rows="2" placeholder="Sub-type engineering description, tooth hardening notes, and construction standard...">${t.desc || ''}</textarea>
         </div>
         <div class="form-row">
-          <input type="text" class="type-tags-input" placeholder="Feature Tags: Plain Plate, C45 / EN8, Hardened Teeth Opt." value="${(t.tags || []).join(', ')}" />
-          <input type="text" class="type-link-input" placeholder="Inquiry Link (e.g. contact.html?type=Type%20A%20Sprocket#quote)" value="${t.link || ''}" />
+          <div>
+            <label class="field-label-mini">Feature Tags (comma-separated)</label>
+            <input type="text" class="type-tags-input" placeholder="Plain Plate, C45 / EN8, Hardened Teeth Opt." value="${(t.tags || []).join(', ')}" />
+          </div>
+          <div>
+            <label class="field-label-mini">Action / Inquiry Link</label>
+            <input type="text" class="type-link-input" placeholder="contact.html?type=Type%20A#quote" value="${t.link || ''}" />
+          </div>
         </div>
       `;
       container.appendChild(card);
     }
     document.getElementById('addTypeBtn').addEventListener('click', () => addTypeCard());
 
-    // Edit Product Handler
+    // Edit Product Handler - Opens Dedicated Page
     window.editProduct = function(index) {
-      const p = productsData[index];
-      if (!p) return;
-      document.getElementById('editIndex').value = index;
-      document.getElementById('editType').value = 'products';
-      
-      // Basic info
-      document.getElementById('itemTitle').value = p.title || '';
-      document.getElementById('itemCategory').value = p.category || '';
-      document.getElementById('itemBadge').value = p.id || '';
-      document.getElementById('itemImage').value = p.image || '';
-      document.getElementById('itemDesc').value = p.description || '';
-      document.getElementById('itemTags').value = (p.tags || []).join(', ');
-      document.getElementById('itemLink').value = p.link || '';
-      document.getElementById('tagsGroup').style.display = 'block';
-
-      // Scope & Parameters
-      document.getElementById('scopeBadge').value = p.scopeBadge || `CUSTOM ${p.title.toUpperCase()}`;
-      document.getElementById('scopeDesc').value = p.scopeDescription || '';
-      const paramsList = document.getElementById('paramsBuilderList');
-      paramsList.innerHTML = '';
-      (p.parameters || []).forEach(param => addParamRow(param.key, param.val));
-      if ((p.parameters || []).length === 0) {
-        addParamRow('CHAIN PITCH RANGE', '¼″ to 1-½″ Pitch & 6mm Pitch');
-        addParamRow('MAXIMUM DIAMETER', 'DIA MAX UPTO 1000MM');
-        addParamRow('STRAND OPTIONS', 'DEPENDS ON REQUIREMENT');
-        addParamRow('TOOTH PROFILES', 'DEPENDS ON REQUIREMENT');
-        addParamRow('TOOTH HARDENING', 'DEPENDS ON REQUIREMENT');
-        addParamRow('MATERIAL OPTIONS', 'DEPENDS ON REQUIREMENT');
-        addParamRow('HUB DESIGNS', 'DEPENDS ON REQUIREMENT');
-        addParamRow('BORE SPECIFICATIONS', 'DEPENDS ON REQUIREMENT');
-        addParamRow('APPLICABLE STANDARDS', 'DEPENDS ON REQUIREMENT');
-      }
-
-      // Matrix
-      const matrix = p.matrix || {};
-      document.getElementById('matrixDimensions').value = matrix.dimensions || 'DIA MAX UPTO 1000MM';
-      document.getElementById('matrixPitch').value = matrix.pitchSize || '¼’’ TO 1-1/2’’ PITCH & 6mm PITCH';
-      document.getElementById('matrixMaterialsHeader').value = matrix.materialsHeader || 'Various different materials with or without hardened teeth:';
-      document.getElementById('matrixMaterialsList').value = (matrix.materials || []).join('\n');
-
-      // Manufactured Types
-      const typesList = document.getElementById('typesBuilderList');
-      typesList.innerHTML = '';
-      (p.manufacturedTypes || []).forEach(typeObj => addTypeCard(typeObj));
-
-      openModal(`Edit ${p.title} (Specifications & Types)`, true);
+      window.location.href = `edit-product.html?index=${index}`;
     };
 
     window.deleteProduct = function(index) {
@@ -1286,21 +2063,9 @@
       }
     };
 
-    // Edit Spare Handler
+    // Edit Spare Handler - Opens Dedicated Page
     window.editSpare = function(index) {
-      const s = sparesData[index];
-      if (!s) return;
-      document.getElementById('editIndex').value = index;
-      document.getElementById('editType').value = 'spares';
-      document.getElementById('itemTitle').value = s.title;
-      document.getElementById('itemCategory').value = s.category;
-      document.getElementById('itemBadge').value = s.badge || s.id || '';
-      document.getElementById('itemImage').value = s.image || '';
-      document.getElementById('itemDesc').value = s.description || '';
-      document.getElementById('itemTags').value = (s.tags || []).join(', ');
-      document.getElementById('itemLink').value = s.link || '';
-      document.getElementById('tagsGroup').style.display = 'block';
-      openModal(`Edit Spare: ${s.title}`, false);
+      window.location.href = `edit-spare.html?index=${index}`;
     };
 
     window.deleteSpare = function(index) {
@@ -1325,6 +2090,7 @@
       document.getElementById('itemDesc').value = item.desc || '';
       document.getElementById('tagsGroup').style.display = 'none';
       openModal(`Edit Gallery ${isVideo ? 'Video' : 'Photo'}: ${item.title}`, false);
+      updateModalImagePreview(isVideo ? '' : item.img);
     };
 
     window.deleteGalleryItem = function(type, index) {
@@ -1343,34 +2109,11 @@
       document.getElementById('editType').value = currentTab;
       
       if (currentTab === 'products') {
-        document.getElementById('itemBadge').value = '#' + String(productsData.length + 1).padStart(2, '0');
-        document.getElementById('itemCategory').value = 'transmission';
-        document.getElementById('itemLink').value = 'sprockets.html';
-        document.getElementById('scopeBadge').value = 'CUSTOM SPECIFICATIONS';
-        document.getElementById('scopeDesc').value = 'Client customizable technical parameters. Submit your pitch size, tooth count, shaft bore, or custom drawing for a prompt, competitive quotation.';
-        
-        document.getElementById('paramsBuilderList').innerHTML = '';
-        addParamRow('CHAIN PITCH RANGE', '¼″ to 1-½″ Pitch & 6mm Pitch');
-        addParamRow('MAXIMUM DIAMETER', 'DIA MAX UPTO 1000MM');
-        addParamRow('STRAND OPTIONS', 'DEPENDS ON REQUIREMENT');
-        addParamRow('TOOTH PROFILES', 'DEPENDS ON REQUIREMENT');
-        addParamRow('TOOTH HARDENING', 'DEPENDS ON REQUIREMENT');
-        addParamRow('MATERIAL OPTIONS', 'DEPENDS ON REQUIREMENT');
-        addParamRow('HUB DESIGNS', 'DEPENDS ON REQUIREMENT');
-        addParamRow('BORE SPECIFICATIONS', 'DEPENDS ON REQUIREMENT');
-        addParamRow('APPLICABLE STANDARDS', 'DEPENDS ON REQUIREMENT');
-
-        document.getElementById('matrixDimensions').value = 'DIA MAX UPTO 1000MM';
-        document.getElementById('matrixPitch').value = '¼’’ TO 1-1/2’’ PITCH & 6mm PITCH';
-        document.getElementById('matrixMaterialsHeader').value = 'Various different materials with or without hardened teeth:';
-        document.getElementById('matrixMaterialsList').value = 'Carbon Steel\nCarburized Steel\nNitrided Steel\nCast Iron\nDuctile Iron like S.G Iron\nCarbon Manganese Steel\nManganese Molybdenum\nChromium Molybdenum\nGraded Cast Iron\nNon-Ferrous\nNon-Metal\nCase / Through / Surface Hardened Steel';
-
-        openModal('Add New Product Family & Specs', true);
+        window.location.href = 'edit-product.html?new=true';
+        return;
       } else if (currentTab === 'spares') {
-        document.getElementById('itemBadge').value = 'SPARE ' + String(sparesData.length + 1).padStart(2, '0');
-        document.getElementById('itemCategory').value = 'sealing';
-        document.getElementById('itemLink').value = 'contact.html#quote';
-        openModal('Add New Machine Spare', false);
+        window.location.href = 'edit-spare.html?new=true';
+        return;
       } else if (currentTab === 'gallery') {
         document.getElementById('itemBadge').value = 'WORKSHOP LIVE';
         document.getElementById('itemCategory').value = 'machining';

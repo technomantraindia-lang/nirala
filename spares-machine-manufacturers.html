@@ -7,6 +7,32 @@
   <title>Machine Spares | Replacement Gears & Parts for 28 Machine Types | Nirala Engineers</title>
   <meta name="description" content="Custom replacement gears and machinery spares for 28 machine types: Sealing & Bag Making, Flow Wrap, Blown Film, Packaging, Pharma, Food & Bakery machines." />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Ensure machine spares cards are always 100% visible, crisp, and responsive */
+    #sparesGrid {
+      min-height: 400px;
+    }
+    .product-cards-grid .spare-card {
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    .product-cards-grid .spare-card.is-hidden {
+      display: none !important;
+    }
+    .product-cards-grid .spare-card .product-item-img-wrap {
+      background: radial-gradient(circle at center, #1c2633 0%, #07090c 100%);
+      height: 240px;
+    }
+    .product-cards-grid .spare-card .product-item-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain !important;
+      object-position: center !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -139,7 +165,7 @@
         <div class="product-cards-grid" id="sparesGrid">
 
           <!-- 01 -->
-          <article class="product-item-card spare-card reveal-left" data-cat="sealing" data-name="side and bottom sealing and cutting machines">
+          <article class="product-item-card spare-card" data-cat="sealing" data-name="side and bottom sealing and cutting machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">BAG & SEALING 01</span>
               <img src="images/stage-2-turning.jpg" alt="Side and Bottom Sealing and Cutting Machines" />
@@ -156,7 +182,7 @@
           </article>
 
           <!-- 02 -->
-          <article class="product-item-card spare-card reveal-left" data-cat="sealing" data-name="monolayer blown film plant">
+          <article class="product-item-card spare-card" data-cat="sealing" data-name="monolayer blown film plant">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">EXTRUSION 02</span>
               <img src="images/stage-3-hobbing.jpg" alt="Monolayer Blown Film Plant" />
@@ -173,7 +199,7 @@
           </article>
 
           <!-- 03 -->
-          <article class="product-item-card spare-card reveal-right" data-cat="sealing" data-name="blown film extrusion machine">
+          <article class="product-item-card spare-card" data-cat="sealing" data-name="blown film extrusion machine">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">EXTRUSION 03</span>
               <img src="images/Worm Shaft &amp; Wheel.png" alt="Blown Film Extrusion Machine" />
@@ -190,7 +216,7 @@
           </article>
 
           <!-- 04 -->
-          <article class="product-item-card spare-card reveal-left" data-cat="sealing" data-name="fully automatic side seal bag making machine">
+          <article class="product-item-card spare-card" data-cat="sealing" data-name="fully automatic side seal bag making machine">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">BAG MAKING 04</span>
               <img src="images/Timing Pulleys.png" alt="Fully Automatic Side Seal Bag Making Machine" />
@@ -207,7 +233,7 @@
           </article>
 
           <!-- 05 -->
-          <article class="product-item-card spare-card reveal-scale" data-cat="sealing" data-name="seal bag making machine">
+          <article class="product-item-card spare-card" data-cat="sealing" data-name="seal bag making machine">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">BAG MAKING 05</span>
               <img src="images/newwwproductss/Spur Gear -1.jpg.jpeg" alt="Seal Bag Making Machine" />
@@ -224,7 +250,7 @@
           </article>
 
           <!-- 06 -->
-          <article class="product-item-card spare-card reveal-right" data-cat="wrapping" data-name="paper cup making machines">
+          <article class="product-item-card spare-card" data-cat="wrapping" data-name="paper cup making machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">PAPER CUP 06</span>
               <img src="images/Bevel Gears.png" alt="Paper Cup Making Machines" />
@@ -241,7 +267,7 @@
           </article>
 
           <!-- 07 -->
-          <article class="product-item-card spare-card reveal-left" data-cat="food" data-name="biscuit packaging machines">
+          <article class="product-item-card spare-card" data-cat="food" data-name="biscuit packaging machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">FOOD PACK 07</span>
               <img src="images/newwwproductss/Helical Gear.JPG.jpeg" alt="Biscuit Packaging Machines" />
@@ -258,7 +284,7 @@
           </article>
 
           <!-- 08 -->
-          <article class="product-item-card spare-card reveal-scale" data-cat="wrapping" data-name="jumbo wrapper machine">
+          <article class="product-item-card spare-card" data-cat="wrapping" data-name="jumbo wrapper machine">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">WRAPPING 08</span>
               <img src="images/nirala-cnc-slide.png" alt="Jumbo Wrapper Machine" />
@@ -275,7 +301,7 @@
           </article>
 
           <!-- 09 -->
-          <article class="product-item-card spare-card reveal-right" data-cat="wrapping" data-name="slug wrapper machine">
+          <article class="product-item-card spare-card" data-cat="wrapping" data-name="slug wrapper machine">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">WRAPPING 09</span>
               <img src="images/stage-5-grinding.jpg" alt="Slug Wrapper Machine" />
@@ -292,7 +318,7 @@
           </article>
 
           <!-- 10 -->
-          <article class="product-item-card spare-card reveal-left" data-cat="wrapping" data-name="packaging machine">
+          <article class="product-item-card spare-card" data-cat="wrapping" data-name="packaging machine">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">PACKAGING 10</span>
               <img src="images/Machine Spares.png" alt="Packaging Machine" />
@@ -309,7 +335,7 @@
           </article>
 
           <!-- 11 -->
-          <article class="product-item-card spare-card reveal-left" data-cat="wrapping" data-name="soap wrap machine">
+          <article class="product-item-card spare-card" data-cat="wrapping" data-name="soap wrap machine">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">WRAPPING 11</span>
               <img src="images/stage-4-hardening.jpg" alt="Soap Wrap Machine" />
@@ -326,7 +352,7 @@
           </article>
 
           <!-- 12 -->
-          <article class="product-item-card spare-card reveal-scale" data-cat="wrapping" data-name="wrapping machines">
+          <article class="product-item-card spare-card" data-cat="wrapping" data-name="wrapping machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">WRAPPING 12</span>
               <img src="images/nirala-gearbox-slide.png" alt="Wrapping Machines" />
@@ -343,7 +369,7 @@
           </article>
 
           <!-- 13 -->
-          <article class="product-item-card spare-card reveal-right" data-cat="sealing" data-name="sealing machines">
+          <article class="product-item-card spare-card" data-cat="sealing" data-name="sealing machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">SEALING 13</span>
               <img src="images/Rack &amp; Pinion.png" alt="Sealing Machines" />
@@ -360,7 +386,7 @@
           </article>
 
           <!-- 14 -->
-          <article class="product-item-card spare-card reveal-left" data-cat="wrapping" data-name="shrink machines">
+          <article class="product-item-card spare-card" data-cat="wrapping" data-name="shrink machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">WRAPPING 14</span>
               <img src="images/newwwproductss/Sprocket-2.JPG.jpeg" alt="Shrink Machines" />
@@ -377,7 +403,7 @@
           </article>
 
           <!-- 15 -->
-          <article class="product-item-card spare-card reveal-scale" data-cat="pharma" data-name="strapping machines">
+          <article class="product-item-card spare-card" data-cat="pharma" data-name="strapping machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">PACKAGING 15</span>
               <img src="images/newwwproductss/Spur Gear -1.jpg.jpeg" alt="Strapping Machines" />
@@ -394,7 +420,7 @@
           </article>
 
           <!-- 16 -->
-          <article class="product-item-card spare-card reveal-right" data-cat="pharma" data-name="industrial conveyors">
+          <article class="product-item-card spare-card" data-cat="pharma" data-name="industrial conveyors">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">CONVEYORS 16</span>
               <img src="images/newwwproductss/Sprocket-2.JPG.jpeg" alt="Industrial Conveyors" />
@@ -411,7 +437,7 @@
           </article>
 
           <!-- 17 -->
-          <article class="product-item-card spare-card reveal-left" data-cat="pharma" data-name="batch code machines">
+          <article class="product-item-card spare-card" data-cat="pharma" data-name="batch code machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">AUTOMATION 17</span>
               <img src="images/Timing Pulleys.png" alt="Batch Code Machines" />
@@ -428,7 +454,7 @@
           </article>
 
           <!-- 18 -->
-          <article class="product-item-card spare-card reveal-scale" data-cat="wrapping" data-name="packaging case erectors">
+          <article class="product-item-card spare-card" data-cat="wrapping" data-name="packaging case erectors">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">PACKAGING 18</span>
               <img src="images/stage-3-hobbing.jpg" alt="Packaging Case Erectors" />
@@ -445,7 +471,7 @@
           </article>
 
           <!-- 19 -->
-          <article class="product-item-card spare-card reveal-right" data-cat="wrapping" data-name="horizontal flow wrap machines">
+          <article class="product-item-card spare-card" data-cat="wrapping" data-name="horizontal flow wrap machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">FLOW WRAP 19</span>
               <img src="images/newwwproductss/Helical Gear.JPG.jpeg" alt="Horizontal Flow Wrap Machines" />
@@ -462,7 +488,7 @@
           </article>
 
           <!-- 20 -->
-          <article class="product-item-card spare-card reveal-left" data-cat="pharma" data-name="pharma liquid filling machines">
+          <article class="product-item-card spare-card" data-cat="pharma" data-name="pharma liquid filling machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">PHARMA 20</span>
               <img src="images/stage-1-inspection.jpg" alt="Pharma Liquid Filling Machines" />
@@ -479,7 +505,7 @@
           </article>
 
           <!-- 21 -->
-          <article class="product-item-card spare-card reveal-scale" data-cat="food" data-name="soap pillow pack machines">
+          <article class="product-item-card spare-card" data-cat="food" data-name="soap pillow pack machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">WRAPPING 21</span>
               <img src="images/Bevel Gears.png" alt="Soap Pillow Pack Machines" />
@@ -496,7 +522,7 @@
           </article>
 
           <!-- 22 -->
-          <article class="product-item-card spare-card reveal-right" data-cat="wrapping" data-name="industrial flow wrap machines">
+          <article class="product-item-card spare-card" data-cat="wrapping" data-name="industrial flow wrap machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">FLOW WRAP 22</span>
               <img src="images/newwwproductss/Helical Gear.JPG.jpeg" alt="Industrial Flow Wrap Machines" />
@@ -513,7 +539,7 @@
           </article>
 
           <!-- 23 -->
-          <article class="product-item-card spare-card reveal-left" data-cat="wrapping" data-name="edge packaging machines">
+          <article class="product-item-card spare-card" data-cat="wrapping" data-name="edge packaging machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">PACKAGING 23</span>
               <img src="images/stage-2-turning.jpg" alt="Edge Packaging Machines" />
@@ -530,7 +556,7 @@
           </article>
 
           <!-- 24 -->
-          <article class="product-item-card spare-card reveal-scale" data-cat="food" data-name="cookies packaging machines">
+          <article class="product-item-card spare-card" data-cat="food" data-name="cookies packaging machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">FOOD PACK 24</span>
               <img src="images/newwwproductss/Spur Gear -1.jpg.jpeg" alt="Cookies Packaging Machines" />
@@ -547,7 +573,7 @@
           </article>
 
           <!-- 25 -->
-          <article class="product-item-card spare-card reveal-right" data-cat="food" data-name="noodle wrap machines">
+          <article class="product-item-card spare-card" data-cat="food" data-name="noodle wrap machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">FOOD PACK 25</span>
               <img src="images/stage-3-hobbing.jpg" alt="Noodle Wrap Machines" />
@@ -564,7 +590,7 @@
           </article>
 
           <!-- 26 -->
-          <article class="product-item-card spare-card reveal-left" data-cat="food" data-name="chocolate packaging machines">
+          <article class="product-item-card spare-card" data-cat="food" data-name="chocolate packaging machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">FOOD PACK 26</span>
               <img src="images/stage-5-grinding.jpg" alt="Chocolate Packaging Machines" />
@@ -581,7 +607,7 @@
           </article>
 
           <!-- 27 -->
-          <article class="product-item-card spare-card reveal-scale" data-cat="wrapping" data-name="jumbo wrap machines">
+          <article class="product-item-card spare-card" data-cat="wrapping" data-name="jumbo wrap machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">WRAPPING 27</span>
               <img src="images/nirala-cnc-slide.png" alt="Jumbo Wrap Machines" />
@@ -598,7 +624,7 @@
           </article>
 
           <!-- 28 -->
-          <article class="product-item-card spare-card reveal-right" data-cat="food" data-name="bakery packaging machines">
+          <article class="product-item-card spare-card" data-cat="food" data-name="bakery packaging machines">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">FOOD PACK 28</span>
               <img src="images/stage-4-hardening.jpg" alt="Bakery Packaging Machines" />
@@ -798,6 +824,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="catalog-storage.js"></script>
   <script src="app.js"></script>
   <script>
     // Filtering & Dynamic Backend Hydration for Machine Spares Cards
@@ -810,18 +837,45 @@
       let currentQuery = '';
 
       function filterCards() {
-        spareCards.forEach(card => {
-          const cat = card.getAttribute('data-cat') || '';
-          const name = (card.getAttribute('data-name') || '').toLowerCase();
-          const matchesTab = currentTab === 'all' || cat === currentTab;
-          const matchesQuery = !currentQuery || name.includes(currentQuery);
+        const cards = document.querySelectorAll('#sparesGrid .spare-card');
+        let visibleCount = 0;
+        cards.forEach(card => {
+          const cat = (card.getAttribute('data-cat') || '').toLowerCase().trim();
+          const name = (card.getAttribute('data-name') || '').toLowerCase().trim();
+          const title = (card.querySelector('h3')?.textContent || '').toLowerCase().trim();
+          const desc = (card.querySelector('p')?.textContent || '').toLowerCase().trim();
+          const tags = Array.from(card.querySelectorAll('.stage-tag-pill')).map(t => t.textContent.toLowerCase()).join(' ');
+
+          const matchesTab = (currentTab === 'all' || cat === currentTab);
+          const matchesQuery = !currentQuery || name.includes(currentQuery) || title.includes(currentQuery) || desc.includes(currentQuery) || tags.includes(currentQuery);
 
           if (matchesTab && matchesQuery) {
             card.style.display = 'flex';
+            card.classList.remove('is-hidden');
+            visibleCount++;
           } else {
             card.style.display = 'none';
+            card.classList.add('is-hidden');
           }
         });
+
+        let emptyNotice = document.getElementById('sparesEmptyNotice');
+        if (visibleCount === 0) {
+          if (!emptyNotice) {
+            emptyNotice = document.createElement('div');
+            emptyNotice.id = 'sparesEmptyNotice';
+            emptyNotice.style.cssText = 'grid-column: 1/-1; padding: 60px 20px; text-align: center; color: var(--muted); font-size: 1.05rem;';
+            emptyNotice.innerHTML = `
+              <div style="font-size: 2.2rem; margin-bottom: 10px;">🔍</div>
+              <strong style="color: var(--paper); display: block; margin-bottom: 6px;">No machine spares match your search</strong>
+              <span>Try selecting "ALL 28 MACHINES" or searching for gears, pulleys, or cutters.</span>
+            `;
+            const grid = document.getElementById('sparesGrid');
+            if (grid) grid.appendChild(emptyNotice);
+          }
+        } else if (emptyNotice) {
+          emptyNotice.remove();
+        }
       }
 
       tabBtns.forEach(btn => {
@@ -846,16 +900,10 @@
         if (!grid) return;
 
         let list = null;
-        try {
-          const res = await fetch('/api/spares', { cache: 'no-store' });
-          if (res.ok) list = await res.json();
-        } catch (err) {}
-
-        if (!list) {
+        if (window.NiralaStorage) {
           try {
-            const res = await fetch('data/spares.json', { cache: 'no-store' });
-            if (res.ok) list = await res.json();
-          } catch (err) {}
+            list = await window.NiralaStorage.getSpares();
+          } catch (e) {}
         }
 
         if (!list) {
@@ -865,16 +913,30 @@
           } catch (err) {}
         }
 
+        if (!list) {
+          try {
+            const res = await fetch('/api/spares', { cache: 'no-store' });
+            if (res.ok) list = await res.json();
+          } catch (err) {}
+        }
+
+        if (!list) {
+          try {
+            const res = await fetch('data/spares.json', { cache: 'no-store' });
+            if (res.ok) list = await res.json();
+          } catch (err) {}
+        }
+
         if (Array.isArray(list) && list.length > 0) {
           grid.innerHTML = list.map(item => {
             const badge = item.badge || item.id || 'SPARE';
             const tagsHtml = (item.tags || []).map(t => `<span class="stage-tag-pill">${t}</span>`).join('\n                ');
             const link = item.link || 'contact.html#quote';
             return `
-          <article class="product-item-card spare-card reveal-left" data-cat="${item.category}" data-name="${item.title.toLowerCase()}">
+          <article class="product-item-card spare-card" data-cat="${item.category}" data-name="${item.title.toLowerCase()}">
             <div class="product-item-img-wrap">
               <span class="product-item-badge">${badge}</span>
-              <img src="${item.image}" alt="${item.title}" />
+              <img src="${item.image}" alt="${item.title}" onerror="this.onerror=null; this.src='images/stage-2-turning.jpg'" />
             </div>
             <div class="product-item-body">
               <h3>${item.title}</h3>

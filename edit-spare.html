@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Machine Spare | Nirala Engineers Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    :root {
+      --admin-bg: #090c10;
+      --admin-surface: #12161f;
+      --admin-surface-card: #161b24;
+      --admin-border: rgba(216, 179, 93, 0.22);
+      --admin-border-light: rgba(255, 255, 255, 0.08);
+      --admin-gold: #d8b35d;
+      --admin-gold-hover: #e5c373;
+      --admin-text: #f0f6fc;
+      --admin-muted: #8b949e;
+      --admin-danger: #f85149;
+      --admin-success: #3fb950;
+      --admin-blue: #58a6ff;
+    }
+
+    body.admin-edit-body {
+      background: var(--admin-bg);
+      color: var(--admin-text);
+      font-family: 'Outfit', sans-serif;
+      margin: 0;
+      padding: 0 0 110px 0;
+      min-height: 100vh;
+    }
+
+    /* Top Navigation Bar */
+    .edit-top-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(18, 22, 31, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--admin-border);
+      padding: 14px 28px;
+    }
+
+    .edit-top-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .edit-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--admin-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .edit-breadcrumbs a {
+      color: var(--admin-gold);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .edit-breadcrumbs a:hover {
+      text-decoration: underline;
+    }
+
+    .edit-top-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .edit-top-title-wrap h1 {
+      margin: 0;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.3px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.74rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(63, 185, 80, 0.15);
+      border: 1px solid rgba(63, 185, 80, 0.3);
+      color: #3fb950;
+      font-weight: 600;
+    }
+
+    .status-pill.offline {
+      background: rgba(216, 179, 93, 0.15);
+      border-color: rgba(216, 179, 93, 0.3);
+      color: var(--admin-gold);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .preview-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1px solid var(--admin-border);
+      color: var(--admin-gold);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .preview-btn:hover {
+      background: rgba(216, 179, 93, 0.15);
+    }
+
+    /* Main Container */
+    .edit-container {
+      max-width: 1240px;
+      margin: 28px auto 0;
+      padding: 0 24px;
+    }
+
+    /* Sections */
+    .edit-section-card {
+      background: var(--admin-surface);
+      border: 1px solid var(--admin-border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--admin-border-light);
+    }
+
+    .section-head-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-icon {
+      font-size: 1.25rem;
+    }
+
+    .section-head h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .section-head p {
+      margin: 4px 0 0;
+      font-size: 0.82rem;
+      color: var(--admin-muted);
+    }
+
+    /* Multiple Photo Upload Zone */
+    .photo-upload-dropzone {
+      border: 2px dashed rgba(216, 179, 93, 0.4);
+      background: rgba(216, 179, 93, 0.03);
+      border-radius: 10px;
+      padding: 32px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .photo-upload-dropzone:hover,
+    .photo-upload-dropzone.dragover {
+      border-color: var(--admin-gold);
+      background: rgba(216, 179, 93, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .upload-cloud-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(216, 179, 93, 0.12);
+      border: 1px solid rgba(216, 179, 93, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+
+    .upload-prompt-text {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: #fff;
+      margin: 0;
+    }
+
+    .upload-sub-text {
+      font-size: 0.82rem;
+      color: var(--admin-muted);
+      margin: 0;
+    }
+
+    .btn-select-photos {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--admin-gold);
+      color: #0b0d10;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: all 0.2s;
+    }
+
+    .btn-select-photos:hover {
+      background: var(--admin-gold-hover);
+      transform: scale(1.02);
+    }
+
+    /* Live Photos Gallery Grid */
+    .photos-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .photo-card {
+      background: #0d1117;
+      border: 1px solid var(--admin-border-light);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .photo-card.is-cover {
+      border: 2px solid var(--admin-gold);
+      box-shadow: 0 0 15px rgba(216, 179, 93, 0.2);
+    }
+
+    .photo-thumb-wrap {
+      width: 100%;
+      height: 140px;
+      background: #000;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .photo-thumb-wrap img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s;
+    }
+
+    .photo-card:hover .photo-thumb-wrap img {
+      transform: scale(1.05);
+    }
+
+    .cover-badge-pill {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid var(--admin-gold);
+      color: var(--admin-gold);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .photo-idx-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .photo-actions-bar {
+      padding: 8px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.4);
+      border-top: 1px solid var(--admin-border-light);
+    }
+
+    .btn-make-cover {
+      background: transparent;
+      border: 1px solid var(--admin-border-light);
+      color: var(--admin-muted);
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-make-cover:hover {
+      border-color: var(--admin-gold);
+      color: var(--admin-gold);
+    }
+
+    .btn-delete-photo {
+      background: rgba(248, 81, 73, 0.12);
+      border: 1px solid rgba(248, 81, 73, 0.25);
+      color: var(--admin-danger);
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-delete-photo:hover {
+      background: var(--admin-danger);
+      color: #fff;
+    }
+
+    /* Forms */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #e6edf3;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: #090c10;
+      border: 1px solid var(--admin-border-light);
+      border-radius: 6px;
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 0.92rem;
+      font-family: inherit;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-group select {
+      cursor: pointer;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--admin-gold);
+      box-shadow: 0 0 0 3px rgba(216, 179, 93, 0.15);
+      background: #0f141c;
+    }
+
+    .form-group small {
+      display: block;
+      color: var(--admin-muted);
+      font-size: 0.76rem;
+      margin-top: 5px;
+    }
+
+    /* Parameters Table */
+    .params-table-header {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr 40px;
+      gap: 12px;
+      padding: 8px 14px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--admin-gold);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .params-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .param-row {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr 40px;
+      gap: 12px;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--admin-border-light);
+    }
+
+    .param-row input {
+      background: #0a0d12;
+      border: 1px solid var(--admin-border-light);
+      border-radius: 5px;
+      padding: 9px 12px;
+      color: #fff;
+      font-size: 0.88rem;
+      width: 100%;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .param-row input:focus {
+      border-color: var(--admin-gold);
+    }
+
+    .btn-row-del {
+      background: rgba(248, 81, 73, 0.12);
+      border: 1px solid rgba(248, 81, 73, 0.25);
+      color: var(--admin-danger);
+      width: 36px;
+      height: 36px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-row-del:hover {
+      background: var(--admin-danger);
+      color: #fff;
+    }
+
+    /* Sticky Bottom Actions Bar */
+    .edit-bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      background: rgba(18, 22, 29, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--admin-border);
+      display: flex;
+      align-items: center;
+      z-index: 99;
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .edit-bottom-inner {
+      max-width: 1240px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-action-primary {
+      background: var(--admin-gold);
+      color: #0b0d10;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 11px 26px;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(216, 179, 93, 0.3);
+    }
+
+    .btn-action-primary:hover {
+      background: var(--admin-gold-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(216, 179, 93, 0.4);
+    }
+
+    .btn-action-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--admin-border-light);
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 7px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-action-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* Toast */
+    .admin-toast {
+      position: fixed;
+      bottom: 90px;
+      right: 24px;
+      background: #1c2128;
+      border: 1px solid var(--admin-border);
+      color: #fff;
+      padding: 14px 22px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      transform: translateY(30px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* =========================================================
+       COMPREHENSIVE RESPONSIVE DESIGN SYSTEM (LAPTOP & MOBILE)
+       ========================================================= */
+
+    @media (max-width: 1024px) {
+      .preview-btn {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body.admin-edit-body {
+        padding-top: 60px;
+        padding-bottom: 96px;
+      }
+
+      /* Compact Fixed Navbar */
+      .edit-top-navbar {
+        height: 60px;
+        padding: 0 12px;
+      }
+
+      .edit-top-inner {
+        gap: 8px;
+      }
+
+      .edit-breadcrumbs {
+        font-size: 0.72rem;
+      }
+
+      .edit-top-title-wrap h1 {
+        font-size: 0.98rem !important;
+      }
+
+      .status-pill {
+        display: none !important;
+      }
+
+      .preview-btn {
+        display: none !important;
+      }
+
+      .btn-action-secondary {
+        padding: 7px 10px;
+        font-size: 0.78rem;
+      }
+
+      #topSaveBtn {
+        padding: 7px 14px;
+        font-size: 0.82rem;
+      }
+
+      /* Container & Section Cards */
+      .edit-container {
+        padding: 0 12px;
+        margin: 14px auto;
+      }
+
+      .edit-section-card {
+        padding: 16px 14px;
+        border-radius: 10px;
+        margin-bottom: 18px;
+      }
+
+      .section-head {
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .section-head h3 {
+        font-size: 1.02rem;
+      }
+
+      .section-head p {
+        font-size: 0.76rem;
+      }
+
+      /* Responsive Form Rows */
+      .form-row,
+      .form-row-3 {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        margin-bottom: 12px !important;
+      }
+
+      .form-group {
+        margin-bottom: 12px;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        padding: 10px 12px;
+        font-size: 0.88rem;
+      }
+
+      /* Responsive Photo Dropzone & Grid */
+      .photo-upload-dropzone {
+        padding: 24px 14px;
+      }
+
+      .upload-cloud-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+      }
+
+      .upload-prompt-text {
+        font-size: 0.92rem;
+      }
+
+      .photos-preview-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+      }
+
+      .photo-card-media {
+        height: 125px;
+      }
+
+      /* Responsive Parameter Builder */
+      .param-grid-row {
+        grid-template-columns: 1fr 34px !important;
+        gap: 8px !important;
+        padding: 8px 10px;
+      }
+
+      .param-grid-row input:nth-child(2) {
+        grid-column: 1 / 2;
+      }
+
+      .param-grid-row .btn-remove-row {
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+        height: 100%;
+      }
+
+      .param-grid-header {
+        display: none;
+      }
+
+      /* Sticky Bottom Bar on Mobile */
+      .edit-bottom-bar {
+        height: auto;
+        padding: 10px 14px;
+      }
+
+      .edit-bottom-inner {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .edit-bottom-left {
+        display: none;
+      }
+
+      .edit-bottom-right {
+        display: flex;
+        width: 100%;
+        gap: 8px;
+      }
+
+      .edit-bottom-right .btn-action-primary,
+      .edit-bottom-right .btn-action-secondary {
+        flex: 1;
+        justify-content: center;
+        padding: 11px 14px;
+        font-size: 0.88rem;
+      }
+
+      /* Toast Notification on Mobile */
+      .admin-toast {
+        left: 14px;
+        right: 14px;
+        bottom: 80px;
+        font-size: 0.84rem;
+        padding: 10px 14px;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body class="admin-edit-body">
+
+  <!-- Sticky Top Navigation Bar -->
+  <header class="edit-top-navbar">
+    <div class="edit-top-inner">
+      <div>
+        <div class="edit-breadcrumbs">
+          <a href="admin.html">← Admin Dashboard</a>
+          <span>/</span>
+          <a href="admin.html#spares">Machine Spares</a>
+          <span>/</span>
+          <span id="breadcrumbCurrent" style="color: #fff;">Edit Machine Spare</span>
+        </div>
+        <div class="edit-top-title-wrap">
+          <h1 id="pageTitle">Edit Machine Spare</h1>
+          <span id="statusBadge" class="status-pill">
+            <span class="status-dot"></span>
+            <span id="statusText">Checking...</span>
+          </span>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="spares-machine-manufacturers.html" target="_blank" class="preview-btn" id="viewLivePageBtn">
+          <span>View on Website</span>
+          <span>↗</span>
+        </a>
+        <button type="button" class="btn-action-secondary" onclick="window.downloadSparesJson()" title="Download updated spares.json to disk">
+          <span>📥 Export JSON</span>
+        </button>
+        <button type="button" class="btn-action-primary" id="topSaveBtn">
+          <span>Save Changes</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Form -->
+  <main class="edit-container">
+    <form id="spareEditForm" onsubmit="return false;">
+
+      <!-- ==============================================
+           SECTION 1: PHOTOGRAPHS & REPLACEMENT GALLERY
+           ============================================== -->
+      <section class="edit-section-card">
+        <div class="section-head">
+          <div class="section-head-title">
+            <span class="section-icon">📷</span>
+            <div>
+              <h3>Spare Photographs &amp; Workshop Gallery</h3>
+              <p>Upload photos directly from your computer or drag &amp; drop. No typing file paths or URLs required!</p>
+            </div>
+          </div>
+          <span class="type-pill" id="photoCountBadge" style="font-size: 0.78rem; padding: 4px 10px; background: rgba(216, 179, 93, 0.15); color: var(--admin-gold); border-radius: 4px; font-weight: 700;">
+            0 Photos
+          </span>
+        </div>
+
+        <!-- Drag & Drop Upload Dropzone -->
+        <div class="photo-upload-dropzone" id="photoDropzone">
+          <input type="file" id="imageFileInput" accept="image/*" multiple style="display: none;" />
+          <div class="upload-cloud-icon">📷</div>
+          <p class="upload-prompt-text">Drag &amp; Drop Machine Spare Photos Here</p>
+          <p class="upload-sub-text">Or click to browse from your computer. Select photos (JPG, PNG, WebP) to build the spare gallery.</p>
+          <button type="button" class="btn-select-photos" id="choosePhotosBtn">
+            <span>📁 + Choose Photos from Computer</span>
+          </button>
+        </div>
+
+        <!-- Optional Manual Path / URL Input (Fallback) -->
+        <div style="display: flex; gap: 10px; align-items: center; margin-top: 10px; margin-bottom: 14px;">
+          <input type="text" id="manualImageUrlInput" placeholder="Optional: Enter existing repository path (e.g. images/stage-2-turning.jpg)" style="flex: 1; background: #0a0d12; border: 1px solid var(--admin-border-light); border-radius: 6px; padding: 8px 12px; color: #fff; font-size: 0.82rem;" />
+          <button type="button" id="addManualImageBtn" class="btn-action-secondary" style="padding: 8px 14px; font-size: 0.82rem;">
+            + Add Path
+          </button>
+        </div>
+
+        <!-- Live Photo Gallery Grid -->
+        <div class="photos-gallery-grid" id="photosGalleryGrid">
+          <!-- Injected dynamically -->
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 2: MACHINE SPARE IDENTIFICATION & INFO
+           ============================================== -->
+      <section class="edit-section-card">
+        <div class="section-head">
+          <div class="section-head-title">
+            <span class="section-icon">⚙️</span>
+            <div>
+              <h3>Machine Spare Information &amp; Classification</h3>
+              <p>Primary details displayed on the Industrial Machine Spares catalog page.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="spareTitle">Machine / Spare Title *</label>
+            <input type="text" id="spareTitle" required placeholder="e.g. Side & Bottom Sealing & Cutting Machines" />
+            <small>The official machine family or replacement spare title.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="spareCategory">Machinery Application Category *</label>
+            <select id="spareCategory" required>
+              <option value="sealing">Bag Making &amp; Sealing Machinery</option>
+              <option value="wrapping">Wrapping &amp; Converting Machinery</option>
+              <option value="food">Food Processing &amp; Bakery Packaging</option>
+              <option value="pharma">Pharmaceutical &amp; Conveyor Systems</option>
+            </select>
+            <small>Determines filter grouping on the Machine Spares index page.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="spareDesc">Engineering Overview &amp; Replacement Scope *</label>
+          <textarea id="spareDesc" rows="3" required placeholder="Precision cutter drive gears, rubber roller gears, and timing pulleys for heavy-duty bag sealing lines."></textarea>
+          <small>Clear description of machine spare parts, gearbox drives, or cutter assemblies manufactured.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="spareTags">Key Spare Component Tags (comma-separated)</label>
+          <input type="text" id="spareTags" placeholder="e.g. CUTTER GEARS, TIMING DRIVES, DRAW ROLLER, NIP ROLLER" />
+          <small>Component feature tags displayed on the catalog card badges.</small>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 3: MACHINE COMPATIBILITY & REVERSE ENGINEERING
+           ============================================== -->
+      <section class="edit-section-card">
+        <div class="section-head">
+          <div class="section-head-title">
+            <span class="section-icon">🏭</span>
+            <div>
+              <h3>Compatibility &amp; Metallurgy Scope</h3>
+              <p>Engineering parameters for OEM machine compatibility and reverse engineering.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="compatibleMakes">Compatible Machine Makes &amp; OEMs</label>
+            <input type="text" id="compatibleMakes" placeholder="e.g. Mamata, Pelican, Expert, Uflex, Custom Bag Making Lines" />
+            <small>List common machine manufacturers this spare replaces.</small>
+          </div>
+          <div class="form-group">
+            <label for="metallurgyScope">Standard Metallurgy &amp; Heat Treatment</label>
+            <input type="text" id="metallurgyScope" placeholder="e.g. Alloy Steel EN8 / EN24, 20MnCr5 Case Hardened, Bronze, Delrin" />
+            <small>Available material and hardness specifications.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reverseEngineeringNotes">Reverse Engineering &amp; Custom Drawing Note</label>
+          <input type="text" id="reverseEngineeringNotes" placeholder="e.g. Reverse engineered from physical worn sample or manufacturing drawing with ±5 micron precision." />
+          <small>Quality and precision guarantee shown to clients.</small>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 4: TECHNICAL PARAMETERS BUILDER
+           ============================================== -->
+      <section class="edit-section-card">
+        <div class="section-head">
+          <div class="section-head-title">
+            <span class="section-icon">📐</span>
+            <div>
+              <h3>Technical Specifications &amp; Parameters</h3>
+              <p>Key engineering parameters for this machine spare family.</p>
+            </div>
+          </div>
+          <button type="button" id="addParamBtn" class="btn-select-photos" style="font-size: 0.8rem; padding: 7px 14px;">
+            <span>+ Add Parameter</span>
+          </button>
+        </div>
+
+        <div class="params-table-header">
+          <span>Specification / Parameter</span>
+          <span>Engineering Value</span>
+          <span></span>
+        </div>
+
+        <div class="params-list-container" id="paramsListContainer">
+          <!-- Injected dynamically -->
+        </div>
+      </section>
+
+    </form>
+  </main>
+
+  <!-- Sticky Bottom Bar -->
+  <footer class="edit-bottom-bar">
+    <div class="edit-bottom-inner">
+      <div style="font-size: 0.85rem; color: var(--admin-muted); display: flex; align-items: center; gap: 8px;">
+        <span>💾</span>
+        <span>Changes sync live to IndexedDB, <code>data/spares.json</code>, and website pages.</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="admin.html" class="btn-action-secondary">Discard &amp; Return</a>
+        <button type="button" class="btn-action-primary" id="bottomSaveBtn">
+          <span>Save Changes to Backend</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="admin-toast" id="adminToast">
+    <span id="toastIcon">✅</span>
+    <span id="toastMessage">Machine spare saved successfully!</span>
+  </div>
+
+  <script src="catalog-storage.js"></script>
+  <script>
+    // State Store
+    let allSpares = [];
+    let currentSpareIndex = -1;
+    let isNewSpare = false;
+    let isServerMode = false;
+    let spareImages = []; // Array of photo paths / Data URLs
+
+    // URL Query Params
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramIndex = urlParams.get('index');
+    const paramNew = urlParams.get('new');
+
+    // Toast Notification
+    function showToast(msg, isSuccess = true) {
+      const toast = document.getElementById('adminToast');
+      const toastMsg = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+      toastMsg.textContent = msg;
+      toastIcon.textContent = isSuccess ? '✅' : '⚠️';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // Check Backend Server Status
+    async function checkBackendStatus() {
+      const badge = document.getElementById('statusBadge');
+      const text = document.getElementById('statusText');
+      try {
+        const res = await fetch('/api/status', { cache: 'no-store' });
+        if (res.ok) {
+          isServerMode = true;
+          badge.className = 'status-pill';
+          text.textContent = 'Server Live (JSON Sync)';
+          return true;
+        }
+      } catch (e) {}
+      isServerMode = false;
+      badge.className = 'status-pill offline';
+      text.textContent = 'Standalone Mode (Local)';
+      return false;
+    }
+
+    // Load All Spares Data
+    async function loadData() {
+      await checkBackendStatus();
+
+      try {
+        if (window.NiralaStorage) {
+          allSpares = await window.NiralaStorage.getSpares();
+        } else {
+          allSpares = JSON.parse(localStorage.getItem('nirala_spares') || '[]');
+          if (allSpares.length === 0) {
+            const res = await fetch('data/spares.json', { cache: 'no-store' });
+            allSpares = await res.json();
+          }
+        }
+      } catch (e) {
+        allSpares = JSON.parse(localStorage.getItem('nirala_spares') || '[]');
+      }
+
+      if (paramNew === 'true') {
+        isNewSpare = true;
+        currentSpareIndex = allSpares.length;
+        initNewSpare();
+      } else {
+        currentSpareIndex = paramIndex ? parseInt(paramIndex, 10) : 0;
+        if (isNaN(currentSpareIndex) || currentSpareIndex < 0 || currentSpareIndex >= allSpares.length) {
+          currentSpareIndex = 0;
+        }
+        initExistingSpare(allSpares[currentSpareIndex]);
+      }
+    }
+
+    // Populate Existing Spare
+    function initExistingSpare(s) {
+      if (!s) return;
+      document.getElementById('breadcrumbCurrent').textContent = s.title;
+      document.getElementById('pageTitle').textContent = `Edit Spare: ${s.title}`;
+      document.title = `Edit ${s.title} | Nirala Engineers`;
+
+      // Live Page Link
+      const liveBtn = document.getElementById('viewLivePageBtn');
+      liveBtn.href = s.link || 'spares-machine-manufacturers.html';
+
+      // Basic Information
+      document.getElementById('spareTitle').value = s.title || '';
+      document.getElementById('spareCategory').value = s.category || 'sealing';
+      document.getElementById('spareDesc').value = s.description || '';
+      document.getElementById('spareTags').value = (s.tags || []).join(', ');
+
+      // Compatibility & Specs
+      document.getElementById('compatibleMakes').value = s.compatibleMakes || 'Mamata, Pelican, Expert, Uflex, Custom Bag Making Lines';
+      document.getElementById('metallurgyScope').value = s.metallurgyScope || 'Alloy Steel EN8 / EN24, 20MnCr5 Case Hardened, Bronze, Delrin';
+      document.getElementById('reverseEngineeringNotes').value = s.reverseEngineeringNotes || 'Reverse engineered from physical worn sample or manufacturing drawing with ±5 micron precision.';
+
+      // Photos
+      if (Array.isArray(s.images) && s.images.length > 0) {
+        spareImages = [...s.images];
+      } else if (s.image) {
+        spareImages = [s.image];
+      } else {
+        spareImages = [];
+      }
+      renderPhotoGallery();
+
+      // Technical Parameters
+      const paramsContainer = document.getElementById('paramsListContainer');
+      paramsContainer.innerHTML = '';
+      const params = s.parameters || [
+        { key: 'MODULE / PITCH', val: '1.0 MOD TO 8 MOD / 3/8" TO 1" CHAIN PITCH' },
+        { key: 'TOOTH PROFILES', val: 'INVOLUTE SPUR / HELICAL / SPROCKET' },
+        { key: 'MATERIAL OPTIONS', val: 'EN8, EN24, 20MNCR5, BRONZE, NYLON' },
+        { key: 'PRECISION TOLERANCE', val: '± 0.005 MM ON CNC HOBBERS & GRINDERS' }
+      ];
+      params.forEach(p => addParamRow(p.key, p.val));
+    }
+
+    // Populate New Spare Template
+    function initNewSpare() {
+      document.getElementById('breadcrumbCurrent').textContent = 'New Machine Spare';
+      document.getElementById('pageTitle').textContent = 'Create New Machine Spare';
+
+      document.getElementById('spareTitle').value = '';
+      document.getElementById('spareCategory').value = 'sealing';
+      document.getElementById('spareDesc').value = '';
+      document.getElementById('spareTags').value = 'CUTTER GEARS, TIMING DRIVES, REVERSE ENGINEERED';
+
+      document.getElementById('compatibleMakes').value = 'Mamata, Pelican, Expert, Uflex, Custom Packaging Lines';
+      document.getElementById('metallurgyScope').value = 'Alloy Steel EN8 / EN24, 20MnCr5 Case Hardened, Bronze, Delrin';
+      document.getElementById('reverseEngineeringNotes').value = 'Reverse engineered from physical worn sample or manufacturing drawing with ±5 micron precision.';
+
+      spareImages = [];
+      renderPhotoGallery();
+
+      addParamRow('MODULE / PITCH', '1.0 MOD TO 8 MOD / 3/8" TO 1" CHAIN PITCH');
+      addParamRow('TOOTH PROFILES', 'INVOLUTE SPUR / HELICAL / SPROCKET');
+      addParamRow('MATERIAL OPTIONS', 'EN8, EN24, 20MNCR5, BRONZE, NYLON');
+      addParamRow('PRECISION TOLERANCE', '± 0.005 MM ON CNC HOBBERS & GRINDERS');
+    }
+
+    // ==========================================
+    // MULTIPLE PHOTO UPLOAD & GALLERY HANDLER
+    // ==========================================
+    const photoFileInput = document.getElementById('imageFileInput');
+    const photoDropzone = document.getElementById('photoDropzone');
+    const choosePhotosBtn = document.getElementById('choosePhotosBtn');
+    const manualImageUrlInput = document.getElementById('manualImageUrlInput');
+    const addManualImageBtn = document.getElementById('addManualImageBtn');
+
+    if (addManualImageBtn) {
+      addManualImageBtn.addEventListener('click', () => {
+        const val = manualImageUrlInput.value.trim();
+        if (val) {
+          spareImages.push(val);
+          manualImageUrlInput.value = '';
+          renderPhotoGallery();
+          showToast('Added photo path to gallery!');
+        }
+      });
+    }
+
+    choosePhotosBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      photoFileInput.value = '';
+      photoFileInput.click();
+    });
+
+    photoDropzone.addEventListener('click', (e) => {
+      if (e.target !== choosePhotosBtn && !choosePhotosBtn.contains(e.target)) {
+        photoFileInput.value = '';
+        photoFileInput.click();
+      }
+    });
+
+    photoFileInput.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    photoDropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      photoDropzone.classList.add('dragover');
+    });
+
+    photoDropzone.addEventListener('dragleave', () => {
+      photoDropzone.classList.remove('dragover');
+    });
+
+    photoDropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      photoDropzone.classList.remove('dragover');
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleSelectedFiles(e.dataTransfer.files);
+      }
+    });
+
+    photoFileInput.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        handleSelectedFiles(e.target.files);
+      }
+    });
+
+    async function handleSelectedFiles(files) {
+      const fileList = Array.from(files);
+      if (fileList.length === 0) return;
+
+      const validFiles = fileList.filter(file => {
+        return (file.type && file.type.startsWith('image/')) || /\.(jpe?g|png|webp|gif|svg|bmp|avif)$/i.test(file.name || '');
+      });
+
+      if (validFiles.length === 0) {
+        showToast('Please select valid image files (JPG, PNG, WebP).', false);
+        return;
+      }
+
+      showToast(`Optimizing & adding ${validFiles.length} photo(s)...`);
+
+      let added = 0;
+      for (const file of validFiles) {
+        try {
+          const compressedDataUrl = await (window.NiralaStorage ? window.NiralaStorage.compressImage(file, 1080, 1080, 0.80) : null);
+          if (compressedDataUrl) {
+            spareImages.push(compressedDataUrl);
+            added++;
+            renderPhotoGallery();
+          }
+        } catch (err) {
+          console.error('Error processing image:', err);
+        }
+      }
+
+      photoFileInput.value = '';
+      if (added > 0) {
+        showToast(`Successfully added ${added} photo(s)! Click "Save Changes" to apply.`);
+      }
+    }
+
+    function renderPhotoGallery() {
+      const grid = document.getElementById('photosGalleryGrid');
+      const badge = document.getElementById('photoCountBadge');
+      badge.textContent = `${spareImages.length} Photo${spareImages.length === 1 ? '' : 's'}`;
+      grid.innerHTML = '';
+
+      if (spareImages.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; padding: 24px; text-align: center; color: var(--admin-muted); font-size: 0.9rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+            <div style="font-size: 1.8rem; margin-bottom: 6px;">📷</div>
+            No photos added yet. Click "+ Choose Photos" above to select images from your computer.
+          </div>
+        `;
+        return;
+      }
+
+      spareImages.forEach((imgSrc, idx) => {
+        const isCover = (idx === 0);
+        const card = document.createElement('div');
+        card.className = `photo-card ${isCover ? 'is-cover' : ''}`;
+        card.innerHTML = `
+          <div class="photo-thumb-wrap" title="Photo View #${idx + 1}">
+            <img src="${imgSrc}" alt="Spare Photo #${idx + 1}" onerror="this.onerror=null; this.src='images/stage-2-turning.jpg'" />
+            ${isCover ? '<span class="cover-badge-pill">★ MAIN PHOTO</span>' : ''}
+            <span class="photo-idx-badge">#${idx + 1}</span>
+          </div>
+          <div class="photo-actions-bar">
+            ${isCover ? 
+              '<span style="font-size: 0.72rem; color: var(--admin-gold); font-weight: 700; display: flex; align-items: center; gap: 4px;">✓ Main Cover</span>' : 
+              `<button type="button" class="btn-make-cover" onclick="setAsCoverPhoto(${idx})" title="Set this as the primary photo">Set as Cover</button>`
+            }
+            <button type="button" class="btn-delete-photo" title="Remove Photo" onclick="deletePhoto(${idx})">✕</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    window.setAsCoverPhoto = function(index) {
+      if (index > 0 && index < spareImages.length) {
+        const selected = spareImages.splice(index, 1)[0];
+        spareImages.unshift(selected);
+        renderPhotoGallery();
+        showToast('Updated main cover photo!');
+      }
+    };
+
+    window.deletePhoto = function(index) {
+      if (confirm('Remove this photo from the gallery?')) {
+        spareImages.splice(index, 1);
+        renderPhotoGallery();
+      }
+    };
+
+    // ==========================================
+    // PARAMETERS BUILDER
+    // ==========================================
+    function addParamRow(key = '', val = '') {
+      const container = document.getElementById('paramsListContainer');
+      const row = document.createElement('div');
+      row.className = 'param-row';
+      row.innerHTML = `
+        <input type="text" class="param-key-input" placeholder="PARAMETER NAME (e.g. MODULE / PITCH)" value="${key}" required />
+        <input type="text" class="param-val-input" placeholder="SPECIFICATION VALUE (e.g. 1.0 MOD TO 8 MOD)" value="${val}" required />
+        <button type="button" class="btn-row-del" title="Remove Parameter" onclick="this.closest('.param-row').remove()">&times;</button>
+      `;
+      container.appendChild(row);
+    }
+    document.getElementById('addParamBtn').addEventListener('click', () => addParamRow());
+
+    // ==========================================
+    // SAVE SPARE HANDLER
+    // ==========================================
+    async function saveSpareData() {
+      const title = document.getElementById('spareTitle').value.trim();
+      if (!title) {
+        alert('Please enter a Machine Spare Title.');
+        document.getElementById('spareTitle').focus();
+        return;
+      }
+
+      const category = document.getElementById('spareCategory').value.trim() || 'sealing';
+      const desc = document.getElementById('spareDesc').value.trim();
+      const tagsRaw = document.getElementById('spareTags').value.trim();
+      const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+
+      // Collect Parameters
+      const paramRows = document.querySelectorAll('#paramsListContainer .param-row');
+      const parameters = [];
+      paramRows.forEach(row => {
+        const k = row.querySelector('.param-key-input')?.value.trim();
+        const v = row.querySelector('.param-val-input')?.value.trim();
+        if (k && v) parameters.push({ key: k, val: v });
+      });
+
+      // Existing item preservation (badge/id assigned automatically)
+      const existing = (currentSpareIndex >= 0 && currentSpareIndex < allSpares.length ? allSpares[currentSpareIndex] : {});
+      const autoBadge = existing.badge || (category.toUpperCase().slice(0, 8) + ' ' + String(currentSpareIndex + 1).padStart(2, '0'));
+      const primaryImage = (spareImages.length > 0 ? spareImages[0] : (existing.image || 'images/stage-2-turning.jpg'));
+
+      const spareObj = {
+        ...existing,
+        id: autoBadge,
+        title: title,
+        category: category,
+        badge: autoBadge,
+        image: primaryImage,
+        images: spareImages.length > 0 ? spareImages : [primaryImage],
+        description: desc,
+        tags: tags,
+        compatibleMakes: document.getElementById('compatibleMakes').value.trim(),
+        metallurgyScope: document.getElementById('metallurgyScope').value.trim(),
+        reverseEngineeringNotes: document.getElementById('reverseEngineeringNotes').value.trim(),
+        parameters: parameters,
+        link: existing.link || 'contact.html#quote'
+      };
+
+      if (isNewSpare) {
+        allSpares.push(spareObj);
+        currentSpareIndex = allSpares.length - 1;
+        isNewSpare = false;
+      } else {
+        allSpares[currentSpareIndex] = spareObj;
+      }
+
+      // Persist via NiralaStorage (IndexedDB + localStorage + optional server sync)
+      if (window.NiralaStorage) {
+        await window.NiralaStorage.saveSpares(allSpares, true);
+      } else {
+        try {
+          localStorage.setItem('nirala_spares', JSON.stringify(allSpares));
+        } catch (e) {}
+      }
+
+      showToast(`Saved "${title}" successfully! Live across Machine Spares page.`);
+
+      // Update Header Titles
+      document.getElementById('breadcrumbCurrent').textContent = title;
+      document.getElementById('pageTitle').textContent = `Edit Spare: ${title}`;
+      document.title = `Edit ${title} | Nirala Engineers`;
+    }
+
+    // Export spares.json directly to disk
+    window.downloadSparesJson = function() {
+      const blob = new Blob([JSON.stringify(allSpares, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'spares.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      showToast('Downloaded updated spares.json!');
+    };
+
+    document.getElementById('topSaveBtn').addEventListener('click', saveSpareData);
+    document.getElementById('bottomSaveBtn').addEventListener('click', saveSpareData);
+
+    // Keyboard shortcut: Ctrl + S or Cmd + S to save
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        saveSpareData();
+      }
+    });
+
+    // Start
+    loadData();
+  </script>
+</body>
+</html>

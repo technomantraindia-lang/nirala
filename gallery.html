@@ -7,6 +7,34 @@
   <title>Engineering Media Gallery | Photos & Workshop Videos | Nirala Engineers</title>
   <meta name="description" content="Explore high-definition workshop videos, CNC machining footage, tooth hobbing, and precision gear photography from Nirala Engineers in Vadodara, Gujarat." />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* CRITICAL OVERRIDE: GUARANTEE GALLERY CARD VISIBILITY */
+    #galleryPhotoGrid .gallery-card,
+    .gallery-photo-grid .gallery-card,
+    .gallery-card {
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+      display: flex !important;
+    }
+    #galleryPhotoGrid .gallery-card.is-hidden,
+    .gallery-card.is-hidden {
+      display: none !important;
+    }
+    .gallery-photo-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+      gap: 26px !important;
+      width: 100% !important;
+      min-height: 250px !important;
+    }
+    .gallery-card-media-wrap img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -268,7 +296,7 @@
 
         <div class="gallery-photo-grid" id="galleryPhotoGrid">
           <!-- Photo 01: Material Preparation -->
-          <article class="gallery-card reveal" data-category="machining" data-title="Material Preparation" data-desc="Inspection and sizing of certified alloy and carbon steel blanks." data-badge="RAW MATERIAL" data-img="images/stage-1-inspection.jpg">
+          <article class="gallery-card" data-category="machining" data-title="Material Preparation" data-desc="Inspection and sizing of certified alloy and carbon steel blanks." data-badge="RAW MATERIAL" data-img="images/stage-1-inspection.jpg">
             <div class="gallery-card-media-wrap">
               <img src="images/stage-1-inspection.jpg" alt="Material Preparation" loading="lazy" />
               <span class="gallery-card-badge">RAW MATERIAL</span>
@@ -285,7 +313,7 @@
           </article>
 
           <!-- Photo 02: CNC Blank Turning -->
-          <article class="gallery-card reveal" data-category="machining" data-title="CNC Turning" data-desc="Turning and facing of gear blanks to drawing specifications." data-badge="CNC TURNING" data-img="images/stage-2-turning.jpg">
+          <article class="gallery-card" data-category="machining" data-title="CNC Turning" data-desc="Turning and facing of gear blanks to drawing specifications." data-badge="CNC TURNING" data-img="images/stage-2-turning.jpg">
             <div class="gallery-card-media-wrap">
               <img src="images/stage-2-turning.jpg" alt="CNC Turning" loading="lazy" />
               <span class="gallery-card-badge">CNC TURNING</span>
@@ -302,7 +330,7 @@
           </article>
 
           <!-- Photo 03: Gear Hobbing -->
-          <article class="gallery-card reveal" data-category="machining" data-title="Gear Hobbing" data-desc="Tooth cutting and generation for spur and helical gears." data-badge="GEAR CUTTING" data-img="images/stage-3-hobbing.jpg">
+          <article class="gallery-card" data-category="machining" data-title="Gear Hobbing" data-desc="Tooth cutting and generation for spur and helical gears." data-badge="GEAR CUTTING" data-img="images/stage-3-hobbing.jpg">
             <div class="gallery-card-media-wrap">
               <img src="images/stage-3-hobbing.jpg" alt="Gear Hobbing" loading="lazy" />
               <span class="gallery-card-badge">GEAR CUTTING</span>
@@ -319,7 +347,7 @@
           </article>
 
           <!-- Photo 04: Live Gear on Hobber -->
-          <article class="gallery-card reveal" data-category="machining" data-title="Gear on Hobber" data-desc="Gear blank mounted on hobbing machine for tooth generation." data-badge="WORKSHOP LIVE" data-img="images/image copy 7.png">
+          <article class="gallery-card" data-category="machining" data-title="Gear on Hobber" data-desc="Gear blank mounted on hobbing machine for tooth generation." data-badge="WORKSHOP LIVE" data-img="images/image copy 7.png">
             <div class="gallery-card-media-wrap">
               <img src="images/image copy 7.png" alt="Gear on Hobber" loading="lazy" />
               <span class="gallery-card-badge">WORKSHOP LIVE</span>
@@ -336,7 +364,7 @@
           </article>
 
           <!-- Photo 05: Teeth Hardening -->
-          <article class="gallery-card reveal" data-category="machining" data-title="Teeth Hardening" data-desc="Teeth hardening available with or without hardened teeth." data-badge="HEAT TREATMENT" data-img="images/stage-4-hardening.jpg">
+          <article class="gallery-card" data-category="machining" data-title="Teeth Hardening" data-desc="Teeth hardening available with or without hardened teeth." data-badge="HEAT TREATMENT" data-img="images/stage-4-hardening.jpg">
             <div class="gallery-card-media-wrap">
               <img src="images/stage-4-hardening.jpg" alt="Teeth Hardening" loading="lazy" />
               <span class="gallery-card-badge">HEAT TREATMENT</span>
@@ -353,7 +381,7 @@
           </article>
 
           <!-- Photo 06: Teeth Grinding -->
-          <article class="gallery-card reveal" data-category="gears" data-title="Teeth Grinding" data-desc="Surface and profile grinding for smooth gear operation." data-badge="GRINDING" data-img="images/stage-5-grinding.jpg">
+          <article class="gallery-card" data-category="gears" data-title="Teeth Grinding" data-desc="Surface and profile grinding for smooth gear operation." data-badge="GRINDING" data-img="images/stage-5-grinding.jpg">
             <div class="gallery-card-media-wrap">
               <img src="images/stage-5-grinding.jpg" alt="Teeth Grinding" loading="lazy" />
               <span class="gallery-card-badge">GRINDING</span>
@@ -370,7 +398,7 @@
           </article>
 
           <!-- Photo 07: Spur Gear -->
-          <article class="gallery-card reveal" data-category="gears" data-title="Spur Gear" data-desc="Precision manufactured spur gear for industrial machinery." data-badge="SPUR GEAR" data-img="images/final product images/some other iamges/SPUR GEAR.jpeg">
+          <article class="gallery-card" data-category="gears" data-title="Spur Gear" data-desc="Precision manufactured spur gear for industrial machinery." data-badge="SPUR GEAR" data-img="images/final product images/some other iamges/SPUR GEAR.jpeg">
             <div class="gallery-card-media-wrap">
               <img src="images/newwwproductss/Spur Gear -1.jpg.jpeg" alt="Spur Gear" loading="lazy" />
               <span class="gallery-card-badge">SPUR GEAR</span>
@@ -387,7 +415,7 @@
           </article>
 
           <!-- Photo 08: Helical Gear -->
-          <article class="gallery-card reveal" data-category="gears" data-title="Helical Gear" data-desc="Custom helical gear for industrial power transmission." data-badge="HELICAL GEAR" data-img="images/newwwproductss/Helical Gear.JPG.jpeg">
+          <article class="gallery-card" data-category="gears" data-title="Helical Gear" data-desc="Custom helical gear for industrial power transmission." data-badge="HELICAL GEAR" data-img="images/newwwproductss/Helical Gear.JPG.jpeg">
             <div class="gallery-card-media-wrap">
               <img src="images/newwwproductss/Helical Gear.JPG.jpeg" alt="Helical Gear" loading="lazy" />
               <span class="gallery-card-badge">HELICAL GEAR</span>
@@ -404,9 +432,9 @@
           </article>
 
           <!-- Photo 09: Bronze Worm Wheel -->
-          <article class="gallery-card reveal" data-category="gears" data-title="Bronze Worm Wheel" data-desc="Phosphor bronze worm wheel with cast iron hub." data-badge="WORM WHEEL" data-img="images/newwwproductss/Worm &amp; WormWheel-1.JPG.jpeg">
+          <article class="gallery-card" data-category="gears" data-title="Bronze Worm Wheel" data-desc="Phosphor bronze worm wheel with cast iron hub." data-badge="WORM WHEEL" data-img="images/newwwproductss/Worm & WormWheel-1.JPG.jpeg">
             <div class="gallery-card-media-wrap">
-              <img src="images/newwwproductss/Worm &amp; WormWheel-1.JPG.jpeg" alt="Bronze Worm Wheel" loading="lazy" />
+              <img src="images/newwwproductss/Worm & WormWheel-1.JPG.jpeg" alt="Bronze Worm Wheel" loading="lazy" />
               <span class="gallery-card-badge">WORM WHEEL</span>
               <div class="gallery-card-zoom-trigger">🔍</div>
             </div>
@@ -421,7 +449,7 @@
           </article>
 
           <!-- Photo 10: Worm Shaft & Wheel -->
-          <article class="gallery-card reveal" data-category="gears" data-title="Worm Shaft &amp; Wheel" data-desc="Matched worm shaft and worm wheel drive assembly." data-badge="WORM PAIR" data-img="images/final product images/Nirala_Product_Identification_Batch_01/12_Worm_Shaft_and_Bronze_Worm_Wheel.jpg">
+          <article class="gallery-card" data-category="gears" data-title="Worm Shaft &amp; Wheel" data-desc="Matched worm shaft and worm wheel drive assembly." data-badge="WORM PAIR" data-img="images/final product images/Nirala_Product_Identification_Batch_01/12_Worm_Shaft_and_Bronze_Worm_Wheel.jpg">
             <div class="gallery-card-media-wrap">
               <img src="images/final product images/Nirala_Product_Identification_Batch_01/12_Worm_Shaft_and_Bronze_Worm_Wheel.jpg" alt="Worm Shaft &amp; Wheel" loading="lazy" />
               <span class="gallery-card-badge">WORM PAIR</span>
@@ -438,7 +466,7 @@
           </article>
 
           <!-- Photo 11: Spiral Bevel Gear -->
-          <article class="gallery-card reveal" data-category="gears" data-title="Spiral Bevel Gear" data-desc="Spiral bevel gear set for 90-degree drive applications." data-badge="BEVEL GEAR" data-img="images/final product images/Nirala_Product_Identification_Batch_01/image.png">
+          <article class="gallery-card" data-category="gears" data-title="Spiral Bevel Gear" data-desc="Spiral bevel gear set for 90-degree drive applications." data-badge="BEVEL GEAR" data-img="images/final product images/Nirala_Product_Identification_Batch_01/image.png">
             <div class="gallery-card-media-wrap">
               <img src="images/final product images/Nirala_Product_Identification_Batch_01/image.png" alt="Spiral Bevel Gear" loading="lazy" />
               <span class="gallery-card-badge">BEVEL GEAR</span>
@@ -455,7 +483,7 @@
           </article>
 
           <!-- Photo 12: Drive Sprocket -->
-          <article class="gallery-card reveal" data-category="gears" data-title="Drive Sprocket" data-desc="Drive sprocket manufactured with or without hardened teeth." data-badge="SPROCKET" data-img="images/newwwproductss/Sprocket-2.JPG.jpeg">
+          <article class="gallery-card" data-category="gears" data-title="Drive Sprocket" data-desc="Drive sprocket manufactured with or without hardened teeth." data-badge="SPROCKET" data-img="images/newwwproductss/Sprocket-2.JPG.jpeg">
             <div class="gallery-card-media-wrap">
               <img src="images/newwwproductss/Sprocket-2.JPG.jpeg" alt="Drive Sprocket" loading="lazy" />
               <span class="gallery-card-badge">SPROCKET</span>
@@ -472,7 +500,7 @@
           </article>
 
           <!-- Photo 13: Spline Shaft -->
-          <article class="gallery-card reveal" data-category="gears" data-title="Spline Shaft" data-desc="Precision splined shaft for machine drive connections." data-badge="SPLINES" data-img="images/newwwproductss/SPLINE1.jpg.jpeg">
+          <article class="gallery-card" data-category="gears" data-title="Spline Shaft" data-desc="Precision splined shaft for machine drive connections." data-badge="SPLINES" data-img="images/newwwproductss/SPLINE1.jpg.jpeg">
             <div class="gallery-card-media-wrap">
               <img src="images/newwwproductss/SPLINE1.jpg.jpeg" alt="Spline Shaft" loading="lazy" />
               <span class="gallery-card-badge">SPLINES</span>
@@ -489,7 +517,7 @@
           </article>
 
           <!-- Photo 15: Gear Coupling -->
-          <article class="gallery-card reveal" data-category="gearboxes" data-title="Gear Coupling" data-desc="Flexible gear coupling for connecting drive shafts." data-badge="COUPLING" data-img="images/final product images/Nirala_Product_Identification_Batch_01/image copy 3.png">
+          <article class="gallery-card" data-category="gearboxes" data-title="Gear Coupling" data-desc="Flexible gear coupling for connecting drive shafts." data-badge="COUPLING" data-img="images/final product images/Nirala_Product_Identification_Batch_01/image copy 3.png">
             <div class="gallery-card-media-wrap">
               <img src="images/final product images/Nirala_Product_Identification_Batch_01/image copy 3.png" alt="Gear Coupling" loading="lazy" />
               <span class="gallery-card-badge">COUPLING</span>
@@ -506,7 +534,7 @@
           </article>
 
           <!-- Photo 16: Nirala Engineers -->
-          <article class="gallery-card reveal" data-category="gearboxes" data-title="Nirala Engineers" data-desc="Precision gear manufacturing since 1961 in Vadodara." data-badge="SINCE 1961" data-img="images/ne 2025.jpg.jpeg">
+          <article class="gallery-card" data-category="gearboxes" data-title="Nirala Engineers" data-desc="Precision gear manufacturing since 1961 in Vadodara." data-badge="SINCE 1961" data-img="images/ne 2025.jpg.jpeg">
             <div class="gallery-card-media-wrap">
               <img src="images/ne 2025.jpg.jpeg" alt="Nirala Engineers" loading="lazy" />
               <span class="gallery-card-badge">SINCE 1961</span>
@@ -680,6 +708,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="catalog-storage.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

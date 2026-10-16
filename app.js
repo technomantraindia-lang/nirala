@@ -1483,16 +1483,31 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
+    let hoverTimeout = null;
+
     // Attach click and hover events to 4 Pie Slices
     pieSlices.forEach(slice => {
       slice.addEventListener('click', () => {
+        if (hoverTimeout) clearTimeout(hoverTimeout);
         const pId = Number(slice.dataset.phase);
-        renderCockpit(pId, 0);
+        if (pId !== currentPhase) {
+          renderCockpit(pId, 0);
+        }
       });
       slice.addEventListener('mouseenter', () => {
         if (window.innerWidth > 960) {
           const pId = Number(slice.dataset.phase);
-          renderCockpit(pId, 0);
+          if (pId === currentPhase) return;
+          if (hoverTimeout) clearTimeout(hoverTimeout);
+          hoverTimeout = setTimeout(() => {
+            renderCockpit(pId, 0);
+          }, 60);
+        }
+      });
+      slice.addEventListener('mouseleave', () => {
+        if (hoverTimeout) {
+          clearTimeout(hoverTimeout);
+          hoverTimeout = null;
         }
       });
     });

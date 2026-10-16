@@ -1280,9 +1280,23 @@ svg {
 /* 4 Core Slices with 3D Exploding Pop-out effect */
 .pie-slice-sector {
   cursor: pointer;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease, opacity 0.3s ease;
-  transform-origin: 300px 300px;
   outline: none;
+}
+
+/* Stationary Hit Area: Never moves, anchoring hit testing and completely preventing hover jitter */
+.pie-slice-hit-area {
+  fill: rgba(0, 0, 0, 0.001);
+  stroke: transparent;
+  stroke-width: 0;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+/* Visual animated container: pointer-events: none so visual motion doesn't alter mouse position */
+.pie-slice-visual {
+  pointer-events: none;
+  transform-origin: 300px 300px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease, opacity 0.3s ease;
 }
 
 .pie-slice-path {
@@ -1291,24 +1305,24 @@ svg {
   transition: stroke 0.35s ease, stroke-width 0.35s ease, filter 0.35s ease;
 }
 
-/* Pop-out translation along bisector angles */
-.pie-slice-sector[data-phase="1"]:hover,
-.pie-slice-sector[data-phase="1"].active {
+/* Pop-out translation along bisector angles applied to .pie-slice-visual */
+.pie-slice-sector[data-phase="1"]:hover .pie-slice-visual,
+.pie-slice-sector[data-phase="1"].active .pie-slice-visual {
   transform: translate(16px, -19px) scale(1.03);
 }
 
-.pie-slice-sector[data-phase="2"]:hover,
-.pie-slice-sector[data-phase="2"].active {
+.pie-slice-sector[data-phase="2"]:hover .pie-slice-visual,
+.pie-slice-sector[data-phase="2"].active .pie-slice-visual {
   transform: translate(24px, 5px) scale(1.03);
 }
 
-.pie-slice-sector[data-phase="3"]:hover,
-.pie-slice-sector[data-phase="3"].active {
+.pie-slice-sector[data-phase="3"]:hover .pie-slice-visual,
+.pie-slice-sector[data-phase="3"].active .pie-slice-visual {
   transform: translate(-10px, 22px) scale(1.03);
 }
 
-.pie-slice-sector[data-phase="4"]:hover,
-.pie-slice-sector[data-phase="4"].active {
+.pie-slice-sector[data-phase="4"]:hover .pie-slice-visual,
+.pie-slice-sector[data-phase="4"].active .pie-slice-visual {
   transform: translate(-15px, -19px) scale(1.03);
 }
 
